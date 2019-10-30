@@ -24,6 +24,7 @@ import Router from "next/router";
 import PageChange from "components/PageChange/PageChange.js";
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
+import NavBar from 'components/NavBar/NavBar';
 
 
 import "assets/scss/nextjs-material-kit-pro.scss?v=1.0.0";
@@ -86,17 +87,7 @@ export default class MyApp extends App {
         <Head>
           <title>NextJS Material Kit by Creative Tim</title>
         </Head>
-        <Header
-        color="transparent"
-        brand="NextJS Material Kit PRO"
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        changeColorOnScroll={{
-          height: 300,
-          color: "info"
-        }}
-        {...this.props}
-        />
+        <NavBar {...this.props}></NavBar>
         <Component pageContext={this.pageContext} {...pageProps} />
       </React.Fragment>
     );

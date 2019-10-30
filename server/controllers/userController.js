@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const multer = require('multer');
-const jimp = require('jimp')
+const jimp = require('jimp');
 
 exports.getUsers = async (req, res) => {
   const users = await User.find().select(`_id name email createdAt updatedAt`)
   res.json(users);
-
 };
 
 exports.getAuthUser = (req, res) => {

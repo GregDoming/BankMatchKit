@@ -1,37 +1,32 @@
-import { makeStyles } from '@material-ui/core/styles';
-
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
+import { makeStyles } from '@material-ui/core/styles';
 
+import styles from "assets/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
+
+const useStyles = makeStyles(styles);
 
 const ActiveLink = ({ href, activeClassName, children }) => {
   const router = useRouter();
   const classes = useStyles();
 
-
   const child = React.Children.only(children);
 
-
-  let className = child.props.className || '';
-  if (router.pathname === href && activeClassName) {
-    className = classes.activeLink
+  const checkClassName = () => {
+    if (router.pathname === href && activeClassName) {
+      return classes.navLinkActive; 
+    };
+    if (child.props.className) return classes.navLink;
+    return classes.navLink;
   }
+  
+  const className = checkClassName();
 
   return <Link href={href}>{React.cloneElement(child, { className })}</Link>;
 };
-
-const useStyles = makeStyles(theme => ({
-  activeLink: {
-    textDecoration: 'none',
-    margine: 0,
-    padding: 0,
-    fontWeight: "bold",
-    color: "#C62828"
-  }
-}));
 
 ActiveLink.propTypes = {
   href: PropTypes.string,

@@ -55,10 +55,11 @@ const headerLinksStyle = theme => ({
     }
   },
   listItemText: {
-    padding: "0 !important"
+    padding: "0 !important",
+    color: "transparent"
   },
   navLink: {
-    color: "inherit",
+    color: "white",
     position: "relative",
     padding: "0.9375rem",
     fontWeight: "400",
@@ -105,6 +106,13 @@ const headerLinksStyle = theme => ({
   },
   navButton: {
     position: "relative",
+    background: "transparent",
+    color: "inherit",
+      "&:hover,&:focus": {
+        color: "inherit",
+        background: "transparent"
+      },
+    textColor: "white",
     fontWeight: "400",
     fontSize: "12px",
     textTransform: "uppercase",
@@ -156,9 +164,28 @@ const headerLinksStyle = theme => ({
     display: "inline-flex"
   },
   navLinkActive: {
-    "&, &:hover, &:focus,&:active ": {
-      color: "inherit",
-      backgroundColor: "rgba(" + hexToRgb(whiteColor) + ", 0.1)"
+    position: "relative",
+    // color: "transparent",
+    textColor: "white",
+    fontWeight: "400",
+    fontSize: "12px",
+    textTransform: "uppercase",
+    lineHeight: "20px",
+    textDecoration: "none",
+    margin: "0px",
+    display: "inline-flex",
+    [theme.breakpoints.down("sm")]: {
+      width: "calc(100% - 30px)",
+      marginLeft: "15px",
+      marginBottom: "5px",
+      marginTop: "5px",
+      textAlign: "left",
+      "& > span:first-child": {
+        justifyContent: "flex-start"
+      }
+    },
+    "& $icons": {
+      marginRight: "3px"
     }
   },
   icons: {

@@ -3,7 +3,7 @@ import React from "react";
 import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
+// import SwipeableViews from "react-swipeable-views";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -71,7 +71,7 @@ export default function NavPills(props) {
   );
   const tabContent = (
     <div className={classes.contentWrapper}>
-      <SwipeableViews
+      {/* <SwipeableViews
         axis={direction === "rtl" ? "x-reverse" : "x"}
         index={active}
         onChangeIndex={handleChangeIndex}
@@ -83,7 +83,7 @@ export default function NavPills(props) {
             </div>
           );
         })}
-      </SwipeableViews>
+      </SwipeableViews> */}
     </div>
   );
   return horizontal !== undefined ? (

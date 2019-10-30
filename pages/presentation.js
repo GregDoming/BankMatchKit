@@ -37,16 +37,6 @@ export default function PresentationPage() {
   const classes = useStyles();
   return (
     <div>
-      <Header
-        brand="NextJS Material Kit PRO"
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        color="transparent"
-        changeColorOnScroll={{
-          height: 400,
-          color: "info"
-        }}
-      />
       <Parallax
         image={require("assets/img/nextjs_header.jpg")}
         className={classes.parallax}

@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import axios from "axios";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -41,18 +42,33 @@ import marc from "assets/img/faces/marc.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
 
-import { isUserAuthenticated } from 'lib/auth';
-import { getUser } from 'lib/api';
+import { isUserAuthenticated, checkString } from 'lib/auth';
 
 import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
 const useStyles = makeStyles(profilePageStyle);
 
 const Profile = ({ ...rest}) => {
+  const [userName, setUserName] = React.useState("");
+  //When using the useEffect hook you have to write the helper functions 
+  //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
+  React.useEffect(() => {
+    const getUser = async () => {
+      const { stringUserId } = rest;
+      const formatString = JSON.parse(stringUserId)
+      const url = `/api/users/profile/${formatString}`;
+      const user  = await axios.get(url);
+      setUserName(user.data.userName);
+    };
+    getUser();
+  }, []);
+  
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   });
+
+
 
   const classes = useStyles();
   const imageClasses = classNames(
@@ -60,9 +76,6 @@ const Profile = ({ ...rest}) => {
     classes.imgRoundedCircle,
     classes.imgFluid
   );
-
-  console.log(rest)
-
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
@@ -92,7 +105,7 @@ const Profile = ({ ...rest}) => {
                   <img src={christian} alt="..." className={imageClasses} />
                 </div>
                 <div className={classes.name}>
-                  <h3 className={classes.title}>Christian Louboutin</h3>
+                  <h3 className={classes.title}>{userName}</h3>
                   <h6>DESIGNER</h6>
                   <Button
                     justIcon
