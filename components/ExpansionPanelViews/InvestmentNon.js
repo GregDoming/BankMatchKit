@@ -34,7 +34,7 @@ const InvestmentNon = props => {
             {toggleArrOne.map((toggleName, index) => {
               return (
                 <div key={index} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.slice(10)}</label>
+                  <label className={classes.labelStyle}>{toggleName.slice(10).replace(/^\w/, c => c.toUpperCase())}</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
@@ -49,7 +49,7 @@ const InvestmentNon = props => {
             {toggleArrTwo.map((toggleName, index) => {
               return (
                 <div key={index} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.slice(10)}</label>
+                  <label className={classes.labelStyle}>{toggleName.slice(10).replace(/^\w/, c => c.toUpperCase())}</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}

@@ -9,8 +9,6 @@ import Link from "next/link";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Header from "components/Header/Header.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 // import Button from "components/CustomButtons/Button.js";
 import Button from "@material-ui/core/Button";
 import ActiveLink from "components/ActiveLink/ActiveLink.js";
@@ -42,7 +40,7 @@ const Navbar = props => {
       z-index="1"
       changeColorOnScroll={{
         height: 100,
-        color: "primary"
+        color: "secondary"
       }}
       links={
         user._id ? (
@@ -50,14 +48,14 @@ const Navbar = props => {
             <ListItem className={classes.listItem}>
               <Button className={classes.navLink} variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}>
                 <Link href="/profile">
-                  <a className={classes.inActiveLink}>Profile</a>
+                  <a style={{ color: "rgba(233, 241, 228, 1)"}} className={classes.inActiveLink}>Profile</a>
                 </Link>
               </Button>
             </ListItem>
             <ListItem className={classes.listItem}>
               <Button className={classes.navLink} variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}>
                 <Link href="/authpagination">
-                  <a className={classes.inActiveLink}>Edit Profile</a>
+                  <a style={{ color: "rgba(233, 241, 228, 1)"}} className={classes.inActiveLink}>Edit Profile</a>
                 </Link>
               </Button>
             </ListItem>
@@ -68,7 +66,7 @@ const Navbar = props => {
                 onClick={signoutUser}
                 style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}
               >
-                <a className={classes.inActiveLink}>Sign Out</a>
+                <a style={{ color: "rgba(233, 241, 228, 1)"}} className={classes.inActiveLink}>Sign Out</a>
               </Button>
             </ListItem>
           </List>
@@ -77,7 +75,7 @@ const Navbar = props => {
             <ListItem className={classes.listItem}>
               <Button  variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}} >
                 <Link href="/signin">
-                  <a style={{ color: 'white'}}>Sign in</a>
+                  <a style={{ color: "rgba(233, 241, 228, 1)"}}>Sign in</a>
                 </Link>
               </Button>
             </ListItem>

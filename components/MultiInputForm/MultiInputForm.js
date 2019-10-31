@@ -29,37 +29,6 @@ import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiI
 
 import clsx from "clsx";
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   title: {
-//     fontSize: 14,
-//   },
-//   card: {
-//     minWidth: 275,
-//     width: '80%',
-//     raised: true,
-//     padding: theme.spacing(2),
-//     margin: theme.spacing(3)
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(3),
-//     marginRight: theme.spacing(3),
-//   },
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   formControl: {
-//     margin: theme.spacing(1),
-//   }
-// }));
 const useStyles = makeStyles(multiInputFormStyle);
 
 export default function MultiInputForm() {
@@ -113,7 +82,7 @@ export default function MultiInputForm() {
                             <Face className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "First Name..."
+                        placeholder: "Last Name..."
                       }}
                     />
                   </GridItem>
@@ -129,7 +98,7 @@ export default function MultiInputForm() {
                             <Face className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "First Name..."
+                        placeholder: "Secondary Email Address..."
                       }}
                     />
                   </GridItem>
@@ -147,7 +116,7 @@ export default function MultiInputForm() {
                             <Face className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "First Name..."
+                        placeholder: "Mobile Number*..."
                       }}
                     />
                   </GridItem>
@@ -163,7 +132,7 @@ export default function MultiInputForm() {
                             <Face className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "First Name..."
+                        placeholder: "Work Number..."
                       }}
                     />
                   </GridItem>
@@ -235,7 +204,7 @@ export default function MultiInputForm() {
                             <Face className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "First Name..."
+                        placeholder: "Name Of Company..."
                       }}
                     />
                   </GridItem>
