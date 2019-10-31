@@ -54,17 +54,19 @@
     "react-tagsinput": "3.19.0",
     "styled-components": "^4.4.1",
     "use-immer": "^0.3.5",
-    "webpack": "4.40.2",
-    "yarn": "1.19.1"
+    "webpack": "4.40.2"
+    
   },
   "engines": {
-    "node": "^12.13.0"
+    "node": "^12.13.0",
+    "yarn": "1.19.1"
   },
   "scripts": {
+    "heroku-postbuild": "next build",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node server/app.js",
     "dev": "nodemon server/app.js --watch server",
     "build": "next build",
-    "start": "next start",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf .next/ && npm install && npm run dev",
     "compile-sass": "node-sass assets/scss/nextjs-material-kit-pro.scss assets/css/nextjs-material-kit-pro.css",
     "minify-sass": "node-sass assets/scss/nextjs-material-kit-pro.scss assets/css/nextjs-material-kit-pro.min.css --output-style compressed",
