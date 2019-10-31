@@ -9,23 +9,28 @@ import styles from "assets/jss/nextjs-material-kit-pro/components/headerLinksSty
 
 const useStyles = makeStyles(styles);
 
-const ActiveLink = ({ href, activeClassName, children }) => {
+const ActiveLink = ({ href, children }) => {
   const router = useRouter();
   const classes = useStyles();
 
   const child = React.Children.only(children);
 
-  const checkClassName = () => {
-    if (router.pathname === href && activeClassName) {
-      return classes.navLinkActive; 
-    };
-    if (child.props.className) return classes.navLink;
-    return classes.navLink;
+  const isActiveRoute = () => {
+    if (router.pathname === href) return true
+    return false
   }
   
-  const className = checkClassName();
+  const isActive = isActiveRoute();
 
-  return <Link href={href}>{React.cloneElement(child, { className })}</Link>;
+  return (
+    <div>
+      {isActive ? (
+        <Link href={href} >{React.cloneElement(child)}</Link>
+      ) : (
+        <Link href={href} >{React.cloneElement(child)}</Link>
+      )}
+    </div>
+  );
 };
 
 ActiveLink.propTypes = {

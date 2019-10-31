@@ -32,15 +32,16 @@ import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Transition from 'components/Transition/Transition';
 
-import { signinUser, checkString } from '../lib/auth';
+import { signinUser, checkString, isUserAuthenticated } from '../lib/auth';
 
 import loginPageStyle from "assets/jss/nextjs-material-kit-pro/pages/loginPageStyle.js";
 
 import image from "assets/img/bg7.jpg";
+import Router from "next/router";
 
 const useStyles = makeStyles(loginPageStyle);
 
-export default function LoginPage({ ...rest }) {
+const Signin = ({...props}) => {
   const [checked, setChecked] = React.useState([1]);
   const [openError, setOpenError] = React.useState(false);
   const [openSuccess, setOpenSuccess] = React.useState(false);
@@ -49,7 +50,7 @@ export default function LoginPage({ ...rest }) {
 
   //For use with React-Hook-Form
   const { register, handleSubmit } = useForm();
-
+  console.log(props)
   const onSubmit = async user => {
     event.preventDefault();
     setisLoading(true);
@@ -57,6 +58,7 @@ export default function LoginPage({ ...rest }) {
 
     try {
       await signinUser(user);
+      await Router.push("/profile");
 
       setErrorMessage("");
       setOpenSuccess(true);
@@ -144,25 +146,6 @@ export default function LoginPage({ ...rest }) {
                       inputProps={{
                         startAdornment: (
                           <InputAdornment
-                            position="start"
-                            className={classes.inputAdornment}
-                          >
-                          <Face className={classes.inputAdornmentIcon}/>
-                          </InputAdornment>
-                            ),
-                          placeholder: "Username...",
-                          name: "userName",
-                          inputRef: register({ required: "is required field" })
-                      }}
-                    />
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}                          
-                      inputProps={{
-                        startAdornment: (
-                          <InputAdornment
                           position="start"
                           className={classes.inputAdornment}
                           >
@@ -209,7 +192,7 @@ export default function LoginPage({ ...rest }) {
               <Snackbar
                 anchorOrigin={{
                   vertical: "bottom",
-                  horizontal: "middle"
+                  horizontal: "center"
                 }}  
                 TransitionComponent={Transition}
                   open={openError}
@@ -287,4 +270,8 @@ export default function LoginPage({ ...rest }) {
     </div>
   );
 };
+
+Signin.getInitialProps = isUserAuthenticated;
+
+export default Signin;
 

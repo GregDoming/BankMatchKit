@@ -46,11 +46,11 @@ export default function PresentationPage() {
             <GridItem>
               <div className={classes.brand}>
                 <h1>
-                  NextJS Material Kit
+                  My Bank Match
                   <span className={classes.proBadge}>PRO</span>
                 </h1>
                 <h3 className={classes.title}>
-                  A Badass Material-UI Kit based on Material Design.
+                  Find your Lender Today
                 </h3>
               </div>
             </GridItem>

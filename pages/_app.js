@@ -24,7 +24,7 @@ import Router from "next/router";
 import PageChange from "components/PageChange/PageChange.js";
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavBar from 'components/NavBar/NavBar';
+import NavBar from 'components/NavBar/NavBar.js';
 
 
 import "assets/scss/nextjs-material-kit-pro.scss?v=1.0.0";
@@ -88,7 +88,7 @@ export default class MyApp extends App {
           <title>NextJS Material Kit by Creative Tim</title>
         </Head>
         <NavBar {...this.props}></NavBar>
-        <Component pageContext={this.pageContext} {...pageProps} />
+        <Component {...pageProps} />
       </React.Fragment>
     );
   }

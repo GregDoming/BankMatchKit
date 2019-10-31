@@ -4,75 +4,97 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-// @material-ui/icons
-import Search from "@material-ui/icons/Search";
-import Email from "@material-ui/icons/Email";
-import Face from "@material-ui/icons/Face";
-import Settings from "@material-ui/icons/Settings";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Explore from "@material-ui/icons/Explore";
+import Link from "next/link";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Header from "components/Header/Header.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
-import Button from "components/CustomButtons/Button.js";
-import ActiveLink from "components/ActiveLink/ActiveLink.js"
+// import Button from "components/CustomButtons/Button.js";
+import Button from "@material-ui/core/Button";
+import ActiveLink from "components/ActiveLink/ActiveLink.js";
 
 import navbarsStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/navbarsStyle.js";
+import { signoutUser, isUserAuthenticated } from "lib/auth";
 
 import image from "assets/img/bg.jpg";
 import profileImage from "assets/img/faces/avatar.jpg";
 
 const useStyles = makeStyles(navbarsStyle);
 
-const Navbar = () => {
+const Navbar = props => {
+  const checkUser = props => {
+    const { pageProps } = props;
+    if (pageProps.auth) {
+      return pageProps.auth.user;
+    }
+    return {};
+  };
+
   const classes = useStyles();
+  const user = checkUser(props);
+
   return (
     <Header
-      brand="NextJS Material Kit PRO"
+      brand="Bank Match"
       fixed
+      z-index="1"
       changeColorOnScroll={{
-        height: 300,
-        color: "info"
+        height: 100,
+        color: "primary"
       }}
-      color="transparent"
       links={
-      <List className={classes.list + " " + classes.mlAuto}>
-        <ListItem className={classes.listItem}>
-          <Button
-            ref="/signin"
-            className={classes.navLink}
-            color="transparent"
-          >
-          Profile
-          </Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            className={classes.navLink}
-            color="transparent"
-          >
-            <ActiveLink color={"red"} activeClassName="active" href="/signin">
-              <a className={classes.inActiveLink}>Sign in</a>
-            </ActiveLink>
-          </Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            className={classes.navLink}
-            color="transparent"
-          >
-            <ActiveLink color={"red"} activeClassName="active" href="/signup">
-              <a className={classes.inActiveLink}>Sign up</a>
-            </ActiveLink>
-          </Button>
-        </ListItem>
-      </List>
+        user._id ? (
+          <List className={classes.list + " " + classes.mlAuto}>
+            <ListItem className={classes.listItem}>
+              <Button className={classes.navLink} variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}>
+                <Link href="/profile">
+                  <a className={classes.inActiveLink}>Profile</a>
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Button className={classes.navLink} variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}>
+                <Link href="/authpagination">
+                  <a className={classes.inActiveLink}>Edit Profile</a>
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Button
+                variant="outlined"
+                className={classes.navLink}
+                onClick={signoutUser}
+                style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}
+              >
+                <a className={classes.inActiveLink}>Sign Out</a>
+              </Button>
+            </ListItem>
+          </List>
+        ) : (
+          <List className={classes.list + " " + classes.mlAuto}>
+            <ListItem className={classes.listItem}>
+              <Button  variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}} >
+                <Link href="/signin">
+                  <a style={{ color: 'white'}}>Sign in</a>
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Button variant="outlined" style={{ fontSize: '18px', fontWeight: "100", height: "100%", padding:"24px"}}>
+                <Link href="/signup">
+                  <a style={{ color: "rgba(233, 241, 228, 1)"}}>Sign up</a>
+                </Link>
+              </Button>
+            </ListItem>
+          </List>
+        )
       }
     />
   );
 };
+
+Navbar.getInitialProps = isUserAuthenticated;
 
 export default Navbar;

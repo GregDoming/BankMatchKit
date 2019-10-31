@@ -165,7 +165,7 @@ const headerLinksStyle = theme => ({
   },
   navLinkActive: {
     position: "relative",
-    // color: "transparent",
+    color: "transparent",
     textColor: "white",
     fontWeight: "400",
     fontSize: "12px",

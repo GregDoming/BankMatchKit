@@ -25,7 +25,7 @@ const headerStyle = theme => ({
     marginBottom: "20px",
     color: grayColor[15],
     width: "100%",
-    backgroundColor: whiteColor,
+    backgroundColor: "rgba(11, 71, 61, 0.37)",
     boxShadow:
       "0 4px 18px 0px rgba(" +
       hexToRgb(blackColor) +
@@ -36,7 +36,10 @@ const headerStyle = theme => ({
     alignItems: "center",
     flexFlow: "row nowrap",
     justifyContent: "flex-start",
-    position: "relative"
+    position: "fixed",
+    // changeColorOnScroll:
+    //   height: "100",
+    //   backgroundColor: "info"
   },
   absolute: {
     position: "absolute",
@@ -46,8 +49,24 @@ const headerStyle = theme => ({
     position: "fixed"
   },
   container: {
-    ...container,
-    minHeight: "50px",
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "100%",
+    "@media (min-width: 576px)": {
+      maxWidth: "540px"
+    },
+    "@media (min-width: 768px)": {
+      maxWidth: "720px"
+    },
+    "@media (min-width: 992px)": {
+      maxWidth: "960px"
+    },
+    "@media (min-width: 1200px)": {
+      maxWidth: "1140px"
+    },
+    maxHeight: "0px",
     alignItems: "center",
     justifyContent: "space-between",
     display: "flex",
@@ -58,7 +77,7 @@ const headerStyle = theme => ({
     "&,& a": {
       ...defaultFont,
       minWidth: "unset",
-      lineHeight: "30px",
+      lineHeight: "20px",
       fontSize: "18px",
       borderRadius: "3px",
       textTransform: "none",

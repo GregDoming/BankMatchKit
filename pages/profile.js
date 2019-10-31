@@ -42,7 +42,7 @@ import marc from "assets/img/faces/marc.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
 
-import { isUserAuthenticated, checkString } from 'lib/auth';
+import { isUserAuthenticated } from 'lib/auth';
 
 import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
@@ -50,15 +50,18 @@ const useStyles = makeStyles(profilePageStyle);
 
 const Profile = ({ ...rest}) => {
   const [userName, setUserName] = React.useState("");
+  // console.log(rest)
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
   React.useEffect(() => {
     const getUser = async () => {
-      const { stringUserId } = rest;
-      const formatString = JSON.parse(stringUserId)
-      const url = `/api/users/profile/${formatString}`;
-      const user  = await axios.get(url);
-      setUserName(user.data.userName);
+      // const auth = req ? getSessionFromServer(req) : getSessionFromClient();
+      // const { stringUserId } = rest;
+      // console.log(rest.auth.stringUserId)
+
+      // const url = `/api/users/profile/${formatString}`;
+      // const user  = await axios.get(url);
+      // setUserName(user.data.userName);
     };
     getUser();
   }, []);
@@ -80,17 +83,6 @@ const Profile = ({ ...rest}) => {
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div>
-      <Header
-        color="transparent"
-        brand="NextJS Material Kit PRO"
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        changeColorOnScroll={{
-          height: 200,
-          color: "info"
-        }}
-        {...rest}
-      />
       <Parallax
         image={require("assets/img/examples/city.jpg")}
         filter="dark"

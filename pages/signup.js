@@ -30,7 +30,7 @@ import InfoArea from "components/InfoArea/InfoArea.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import SnackbarContent from "components/Snackbar/SnackbarContent.js"
 import Transition from "components/Transition/Transition.js";
-import { signupUser, checkString } from 'lib/auth.js';
+import { signupUser, checkString, isUserAuthenticated } from 'lib/auth.js';
 
 import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
@@ -39,7 +39,7 @@ import image from "assets/img/bg7.jpg";
 
 const useStyles = makeStyles(signupPageStyle);
 
-export default function SignUpPage({ ...rest }) {
+const Signup = ({ ...rest }) => {
   const [checked, setChecked] = React.useState([1]);
   const [openError, setOpenError] = React.useState(false);
   const [openSuccess, setOpenSuccess] = React.useState(false);
@@ -326,3 +326,8 @@ export default function SignUpPage({ ...rest }) {
     </div>
   );
 }
+
+Signup.getInitialProps = isUserAuthenticated;
+
+
+export default Signup;
