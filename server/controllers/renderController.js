@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const handleRender = (req, res) => {
   const sheets = new ServerStyleSheets();
@@ -8,8 +8,8 @@ const handleRender = (req, res) => {
     sheets.collect(
       <ThemeProvider theme={theme}>
         <App />
-      </ThemeProvider>,
-    ),
+      </ThemeProvider>
+    )
   );
 
   // Grab the CSS from the sheets.
@@ -17,6 +17,6 @@ const handleRender = (req, res) => {
 
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css));
-}
+};
 
 export default handleRender;
