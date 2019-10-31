@@ -20,6 +20,7 @@
     "express-session": "^1.17.0",
     "fs": "^0.0.1-security",
     "helmet": "^3.21.1",
+    "immer": "^5.0.0",
     "install": "^0.13.0",
     "isomorphic-unfetch": "^3.0.0",
     "jimp": "^0.8.5",
@@ -51,6 +52,8 @@
     "react-slick": "0.25.2",
     "react-swipeable-views": "0.13.3",
     "react-tagsinput": "3.19.0",
+    "styled-components": "^4.4.1",
+    "use-immer": "^0.3.5",
     "webpack": "4.40.2",
     "yarn": "1.19.1"
   },

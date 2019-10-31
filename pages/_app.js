@@ -24,8 +24,7 @@ import Router from "next/router";
 import PageChange from "components/PageChange/PageChange.js";
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavBar from 'components/NavBar/NavBar.js';
-
+import NavBar from "components/NavBar/NavBar.js";
 
 import "assets/scss/nextjs-material-kit-pro.scss?v=1.0.0";
 
@@ -36,10 +35,7 @@ import "animate.css/animate.min.css";
 Router.events.on("routeChangeStart", url => {
   console.log(`Loading: ${url}`);
   document.body.classList.add("body-page-transition");
-  ReactDOM.render(
-    <PageChange path={url} />,
-    document.getElementById("page-transition")
-  );
+  ReactDOM.render(<PageChange path={url} />, document.getElementById("page-transition"));
 });
 Router.events.on("routeChangeComplete", () => {
   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));

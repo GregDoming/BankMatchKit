@@ -5,6 +5,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ToggleForm from 'components/ToggleForm/ToggleForm';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,6 +32,7 @@ export default function ControlledExpansionPanels() {
 
   return (
     <div className={classes.root}>
+      <ToggleForm/>
       {/* <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}

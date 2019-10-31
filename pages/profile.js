@@ -50,7 +50,6 @@ const useStyles = makeStyles(profilePageStyle);
 
 const Profile = ({ ...rest}) => {
   const [userName, setUserName] = React.useState("");
-  // console.log(rest)
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
   React.useEffect(() => {

@@ -1,13 +1,16 @@
 import React from "react";
 import Helmet from "react-helmet";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
 import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
@@ -40,6 +43,7 @@ const AuthPagination = props => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
+  const theme = useTheme();
 
   const totalSteps = () => {
     return steps.length;
@@ -77,7 +81,7 @@ const AuthPagination = props => {
 
   const handleComplete = () => {
     const newCompleted = completed;
-    newCompleted[activeStep] = true;
+    newCompleted[activeStep] = "true";
     setCompleted(newCompleted);
     handleNext();
   };
@@ -106,53 +110,30 @@ const AuthPagination = props => {
         <style>{"body { background-color: #96aadf; }"}</style>
       </Helmet>
       {renderView(activeStep)}
-      <Box className={classes.bottomStepper}>
-        <Stepper nonLinear activeStep={activeStep}>
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepButton onClick={handleStep(index)} completed={completed[index]}>
-                {label}
-              </StepButton>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          {allStepsCompleted() ? (
-            <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Button onClick={handleReset}>Reset</Button>
-            </div>
-          ) : (
-            <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-              <div>
-                <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                  Back
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                  className={classes.button}
-                >
-                  Next
-                </Button>
-                {/* {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography variant="caption" className={classes.completed}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button variant="contained" color="primary" onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
-                  </Button>
-                ))} */}
-              </div>
-            </div>
-          )}
-        </div>
+      <Box
+        className={classes.bottomStepper}
+        style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed"}}
+      >
+        <MobileStepper
+          variant="dots"
+          steps={6}
+          position="bottom"
+          activeStep={activeStep}
+          className={classes.root}
+          style={{backgroundColor: "rgba(204, 210, 25, 0.55)", width: "60%", textAlign: "center", margin: "auto"  }}
+          nextButton={
+            <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+              Next
+              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </Button>
+          }
+          backButton={
+            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              Back
+            </Button>
+          }
+        />
       </Box>
     </div>
   );
@@ -161,3 +142,77 @@ const AuthPagination = props => {
 AuthPagination.getInitialProps = isUserAuthenticated;
 
 export default AuthPagination;
+
+// import React from 'react';
+// import { makeStyles, useTheme } from '@material-ui/core/styles';
+// import MobileStepper from '@material-ui/core/MobileStepper';
+// import Button from '@material-ui/core/Button';
+// import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+// import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+// import styles from "assets/jss/nextjs-material-kit-pro/components/paginationStyle.js";
+// import ViewOne from "components/AuthPaginationViews/ViewOne.js";
+// import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
+// import ViewThree from "components/AuthPaginationViews/ViewThree.js";
+// import { isUserAuthenticated } from "lib/auth";
+// import paginationStyle from '../assets/jss/nextjs-material-kit-pro/components/paginationStyle.js';
+
+// const useStyles = makeStyles(paginationStyle)
+
+// const AuthPagination = () => {
+//   const classes = useStyles();
+//   const theme = useTheme();
+//   const [activeStep, setActiveStep] = React.useState(0);
+
+//   const handleNext = () => {
+//     setActiveStep(prevActiveStep => prevActiveStep + 1);
+//   };
+
+//   const handleBack = () => {
+//     setActiveStep(prevActiveStep => prevActiveStep - 1);
+//   };
+
+//   const handleSkip = () => {
+//     if (!isStepOptional(activeStep)) {
+//       // You probably want to guard against something like this,
+//       // it should never occur unless someone's actively trying to break something.
+//       throw new Error("You can't skip a step that isn't optional.");
+//     }
+
+//     setActiveStep(prevActiveStep => prevActiveStep + 1);
+//     setSkipped(prevSkipped => {
+//       const newSkipped = new Set(prevSkipped.values());
+//       newSkipped.add(activeStep);
+//       return newSkipped;
+//     });
+//   };
+
+//   const handleReset = () => {
+//     setActiveStep(0);
+//   };
+
+//   return (
+//     <MobileStepper
+//       variant="dots"
+//       steps={6}
+//       position="bottom"
+//       activeStep={activeStep}
+//       className={classes.root}
+//       nextButton={
+//         <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+//           Next
+//           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+//         </Button>
+//       }
+//       backButton={
+//         <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+//           {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+//           Back
+//         </Button>
+//       }
+//     />
+//   );
+// }
+
+// AuthPagination.getInitialProps = isUserAuthenticated;
+
+// export default AuthPagination;
