@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 const mongodbErrorHandler = require("mongoose-mongodb-errors");
 const passportLocalMongoose = require("passport-local-mongoose");
+const bcrypt = require("bcryptjs")
 
 const userSchema = new mongoose.Schema(
   {
@@ -19,6 +20,10 @@ const userSchema = new mongoose.Schema(
       minlength: 4,
       maxlength: 10,
       required: "userName is required"
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide a password"],
     },
     avatar: {
       type: String,
@@ -42,6 +47,20 @@ const autoPopulateFollowingAndFollowers = function(next) {
   this.populate("followers", "_id name avatar");
   next();
 };
+
+// userSchema.pre('save', async function(next) {
+//   //only run this funciton if password was actually modified
+//   if (this.isModified("password")) return next();
+//   console.log('password confirm')
+//   console.log(this.password)
+
+//   const salt = process.env.BCRYPT_SALT
+
+//   this.password = await bcrypt.hash(this.password, 12);
+//   //Do not save confirmed password to the database
+//   this.confirmPassword = undefined;
+//   next()
+// })
 
 userSchema.pre("findOne", autoPopulateFollowingAndFollowers);
 

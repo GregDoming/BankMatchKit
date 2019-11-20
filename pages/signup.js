@@ -252,7 +252,7 @@ const Signup = ({ ...props }) => {
                             ),        
                             type: showPassword ? "text" : "password",
                             
-                            placeholder: "confirmPassword...",
+                            placeholder: "Confirm Password...",
                             name: "confirmPassword",
                             inputRef: register({ required: "is required field" })
                           }}
