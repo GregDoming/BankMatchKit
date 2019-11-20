@@ -250,6 +250,4 @@ const Signin = (props) => {
   );
 };
 
-Signin.getIntialProps = isUserAuthenticated
-
 export default Signin;

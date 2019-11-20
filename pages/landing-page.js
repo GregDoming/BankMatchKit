@@ -129,7 +129,5 @@ const LandingPage = ({ ...props }) => {
     </div>
   );
 };
-LandingPage.getInitialProps = isUserAuthenticated;
-
 
 export default LandingPage;
