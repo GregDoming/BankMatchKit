@@ -10,10 +10,12 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Icon from "@material-ui/core/Icon";
 import Snackbar from "@material-ui/core/Snackbar";
-
+import IconButton from '@material-ui/core/IconButton';
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
 import Favorite from "@material-ui/icons/Favorite";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 // core components
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -40,7 +42,9 @@ const Signin = (props) => {
   const [openSuccess, setOpenSuccess] = React.useState(false);
   const [isLoading, setisLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
-  
+  const [showPassword, setShowPassword]= React.useState(false);
+
+  console.log(showPassword)
   React.useEffect(() => {
     if (isLoading) {
       window.scrollTo(0, 0);
@@ -66,6 +70,14 @@ const Signin = (props) => {
 
       showError(error);
     }
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword)
+  };
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
   };
 
   const handleClose = () => setOpenError(false);
@@ -156,6 +168,18 @@ const Signin = (props) => {
                             <Icon className={classes.inputIconsColor}>lock_utline</Icon>
                           </InputAdornment>
                         ),
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                            >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),        
+                        type: showPassword ? "text" : "password",
                         placeholder: "Password...",
                         name: "password",
                         inputRef: register({ required: "is required field" })
