@@ -30,7 +30,7 @@ import { signinUser, checkString, isUserAuthenticated } from "../lib/auth";
 
 const useStyles = makeStyles(landingPageStyle);
 
-const LandingPage = ({ ...rest }) => {
+const LandingPage = ({ ...props }) => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -129,7 +129,6 @@ const LandingPage = ({ ...rest }) => {
     </div>
   );
 };
-
 LandingPage.getInitialProps = isUserAuthenticated;
 
 

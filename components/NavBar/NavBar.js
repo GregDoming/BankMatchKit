@@ -18,6 +18,7 @@ import { signoutUser, isUserAuthenticated } from "lib/auth";
 
 import image from "assets/img/bg.jpg";
 import profileImage from "assets/img/faces/avatar.jpg";
+import Axios from "axios";
 
 const useStyles = makeStyles(navbarsStyle);
 
@@ -92,7 +93,5 @@ const Navbar = props => {
     />
   );
 };
-
-Navbar.getInitialProps = isUserAuthenticated;
 
 export default Navbar;

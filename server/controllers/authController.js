@@ -76,3 +76,11 @@ exports.checkAuth = (req, res, next) => {
     return next();
   }
 };
+
+exports.authBool = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    
+  }
+  
+}
+

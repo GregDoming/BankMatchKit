@@ -34,7 +34,7 @@ import Router from "next/router";
 
 const useStyles = makeStyles(loginPageStyle);
 
-const Signin = ({ ...props }) => {
+const Signin = (props) => {
   const [checked, setChecked] = React.useState([1]);
   const [openError, setOpenError] = React.useState(false);
   const [openSuccess, setOpenSuccess] = React.useState(false);
@@ -248,6 +248,6 @@ const Signin = ({ ...props }) => {
   );
 };
 
-Signin.getInitialProps = isUserAuthenticated;
+Signin.getIntialProps = isUserAuthenticated
 
 export default Signin;

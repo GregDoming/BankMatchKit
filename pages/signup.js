@@ -39,7 +39,7 @@ import image from "assets/img/bg7.jpg";
 
 const useStyles = makeStyles(signupPageStyle);
 
-const Signup = ({ ...rest }) => {
+const Signup = ({ ...props }) => {
   const [checked, setChecked] = React.useState([1]);
   const [openError, setOpenError] = React.useState(false);
   const [openSuccess, setOpenSuccess] = React.useState(false);
@@ -326,8 +326,5 @@ const Signup = ({ ...rest }) => {
     </div>
   );
 }
-
-Signup.getInitialProps = isUserAuthenticated;
-
 
 export default Signup;

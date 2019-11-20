@@ -31,6 +31,7 @@ import "assets/scss/nextjs-material-kit-pro.scss?v=1.0.0";
 import "assets/css/react-demo.css";
 
 import "animate.css/animate.min.css";
+import Axios from "axios";
 
 Router.events.on("routeChangeStart", url => {
   console.log(`Loading: ${url}`);
@@ -71,7 +72,10 @@ export default class MyApp extends App {
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
+
     }
+
+
 
     return { pageProps };
   }
@@ -81,7 +85,7 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
-          <title>NextJS Material Kit by Creative Tim</title>
+          <title>Bank Match</title>
         </Head>
         <NavBar {...this.props}></NavBar>
         <Component {...pageProps} />
