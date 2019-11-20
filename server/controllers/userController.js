@@ -18,6 +18,10 @@ exports.getAuthUser = (req, res) => {
   res.json(req.user);
 };
 
+exports.getUserId = async (req, res, next, id) => {
+  res.json(req.user)
+}
+
 exports.getUserById = async (req, res, next, id) => {
   const user = await User.findOne({ _id: id });
   req.profile = user;

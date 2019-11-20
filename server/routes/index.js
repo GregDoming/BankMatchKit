@@ -23,7 +23,6 @@ router.post(
 );
 router.post("/api/auth/signin", authController.signin);
 router.get("/api/auth/signout", authController.signout);
-router.get("/api/auth/authCheck", authController.authBool);
 
 /**
  * USER ROUTES: /api/users

@@ -40,7 +40,13 @@ const Signin = (props) => {
   const [openSuccess, setOpenSuccess] = React.useState(false);
   const [isLoading, setisLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
-
+  
+  React.useEffect(() => {
+    if (isLoading) {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+    }
+  });
   //For use with React-Hook-Form
   const { register, handleSubmit } = useForm();
   const onSubmit = async user => {
@@ -72,10 +78,6 @@ const Signin = (props) => {
     setisLoading(false);
   };
 
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
   const classes = useStyles();
   return (
     <div>

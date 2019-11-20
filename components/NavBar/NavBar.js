@@ -25,6 +25,7 @@ const useStyles = makeStyles(navbarsStyle);
 const Navbar = props => {
   const checkUser = props => {
     const { pageProps } = props;
+    console.log(pageProps)
     if (pageProps.auth) {
       return pageProps.auth.user;
     }

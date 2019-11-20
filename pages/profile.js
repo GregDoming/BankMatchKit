@@ -50,18 +50,6 @@ const Profile = ({ ...rest}) => {
   const [userName, setUserName] = React.useState("");
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
-  React.useEffect(() => {
-    const getUser = async () => {
-      // const auth = req ? getSessionFromServer(req) : getSessionFromClient();
-      // const { stringUserId } = rest;
-      // console.log(rest.auth.stringUserId)
-
-      // const url = `/api/users/profile/${formatString}`;
-      // const user  = await axios.get(url);
-      // setUserName(user.data.userName);
-    };
-    getUser();
-  }, []);
   
   React.useEffect(() => {
     window.scrollTo(0, 0);
