@@ -282,7 +282,7 @@ const Signup = ({ ...rest }) => {
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>
                     <a
-                      href="https://www.creative-tim.com/presentation?ref=njsmkp-signup"
+                      href="https://www.creative-tim.com/landing-page?ref=njsmkp-signup"
                       target="_blank"
                       className={classes.block}
                     >

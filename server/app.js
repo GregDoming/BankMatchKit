@@ -6,6 +6,9 @@ const logger = require("morgan");
 const passport = require("passport");
 const helmet = require("helmet");
 const compression = require("compression");
+
+const authController = require("./controllers/authController");
+
 // const cors = require('cors')
 
 
@@ -127,6 +130,10 @@ mongoose
   // server.get("/profile", (req, res) => {
   //   app.render(req, res, "/profile", query)
   // });
+  // server.get("/profile", authController.checkAuth)
+
+  // server.get("/authpagination", authController.checkAuth)
+
 
   /* create custom routes with route params. If the server gets a request with a query on it put the
   results into an objext with the key of "userId" and the object will get query parametsers that 

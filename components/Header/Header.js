@@ -69,7 +69,7 @@ export default function Header(props) {
     <AppBar className={appBarClasses}  >
       <Toolbar className={classes.container} >
         <Button className={classes.title}>
-          <Link href="/presentation">
+          <Link href="/landing-page">
             <a style={{ color: "#f6f8a5"}}>{brand}</a>
           </Link>
         </Button>

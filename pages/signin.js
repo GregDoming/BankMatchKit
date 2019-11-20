@@ -206,7 +206,7 @@ const Signin = ({ ...props }) => {
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>
                     <a
-                      href="https://www.creative-tim.com/presentation?ref=njsmkp-login"
+                      href="https://www.creative-tim.com/landing-page?ref=njsmkp-login"
                       target="_blank"
                       className={classes.block}
                     >

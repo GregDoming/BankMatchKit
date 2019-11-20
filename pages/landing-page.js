@@ -25,9 +25,12 @@ import SectionProduct from "pages-sections/landing-page/SectionProduct.js";
 import SectionTeam from "pages-sections/landing-page/SectionTeam.js";
 import SectionWork from "pages-sections/landing-page/SectionWork.js";
 
+import { signinUser, checkString, isUserAuthenticated } from "../lib/auth";
+
+
 const useStyles = makeStyles(landingPageStyle);
 
-export default function LandingPage({ ...rest }) {
+const LandingPage = ({ ...rest }) => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -83,7 +86,7 @@ export default function LandingPage({ ...rest }) {
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-landing"
+                    href="https://www.creative-tim.com/landing-page?ref=njsmkp-landing"
                     target="_blank"
                     className={classes.block}
                   >
@@ -125,4 +128,9 @@ export default function LandingPage({ ...rest }) {
       />
     </div>
   );
-}
+};
+
+LandingPage.getInitialProps = isUserAuthenticated;
+
+
+export default LandingPage;

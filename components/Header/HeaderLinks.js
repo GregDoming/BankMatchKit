@@ -103,7 +103,7 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={Apps}
           dropdownList={[
-            <Link href="/presentation">
+            <Link href="/landing-page">
               <a className={classes.dropdownLink}>
                 <LineStyle className={classes.dropdownIcons} /> Presentation
                 Page

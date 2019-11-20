@@ -65,9 +65,14 @@ exports.signout = (req, res) => {
   res.json({ message: "You are now signed out" });
 };
 
+exports.getSessionUser = ( req, res, next) => {
+  if (req.isAuthenticated()) {
+    console.log(req.session)
+  }
+}
+
 exports.checkAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("./signin");
 };

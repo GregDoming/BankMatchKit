@@ -90,7 +90,7 @@ export default function AboutUsPage() {
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-about-us"
+                    href="https://www.creative-tim.com/landing-page?ref=njsmkp-about-us"
                     className={classes.block}
                     target="_blank"
                   >

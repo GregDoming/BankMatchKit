@@ -247,7 +247,7 @@ export default function ContactUsPage() {
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-contact-us"
+                    href="https://www.creative-tim.com/landing-page?ref=njsmkp-contact-us"
                     target="_blank"
                     className={classes.block}
                   >
