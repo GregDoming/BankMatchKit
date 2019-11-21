@@ -12,11 +12,17 @@ import customCheckboxRadioSwitchStyle from "assets/jss/nextjs-material-kit-pro/c
 
 const multiInputFormStyle = {
   customContainer: {
-    flexWrap: "nowrap"
-
+    display: "flex",
+    flexWrap: "nowrap",
   },
   customGridItem: {
     flex: "1",
+  },
+  centerContainer: {
+    height: "10em",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   cardSignupToggle: {
       borderRadius: "1px",

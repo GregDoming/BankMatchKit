@@ -44,8 +44,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-console.log(userSchema)
-
 const autoPopulateFollowingAndFollowers = function(next) {
   this.populate("following", "_id name avatar");
   this.populate("followers", "_id name avatar");

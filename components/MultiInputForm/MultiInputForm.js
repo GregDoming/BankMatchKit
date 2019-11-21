@@ -22,6 +22,8 @@ import Button from "components/CustomButtons/Button.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import FormGroup from "@material-ui/core/FormGroup";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 import image from "assets/img/bg7.jpg";
 
@@ -31,18 +33,87 @@ import clsx from "clsx";
 
 const useStyles = makeStyles(multiInputFormStyle);
 
+const listOfStates = [
+  "AK - Alaska",
+  "AL - Alabama",
+  "AR - Arkansas",
+  "AS - American Samoa",
+  "AZ - Arizona",
+  "CA - California",
+  "CO - Colorado",
+  "CT - Connecticut",
+  "DC - District of Columbia",
+  "DE - Delaware",
+  "FL - Florida",
+  "GA - Georgia",
+  "GU - Guam",
+  "HI - Hawaii",
+  "IA - Iowa",
+  "ID - Idaho",
+  "IL - Illinois",
+  "IN - Indiana",
+  "KS - Kansas",
+  "KY - Kentucky",
+  "LA - Louisiana",
+  "MA - Massachusetts",
+  "MD - Maryland",
+  "ME - Maine",
+  "MI - Michigan",
+  "MN - Minnesota",
+  "MO - Missouri",
+  "MS - Mississippi",
+  "MT - Montana",
+  "NC - North Carolina",
+  "ND - North Dakota",
+  "NE - Nebraska",
+  "NH - New Hampshire",
+  "NJ - New Jersey",
+  "NM - New Mexico",
+  "NV - Nevada",
+  "NY - New York",
+  "OH - Ohio",
+  "OK - Oklahoma",
+  "OR - Oregon",
+  "PA - Pennsylvania",
+  "PR - Puerto Rico",
+  "RI - Rhode Island",
+  "SC - South Carolina",
+  "SD - South Dakota",
+  "TN - Tennessee",
+  "TX - Texas",
+  "UT - Utah",
+  "VA - Virginia",
+  "VI - Virgin Islands",
+  "VT - Vermont",
+  "WA - Washington",
+  "WI - Wisconsin",
+  "WV - West Virginia",
+  "WY - Wyoming"
+];
+
 export default function MultiInputForm() {
   const classes = useStyles();
+  const [multipleSelect, setMultipleSelect] = React.useState([]);
+  const [simpleSelect, setSimpleSelect] = React.useState("");
   const [values, setValues] = React.useState({
     firstName: "",
     lastName: "",
     secondaryEmailAddress: "",
     mobileNumber: "",
-    workNumber: ""
+    workNumber: "",
+    nameOfCompany: ""
   });
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
+  };
+
+  const handleMultiple = event => {
+    setMultipleSelect(event.target.value);
+  };
+
+  const handleSimple = event => {
+    setSimpleSelect(event.target.value);
   };
 
   return (
@@ -61,11 +132,6 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
                         placeholder: "First Name..."
                       }}
                     />
@@ -77,11 +143,6 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
                         placeholder: "Last Name..."
                       }}
                     />
@@ -93,11 +154,6 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
                         placeholder: "Secondary Email Address..."
                       }}
                     />
@@ -111,11 +167,6 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
                         placeholder: "Mobile Number*..."
                       }}
                     />
@@ -127,11 +178,6 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
                         placeholder: "Work Number..."
                       }}
                     />
@@ -191,7 +237,7 @@ export default function MultiInputForm() {
             <h5 className={classes.cardTitle}>YOUR COMPANY INFO</h5>
             <CardBody>
               <form className={classes.customForm}>
-                <GridContainer className={classes.customForm}>
+                <GridContainer justify="center" className={classes.customContainer}>
                   <GridItem xs={12} sm={5} md={5}>
                     <CustomInput
                       formControlProps={{
@@ -199,28 +245,106 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
                         placeholder: "Name Of Company..."
                       }}
                     />
                   </GridItem>
+                  <GridItem
+                    className={classes.customFormControlClasses}
+                    xs={12}
+                    sm={6}
+                    md={5}
+                    lg={5}
+                  >
+                    <InputLabel id="demo-mutiple-checkbox-label">Type of Lender</InputLabel>
+                    <Select
+                      multiple
+                      value={multipleSelect}
+                      onChange={handleMultiple}
+                      fullWidth={true}
+                      MenuProps={{
+                        className: classes.selectMenu,
+                        classes: { paper: classes.selectPaper }
+                      }}
+                      classes={{ select: classes.select }}
+                      inputProps={{
+                        name: "Type of Lender",
+                        id: "multiple-select"
+                      }}
+                    >
+                      <MenuItem
+                        disabled
+                        classes={{
+                          root: classes.selectMenuItem
+                        }}
+                      >
+                        Type of Lender
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelectedMultiple
+                        }}
+                        value="1"
+                      >
+                        Bank
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelectedMultiple
+                        }}
+                        value="2"
+                      >
+                        CDFI
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelectedMultiple
+                        }}
+                        value="3"
+                      >
+                        Credit Union
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelectedMultiple
+                        }}
+                        value="4"
+                      >
+                        Insurance Company
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelectedMultiple
+                        }}
+                        value="5"
+                      >
+                        Non-Bank Lender
+                      </MenuItem>
+                      <MenuItem
+                        classes={{
+                          root: classes.selectMenuItem,
+                          selected: classes.selectMenuItemSelectedMultiple
+                        }}
+                        value="6"
+                      >
+                        Private Equity
+                      </MenuItem>
+                    </Select>
+                  </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
+
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
+                        placeholder: "Main Phone Line..."
                       }}
                     />
                   </GridItem>
@@ -231,12 +355,20 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
+                        placeholder: "Fax..."
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer className={classes.customContainer}>
+                  <GridItem xs={12} sm={5} md={5}>
+                    <CustomInput
+                      formControlProps={{
+                        flexGrow: 3,
+                        className: classes.customFormControlClasses
+                      }}
+                      inputProps={{
+                        placeholder: "Company Street Address..."
                       }}
                     />
                   </GridItem>
@@ -247,28 +379,60 @@ export default function MultiInputForm() {
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
+                        placeholder: "City..."
                       }}
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
+                    <InputLabel htmlFor="simple-select" className={classes.selectLabel}>
+                      State
+                    </InputLabel>
+                    <Select
+                      fullWidth={true}
+                      MenuProps={{
+                        className: classes.selectMenu
+                      }}
+                      classes={{
+                        select: classes.select
+                      }}
+                      value={simpleSelect}
+                      onChange={handleSimple}
+                      inputProps={{
+                        name: "simpleSelect",
+                        id: "simple-select"
+                      }}
+                    >
+                      <MenuItem
+                        disabled
+                        classes={{
+                          root: classes.selectMenuItem
+                        }}
+                      >
+                        Single Select
+                      </MenuItem>
+                      {listOfStates.map((stateName, index) => {
+                        return (
+                          <MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected
+                            }}
+                            value={index + 1}
+                          >
+                            {stateName}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </GridItem>
+                  <GridItem style={{ flexGrow: 1 }} xs={12} sm={5} md={5}>
                     <CustomInput
                       formControlProps={{
-                        fullWidth: true,
+                        flexGrow: 1,
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
+                        placeholder: "Zip..."
                       }}
                     />
                   </GridItem>
@@ -282,85 +446,19 @@ export default function MultiInputForm() {
             <h5 className={classes.cardTitle}>PERSONAL NOTES / AREAS OF EXCELLENCE</h5>
             <CardBody>
               <form className={classes.customForm}>
-                <GridContainer className={classes.customForm}>
-                  <GridItem xs={12} sm={5} md={5}>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                      inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
-                      }}
-                    />
-                  </GridItem>
-                  <GridItem xs={12} sm={5} md={5}>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                      inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
-                      }}
-                    />
-                  </GridItem>
-                  <GridItem xs={12} sm={5} md={5}>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                      inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
-                      }}
-                    />
-                  </GridItem>
-                  <GridItem xs={12} sm={5} md={5}>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                      inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
-                      }}
-                    />
-                  </GridItem>
-                  <GridItem xs={12} sm={5} md={5}>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                      inputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start" className={classes.inputAdornment}>
-                            <Face className={classes.inputAdornmentIcon} />
-                          </InputAdornment>
-                        ),
-                        placeholder: "First Name..."
-                      }}
+                <GridContainer className={classes.customToggleForm}>
+                  <GridItem justifyContent={"center"} xs={12} sm={5} md={5}>
+                    <TextField
+                      id="outlined-multiline-static"
+                      label="Multiline"
+                      multiline
+                      rows="8"
+                      fullWidth={true}
+                      justifyContent="center"
+                      defaultValue="Default Value"
+                      className={classes.textField}
+                      margin="normal"
+                      variant="outlined"
                     />
                   </GridItem>
                 </GridContainer>
@@ -372,223 +470,3 @@ export default function MultiInputForm() {
     </div>
   );
 }
-//   <div className={classes.root}>
-//     <Paper className={classes.card}>
-//     <Grid container spacing={3}>
-//       <form className={classes.container} noValidate autoComplete="off">
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="First Name"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('firstName')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Last Name"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('lastName')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Secondary Email Address"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('secondaryEmailAddress')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//     </form>
-//   </Grid>
-//   <Grid container spacing={3}>
-//     <form className={classes.container} noValidate autoComplete="off">
-//       <Grid item xs>
-//         <TextField
-//           id="filled-name"
-//           label="Mobile Number"
-//           className={classes.textField}
-//           value={values.name}
-//           onChange={handleChange('mobileNumber')}
-//           margin="normal"
-//           variant="filled"
-//         />
-//       </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Name"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('name')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//       </form>
-//     </Grid>
-//     </Paper>
-//     <Paper className={classes.card}>
-//     <Grid container spacing={3}>
-//       <form className={classes.container} noValidate autoComplete="off">
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Name of Company"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('nameOfCompany')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Last Name"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('lastName')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Main Phone Line"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('secondaryEmailAddress')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Fax"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('secondaryEmailAddress')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//     </form>
-//   </Grid>
-//   <Grid container spacing={3}>
-//     <form className={classes.container} noValidate autoComplete="off">
-//       <Grid item xs>
-//         <TextField
-//           id="filled-name"
-//           label="Company Street Address"
-//           className={classes.textField}
-//           value={values.name}
-//           onChange={handleChange('mobileNumber')}
-//           margin="normal"
-//           variant="filled"
-//         />
-//       </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="City"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('name')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="State"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('name')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Zip"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('secondaryEmailAddress')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//       </form>
-//     </Grid>
-//     </Paper>
-//     <Paper className={classes.card}>
-//     <Grid container spacing={3}>
-//       <form className={classes.container} noValidate autoComplete="off">
-//         <Grid item xs>
-//           <TextField
-//             id="filled-multiline-static"
-//             label="Multiline"
-//             multiline
-//             rows="5"
-//             className={classes.textField}
-//             margin="normal"
-//             variant="filled"
-//             fullWidth
-//             />
-//         </Grid>
-//       </form>
-//     </Grid>
-//     <Grid container spacing={3}>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Source Name"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('lastName')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//         <Grid item xs>
-//           <TextField
-//             id="filled-name"
-//             label="Source Phone"
-//             className={classes.textField}
-//             value={values.name}
-//             onChange={handleChange('secondaryEmailAddress')}
-//             margin="normal"
-//             variant="filled"
-//           />
-//         </Grid>
-//       <Grid item xs>
-//         <TextField
-//           id="filled-name"
-//           label="Source Email"
-//           className={classes.textField}
-//           value={values.name}
-//           onChange={handleChange('mobileNumber')}
-//           margin="normal"
-//           variant="filled"
-//         />
-//       </Grid>
-//     </Grid>
-//     </Paper>
-//   </div>
-// );
-// };
