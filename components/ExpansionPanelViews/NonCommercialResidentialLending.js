@@ -9,24 +9,18 @@ import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js
 
 const useStyles = makeStyles(toggleFormStyle);
 
-const SbaSevenALoans = props => {
+const NonCommercialResidentialLending = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
-    "sbaExpress",
-    "exoprtExpressWC",
-    "internationalTrade",
-    "seasonalCAPLines",
-    "ownerOccupiedCommercial",
-    "debtRefinance"
+    "Conventional FNMA/FHLMC",
+    "Government FHA/VA/USDA",
+    "203k Rehab"
   ];
   const toggleArrTwo = [
-    "contractCAPLines",
-    "buildersCAPLines",
-    "workingCAPLines",
-    "sbaMicroLoan",
-    "businessAcquisition"
+    "Portfolio",
+    "Jumbo"
   ];
 
   const { onToggleChange } = props;
@@ -40,7 +34,7 @@ const SbaSevenALoans = props => {
           <div className={classes.toggleGridItem}>
             {toggleArrOne.map((toggleName, index) => {
               return (
-                <div key={"SBASeven" + index.toString()} className={classes.rowContainer}>
+                <div key={"NonCommercial" + index.toString()} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
@@ -55,7 +49,7 @@ const SbaSevenALoans = props => {
           <div>
             {toggleArrTwo.map((toggleName, index) => {
               return (
-                <div key={"SBASeven2" + index.toString()} className={classes.rowContainer}>
+                <div key={"NonCommercial2" + index.toString()} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
@@ -73,4 +67,4 @@ const SbaSevenALoans = props => {
   );
 };
 
-export default SbaSevenALoans;
+export default NonCommercialResidentialLending;

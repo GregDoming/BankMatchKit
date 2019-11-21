@@ -15,104 +15,52 @@ import InvestmentNon from "components/ExpansionPanelViews/InvestmentNon.js";
 import SbaSevenALoans from "components/ExpansionPanelViews/SbaSevenALoans.js";
 import ConstructionNonSBARealEstate from "components/ExpansionPanelViews/ConstructionNonSBARealEstate.js";
 import BusinessLendingNonSBA from "components/ExpansionPanelViews/BusinessLendingNonSBA.js";
+import NonCommercialResidentialLending from "components/ExpansionPanelViews/NonCommercialResidentialLending.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
-const ToggleForm = (props) => {
+const ToggleForm = props => {
   const classes = useStyles();
 
   const { onToggleChange } = props;
 
+  const componentArr = [
+    <OwnerOccupied onToggleChange={onToggleChange} />,
+    <InvestmentNon onToggleChange={onToggleChange} />,
+    <SbaSevenALoans onToggleChange={onToggleChange} />,
+    <ConstructionNonSBARealEstate onToggleChange={onToggleChange} />,
+    <BusinessLendingNonSBA onToggleChange={onToggleChange} />,
+    <NonCommercialResidentialLending onToggleChange={onToggleChange} />
+  ];
+
+  const expansionPanelArr = [
+    "Owner Occupied",
+    "Investment (Non-SBA Real Estate)",
+    "SBA 7a Loans",
+    "Construction (Non-SBA Real Estate)",
+    "Business Lending (Non-SBA)",
+    "Non-Commercial Residential Lending (Real Estate)"
+  ];
+
   return (
     <div className={classes.container}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Owner Occupied (Non-SBA Real Estate)</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <OwnerOccupied onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Investment (Non-SBA Real Estate)</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <InvestmentNon onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>SBA 7a Loans</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <SbaSevenALoans onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>Construction (Non-SBA Real Estate)</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <ConstructionNonSBARealEstate onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>Business Lending (Non-SBA)</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <BusinessLendingNonSBA onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>
-            Non-Commercial Residential Lending (Real Estate)
-          </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <ConstructionNonSBARealEstate onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>Private Money Lending</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <ConstructionNonSBARealEstate onToggleChange={onToggleChange} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+      {componentArr.map((component, index) => {
+        return (
+          <ExpansionPanel key={expansionPanelArr[index]}>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>
+                {expansionPanelArr[index]}
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>{component}</ExpansionPanelDetails>
+          </ExpansionPanel>
+        );
+      })}
     </div>
-    
   );
 };
 

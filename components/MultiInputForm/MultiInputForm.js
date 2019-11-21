@@ -103,7 +103,9 @@ export default function MultiInputForm() {
     workNumber: "(  )    -    ",
     companyPhoneNumber: "(  )    -    ",
     fax: "(  )    -    ",
-
+    companyStreetAddress: "",
+    zip: "",
+    personalNotes: ""
   });
 
   const handleChange = name => event => {

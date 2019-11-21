@@ -48,7 +48,7 @@ const ConstructionNonSBARealEstate = props => {
           <div className={classes.toggleGridItem}>
             {toggleArrOne.map((toggleName, index) => {
               return (
-                <div key={index} className={classes.rowContainer}>
+                <div key={"ConstructionNon" + index.toString()} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
@@ -63,7 +63,7 @@ const ConstructionNonSBARealEstate = props => {
           <div>
             {toggleArrTwo.map((toggleName, index) => {
               return (
-                <div key={index} className={classes.rowContainer}>
+                <div key={"ConstructionNon2" + index.toString()} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
