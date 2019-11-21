@@ -29,6 +29,7 @@ router.get("/api/auth/signout", authController.signout);
  */
 router.param("userId", userController.getUserById);
 
+router.post("/api/users/updateUserData", userController.updateUser)
 router.put(
   "/api/users/follow",
   authController.checkAuth,

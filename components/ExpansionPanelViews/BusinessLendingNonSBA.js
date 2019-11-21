@@ -12,7 +12,7 @@ const useStyles = makeStyles(toggleFormStyle);
 const BusinessLendingNonSBA = props => {
   const classes = useStyles();
 
-  const valuesArr = ["YES", "NA", "NO"];
+  const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
     "businessCreditCard",
     "businessExpansionnoRE",
@@ -51,7 +51,7 @@ const BusinessLendingNonSBA = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );
@@ -66,7 +66,7 @@ const BusinessLendingNonSBA = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );

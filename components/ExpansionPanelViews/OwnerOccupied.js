@@ -23,7 +23,7 @@ const useStyles = makeStyles(toggleFormStyle);
 const OwnerOccupied = props => {
   const classes = useStyles();
 
-  const valuesArr = ["YES", "NA", "NO"];
+  const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
     "purchase",
     "refinance",
@@ -33,10 +33,11 @@ const OwnerOccupied = props => {
   ];
   const toggleArrTwo = ["revolvingBusinessLOC1stPosition", "revolvingBusinessLOC2stPosition"];
 
-  const { onToggleChange } = props;
+  const { onToggleChange, handleSubmit } = props;
 
   return (
     <Card>
+      <form >
       <CardBody>
         <div className={classes.topRowContainer}>
           <div className={classes.toggleGridItem}>
@@ -48,7 +49,7 @@ const OwnerOccupied = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );
@@ -63,7 +64,7 @@ const OwnerOccupied = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );
@@ -71,6 +72,8 @@ const OwnerOccupied = props => {
           </div>
         </div>
       </CardBody>
+
+      </form>
     </Card>
   );
 };

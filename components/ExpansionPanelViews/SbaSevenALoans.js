@@ -12,7 +12,7 @@ const useStyles = makeStyles(toggleFormStyle);
 const SbaSevenALoans = props => {
   const classes = useStyles();
 
-  const valuesArr = ["YES", "NA", "NO"];
+  const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
     "sbaExpress",
     "exoprtExpressWC",
@@ -46,7 +46,7 @@ const SbaSevenALoans = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );
@@ -61,7 +61,7 @@ const SbaSevenALoans = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );

@@ -12,7 +12,7 @@ const useStyles = makeStyles(toggleFormStyle);
 const ConstructionNonSBARealEstate = props => {
   const classes = useStyles();
 
-  const valuesArr = ["YES", "NA", "NO"];
+  const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
     "investment",
     "renovation",
@@ -54,7 +54,7 @@ const ConstructionNonSBARealEstate = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );
@@ -69,7 +69,7 @@ const ConstructionNonSBARealEstate = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );

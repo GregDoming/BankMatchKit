@@ -67,7 +67,6 @@ exports.signout = (req, res) => {
 
 exports.getSessionUser = ( req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log(req.session)
   }
 }
 

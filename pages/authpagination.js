@@ -18,8 +18,85 @@ import ViewThree from "components/AuthPaginationViews/ViewThree.js";
 import { isUserAuthenticated } from "lib/auth";
 
 import styles from "assets/jss/nextjs-material-kit-pro/components/paginationStyle.js";
+import Axios from "axios";
+import produce from "immer";
+import { useImmerReducer } from "use-immer";
 
 const useStyles = makeStyles(styles);
+const intialState = {
+  purchase: "Unknown",
+  refinance: "Unknown",
+  cashOutRefinance: "Unknown",
+  renovationImprovement: "Unknown",
+  bridge: "Unknown",
+  revolvingBusinessLOC1stPosition: "Unknown",
+  revolvingBusinessLOC2stPosition: "Unknown",
+  investmentPurchase: "Unknown",
+  investmentRefinance: "Unknown",
+  investmentCashOutRefinance: "Unknown",
+  investmentRenovationImprovement: "Unknown",
+  investmentBridge: "Unknown",
+  investmentRevolvingBusinessLOC1stPosition: "Unknown",
+  investmentRevolvingBusinessLOC2stPosition: "Unknown",
+  sbaExpress: "Unknown",
+  exoprtExpressWc: "Unknown",
+  internationalTrade: "Unknown",
+  seasonalCAPLines: "Unknown",
+  ownerOccupiedCommercial: "Unknown",
+  debtRefinance: "Unknown",
+  contractCAPLines: "Unknown",
+  buildersCAPLines: "Unknown",
+  workingCAPLines: "Unknown",
+  sbaMicroLoan: "Unknown",
+  businessAcquisition: "Unknown",
+  investment: "Unknown",
+  renovation: "Unknown",
+  residentialLongterm: "Unknown",
+  residentialFixandFlip: "Unknown",
+  groundUpSpecHome: "Unknown",
+  ownerUser: "Unknown",
+  tractHomes: "Unknown",
+  apartments: "Unknown",
+  constructiontoPermanent: "Unknown",
+  landDevelopment: "Unknown",
+  residential: "Unknown",
+  PUD: "Unknown",
+  purchaseWithLand: "Unknown",
+  entitlements: "Unknown",
+  miniperm: "Unknown",
+  leasedLand: "Unknown",
+  brokenProject: "Unknown",
+  manufacturedHomeSingleWide: "Unknown",
+  manufacturedHomeDoubleWide: "Unknown",
+  businessCreditCard: "Unknown",
+  businessExpansionnoRE: "Unknown",
+  equipmentFinancing: "Unknown",
+  businessAcquisitionsMergers: "Unknown",
+  franchisePurchases: "Unknown",
+  revolvingBLOCFirstPosition: "Unknown",
+  revolvingBLOCSecondPosition: "Unknown",
+  accountsReceivable: "Unknown",
+  crossCollateral: "Unknown",
+  equipment: "Unknown",
+  invoiceFinancing: "Unknown",
+  irrevocableTrust: "Unknown",
+  projectionBased: "Unknown",
+  purchaseOrderFinancing: "Unknown",
+  realEstate: "Unknown",
+  stockSavings: "Unknown"
+};
+
+const toggleReducer = (draft, action) => {
+  switch (action.type) {
+    case "toggle": {
+      draft[event.target.id] = event.target.textContent;
+      return;
+    }
+    default:
+      break;
+  }
+  return state;
+};
 
 function getSteps() {
   return ["Step 1", "Step 2", "Step 3"];
@@ -39,6 +116,69 @@ function getStepContent(step) {
 }
 
 const AuthPagination = props => {
+  const [state, dispatch] = useImmerReducer(toggleReducer, intialState);
+  const {
+    investmentPurchase,
+    investmentRefinance,
+    investmentCashOutRefinance,
+    investmentRenovationImprovement,
+    investmentBridge,
+    investmentRevolvingBusinessLOC1stPosition,
+    investmentRevolvingBusinessLOC2stPosition,
+    purchase,
+    refinance,
+    cashOutRefinance,
+    renovationImprovement,
+    bridge,
+    revolvingBusinessLOC1stPosition,
+    revolvingBusinessLOC2stPosition,
+    sbaExpress,
+    exoprtExpressWc,
+    internationalTrade,
+    ownerOccupiedCommercial,
+    debtRefinance,
+    contractCAPLines,
+    buildersCAPLines,
+    workingCAPLines,
+    sbaMicroLoan,
+    businessAcquisition,
+    investment,
+    renovation,
+    residentialLongterm,
+    residentialFixandFlip,
+    groundUpSpecHome,
+    ownerUser,
+    tractHomes,
+    apartments,
+    constructiontoPermanent,
+    landDevelopment,
+    residential,
+    PUD,
+    purchaseWithLand,
+    entitlements,
+    miniperm,
+    leasedLand,
+    brokenProject,
+    manufacturedHomeSingleWide,
+    manufacturedHomeDoubleWide,
+    businessCreditCard,
+    businessExpansionnoRE,
+    equipmentFinancing,
+    businessAcquisitionsMergers,
+    franchisePurchases,
+    revolvingBLOCFirstPosition,
+    revolvingBLOCSecondPosition,
+    accountsReceivable,
+    crossCollateral,
+    equipment,
+    invoiceFinancing,
+    irrevocableTrust,
+    projectionBased,
+    purchaseOrderFinancing,
+    realEstate,
+    stockSavings
+  } = state;
+
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
@@ -47,6 +187,11 @@ const AuthPagination = props => {
 
   const totalSteps = () => {
     return steps.length;
+  };
+
+  const onToggleChange = (event, val) => {
+    event.preventDefault();
+    dispatch({ type: "toggle" });
   };
 
   const completedSteps = () => {
@@ -61,13 +206,20 @@ const AuthPagination = props => {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
+  const submitForm = async (formData) => {
+    event.preventDefault()
+    await Axios.post("/api/users/updateUserData", formData);
+  };
+
+  const handleNext = async () => {
+    const formInfo = state
+    await Axios.post("/api/users/updateUserData", { formInfo });
     const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
+    isLastStep() && !allStepsCompleted()
+    ? // It's the last step, but not all steps have been completed,
+    // find the first step that has been completed
+    steps.findIndex((step, i) => !(i in completed))
+    : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 
@@ -96,7 +248,7 @@ const AuthPagination = props => {
       case 0:
         return <ViewOne />;
       case 1:
-        return <ViewTwo />;
+        return <ViewTwo onToggleChange={onToggleChange} />;
       case 2:
         return <ViewThree />;
       default:
@@ -112,7 +264,7 @@ const AuthPagination = props => {
       {renderView(activeStep)}
       <Box
         className={classes.bottomStepper}
-        style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed"}}
+        style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
       >
         <MobileStepper
           variant="dots"
@@ -120,7 +272,12 @@ const AuthPagination = props => {
           position="bottom"
           activeStep={activeStep}
           className={classes.root}
-          style={{backgroundColor: "rgba(204, 210, 25, 0.55)", width: "60%", textAlign: "center", margin: "auto"  }}
+          style={{
+            backgroundColor: "rgba(204, 210, 25, 0.55)",
+            width: "60%",
+            textAlign: "center",
+            margin: "auto"
+          }}
           nextButton={
             <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
               Next

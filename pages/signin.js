@@ -44,7 +44,6 @@ const Signin = (props) => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [showPassword, setShowPassword]= React.useState(false);
 
-  console.log(showPassword)
   React.useEffect(() => {
     if (isLoading) {
       window.scrollTo(0, 0);

@@ -12,7 +12,7 @@ const useStyles = makeStyles(toggleFormStyle);
 const InvestmentNon = props => {
   const classes = useStyles();
 
-  const valuesArr = ["YES", "NA", "NO"];
+  const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
     "investmentPurchase",
     "investmentRefinance",
@@ -39,7 +39,7 @@ const InvestmentNon = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );
@@ -54,7 +54,7 @@ const InvestmentNon = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="NA"
+                    selected="UNKNOWN"
                   />
                 </div>
               );

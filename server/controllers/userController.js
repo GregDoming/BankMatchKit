@@ -83,6 +83,7 @@ exports.resizeAvatar = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res) => {
+  console.log(req.body)
   req.body.updatedAt = new Date().toISOString();
   const updatedUser = await User.findOneAndUpdate(
     { _id: req.user._id },
