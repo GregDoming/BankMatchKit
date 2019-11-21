@@ -33,11 +33,10 @@ const OwnerOccupied = props => {
   ];
   const toggleArrTwo = ["revolvingBusinessLOC1stPosition", "revolvingBusinessLOC2stPosition"];
 
-  const { onToggleChange, handleSubmit } = props;
+  const { onToggleChange } = props;
 
   return (
     <Card>
-      <form >
       <CardBody>
         <div className={classes.topRowContainer}>
           <div className={classes.toggleGridItem}>
@@ -72,8 +71,6 @@ const OwnerOccupied = props => {
           </div>
         </div>
       </CardBody>
-
-      </form>
     </Card>
   );
 };

@@ -21,10 +21,7 @@ export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-  const { handleSubmit, onToggleChange } = props; 
+  const { onToggleChange } = props; 
   
   return (
     <div className={classes.root}>

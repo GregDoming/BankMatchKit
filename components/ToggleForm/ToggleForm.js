@@ -15,7 +15,6 @@ import InvestmentNon from "components/ExpansionPanelViews/InvestmentNon.js";
 import SbaSevenALoans from "components/ExpansionPanelViews/SbaSevenALoans.js";
 import ConstructionNonSBARealEstate from "components/ExpansionPanelViews/ConstructionNonSBARealEstate.js";
 import BusinessLendingNonSBA from "components/ExpansionPanelViews/BusinessLendingNonSBA.js";
-import Button from 'components/CustomButtons/Button.js';
 
 const useStyles = makeStyles(toggleFormStyle);
 

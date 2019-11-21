@@ -1,35 +1,23 @@
 import React from "react";
 
-import Face from "@material-ui/icons/Face";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
-import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FilledInput from "@material-ui/core/FilledInput";
-import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Checkbox from "@material-ui/core/Checkbox";
-import Button from "components/CustomButtons/Button.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import FormGroup from "@material-ui/core/FormGroup";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
-import image from "assets/img/bg7.jpg";
+import MaskedNumberInput from "components/MaskedNumberInput/MaskedNumberInput.js";
 
 import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiInputFormStyle.js";
-
-import clsx from "clsx";
 
 const useStyles = makeStyles(multiInputFormStyle);
 
@@ -101,7 +89,12 @@ export default function MultiInputForm() {
     secondaryEmailAddress: "",
     mobileNumber: "",
     workNumber: "",
-    nameOfCompany: ""
+    nameOfCompany: "",
+    phoneNumber: "(1  )    -    ",
+    workNumber: "(1  )    -    ",
+    companyPhoneNumber: "(1  )    -    ",
+    fax: "(1  )    -    ",
+
   });
 
   const handleChange = name => event => {
@@ -127,12 +120,11 @@ export default function MultiInputForm() {
                 <GridContainer className={classes.customContainer}>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                     <CustomInput
+                      labelText="First Name"
+                      id="firstName"
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
-                      }}
-                      inputProps={{
-                        placeholder: "First Name..."
                       }}
                     />
                   </GridItem>
@@ -142,9 +134,8 @@ export default function MultiInputForm() {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        placeholder: "Last Name..."
-                      }}
+                      labelText="Last Name"
+                      id="lastName"
                     />
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
@@ -153,32 +144,43 @@ export default function MultiInputForm() {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        placeholder: "Secondary Email Address..."
-                      }}
+                      labelText="Secondary Email Address"
+                      id="secondaryEmailAddress"
+                      type="email"
                     />
                   </GridItem>
                 </GridContainer>
                 <GridContainer justify="space-between">
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
+                    {/* <InputLabel id="demo-mutiple-checkbox-label">Phone Number</InputLabel> */}
                     <CustomInput
+                      labelText="Phone Number"
+
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        placeholder: "Mobile Number*..."
+                        value: values.phoneNumber,
+                        onChange: handleChange("phoneNumber"),
+                        id: "formatted-text-mask-input",
+                        inputComponent: MaskedNumberInput
                       }}
                     />
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
+                    <InputLabel id="demo-mutiple-checkbox-label">Work Number</InputLabel>
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        placeholder: "Work Number..."
+                        placeholder: "Work Number...",
+                        value: values.workNumber,
+                        onChange: handleChange("workNumber"),
+                        id: "formatted-text-mask-input",
+                        inputComponent: MaskedNumberInput
                       }}
                     />
                   </GridItem>
@@ -244,9 +246,8 @@ export default function MultiInputForm() {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        placeholder: "Name Of Company..."
-                      }}
+                      labelText="Name of Company"
+                      id="nameOfCompany"
                     />
                   </GridItem>
                   <GridItem
@@ -256,106 +257,115 @@ export default function MultiInputForm() {
                     md={5}
                     lg={5}
                   >
-                    <InputLabel id="demo-mutiple-checkbox-label">Type of Lender</InputLabel>
-                    <Select
-                      multiple
-                      value={multipleSelect}
-                      onChange={handleMultiple}
-                      fullWidth={true}
-                      MenuProps={{
-                        className: classes.selectMenu,
-                        classes: { paper: classes.selectPaper }
-                      }}
-                      classes={{ select: classes.select }}
-                      inputProps={{
-                        name: "Type of Lender",
-                        id: "multiple-select"
-                      }}
-                    >
-                      <MenuItem
-                        disabled
-                        classes={{
-                          root: classes.selectMenuItem
+                    <FormControl style={{ minWidth: 160 }}>
+                      <InputLabel id="demo-mutiple-checkbox-label">Type of Lender</InputLabel>
+                      <Select
+                        multiple
+                        value={multipleSelect}
+                        onChange={handleMultiple}
+                        MenuProps={{
+                          className: classes.selectMenu,
+                          classes: { paper: classes.selectPaper }
+                        }}
+                        classes={{ select: classes.select }}
+                        inputProps={{
+                          name: "Type of Lender",
+                          id: "multiple-select"
                         }}
                       >
-                        Type of Lender
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelectedMultiple
-                        }}
-                        value="1"
-                      >
-                        Bank
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelectedMultiple
-                        }}
-                        value="2"
-                      >
-                        CDFI
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelectedMultiple
-                        }}
-                        value="3"
-                      >
-                        Credit Union
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelectedMultiple
-                        }}
-                        value="4"
-                      >
-                        Insurance Company
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelectedMultiple
-                        }}
-                        value="5"
-                      >
-                        Non-Bank Lender
-                      </MenuItem>
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelectedMultiple
-                        }}
-                        value="6"
-                      >
-                        Private Equity
-                      </MenuItem>
-                    </Select>
+                        <MenuItem
+                          disabled
+                          classes={{
+                            root: classes.selectMenuItem
+                          }}
+                        >
+                          Type of Lender
+                        </MenuItem>
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelectedMultiple
+                          }}
+                          value="1"
+                        >
+                          Bank
+                        </MenuItem>
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelectedMultiple
+                          }}
+                          value="2"
+                        >
+                          CDFI
+                        </MenuItem>
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelectedMultiple
+                          }}
+                          value="3"
+                        >
+                          Credit Union
+                        </MenuItem>
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelectedMultiple
+                          }}
+                          value="4"
+                        >
+                          Insurance Company
+                        </MenuItem>
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelectedMultiple
+                          }}
+                          value="5"
+                        >
+                          Non-Bank Lender
+                        </MenuItem>
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelectedMultiple
+                          }}
+                          value="6"
+                        >
+                          Private Equity
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
+                  <InputLabel id="companyNumber">Company Phone Number</InputLabel>
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
-
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        placeholder: "Main Phone Line..."
+                        value: values.companyPhoneNumber,
+                        onChange: handleChange("companyPhoneNumber"),
+                        id: "formatted-text-mask-input",
+                        inputComponent: MaskedNumberInput
                       }}
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
+                  <InputLabel id="fax">Fax</InputLabel>
+
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        placeholder: "Fax..."
+                        value: values.fax,
+                        onChange: handleChange("fax"),
+                        id: "formatted-text-mask-input",
+                        inputComponent: MaskedNumberInput
                       }}
                     />
                   </GridItem>
@@ -367,9 +377,8 @@ export default function MultiInputForm() {
                         flexGrow: 3,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        placeholder: "Company Street Address..."
-                      }}
+                      labelText="Company Street Address"
+                      id="companyStreetAddress"
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
@@ -378,52 +387,53 @@ export default function MultiInputForm() {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        placeholder: "City..."
-                      }}
+                      labelText="City"
+                      id="city"
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                    <InputLabel htmlFor="simple-select" className={classes.selectLabel}>
-                      State
-                    </InputLabel>
-                    <Select
-                      fullWidth={true}
-                      MenuProps={{
-                        className: classes.selectMenu
-                      }}
-                      classes={{
-                        select: classes.select
-                      }}
-                      value={simpleSelect}
-                      onChange={handleSimple}
-                      inputProps={{
-                        name: "simpleSelect",
-                        id: "simple-select"
-                      }}
-                    >
-                      <MenuItem
-                        disabled
+                    <FormControl style={{ minWidth: 120 }}>
+                      <InputLabel htmlFor="simple-select" className={classes.selectLabel}>
+                        State
+                      </InputLabel>
+                      <Select
+                        fullWidth={true}
+                        MenuProps={{
+                          className: classes.selectMenu
+                        }}
                         classes={{
-                          root: classes.selectMenuItem
+                          select: classes.select
+                        }}
+                        value={simpleSelect}
+                        onChange={handleSimple}
+                        inputProps={{
+                          name: "simpleSelect",
+                          id: "simple-select"
                         }}
                       >
-                        Single Select
-                      </MenuItem>
-                      {listOfStates.map((stateName, index) => {
-                        return (
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected
-                            }}
-                            value={index + 1}
-                          >
-                            {stateName}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
+                        <MenuItem
+                          disabled
+                          classes={{
+                            root: classes.selectMenuItem
+                          }}
+                        >
+                          Single Select
+                        </MenuItem>
+                        {listOfStates.map((stateName, index) => {
+                          return (
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value={index + 1}
+                            >
+                              {stateName}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
                   </GridItem>
                   <GridItem style={{ flexGrow: 1 }} xs={12} sm={5} md={5}>
                     <CustomInput
@@ -431,9 +441,8 @@ export default function MultiInputForm() {
                         flexGrow: 1,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        placeholder: "Zip..."
-                      }}
+                      labelText="zip"
+                      id="zip"
                     />
                   </GridItem>
                 </GridContainer>
