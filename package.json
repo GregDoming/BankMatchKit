@@ -58,6 +58,7 @@
     "react-swipeable-views": "0.13.3",
     "react-tagsinput": "3.19.0",
     "react-text-mask": "^5.4.3",
+    "shortid": "^2.2.15",
     "styled-components": "^4.4.1",
     "use-immer": "^0.3.5",
     "webpack": "4.40.2"

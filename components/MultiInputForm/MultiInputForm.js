@@ -21,6 +21,15 @@ import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiI
 
 const useStyles = makeStyles(multiInputFormStyle);
 
+const lenderSelect = [
+  "Bank",
+  "CDFI",
+  "Credit Union",
+  "Insurance Company",
+  "Non Bank Lender",
+  "Private Equity"
+]
+
 const listOfStates = [
   "AK - Alaska",
   "AL - Alabama",
@@ -90,15 +99,15 @@ export default function MultiInputForm() {
     mobileNumber: "",
     workNumber: "",
     nameOfCompany: "",
-    phoneNumber: "(1  )    -    ",
-    workNumber: "(1  )    -    ",
-    companyPhoneNumber: "(1  )    -    ",
-    fax: "(1  )    -    ",
+    phoneNumber: "(  )    -    ",
+    workNumber: "(  )    -    ",
+    companyPhoneNumber: "(  )    -    ",
+    fax: "(  )    -    ",
 
   });
 
   const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
+    setValues({ ...values, [name]: event.target.value.trim() });
   };
 
   const handleMultiple = event => {
@@ -152,14 +161,9 @@ export default function MultiInputForm() {
                 </GridContainer>
                 <GridContainer justify="space-between">
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
-                    {/* <InputLabel id="demo-mutiple-checkbox-label">Phone Number</InputLabel> */}
+                  <FormControl style={{ minWidth: 240 }}>
                     <CustomInput
                       labelText="Phone Number"
-
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
                       inputProps={{
                         value: values.phoneNumber,
                         onChange: handleChange("phoneNumber"),
@@ -167,6 +171,7 @@ export default function MultiInputForm() {
                         inputComponent: MaskedNumberInput
                       }}
                     />
+                    </FormControl>
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                     <InputLabel id="demo-mutiple-checkbox-label">Work Number</InputLabel>
@@ -281,60 +286,20 @@ export default function MultiInputForm() {
                         >
                           Type of Lender
                         </MenuItem>
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelectedMultiple
-                          }}
-                          value="1"
-                        >
-                          Bank
-                        </MenuItem>
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelectedMultiple
-                          }}
-                          value="2"
-                        >
-                          CDFI
-                        </MenuItem>
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelectedMultiple
-                          }}
-                          value="3"
-                        >
-                          Credit Union
-                        </MenuItem>
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelectedMultiple
-                          }}
-                          value="4"
-                        >
-                          Insurance Company
-                        </MenuItem>
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelectedMultiple
-                          }}
-                          value="5"
-                        >
-                          Non-Bank Lender
-                        </MenuItem>
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelectedMultiple
-                          }}
-                          value="6"
-                        >
-                          Private Equity
-                        </MenuItem>
+                        {lenderSelect.map((lenderType, index) => {
+                          return (
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
+                              }}
+                              value={index + 1}
+                              key={"lenderSelect" + index.toString()}
+                            >
+                              {lenderType}
+                            </MenuItem>
+                          );
+                        })}
                       </Select>
                     </FormControl>
                   </GridItem>
@@ -374,7 +339,6 @@ export default function MultiInputForm() {
                   <GridItem xs={12} sm={5} md={5}>
                     <CustomInput
                       formControlProps={{
-                        flexGrow: 3,
                         className: classes.customFormControlClasses
                       }}
                       labelText="Company Street Address"
@@ -427,6 +391,7 @@ export default function MultiInputForm() {
                                 selected: classes.selectMenuItemSelected
                               }}
                               value={index + 1}
+                              key={"listOfStates" + index.toString()}
                             >
                               {stateName}
                             </MenuItem>
@@ -435,15 +400,16 @@ export default function MultiInputForm() {
                       </Select>
                     </FormControl>
                   </GridItem>
-                  <GridItem style={{ flexGrow: 1 }} xs={12} sm={5} md={5}>
+                  <GridItem xs={12} sm={5} md={5}>
+                  <FormControl style={{ minWidth: 10 }}>
                     <CustomInput
                       formControlProps={{
-                        flexGrow: 1,
-                        className: classes.customFormControlClasses
+                        className: classes.customFormControlClasses,
                       }}
                       labelText="zip"
                       id="zip"
                     />
+                    </FormControl>
                   </GridItem>
                 </GridContainer>
               </form>
@@ -456,14 +422,13 @@ export default function MultiInputForm() {
             <CardBody>
               <form className={classes.customForm}>
                 <GridContainer className={classes.customToggleForm}>
-                  <GridItem justifyContent={"center"} xs={12} sm={5} md={5}>
+                  <GridItem xs={12} sm={5} md={5}>
                     <TextField
                       id="outlined-multiline-static"
                       label="Multiline"
                       multiline
                       rows="8"
                       fullWidth={true}
-                      justifyContent="center"
                       defaultValue="Default Value"
                       className={classes.textField}
                       margin="normal"
