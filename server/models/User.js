@@ -305,6 +305,54 @@ const userSchema = new mongoose.Schema(
         default: 0
       }
     },
+    SBAFiveFourLoans: {
+      SBAFiveFourFirstDeedRealEstate: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      SBAFiveFourFirstDeedRealEquipment: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      SBAFiveFourRefinanceProgram: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      SBAFiveFourFirstDeedRealEstateBridge: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      SBAFiveFourFirstDeedEquipmentBridge: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      SBAFiveFourRefinanceBridge: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      SBAFiveFourMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      SBAFiveFourMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      SBAFiveFourMaxLTVPercent: {
+        type: Number,
+        default: 0
+      },
+      SBAFiveFourMinDCR : {
+        type: Number,
+        default: 0
+      }
+    },
     construction: {
       investment: {
         type: String,
@@ -550,72 +598,346 @@ const userSchema = new mongoose.Schema(
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
       },
-      privateMoneyLending: {
-        privateMoneyMinumumLoanAmount: {
-          type: Number,
-          default: 0
-        },
-        privateMoneyMaximumLoanAmount: {
-          type: Number,
-          default: 0
-        },
-        privateMoneyMaxLTVPercentCommercial: {
-          type: Number,
-          default: 0
-        },
-        privateMoneyMaxLTVPercentResidential: {
-          type: Number,
-          default: 0
-        },
-        privateMoneyMaxARVCommercial : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyMaxARVResidential : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyFixedRateAmortized: {
-          type: String,
-          enum: ["YES", "UNKNOWN", "NO"],
-          default: "UNKNOWN"
-        },
-        privateMoneyAdjustableRateAmortized: {
-          type: String,
-          enum: ["YES", "UNKNOWN", "NO"],
-          default: "UNKNOWN"
-        },
-        privateMoneyinterestOnly: {
-          type: String,
-          enum: ["YES", "UNKNOWN", "NO"],
-          default: "UNKNOWN"
-        },
-        privateMoneyInterestRateMin : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyInterestRateMax : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyTermRangeMax : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyTermRateMin : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyFeesFlatMin : {
-          type: Number,
-          default: 0
-        },
-        privateMoneyFeesFlatMax : {
-          type: Number,
-          default: 0
-        },
-
-      }
+    },
+    privateMoneyLending: {
+      privateMoneyMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      privateMoneyMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      privateMoneyMaxLTVPercentCommercial: {
+        type: Number,
+        default: 0
+      },
+      privateMoneyMaxLTVPercentResidential: {
+        type: Number,
+        default: 0
+      },
+      privateMoneyMaxARVCommercial : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyMaxARVResidential : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyFixedRateAmortized: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      privateMoneyAdjustableRateAmortized: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      privateMoneyinterestOnly: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      privateMoneyInterestRateMin : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyInterestRateMax : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyTermRangeMax : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyTermRateMin : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyFeesFlatMin : {
+        type: Number,
+        default: 0
+      },
+      privateMoneyFeesFlatMax : {
+        type: Number,
+        default: 0
+      },
+    },
+    multiUnitLiving: {
+      multiUnitFraternitySorority: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitMultiFamily: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitStudentHousing: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitHotelMotelFlag: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitMobileHomePark: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitCondoTownHome: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitHotelMotelNoFlag: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      multiUnitAssisstedLiving: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+    },
+    automotive: {
+      automotiveBodyShop: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      automotiveDealerShip: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      automotiveCarWash: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      automotiveGasStation: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      
+    },
+    healthcare: {
+      healthcareDoctorsOffice: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      healthcareHospital: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      healthcareMedicalLab: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+    },
+    retail: {
+      retailRestaurant: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      retailMall: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      retailSingleTenant: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+    },
+    miscellaneous: {
+      miscellaneousChurchReligion: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousIndustrialWarehouse: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousOffice: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousEntertainment: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousMaritimeMarina: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousRawLand: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousFarmAgriculture: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousMixedUse: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousStorage: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousLeaseholdProperty: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+    },
+    financialCreditIssue: {
+      financialCreditIssueBankruptcy: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueNonUSCitizen: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueMissedPayments: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueForeclosure: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueShortSale: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueTaxLiens: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueLowFICO: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueLowLiquidity: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueJudgements: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+    },
+    miscellaneousQualifiers: {
+      miscellaneousQualifiersExchange: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersNonProfit: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersNonRecourse: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersFactoring: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersCannabisRelated: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersStartUp: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersAssestBasedLending: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersResidentialBridge: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersInterestOnlyIndefinite: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersInterestOnlyIntoTerm: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersRelationshipPricing: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersRequiredDepositRelationship: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersFirstLienPosition: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersSecondLientPosition: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersSubordinateFinancing: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
     },
     /* we wrap 'following' and 'followers' in array so that when they are populated as objects, they are put in an array (to more easily iterate over them) */
     following: [{ type: ObjectId, ref: "User" }],

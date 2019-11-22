@@ -20,6 +20,8 @@ import ReactDOM from "react-dom";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 
 import PageChange from "components/PageChange/PageChange.js";
 import Header from "components/Header/Header.js";
@@ -83,6 +85,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
+      <HelmetProvider >
       <React.Fragment>
         <Head>
           <title>Bank Match</title>
@@ -90,6 +93,7 @@ export default class MyApp extends App {
         <NavBar {...this.props}></NavBar>
         <Component {...pageProps} />
       </React.Fragment>
+      </HelmetProvider>
     );
   }
 }
