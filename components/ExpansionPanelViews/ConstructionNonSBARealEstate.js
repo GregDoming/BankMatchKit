@@ -39,8 +39,6 @@ const ConstructionNonSBARealEstate = props => {
 
   const { onToggleChange, toggleFormState } = props;
 
-  
-
   return (
     <Card>
       <CardBody>
