@@ -160,8 +160,10 @@ const multiInputFormStyle = {
   },
   formContainer: {
     spacing: 3
-
-
+  },
+  rowContainer: {
+    display: "flex",
+    flexFlow: "row"
   },
   container: {
     margin: "auto",

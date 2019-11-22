@@ -25,12 +25,12 @@ const ToggleForm = props => {
   const { onToggleChange, toggleFormState } = props;
 
   const componentArr = [
-    <OwnerOccupied onToggleChange={onToggleChange} toggleFormState={toggleFormState.ownerOccupied} />,
-    <InvestmentNon onToggleChange={onToggleChange} toggleFormState={toggleFormState.investmentNonSBARealEstate} />,
-    <SbaSevenALoans onToggleChange={onToggleChange} toggleFormState={toggleFormState.sbaSevenALoans} />,
-    <ConstructionNonSBARealEstate onToggleChange={onToggleChange} toggleFormState={toggleFormState.construction} />,
-    <BusinessLendingNonSBA onToggleChange={onToggleChange} toggleFormState={toggleFormState.businessLendingNonSBA} />,
-    <NonCommercialResidentialLending onToggleChange={onToggleChange} toggleFormState={toggleFormState.nonCommercialResidentialLending} />
+    <OwnerOccupied onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
+    <InvestmentNon onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
+    <SbaSevenALoans onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
+    <ConstructionNonSBARealEstate onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
+    <BusinessLendingNonSBA onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
+    <NonCommercialResidentialLending onToggleChange={onToggleChange} toggleFormState={toggleFormState} />
   ];
 
   const expansionPanelArr = [

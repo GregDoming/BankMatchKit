@@ -28,7 +28,8 @@ const OwnerOccupied = props => {
   ];
   const toggleArrTwo = ["revolvingBusinessLOC1stPosition", "revolvingBusinessLOC2stPosition"];
 
-  const { onToggleChange } = props;
+  const { onToggleChange, toggleFormState } = props;
+  // console.log(props)
 
   return (
 
@@ -50,7 +51,7 @@ const OwnerOccupied = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );

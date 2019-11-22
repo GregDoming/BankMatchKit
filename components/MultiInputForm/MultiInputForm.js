@@ -96,7 +96,6 @@ export default function MultiInputForm() {
     firstName: "",
     lastName: "",
     secondaryEmailAddress: "",
-    mobileNumber: "",
     workNumber: "",
     nameOfCompany: "",
     phoneNumber: "(  )    -    ",
@@ -107,8 +106,6 @@ export default function MultiInputForm() {
     zip: "",
     personalNotes: ""
   });
-
-  console.log(values);
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value.trim() });
@@ -432,6 +429,32 @@ export default function MultiInputForm() {
                     />
                   </GridItem>
                 </GridContainer>
+                  <div className={classes.rowContainer}>
+                    <CustomInput
+                      labelText="Source Name"
+                      id="sourceName"
+                      formControlProps={{
+                        fullWidth: true,
+                        className: classes.customFormControlClasses
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Source Number"
+                      id="sourcePhone"
+                      formControlProps={{
+                        fullWidth: true,
+                        className: classes.customFormControlClasses
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Source Email"
+                      id="sourceEmail"
+                      formControlProps={{
+                        fullWidth: true,
+                        className: classes.customFormControlClasses
+                      }}
+                    />
+                  </div>
               </form>
             </CardBody>
           </Card>

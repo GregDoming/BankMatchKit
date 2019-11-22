@@ -25,16 +25,17 @@ import SectionProduct from "pages-sections/landing-page/SectionProduct.js";
 import SectionTeam from "pages-sections/landing-page/SectionTeam.js";
 import SectionWork from "pages-sections/landing-page/SectionWork.js";
 
-import { signinUser, checkString, isUserAuthenticated } from "../lib/auth";
+import { landingPageAuth } from "../lib/auth";
 
 
 const useStyles = makeStyles(landingPageStyle);
 
-const LandingPage = ({ ...props }) => {
+const LandingPage = (props) => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   });
+  console.log(props)
   const classes = useStyles();
   return (
     <div>
@@ -129,5 +130,6 @@ const LandingPage = ({ ...props }) => {
     </div>
   );
 };
+LandingPage.getInitialProps = landingPageAuth;
 
 export default LandingPage;

@@ -35,6 +35,19 @@ exports.getUserById = async (req, res, next, id) => {
   next();
 };
 
+exports.getUserByIdandUpdate = async (req, res, next, id) => {
+  const user = await User.findOne({ _id: id });
+  req.profile = user;
+
+  const profileId = mongoose.Types.ObjectId(req.profile._id);
+
+  if (req.user && profileId.equals(req.user._id)) {
+    req.isAuthUser = true;
+    return next();
+  }
+  next();
+};
+
 exports.getUserProfile = (req, res) => {
   if (!req.profile) {
     return res.status(404).json({
@@ -84,12 +97,13 @@ exports.resizeAvatar = async (req, res, next) => {
 
 exports.updateUser = async (req, res) => {
   req.body.updatedAt = new Date().toISOString();
-  const updatedUser = await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { $set: req.body },
-    { new: true, runValidators: true }
-  );
-  res.json(updatedUser);
+  // const updatedUser = await User.findOneAndUpdate(
+  //   { _id: req.user._id },
+  //   { $set: req.body.formInfo.userProfile.firstName },
+  //   { new: true, runValidators: true }
+  // );
+  // res.json(updatedUser);
+  res.json('help')
 };
 
 exports.deleteUser = async (req, res) => {
