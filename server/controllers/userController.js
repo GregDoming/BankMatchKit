@@ -97,13 +97,13 @@ exports.resizeAvatar = async (req, res, next) => {
 
 exports.updateUser = async (req, res) => {
   req.body.updatedAt = new Date().toISOString();
-  // const updatedUser = await User.findOneAndUpdate(
-  //   { _id: req.user._id },
-  //   { $set: req.body.formInfo.userProfile.firstName },
-  //   { new: true, runValidators: true }
-  // );
-  // res.json(updatedUser);
-  res.json('help')
+  console.log(req.body)
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: req.body.formInfo },
+    { new: true, runValidators: true }
+  );
+  res.json(updatedUser);
 };
 
 exports.deleteUser = async (req, res) => {

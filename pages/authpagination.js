@@ -1,5 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
+import Axios from "axios";
+import produce from "immer";
+import { useImmerReducer } from "use-immer";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -12,11 +15,10 @@ import ViewOne from "components/AuthPaginationViews/ViewOne.js";
 import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
 import ViewThree from "components/AuthPaginationViews/ViewThree.js";
 import { isUserAuthenticated } from "lib/auth";
+import { convertUser } from "lib/userSchema";
 
 import styles from "assets/jss/nextjs-material-kit-pro/components/paginationStyle.js";
-import Axios from "axios";
-import produce from "immer";
-import { useImmerReducer } from "use-immer";
+
 
 const useStyles = makeStyles(styles);
 
@@ -51,6 +53,7 @@ function getStepContent(step) {
 
 const AuthPagination = props => {
   const initialState = props.flatState
+  console.log(initialState)
   const [state, dispatch] = useImmerReducer(toggleReducer, initialState);
 
   const classes = useStyles();
@@ -85,9 +88,10 @@ const AuthPagination = props => {
   };
 
   const handleNext = async () => {
-    const formInfo = state;
     event.preventDefault();
-    // await Axios.post("/api/users/updateUserData", { formInfo });
+    const objCopy = JSON.parse(JSON.stringify(state));
+    const formInfo = convertUser(objCopy)
+    await Axios.post("/api/users/updateUserData", { formInfo });
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,

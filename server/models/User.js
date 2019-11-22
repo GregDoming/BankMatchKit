@@ -149,6 +149,22 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
+      },
+      ownerMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      ownerMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      ownerMaxLTVPercent: {
+        type: Number,
+        default: 0
+      },
+      ownerMinDCR : {
+        type: Number,
+        default: 0
       }
     },
     investmentNonSBARealEstate: {
@@ -186,7 +202,35 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      }
+      },
+      investmentNonSBAMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      investmentNonSBAMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      investmentNonSBAMaxLTVPercent: {
+        type: Number,
+        default: 0
+      },
+      investmentNonSBAMaxLTCPercent: {
+        type: Number,
+        default: 0
+      },
+      investmentNonSBAMaxARV : {
+        type: Number,
+        default: 0
+      },
+      investmentNonSBAMinDebtYield : {
+        type: Number,
+        default: 0
+      },
+      investmentNonSBAMinDCR : {
+        type: Number,
+        default: 0
+      },
     },
     sbaSevenALoans: {
       sbaExpress: {
@@ -243,6 +287,22 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
+      },
+      SBASevenMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      SBASevenMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      SBASevenMaxLTVPercent: {
+        type: Number,
+        default: 0
+      },
+      SBASevenMinDCR : {
+        type: Number,
+        default: 0
       }
     },
     construction: {
@@ -340,6 +400,30 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
+      },
+      constructionMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      constructionMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      constructionMaxLTVPercent: {
+        type: Number,
+        default: 0
+      },
+      constructionMaxLTCPercent: {
+        type: Number,
+        default: 0
+      },
+      constructionNonSBAMaxARV : {
+        type: Number,
+        default: 0
+      },
+      constructionMinDCR : {
+        type: Number,
+        default: 0
       }
     },
     businessLendingNonSBA: {
@@ -422,6 +506,22 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
+      },
+      businessLendingMinumumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      businessLendingMaximumLoanAmount: {
+        type: Number,
+        default: 0
+      },
+      businessLendingMaxLTVPercent: {
+        type: Number,
+        default: 0
+      },
+      businessLendingMinDCR : {
+        type: Number,
+        default: 0
       }
     },
     nonCommercialResidentialLending: {
@@ -449,6 +549,72 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
+      },
+      privateMoneyLending: {
+        privateMoneyMinumumLoanAmount: {
+          type: Number,
+          default: 0
+        },
+        privateMoneyMaximumLoanAmount: {
+          type: Number,
+          default: 0
+        },
+        privateMoneyMaxLTVPercentCommercial: {
+          type: Number,
+          default: 0
+        },
+        privateMoneyMaxLTVPercentResidential: {
+          type: Number,
+          default: 0
+        },
+        privateMoneyMaxARVCommercial : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyMaxARVResidential : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyFixedRateAmortized: {
+          type: String,
+          enum: ["YES", "UNKNOWN", "NO"],
+          default: "UNKNOWN"
+        },
+        privateMoneyAdjustableRateAmortized: {
+          type: String,
+          enum: ["YES", "UNKNOWN", "NO"],
+          default: "UNKNOWN"
+        },
+        privateMoneyinterestOnly: {
+          type: String,
+          enum: ["YES", "UNKNOWN", "NO"],
+          default: "UNKNOWN"
+        },
+        privateMoneyInterestRateMin : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyInterestRateMax : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyTermRangeMax : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyTermRateMin : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyFeesFlatMin : {
+          type: Number,
+          default: 0
+        },
+        privateMoneyFeesFlatMax : {
+          type: Number,
+          default: 0
+        },
+
       }
     },
     /* we wrap 'following' and 'followers' in array so that when they are populated as objects, they are put in an array (to more easily iterate over them) */
