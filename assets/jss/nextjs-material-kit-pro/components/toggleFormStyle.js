@@ -50,6 +50,24 @@ const toggleFormStyle = {
     flexFlow: "column",
     alignItems: "flex-start"
   },
+  outerContainer: {
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "flex-end",
+    alignContent: "stretch",
+    flex: 3
+  },
+  growFlex: {
+    flex: 5,
+    marginRight: "2%"
+  },
+  shrinkFlex: {
+    flex: 1
+  },
+  wrapperContainer: {
+    display: "flex",
+    justifyContent: "center"
+  },
   rowContainer: {
     display: "flex",
     flexFlow: "row",
@@ -58,7 +76,13 @@ const toggleFormStyle = {
   topRowContainer: {
     display: "flex",
     flexFlow: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-evenly",
+  },
+  unique: {
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-evenly",
+    marginRight: "5%"
   },
   toggleGridItem: {
     display: "flex",
@@ -175,9 +199,13 @@ const toggleFormStyle = {
   formContainer: {
     spacing: 3
   },
+  cardHeader: {
+    marginBottom: "1%",
+    maxWidth: "60%",
+  },
   container: {
     margin: "auto",
-    width: "100%",
+    width: "90%",
     "@media (min-width: 576px)": {
       maxWidth: "540px"
     },

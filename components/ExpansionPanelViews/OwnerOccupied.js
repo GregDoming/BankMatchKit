@@ -3,20 +3,15 @@ import produce from "immer";
 import { useImmerReducer } from "use-immer";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Switch from "@material-ui/core/Switch";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
-import Slider from "@material-ui/core/Slider";
+import CardHeader from "components/Card/CardHeader.js";
+
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
+import LoanAmountFormOwner from "components/LoanAmountForm/LoanAmountFormOwner.js";
+
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -36,14 +31,21 @@ const OwnerOccupied = props => {
   const { onToggleChange } = props;
 
   return (
-    <Card>
+
+    <div className={classes.outerContainer}>
+    <Card className={classes.growFlex} >
       <CardBody>
+        <CardHeader className={classes.cardHeader} color="success">
+          Purpose 
+        </CardHeader>
         <div className={classes.topRowContainer}>
           <div className={classes.toggleGridItem}>
             {toggleArrOne.map((toggleName, index) => {
               return (
                 <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
+                  <label className={classes.labelStyle}>
+                    {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                  </label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
@@ -58,7 +60,9 @@ const OwnerOccupied = props => {
             {toggleArrTwo.map((toggleName, index) => {
               return (
                 <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
+                  <label className={classes.labelStyle}>
+                    {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                  </label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
@@ -72,6 +76,8 @@ const OwnerOccupied = props => {
         </div>
       </CardBody>
     </Card>
+    <LoanAmountFormOwner/>
+    </div>
   );
 };
 

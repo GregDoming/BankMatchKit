@@ -37,7 +37,7 @@ const ConstructionNonSBARealEstate = props => {
     "manufacturedHomeDoubleWide"
   ];
 
-  const { onToggleChange } = props;
+  const { onToggleChange, toggleFormState } = props;
 
   
 
@@ -54,7 +54,7 @@ const ConstructionNonSBARealEstate = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );
@@ -69,7 +69,7 @@ const ConstructionNonSBARealEstate = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );

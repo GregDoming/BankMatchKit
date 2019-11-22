@@ -2,11 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -23,69 +19,161 @@ import produce from "immer";
 import { useImmerReducer } from "use-immer";
 
 const useStyles = makeStyles(styles);
+// const intialState = {
+//   purchase: "UNKNOWN",
+//   refinance: "UNKNOWN",
+//   cashOutRefinance: "UNKNOWN",
+//   renovationImprovement: "UNKNOWN",
+//   bridge: "UNKNOWN",
+//   revolvingBusinessLOC1stPosition: "UNKNOWN",
+//   revolvingBusinessLOC2stPosition: "UNKNOWN",
+//   investmentPurchase: "UNKNOWN",
+//   investmentRefinance: "UNKNOWN",
+//   investmentCashOutRefinance: "UNKNOWN",
+//   investmentRenovationImprovement: "UNKNOWN",
+//   investmentBridge: "UNKNOWN",
+//   investmentRevolvingBusinessLOC1stPosition: "UNKNOWN",
+//   investmentRevolvingBusinessLOC2stPosition: "UNKNOWN",
+//   sbaExpress: "UNKNOWN",
+//   exoprtExpressWc: "UNKNOWN",
+//   internationalTrade: "UNKNOWN",
+//   seasonalCAPLines: "UNKNOWN",
+//   ownerOccupiedCommercial: "UNKNOWN",
+//   debtRefinance: "UNKNOWN",
+//   contractCAPLines: "UNKNOWN",
+//   buildersCAPLines: "UNKNOWN",
+//   workingCAPLines: "UNKNOWN",
+//   sbaMicroLoan: "UNKNOWN",
+//   businessAcquisition: "UNKNOWN",
+//   renovation: "UNKNOWN",
+//   residentialLongterm: "UNKNOWN",
+//   residentialFixandFlip: "UNKNOWN",
+//   groundUpSpecHome: "UNKNOWN",
+//   ownerUser: "UNKNOWN",
+//   tractHomes: "UNKNOWN",
+//   apartments: "UNKNOWN",
+//   constructiontoPermanent: "UNKNOWN",
+//   landDevelopment: "UNKNOWN",
+//   residential: "UNKNOWN",
+//   PUD: "UNKNOWN",
+//   purchaseWithLand: "UNKNOWN",
+//   entitlements: "UNKNOWN",
+//   miniperm: "UNKNOWN",
+//   leasedLand: "UNKNOWN",
+//   brokenProject: "UNKNOWN",
+//   manufacturedHomeSingleWide: "UNKNOWN",
+//   manufacturedHomeDoubleWide: "UNKNOWN",
+//   businessCreditCard: "UNKNOWN",
+//   businessExpansionnoRE: "UNKNOWN",
+//   equipmentFinancing: "UNKNOWN",
+//   businessAcquisitionsMergers: "UNKNOWN",
+//   franchisePurchases: "UNKNOWN",
+//   revolvingBLOCFirstPosition: "UNKNOWN",
+//   revolvingBLOCSecondPosition: "UNKNOWN",
+//   accountsReceivable: "UNKNOWN",
+//   crossCollateral: "UNKNOWN",
+//   equipment: "UNKNOWN",
+//   invoiceFinancing: "UNKNOWN",
+//   irrevocableTrust: "UNKNOWN",
+//   projectionBased: "UNKNOWN",
+//   purchaseOrderFinancing: "UNKNOWN",
+//   realEstate: "UNKNOWN",
+//   stockSavings: "UNKNOWN"
+// };
 const intialState = {
-  purchase: "UNKNOWN",
-  refinance: "UNKNOWN",
-  cashOutRefinance: "UNKNOWN",
-  renovationImprovement: "UNKNOWN",
-  bridge: "UNKNOWN",
-  revolvingBusinessLOC1stPosition: "UNKNOWN",
-  revolvingBusinessLOC2stPosition: "UNKNOWN",
-  investmentPurchase: "UNKNOWN",
-  investmentRefinance: "UNKNOWN",
-  investmentCashOutRefinance: "UNKNOWN",
-  investmentRenovationImprovement: "UNKNOWN",
-  investmentBridge: "UNKNOWN",
-  investmentRevolvingBusinessLOC1stPosition: "UNKNOWN",
-  investmentRevolvingBusinessLOC2stPosition: "UNKNOWN",
-  sbaExpress: "UNKNOWN",
-  exoprtExpressWc: "UNKNOWN",
-  internationalTrade: "UNKNOWN",
-  seasonalCAPLines: "UNKNOWN",
-  ownerOccupiedCommercial: "UNKNOWN",
-  debtRefinance: "UNKNOWN",
-  contractCAPLines: "UNKNOWN",
-  buildersCAPLines: "UNKNOWN",
-  workingCAPLines: "UNKNOWN",
-  sbaMicroLoan: "UNKNOWN",
-  businessAcquisition: "UNKNOWN",
-  investment: "UNKNOWN",
-  renovation: "UNKNOWN",
-  residentialLongterm: "UNKNOWN",
-  residentialFixandFlip: "UNKNOWN",
-  groundUpSpecHome: "UNKNOWN",
-  ownerUser: "UNKNOWN",
-  tractHomes: "UNKNOWN",
-  apartments: "UNKNOWN",
-  constructiontoPermanent: "UNKNOWN",
-  landDevelopment: "UNKNOWN",
-  residential: "UNKNOWN",
-  PUD: "UNKNOWN",
-  purchaseWithLand: "UNKNOWN",
-  entitlements: "UNKNOWN",
-  miniperm: "UNKNOWN",
-  leasedLand: "UNKNOWN",
-  brokenProject: "UNKNOWN",
-  manufacturedHomeSingleWide: "UNKNOWN",
-  manufacturedHomeDoubleWide: "UNKNOWN",
-  businessCreditCard: "UNKNOWN",
-  businessExpansionnoRE: "UNKNOWN",
-  equipmentFinancing: "UNKNOWN",
-  businessAcquisitionsMergers: "UNKNOWN",
-  franchisePurchases: "UNKNOWN",
-  revolvingBLOCFirstPosition: "UNKNOWN",
-  revolvingBLOCSecondPosition: "UNKNOWN",
-  accountsReceivable: "UNKNOWN",
-  crossCollateral: "UNKNOWN",
-  equipment: "UNKNOWN",
-  invoiceFinancing: "UNKNOWN",
-  irrevocableTrust: "UNKNOWN",
-  projectionBased: "UNKNOWN",
-  purchaseOrderFinancing: "UNKNOWN",
-  realEstate: "UNKNOWN",
-  stockSavings: "UNKNOWN"
+  userProfile: {
+    firstName: "",
+    lastName: "",
+    secondaryEmailAddress: "",
+    mobileNumber: "",
+    workNumber: "",
+    nameOfCompany: "",
+    phoneNumber: "(  )    -    ",
+    workNumber: "(  )    -    ",
+    companyPhoneNumber: "(  )    -    ",
+    fax: "(  )    -    ",
+    companyStreetAddress: "",
+    zip: "",
+    personalNotes: ""
+  },
+  ownerOccupied: {
+    purchase: "UNKNOWN",
+    refinance: "UNKNOWN",
+    cashOutRefinance: "UNKNOWN",
+    renovationImprovement: "UNKNOWN",
+    bridge: "UNKNOWN",
+    revolvingBusinessLOC1stPosition: "UNKNOWN",
+    revolvingBusinessLOC2stPosition: "UNKNOWN"
+  },
+  investmentNonSBARealEstate: {
+    investmentPurchase: "UNKNOWN",
+    investmentRefinance: "UNKNOWN",
+    investmentCashOutRefinance: "UNKNOWN",
+    investmentRenovationImprovement: "UNKNOWN",
+    investmentBridge: "UNKNOWN",
+    investmentRevolvingBusinessLOC1stPosition: "UNKNOWN",
+    investmentRevolvingBusinessLOC2stPosition: "UNKNOWN"
+  },
+  sbaSevenALoans: {
+    sbaExpress: "UNKNOWN",
+    exoprtExpressWC: "UNKNOWN",
+    internationalTrade: "UNKNOWN",
+    seasonalCAPLines: "UNKNOWN",
+    ownerOccupiedCommercial: "UNKNOWN",
+    debtRefinance: "UNKNOWN",
+    contractCAPLines: "UNKNOWN",
+    buildersCAPLines: "UNKNOWN",
+    workingCAPLines: "UNKNOWN",
+    sbaMicroLoan: "UNKNOWN",
+    businessAcquisition: "UNKNOWN"
+  },
+  construction: {
+    investment: "UNKNOWN",
+    renovation: "UNKNOWN",
+    residentialLongterm: "UNKNOWN",
+    residentialFixandFlip: "UNKNOWN",
+    groundUpSpecHome: "UNKNOWN",
+    ownerUser: "UNKNOWN",
+    tractHomes: "UNKNOWN",
+    apartments: "UNKNOWN",
+    constructiontoPermanent: "UNKNOWN",
+    landDevelopment: "UNKNOWN",
+    residential: "UNKNOWN",
+    PUD: "UNKNOWN",
+    purchaseWithLand: "UNKNOWN",
+    entitlements: "UNKNOWN",
+    miniperm: "UNKNOWN",
+    leasedLand: "UNKNOWN",
+    brokenProject: "UNKNOWN",
+    manufacturedHomeSingleWide: "UNKNOWN",
+    manufacturedHomeDoubleWide: "UNKNOWN"
+  },
+  businessLendingNonSBA: {
+    businessCreditCard: "UNKNOWN",
+    businessExpansionnoRE: "UNKNOWN",
+    equipmentFinancing: "UNKNOWN",
+    businessAcquisitionsMergers: "UNKNOWN",
+    franchisePurchases: "UNKNOWN",
+    revolvingBLOCFirstPosition: "UNKNOWN",
+    revolvingBLOCSecondPosition: "UNKNOWN",
+    accountsReceivable: "UNKNOWN",
+    crossCollateral: "UNKNOWN",
+    equipment: "UNKNOWN",
+    invoiceFinancing: "UNKNOWN",
+    irrevocableTrust: "UNKNOWN",
+    projectionBased: "UNKNOWN",
+    purchaseOrderFinancing: "UNKNOWN",
+    realEstate: "UNKNOWN",
+    stockSavings: "UNKNOWN"
+  },
+  nonCommercialResidentialLending: {
+    conventionalFNMA: "UNKNOWN",
+    governmentFHA: "UNKNOWN",
+    kRehab: "UNKNOWN",
+    portfolio: "UNKNOWN",
+    jumbo: "UNKNOWN"
+  }
 };
-
 const toggleReducer = (draft, action) => {
   switch (action.type) {
     case "toggle": {
@@ -117,67 +205,6 @@ function getStepContent(step) {
 
 const AuthPagination = props => {
   const [state, dispatch] = useImmerReducer(toggleReducer, intialState);
-  const {
-    investmentPurchase,
-    investmentRefinance,
-    investmentCashOutRefinance,
-    investmentRenovationImprovement,
-    investmentBridge,
-    investmentRevolvingBusinessLOC1stPosition,
-    investmentRevolvingBusinessLOC2stPosition,
-    purchase,
-    refinance,
-    cashOutRefinance,
-    renovationImprovement,
-    bridge,
-    revolvingBusinessLOC1stPosition,
-    revolvingBusinessLOC2stPosition,
-    sbaExpress,
-    exoprtExpressWc,
-    internationalTrade,
-    ownerOccupiedCommercial,
-    debtRefinance,
-    contractCAPLines,
-    buildersCAPLines,
-    workingCAPLines,
-    sbaMicroLoan,
-    businessAcquisition,
-    investment,
-    renovation,
-    residentialLongterm,
-    residentialFixandFlip,
-    groundUpSpecHome,
-    ownerUser,
-    tractHomes,
-    apartments,
-    constructiontoPermanent,
-    landDevelopment,
-    residential,
-    PUD,
-    purchaseWithLand,
-    entitlements,
-    miniperm,
-    leasedLand,
-    brokenProject,
-    manufacturedHomeSingleWide,
-    manufacturedHomeDoubleWide,
-    businessCreditCard,
-    businessExpansionnoRE,
-    equipmentFinancing,
-    businessAcquisitionsMergers,
-    franchisePurchases,
-    revolvingBLOCFirstPosition,
-    revolvingBLOCSecondPosition,
-    accountsReceivable,
-    crossCollateral,
-    equipment,
-    invoiceFinancing,
-    irrevocableTrust,
-    projectionBased,
-    purchaseOrderFinancing,
-    realEstate,
-    stockSavings
-  } = state;
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -206,20 +233,20 @@ const AuthPagination = props => {
     return completedSteps() === totalSteps();
   };
 
-  const submitForm = async (formData) => {
-    event.preventDefault()
+  const submitForm = async formData => {
+    event.preventDefault();
     await Axios.post("/api/users/updateUserData", formData);
   };
 
   const handleNext = async () => {
-    const formInfo = state
+    const formInfo = state;
     await Axios.post("/api/users/updateUserData", { formInfo });
     const newActiveStep =
-    isLastStep() && !allStepsCompleted()
-    ? // It's the last step, but not all steps have been completed,
-    // find the first step that has been completed
-    steps.findIndex((step, i) => !(i in completed))
-    : activeStep + 1;
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 
@@ -248,7 +275,7 @@ const AuthPagination = props => {
       case 0:
         return <ViewOne />;
       case 1:
-        return <ViewTwo onToggleChange={onToggleChange} />;
+        return <ViewTwo onToggleChange={onToggleChange} toggleFormState={state} />;
       case 2:
         return <ViewThree />;
       default:

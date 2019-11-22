@@ -6,6 +6,7 @@ import CardBody from "components/Card/CardBody.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
+import LoanAmountFormOwner from "components/LoanAmountForm/LoanAmountFormOwner.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -34,7 +35,7 @@ const BusinessLendingNonSBA = props => {
     "stockSavings"
   ];
 
-  const { onToggleChange } = props;
+  const { onToggleChange, toggleFormState } = props;
 
   
 
@@ -51,7 +52,7 @@ const BusinessLendingNonSBA = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );
@@ -66,7 +67,7 @@ const BusinessLendingNonSBA = props => {
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );

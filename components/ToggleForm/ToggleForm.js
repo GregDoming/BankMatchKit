@@ -22,15 +22,15 @@ const useStyles = makeStyles(toggleFormStyle);
 const ToggleForm = props => {
   const classes = useStyles();
 
-  const { onToggleChange } = props;
+  const { onToggleChange, toggleFormState } = props;
 
   const componentArr = [
-    <OwnerOccupied onToggleChange={onToggleChange} />,
-    <InvestmentNon onToggleChange={onToggleChange} />,
-    <SbaSevenALoans onToggleChange={onToggleChange} />,
-    <ConstructionNonSBARealEstate onToggleChange={onToggleChange} />,
-    <BusinessLendingNonSBA onToggleChange={onToggleChange} />,
-    <NonCommercialResidentialLending onToggleChange={onToggleChange} />
+    <OwnerOccupied onToggleChange={onToggleChange} toggleFormState={toggleFormState.ownerOccupied} />,
+    <InvestmentNon onToggleChange={onToggleChange} toggleFormState={toggleFormState.investmentNonSBARealEstate} />,
+    <SbaSevenALoans onToggleChange={onToggleChange} toggleFormState={toggleFormState.sbaSevenALoans} />,
+    <ConstructionNonSBARealEstate onToggleChange={onToggleChange} toggleFormState={toggleFormState.construction} />,
+    <BusinessLendingNonSBA onToggleChange={onToggleChange} toggleFormState={toggleFormState.businessLendingNonSBA} />,
+    <NonCommercialResidentialLending onToggleChange={onToggleChange} toggleFormState={toggleFormState.nonCommercialResidentialLending} />
   ];
 
   const expansionPanelArr = [
@@ -46,7 +46,7 @@ const ToggleForm = props => {
     <div className={classes.container}>
       {componentArr.map((component, index) => {
         return (
-          <ExpansionPanel key={expansionPanelArr[index]}>
+          <ExpansionPanel key={expansionPanelArr[index]} >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"

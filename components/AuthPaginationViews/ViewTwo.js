@@ -21,11 +21,11 @@ export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const { onToggleChange } = props; 
+  const { onToggleChange, toggleFormState } = props; 
   
   return (
     <div className={classes.root}>
-      <ToggleForm onToggleChange={onToggleChange} />
+      <ToggleForm onToggleChange={onToggleChange} toggleFormState={toggleFormState}/>
     </div>
   );
 };

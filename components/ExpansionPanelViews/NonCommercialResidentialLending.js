@@ -13,19 +13,10 @@ const NonCommercialResidentialLending = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleArrOne = [
-    "Conventional FNMA/FHLMC",
-    "Government FHA/VA/USDA",
-    "203k Rehab"
-  ];
-  const toggleArrTwo = [
-    "Portfolio",
-    "Jumbo"
-  ];
+  const toggleArrOne = ["conventionalFNMA", "governmentFHA", "kRehab"];
+  const toggleArrTwo = ["portfolio", "jumbo"];
 
-  const { onToggleChange } = props;
-
-  
+  const { onToggleChange, toggleFormState } = props;
 
   return (
     <Card>
@@ -35,12 +26,14 @@ const NonCommercialResidentialLending = props => {
             {toggleArrOne.map((toggleName, index) => {
               return (
                 <div key={"NonCommercial" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
+                  <label className={classes.labelStyle}>
+                    {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                  </label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );
@@ -50,12 +43,14 @@ const NonCommercialResidentialLending = props => {
             {toggleArrTwo.map((toggleName, index) => {
               return (
                 <div key={"NonCommercial2" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.replace(/^\w/, c => c.toUpperCase())}</label>
+                  <label className={classes.labelStyle}>
+                    {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                  </label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );

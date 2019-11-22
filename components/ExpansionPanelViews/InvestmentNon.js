@@ -20,11 +20,12 @@ const InvestmentNon = props => {
     "investmentRenovationImprovement",
     "investmentBridge"
   ];
-  const toggleArrTwo = ["investmentRevolvingBusinessLOC1stPosition", "investmentRevolvingBusinessLOC2stPosition"];
+  const toggleArrTwo = [
+    "investmentRevolvingBusinessLOC1stPosition",
+    "investmentRevolvingBusinessLOC2stPosition"
+  ];
 
-  const { onToggleChange } = props;
-
-  
+  const { onToggleChange, toggleFormState } = props;
 
   return (
     <Card>
@@ -34,12 +35,14 @@ const InvestmentNon = props => {
             {toggleArrOne.map((toggleName, index) => {
               return (
                 <div key={"InvestmentNon" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.slice(10).replace(/^\w/, c => c.toUpperCase())}</label>
+                  <label className={classes.labelStyle}>
+                    {toggleName.slice(10).replace(/^\w/, c => c.toUpperCase())}
+                  </label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );
@@ -49,12 +52,14 @@ const InvestmentNon = props => {
             {toggleArrTwo.map((toggleName, index) => {
               return (
                 <div key={"InvestmentNon2" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>{toggleName.slice(10).replace(/^\w/, c => c.toUpperCase())}</label>
+                  <label className={classes.labelStyle}>
+                    {toggleName.slice(10).replace(/^\w/, c => c.toUpperCase())}
+                  </label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}
                     values={valuesArr}
                     id={toggleName}
-                    selected="UNKNOWN"
+                    selected={toggleFormState[toggleName]}
                   />
                 </div>
               );

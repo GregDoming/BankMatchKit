@@ -108,6 +108,8 @@ export default function MultiInputForm() {
     personalNotes: ""
   });
 
+  console.log(values)
+
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value.trim() });
   };
@@ -154,6 +156,9 @@ export default function MultiInputForm() {
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
+                      }}
+                      inputProps={{
+                        
                       }}
                       labelText="Secondary Email Address"
                       id="secondaryEmailAddress"
@@ -207,7 +212,7 @@ export default function MultiInputForm() {
                       <FormControlLabel
                         value="start"
                         control={<Switch color="primary" />}
-                        label="Start"
+                        label="Client Pays Broker Demand"
                         labelPlacement="start"
                       />
                     </GridItem>
@@ -215,7 +220,7 @@ export default function MultiInputForm() {
                       <FormControlLabel
                         value="start"
                         control={<Switch color="primary" />}
-                        label="Start"
+                        label="Lender Pays Rebates to Broker"
                         labelPlacement="start"
                       />
                     </GridItem>
@@ -223,15 +228,7 @@ export default function MultiInputForm() {
                       <FormControlLabel
                         value="start"
                         control={<Switch color="primary" />}
-                        label="Start"
-                        labelPlacement="start"
-                      />
-                    </GridItem>
-                    <GridItem className={classes.customGridItem} xs={12} sm={5} md={10}>
-                      <FormControlLabel
-                        value="start"
-                        control={<Switch color="primary" />}
-                        label="Start"
+                        label="Broker Paid Through Escrow"
                         labelPlacement="start"
                       />
                     </GridItem>
@@ -322,7 +319,6 @@ export default function MultiInputForm() {
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
                   <InputLabel id="fax">Fax</InputLabel>
-
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
