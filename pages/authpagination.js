@@ -61,7 +61,7 @@ const AuthPagination = props => {
   const totalSteps = () => {
     return steps.length;
   };
-  console.log(state)
+
   const onToggleChange = (event, val) => {
     event.preventDefault();
     dispatch({ type: "toggle" });
