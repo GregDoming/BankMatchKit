@@ -4,32 +4,13 @@ import clsx from "clsx";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Email from "@material-ui/icons/Email";
-import Favorite from "@material-ui/icons/Favorite";
-import Face from "@material-ui/icons/Face";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Input from "@material-ui/core/Input";
-import FilledInput from "@material-ui/core/FilledInput";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-import Visibility from "@material-ui/icons/Visibility";
+
 
 import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanAmountStyle.js";
 

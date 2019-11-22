@@ -28,7 +28,7 @@ const lenderSelect = [
   "Insurance Company",
   "Non Bank Lender",
   "Private Equity"
-]
+];
 
 const listOfStates = [
   "AK - Alaska",
@@ -108,7 +108,7 @@ export default function MultiInputForm() {
     personalNotes: ""
   });
 
-  console.log(values)
+  console.log(values);
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value.trim() });
@@ -157,9 +157,7 @@ export default function MultiInputForm() {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{
-                        
-                      }}
+                      inputProps={{}}
                       labelText="Secondary Email Address"
                       id="secondaryEmailAddress"
                       type="email"
@@ -168,16 +166,16 @@ export default function MultiInputForm() {
                 </GridContainer>
                 <GridContainer justify="space-between">
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
-                  <FormControl style={{ minWidth: 240 }}>
-                    <CustomInput
-                      labelText="Phone Number"
-                      inputProps={{
-                        value: values.phoneNumber,
-                        onChange: handleChange("phoneNumber"),
-                        id: "formatted-text-mask-input",
-                        inputComponent: MaskedNumberInput
-                      }}
-                    />
+                    <FormControl style={{ minWidth: 240 }}>
+                      <CustomInput
+                        labelText="Phone Number"
+                        inputProps={{
+                          value: values.phoneNumber,
+                          onChange: handleChange("phoneNumber"),
+                          id: "formatted-text-mask-input",
+                          inputComponent: MaskedNumberInput
+                        }}
+                      />
                     </FormControl>
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
@@ -303,7 +301,7 @@ export default function MultiInputForm() {
                     </FormControl>
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                  <InputLabel id="companyNumber">Company Phone Number</InputLabel>
+                    <InputLabel id="companyNumber">Company Phone Number</InputLabel>
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
@@ -318,7 +316,7 @@ export default function MultiInputForm() {
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                  <InputLabel id="fax">Fax</InputLabel>
+                    <InputLabel id="fax">Fax</InputLabel>
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
@@ -399,14 +397,14 @@ export default function MultiInputForm() {
                     </FormControl>
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                  <FormControl style={{ minWidth: 10 }}>
-                    <CustomInput
-                      formControlProps={{
-                        className: classes.customFormControlClasses,
-                      }}
-                      labelText="zip"
-                      id="zip"
-                    />
+                    <FormControl style={{ minWidth: 10 }}>
+                      <CustomInput
+                        formControlProps={{
+                          className: classes.customFormControlClasses
+                        }}
+                        labelText="zip"
+                        id="zip"
+                      />
                     </FormControl>
                   </GridItem>
                 </GridContainer>
