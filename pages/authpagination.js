@@ -173,7 +173,7 @@ const AuthPagination = props => {
           />
         );
       case 2:
-        return <ViewThree />;
+        return <ViewThree onToggleChange={onToggleChange} />;
       default:
         return "Unknown step";
     }

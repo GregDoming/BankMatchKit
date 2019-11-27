@@ -77,7 +77,7 @@ const LoanParametersPrivateMoneyLending = props => {
           </CardHeader>
           {toggleLoanArr.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <div key={"LoanParam2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {customLoanArr}
                       </label>

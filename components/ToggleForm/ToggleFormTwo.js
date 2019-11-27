@@ -10,73 +10,55 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
-import OwnerOccupied from "components/ExpansionPanelViews/OwnerOccupied.js";
-import InvestmentNon from "components/ExpansionPanelViews/InvestmentNon.js";
-import SBASevenALoans from "components/ExpansionPanelViews/SBASevenALoans.js";
-import ConstructionNonSBARealEstate from "components/ExpansionPanelViews/ConstructionNonSBARealEstate.js";
-import BusinessLendingNonSBA from "components/ExpansionPanelViews/BusinessLendingNonSBA.js";
-import NonCommercialResidentialLending from "components/ExpansionPanelViews/NonCommercialResidentialLending.js";
-import SBAFiveFour from "components/ExpansionPanelViews/SBAFiveFour";
-import PrivateMoneyLending from "components/ExpansionPanelViews/PrivateMoneyLending";
-
+import Automotive from "components/ExpansionPanelViewsTwo/Automotive.js";
+import MultiUnitLiving from "components/ExpansionPanelViewsTwo/MultiUnitLiving.js";
+import Miscellaneous from "components/ExpansionPanelViewsTwo/Miscellaneous.js";
+import Retail from "components/ExpansionPanelViewsTwo/Retail.js";
+import Healthcare from "components/ExpansionPanelViewsTwo/Healthcare.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
-const ToggleForm = props => {
+const ToggleFormTwo = props => {
   const classes = useStyles();
 
   const { onToggleChange, toggleFormState } = props;
 
   const componentArr = [
-    <OwnerOccupied
+    <MultiUnitLiving
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
     />,
-    <InvestmentNon
+    <Automotive
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
     />,
-    <SBASevenALoans
+    <Healthcare
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
     />,
-    <SBAFiveFour
+    <Retail
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
     />,
-    <ConstructionNonSBARealEstate
+    <Miscellaneous
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-    />,
-    <BusinessLendingNonSBA
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <NonCommercialResidentialLending
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <PrivateMoneyLending
-      onToggleChange={onToggleChange}
     />
   ];
 
   const expansionPanelArr = [
-    "Owner Occupied",
-    "Investment (Non-SBA Real Estate)",
-    "SBA 7a Loans",
-    "SBA 504 Loans",
-    "Construction (Non-SBA Real Estate)",
-    "Business Lending (Non-SBA)",
-    "Non-Commercial Residential Lending (Real Estate)",
-    "Private Money Lending"
+    "Multi-Unit Living",
+    "Automotive",
+    "Healthcare",
+    "Retail",
+    "Miscellaneous",
   ];
 
   return (
     <div className={classes.container}>
       {componentArr.map((component, index) => {
         return (
-          <ExpansionPanel key={"ToggleForm" + expansionPanelArr[index]} TransitionProps={{ unmountOnExit: true }} >
+          <ExpansionPanel key={"ToggleFormTwo" + expansionPanelArr[index]} TransitionProps={{ unmountOnExit: true }} >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -92,4 +74,4 @@ const ToggleForm = props => {
   );
 };
 
-export default ToggleForm;
+export default ToggleFormTwo;
