@@ -20,13 +20,13 @@ import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanA
 const useStyles = makeStyles(loanAmountStyle);
 const defaultLoanArr = ["Minimum", "Maximum", "Max LTV %", "MinDCR"];
 const loanArr = [
-  "ownerMinumumLoanAmount",
-  "ownerMaximumLoanAmount",
-  "ownerMaxLTVPercent",
-  "ownerMinDCR"
+  "SBAFiveFourMinumumLoanAmount",
+  "SBAFiveFourMaximumLoanAmount",
+  "SBAFiveFourMaxLTVPercent",
+  "SBAFiveFourMinDCR"
 ];
 
-const LoanAmountOwner = () => {
+const LoanAmountFiveFour = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -74,4 +74,4 @@ const LoanAmountOwner = () => {
   );
 };
 
-export default LoanAmountOwner;
+export default LoanAmountFiveFour;

@@ -1,18 +1,13 @@
 import React, { useContext } from "react";
-import produce from "immer";
-import { useImmerReducer } from "use-immer";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import CustomInput from "components/CustomInput/CustomInput.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import LoanAmountOwner from "components/LoanAmountForm/LoanAmountFormOwner.js";
+import LoanAmountOwner from "components/LoanAmountForm/LoanAmountOwner.js";
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
@@ -32,7 +27,7 @@ const OwnerOccupied = props => {
 
   const handleFocus = event => {};
 
-  const { onToggleChange, toggleFormState, handleInput, handleNumberInput } = props;
+  const { onToggleChange } = props;
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
 

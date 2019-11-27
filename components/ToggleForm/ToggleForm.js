@@ -12,10 +12,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import OwnerOccupied from "components/ExpansionPanelViews/OwnerOccupied.js";
 import InvestmentNon from "components/ExpansionPanelViews/InvestmentNon.js";
-import SbaSevenALoans from "components/ExpansionPanelViews/SbaSevenALoans.js";
+import SBASevenALoans from "components/ExpansionPanelViews/SBASevenALoans.js";
 import ConstructionNonSBARealEstate from "components/ExpansionPanelViews/ConstructionNonSBARealEstate.js";
 import BusinessLendingNonSBA from "components/ExpansionPanelViews/BusinessLendingNonSBA.js";
 import NonCommercialResidentialLending from "components/ExpansionPanelViews/NonCommercialResidentialLending.js";
+import SBAFiveFour from "components/ExpansionPanelViews/SBAFiveFour";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -28,43 +29,30 @@ const ToggleForm = props => {
     <OwnerOccupied
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-      handleInput={handleInput}
-      handleNumberInput={handleNumberInput}
     />,
     <InvestmentNon
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-      handleInput={handleInput}
-      handleNumberInput={handleNumberInput}
-
     />,
-    <SbaSevenALoans
+    <SBASevenALoans
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-      handleInput={handleInput}
-      handleNumberInput={handleNumberInput}
-
+    />,
+    <SBAFiveFour
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
     />,
     <ConstructionNonSBARealEstate
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-      handleInput={handleInput}
-      handleNumberInput={handleNumberInput}
-
     />,
     <BusinessLendingNonSBA
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-      handleInput={handleInput}
-      handleNumberInput={handleNumberInput}
-
     />,
     <NonCommercialResidentialLending
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
-      handleInput={handleInput}
-      handleNumberInput={handleNumberInput}
-
     />
   ];
 
@@ -72,6 +60,7 @@ const ToggleForm = props => {
     "Owner Occupied",
     "Investment (Non-SBA Real Estate)",
     "SBA 7a Loans",
+    "SBA 504 Loans",
     "Construction (Non-SBA Real Estate)",
     "Business Lending (Non-SBA)",
     "Non-Commercial Residential Lending (Real Estate)"

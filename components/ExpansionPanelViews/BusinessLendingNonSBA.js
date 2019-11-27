@@ -6,7 +6,7 @@ import CardBody from "components/Card/CardBody.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import LoanAmountFormOwner from "components/LoanAmountForm/LoanAmountFormOwner.js";
+import LoanAmountFormOwner from "components/LoanAmountForm/LoanAmountOwner.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 

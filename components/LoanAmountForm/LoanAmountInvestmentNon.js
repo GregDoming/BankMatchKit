@@ -12,21 +12,23 @@ import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import InputLabel from "@material-ui/core/InputLabel";
 
-
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanAmountStyle.js";
 
 const useStyles = makeStyles(loanAmountStyle);
-const defaultLoanArr = ["Minimum", "Maximum", "Max LTV %", "MinDCR"];
+const defaultLoanArr = ["Minimum", "Maximum", "Max LTV %", "Max LTC %", "Max ARV", "Min Debt Yield", "Min DCR"];
 const loanArr = [
-  "ownerMinumumLoanAmount",
-  "ownerMaximumLoanAmount",
-  "ownerMaxLTVPercent",
-  "ownerMinDCR"
+  "investmentNonSBAMinumumLoanAmount",
+  "investmentNonSBAMaximumLoanAmount",
+  "investmentNonSBAMaxLTVPercent",
+  "investmentNonSBAMaxLTCPercent",
+  "investmentNonSBAMaxARV",
+  "investmentNonSBAMinDebtYield",
+  "investmentNonSBAMinDCR"
 ];
 
-const LoanAmountOwner = () => {
+const LoanAmountInvestmentNon = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -74,4 +76,4 @@ const LoanAmountOwner = () => {
   );
 };
 
-export default LoanAmountOwner;
+export default LoanAmountInvestmentNon;

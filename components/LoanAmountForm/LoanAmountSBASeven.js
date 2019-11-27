@@ -17,16 +17,18 @@ import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanAmountStyle.js";
 
+import image from "assets/img/bg7.jpg";
+
 const useStyles = makeStyles(loanAmountStyle);
 const defaultLoanArr = ["Minimum", "Maximum", "Max LTV %", "MinDCR"];
 const loanArr = [
-  "ownerMinumumLoanAmount",
-  "ownerMaximumLoanAmount",
-  "ownerMaxLTVPercent",
-  "ownerMinDCR"
+  "SBASevenMinumumLoanAmount",
+  "SBASevenMaximumLoanAmount",
+  "SBASevenMaxLTVPercent",
+  "SBASevenMinDCR"
 ];
 
-const LoanAmountOwner = () => {
+const LoanAmountSBASeven = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -74,4 +76,4 @@ const LoanAmountOwner = () => {
   );
 };
 
-export default LoanAmountOwner;
+export default LoanAmountSBASeven;

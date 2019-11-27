@@ -7,24 +7,29 @@ import CardHeader from "components/Card/CardHeader.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import LoanAmountSBAFiveFour from "components/LoanAmountForm/LoanAmountSBAFiveFour.js";
+import LoanAmountSBASeven from "components/LoanAmountForm/LoanAmountSBASeven.js";
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
-const SBAFiveFour = props => {
+const SBASevenALoans = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleArrOne = [
-    "SBAFiveFourFirstDeedRealEstate",
-    "SBAFiveFourFirstDeedRealEquipment",
-    "SBAFiveFourRefinanceProgram"
+    "sbaExpress",
+    "exoprtExpressWC",
+    "internationalTrade",
+    "seasonalCAPLines",
+    "ownerOccupiedCommercial",
+    "debtRefinance"
   ];
   const toggleArrTwo = [
-    "SBAFiveFourFirstDeedRealEstateBridge",
-    "SBAFiveFourFirstDeedEquipmentBridge",
-    "SBAFiveFourRefinanceBridge"
+    "contractCAPLines",
+    "buildersCAPLines",
+    "workingCAPLines",
+    "sbaMicroLoan",
+    "businessAcquisition"
   ];
 
   const handleFocus = event => {};
@@ -81,10 +86,10 @@ const SBAFiveFour = props => {
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
-        <LoanAmountSBAFiveFour />
+        <LoanAmountSBASeven />
       </div>
     </div>
   );
 };
 
-export default SBAFiveFour;
+export default SBASevenALoans;

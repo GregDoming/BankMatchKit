@@ -219,18 +219,18 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      investmentNonSBAMaxARV : {
+      investmentNonSBAMaxARV: {
         type: Number,
         default: 0
       },
-      investmentNonSBAMinDebtYield : {
+      investmentNonSBAMinDebtYield: {
         type: Number,
         default: 0
       },
-      investmentNonSBAMinDCR : {
+      investmentNonSBAMinDCR: {
         type: Number,
         default: 0
-      },
+      }
     },
     sbaSevenALoans: {
       sbaExpress: {
@@ -300,7 +300,7 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      SBASevenMinDCR : {
+      SBASevenMinDCR: {
         type: Number,
         default: 0
       }
@@ -348,7 +348,7 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      SBAFiveFourMinDCR : {
+      SBAFiveFourMinDCR: {
         type: Number,
         default: 0
       }
@@ -465,11 +465,11 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      constructionNonSBAMaxARV : {
+      constructionNonSBAMaxARV: {
         type: Number,
         default: 0
       },
-      constructionMinDCR : {
+      constructionMinDCR: {
         type: Number,
         default: 0
       }
@@ -567,7 +567,7 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      businessLendingMinDCR : {
+      businessLendingMinDCR: {
         type: Number,
         default: 0
       }
@@ -597,7 +597,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     privateMoneyLending: {
       privateMoneyMinumumLoanAmount: {
@@ -616,11 +616,11 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      privateMoneyMaxARVCommercial : {
+      privateMoneyMaxARVCommercial: {
         type: Number,
         default: 0
       },
-      privateMoneyMaxARVResidential : {
+      privateMoneyMaxARVResidential: {
         type: Number,
         default: 0
       },
@@ -639,30 +639,30 @@ const userSchema = new mongoose.Schema(
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
       },
-      privateMoneyInterestRateMin : {
+      privateMoneyInterestRateMin: {
         type: Number,
         default: 0
       },
-      privateMoneyInterestRateMax : {
+      privateMoneyInterestRateMax: {
         type: Number,
         default: 0
       },
-      privateMoneyTermRangeMax : {
+      privateMoneyTermRangeMax: {
         type: Number,
         default: 0
       },
-      privateMoneyTermRateMin : {
+      privateMoneyTermRateMin: {
         type: Number,
         default: 0
       },
-      privateMoneyFeesFlatMin : {
+      privateMoneyFeesFlatMin: {
         type: Number,
         default: 0
       },
-      privateMoneyFeesFlatMax : {
+      privateMoneyFeesFlatMax: {
         type: Number,
         default: 0
-      },
+      }
     },
     multiUnitLiving: {
       multiUnitFraternitySorority: {
@@ -704,7 +704,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     automotive: {
       automotiveBodyShop: {
@@ -726,8 +726,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
-      
+      }
     },
     healthcare: {
       healthcareDoctorsOffice: {
@@ -744,7 +743,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     retail: {
       retailRestaurant: {
@@ -761,7 +760,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     miscellaneous: {
       miscellaneousChurchReligion: {
@@ -813,7 +812,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     financialCreditIssue: {
       financialCreditIssueBankruptcy: {
@@ -860,7 +859,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     miscellaneousQualifiers: {
       miscellaneousQualifiersExchange: {
@@ -937,7 +936,7 @@ const userSchema = new mongoose.Schema(
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
-      },
+      }
     },
     /* we wrap 'following' and 'followers' in array so that when they are populated as objects, they are put in an array (to more easily iterate over them) */
     following: [{ type: ObjectId, ref: "User" }],
