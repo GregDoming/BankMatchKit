@@ -33,7 +33,7 @@ const Retail = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"Healthcare" + index.toString()} className={classes.rowContainer}>
+                    <div key={"retail" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         onToggleChange={onToggleChange}
@@ -46,7 +46,7 @@ const Retail = props => {
                 })}
               </div>
               <div>
-                <div key={"Healthcare2"} className={classes.rowContainer}>
+                <div key={"retail2"} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>Single Tenant Retail</label>
                   <ThreeToggleSwitch
                     onToggleChange={onToggleChange}

@@ -59,7 +59,7 @@ const Miscellaneous = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                    <div key={"miscellaneousOccupied" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         onToggleChange={onToggleChange}
@@ -74,7 +74,7 @@ const Miscellaneous = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <div key={"miscellaneousOccupied2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
                         onToggleChange={onToggleChange}

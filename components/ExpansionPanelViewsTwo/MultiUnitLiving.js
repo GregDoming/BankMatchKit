@@ -55,7 +55,7 @@ const MultiUnitLiving = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                    <div key={"multiUnitOccupied" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         onToggleChange={onToggleChange}
@@ -70,7 +70,7 @@ const MultiUnitLiving = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <div key={"multiUnitOccupied2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
                         onToggleChange={onToggleChange}
