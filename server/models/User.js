@@ -112,7 +112,19 @@ const userSchema = new mongoose.Schema(
         trim: true,
         lowercase: true,
         default: ""
-      }
+      },
+      clientPaysBrokerDemand: {
+        type: Boolean,
+        default: false
+      },
+      lenderPaysRebates: {
+        type: Boolean,
+        default: false
+      },
+      brokerPaidThroughEscrow: {
+        type: Boolean,
+        default: false
+      },
     },
     ownerOccupied: {
       purchase: {

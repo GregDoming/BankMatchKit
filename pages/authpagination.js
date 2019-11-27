@@ -37,14 +37,22 @@ const toggleReducer = (draft, action) => {
       draft[event.target.id] = event.target.textContent;
       return;
     }
-    case "handleFormInput": {
-      draft[event.target.id] = event.target.value;
-    }
     case "handleNumberInput": {
+      console.log("regualr number")
       const re = /^[0-9\b]+$/;
       if (event.target.value === "" || re.test(event.target.value)) {
         if (isNaN()) draft[event.target.id] = parseInt(event.target.value) || 0;
       }
+    }
+    case "handlePhoneNumberInput": {
+      draft[event.target.id] = event.target.value;
+    }
+    case "handleFormInput": {
+      draft[event.target.id] = event.target.value;
+    }
+    case "handleBinaryToggle": {
+      draft[event.target.id] = !event.target.value
+
     }
     default:
       break;
@@ -118,6 +126,8 @@ const AuthPagination = props => {
 
   const handleNext = async () => {
     event.preventDefault();
+    const re = /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/;
+
     if (
       state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
       state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
@@ -129,7 +139,12 @@ const AuthPagination = props => {
       setminMaxErrorMessage("Minimum form value must be larger than maximum form value");
       setOpenError(true);
       return;
-    }
+    };
+    if (!re.test(state.phoneNumber)) {
+      setminMaxErrorMessage("Must enter a valid phone number")
+      setOpenError(true);
+      return;
+    };
 
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);

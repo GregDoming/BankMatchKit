@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
@@ -14,8 +14,10 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import FormGroup from "@material-ui/core/FormGroup";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Radio from "@material-ui/core/Radio";
 
 import MaskedNumberInput from "components/MaskedNumberInput/MaskedNumberInput.js";
+import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiInputFormStyle.js";
 
@@ -93,12 +95,9 @@ const MultiInputForm = props => {
   const [multipleSelect, setMultipleSelect] = React.useState([]);
   const [simpleSelect, setSimpleSelect] = React.useState("");
   const [values, setValues] = React.useState({
-    firstName: "",
-    lastName: "",
     secondaryEmailAddress: "",
     workNumber: "",
     nameOfCompany: "",
-    phoneNumber: "(  )    -    ",
     workNumber: "(  )    -    ",
     companyPhoneNumber: "(  )    -    ",
     fax: "(  )    -    ",
@@ -106,6 +105,8 @@ const MultiInputForm = props => {
     zip: "",
     personalNotes: ""
   });
+  const dispatch = useContext(FormDispatchContext);
+  const state = useContext(FormStateContext);
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value.trim() });
@@ -119,8 +120,6 @@ const MultiInputForm = props => {
     setSimpleSelect(event.target.value);
   };
 
-  const { handleInput, toggleFormState } = props;
-
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
@@ -133,27 +132,29 @@ const MultiInputForm = props => {
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                     <CustomInput
                       labelText="First Name"
-                      // id="firstName"
-                      // onChange={handleInput(event)}
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
                       inputProps={{
-                        value: values.firstName,
-                        onChange: handleChange("firstName"),
-                        id: "firstName",
+                        value: state.firstName,
+                        onChange: () => dispatch({ type: "handleFormInput", payload: "firstName" }),
+                        id: "firstName"
                       }}
                     />
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                     <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
                       labelText="Last Name"
-                      id="lastName"
+                      formControlProps={{
+                        fullWidth: true,
+                        className: classes.customFormControlClasses
+                      }}
+                      inputProps={{
+                        value: state.lastName,
+                        onChange: () => dispatch({ type: "handleFormInput", payload: "lastName" }),
+                        id: "lastName"
+                      }}
                     />
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
@@ -162,7 +163,12 @@ const MultiInputForm = props => {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      inputProps={{}}
+                      inputProps={{
+                        value: state.secondaryEmailAddress,
+                        onChange: () =>
+                          dispatch({ type: "handleFormInput", payload: "secondaryEmailAddress" }),
+                        id: "secondaryEmailAddress"
+                      }}
                       labelText="Secondary Email Address"
                       id="secondaryEmailAddress"
                       type="email"
@@ -171,32 +177,32 @@ const MultiInputForm = props => {
                 </GridContainer>
                 <GridContainer justify="space-between">
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
-                    <FormControl style={{ minWidth: 240 }}>
-                      <CustomInput
-                        labelText="Phone Number"
-                        inputProps={{
-                          value: values.phoneNumber,
-                          onChange: handleChange("phoneNumber"),
-                          id: "formatted-text-mask-input",
-                          inputComponent: MaskedNumberInput
-                        }}
-                      />
-                    </FormControl>
+                    <CustomInput
+                      labelText="Phone Number"
+                      inputProps={{
+                        type: "text",
+                        label: "With normal TextField",
+                        value: state.phoneNumber,
+                        onChange: () =>
+                          dispatch({ type: "handlePhoneNumberInput", payload: "phoneNumber" }),
+                        id: "phoneNumber"
+                      }}
+                      autoFocus
+                    />
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
-                    <InputLabel id="demo-mutiple-checkbox-label">Work Number</InputLabel>
                     <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
+                      labelText="Work Number"
                       inputProps={{
                         placeholder: "Work Number...",
-                        value: values.workNumber,
-                        onChange: handleChange("workNumber"),
-                        id: "formatted-text-mask-input",
-                        inputComponent: MaskedNumberInput
+                        type: "text",
+                        label: "With normal TextField",
+                        value: state.workNumber,
+                        onChange: () =>
+                          dispatch({ type: "handlePhoneNumberInput", payload: "workNumber" }),
+                        id: "workNumber"
                       }}
+                      autoFocus
                     />
                   </GridItem>
                 </GridContainer>
@@ -204,43 +210,55 @@ const MultiInputForm = props => {
             </CardBody>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={10} md={10}>
-          <Card className={classes.cardSignupToggle}>
-            <h5 className={classes.cardTitle}>BROKER RELATIONSHIP</h5>
-            <CardBody>
-              <FormControl component="fieldset">
-                <FormGroup aria-label="position" row>
-                  <GridContainer className={classes.customToggleForm}>
-                    <GridItem className={classes.customToggleItem} xs={12} sm={5} md={10}>
-                      <FormControlLabel
-                        value="start"
-                        control={<Switch color="primary" />}
-                        label="Client Pays Broker Demand"
-                        labelPlacement="start"
-                      />
-                    </GridItem>
-                    <GridItem className={classes.customToggleItem} xs={12} sm={5} md={10}>
-                      <FormControlLabel
-                        value="start"
-                        control={<Switch color="primary" />}
-                        label="Lender Pays Rebates to Broker"
-                        labelPlacement="start"
-                      />
-                    </GridItem>
-                    <GridItem className={classes.customToggleItem} xs={12} sm={5} md={10}>
-                      <FormControlLabel
-                        value="start"
-                        control={<Switch color="primary" />}
-                        label="Broker Paid Through Escrow"
-                        labelPlacement="start"
-                      />
-                    </GridItem>
-                  </GridContainer>
-                </FormGroup>
-              </FormControl>
-            </CardBody>
-          </Card>
-        </GridItem>
+        <Card className={classes.cardSignupToggle}>
+          <h5 className={classes.cardTitle}>BROKER RELATIONSHIP</h5>
+          <CardBody>
+            <div className={classes.rowContainer} >
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={state.clientPaysBrokerDemand}
+                    onChange={dispatch({ type: "handleBinaryToggle" })}
+                    value={state.clientPaysBrokerDemand}
+                    color="primary"
+                  />
+                }
+                labelPlacement="start"
+                label={state.clientPaysBrokerDemand ? "YES" : "NO"}
+              />
+
+
+              <h5 className={classes.cardTitle}>BROKER RELATIONSHIP</h5>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={state.lenderPaysRebates}
+                    onChange={dispatch({ type: "handleBinaryToggle" })}
+                    value={state.lenderPaysRebates}
+                    color="primary"
+                  />
+                }
+                labelPlacement="start"
+                label={state.lenderPaysRebates ? "YES" : "NO"}
+              />
+
+
+              <h5 className={classes.cardTitle}>Lender RELATIONSHIP</h5>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={state.brokerPaidThroughEscrow}
+                    onChange={dispatch({ type: "handleBinaryToggle" })}
+                    value={state.brokerPaidThroughEscrow}
+                    color="primary"
+                  />
+                }
+                labelPlacement="start"
+                label={state.brokerPaidThroughEscrow ? "YES" : "NO"}
+              />
+              </div>
+          </CardBody>
+        </Card>
         <GridItem xs={12} sm={10} md={10}>
           <Card className={classes.cardSignup}>
             <h5 className={classes.cardTitle}>YOUR COMPANY INFO</h5>
@@ -437,32 +455,32 @@ const MultiInputForm = props => {
                     />
                   </GridItem>
                 </GridContainer>
-                  <div className={classes.rowContainer}>
-                    <CustomInput
-                      labelText="Source Name"
-                      id="sourceName"
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Source Number"
-                      id="sourcePhone"
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Source Email"
-                      id="sourceEmail"
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
-                    />
-                  </div>
+                <div className={classes.rowContainer}>
+                  <CustomInput
+                    labelText="Source Name"
+                    id="sourceName"
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormControlClasses
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Source Number"
+                    id="sourcePhone"
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormControlClasses
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Source Email"
+                    id="sourceEmail"
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormControlClasses
+                    }}
+                  />
+                </div>
               </form>
             </CardBody>
           </Card>
