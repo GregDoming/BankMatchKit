@@ -162,7 +162,7 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      ownerMinDCR : {
+      ownerMinDCR: {
         type: Number,
         default: 0
       }

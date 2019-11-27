@@ -97,7 +97,6 @@ exports.resizeAvatar = async (req, res, next) => {
 
 exports.updateUser = async (req, res) => {
   req.body.updatedAt = new Date().toISOString();
-  console.log(req.body)
   const updatedUser = await User.findOneAndUpdate(
     { _id: req.user._id },
     { $set: req.body.formInfo },

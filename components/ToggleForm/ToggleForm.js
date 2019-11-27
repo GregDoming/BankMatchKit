@@ -22,15 +22,50 @@ const useStyles = makeStyles(toggleFormStyle);
 const ToggleForm = props => {
   const classes = useStyles();
 
-  const { onToggleChange, toggleFormState } = props;
+  const { onToggleChange, toggleFormState, handleInput, handleNumberInput } = props;
 
   const componentArr = [
-    <OwnerOccupied onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
-    <InvestmentNon onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
-    <SbaSevenALoans onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
-    <ConstructionNonSBARealEstate onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
-    <BusinessLendingNonSBA onToggleChange={onToggleChange} toggleFormState={toggleFormState} />,
-    <NonCommercialResidentialLending onToggleChange={onToggleChange} toggleFormState={toggleFormState} />
+    <OwnerOccupied
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
+      handleInput={handleInput}
+      handleNumberInput={handleNumberInput}
+    />,
+    <InvestmentNon
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
+      handleInput={handleInput}
+      handleNumberInput={handleNumberInput}
+
+    />,
+    <SbaSevenALoans
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
+      handleInput={handleInput}
+      handleNumberInput={handleNumberInput}
+
+    />,
+    <ConstructionNonSBARealEstate
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
+      handleInput={handleInput}
+      handleNumberInput={handleNumberInput}
+
+    />,
+    <BusinessLendingNonSBA
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
+      handleInput={handleInput}
+      handleNumberInput={handleNumberInput}
+
+    />,
+    <NonCommercialResidentialLending
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
+      handleInput={handleInput}
+      handleNumberInput={handleNumberInput}
+
+    />
   ];
 
   const expansionPanelArr = [
@@ -46,15 +81,13 @@ const ToggleForm = props => {
     <div className={classes.container}>
       {componentArr.map((component, index) => {
         return (
-          <ExpansionPanel key={expansionPanelArr[index]} >
+          <ExpansionPanel key={expansionPanelArr[index]} TransitionProps={{ unmountOnExit: true }} >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography className={classes.heading}>
-                {expansionPanelArr[index]}
-              </Typography>
+              <Typography className={classes.heading}>{expansionPanelArr[index]}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>{component}</ExpansionPanelDetails>
           </ExpansionPanel>

@@ -72,11 +72,13 @@ const toggleFormStyle = {
     display: "flex",
     flexFlow: "row",
     justifyContent: "flex-start",
+    margin: 0,
+    padding: 0
   },
   topRowContainer: {
     display: "flex",
     flexFlow: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "start",
   },
   unique: {
     display: "flex",
@@ -87,7 +89,7 @@ const toggleFormStyle = {
   toggleGridItem: {
     display: "flex",
     flexFlow: "column",
-    margin: "0 100px 10px 0"
+    margin: "0 40px 10px 0"
   },
   pageHeader: {
     minHeight: "100vh",
@@ -199,9 +201,23 @@ const toggleFormStyle = {
   formContainer: {
     spacing: 3
   },
+  shrinkFlex: {
+    flex: 2,
+  },
+  numberStyle: {
+    "& input::-webkit-clear-button, & input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+      display: "none",
+      margin: 0,
+      padding: 0
+    }
+  },
   cardHeader: {
     marginBottom: "1%",
     maxWidth: "60%",
+  },
+  cardHeaderTwo: {
+    width: "auto",
+    textAlign: "center"
   },
   container: {
     margin: "auto",

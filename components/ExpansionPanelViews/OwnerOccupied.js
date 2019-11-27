@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useContext } from "react";
 import produce from "immer";
 import { useImmerReducer } from "use-immer";
 
@@ -6,12 +6,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import CustomInput from "components/CustomInput/CustomInput.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import LoanAmountFormOwner from "components/LoanAmountForm/LoanAmountFormOwner.js";
-
+import LoanAmountOwner from "components/LoanAmountForm/LoanAmountFormOwner.js";
+import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -28,56 +30,62 @@ const OwnerOccupied = props => {
   ];
   const toggleArrTwo = ["revolvingBusinessLOC1stPosition", "revolvingBusinessLOC2stPosition"];
 
-  const { onToggleChange, toggleFormState } = props;
-  // console.log(props)
+  const handleFocus = event => {};
+
+  const { onToggleChange, toggleFormState, handleInput, handleNumberInput } = props;
+  const dispatch = useContext(FormDispatchContext);
+  const state = useContext(FormStateContext);
 
   return (
-
     <div className={classes.outerContainer}>
-    <Card className={classes.growFlex} >
-      <CardBody>
-        <CardHeader className={classes.cardHeader} color="success">
-          Purpose 
-        </CardHeader>
-        <div className={classes.topRowContainer}>
-          <div className={classes.toggleGridItem}>
-            {toggleArrOne.map((toggleName, index) => {
-              return (
-                <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>
-                    {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                  </label>
-                  <ThreeToggleSwitch
-                    onToggleChange={onToggleChange}
-                    values={valuesArr}
-                    id={toggleName}
-                    selected={toggleFormState[toggleName]}
-                  />
-                </div>
-              );
-            })}
-          </div>
-          <div>
-            {toggleArrTwo.map((toggleName, index) => {
-              return (
-                <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
-                  <label className={classes.labelStyle}>
-                    {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                  </label>
-                  <ThreeToggleSwitch
-                    onToggleChange={onToggleChange}
-                    values={valuesArr}
-                    id={toggleName}
-                    selected={toggleFormState[toggleName]}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </CardBody>
-    </Card>
-    <LoanAmountFormOwner/>
+      <div className={classes.growFlex}>
+        <Card>
+          <CardBody>
+            <CardHeader className={classes.cardHeader} color="success">
+              Purpose
+            </CardHeader>
+            <div className={classes.topRowContainer}>
+              <div className={classes.toggleGridItem}>
+                {toggleArrOne.map((toggleName, index) => {
+                  return (
+                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                      <label className={classes.labelStyle}>
+                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      </label>
+                      <ThreeToggleSwitch
+                        onToggleChange={onToggleChange}
+                        values={valuesArr}
+                        id={toggleName}
+                        selected={state[toggleName]}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                {toggleArrTwo.map((toggleName, index) => {
+                  return (
+                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                      <label className={classes.labelStyle}>
+                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      </label>
+                      <ThreeToggleSwitch
+                        onToggleChange={onToggleChange}
+                        values={valuesArr}
+                        id={toggleName}
+                        selected={state[toggleName]}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+      <div className={classes.shrinkFlex}>
+        <LoanAmountOwner />
+      </div>
     </div>
   );
 };

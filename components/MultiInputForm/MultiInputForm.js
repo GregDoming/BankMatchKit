@@ -88,7 +88,7 @@ const listOfStates = [
   "WY - Wyoming"
 ];
 
-export default function MultiInputForm() {
+const MultiInputForm = props => {
   const classes = useStyles();
   const [multipleSelect, setMultipleSelect] = React.useState([]);
   const [simpleSelect, setSimpleSelect] = React.useState("");
@@ -119,6 +119,8 @@ export default function MultiInputForm() {
     setSimpleSelect(event.target.value);
   };
 
+  const { handleInput, toggleFormState } = props;
+
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
@@ -131,10 +133,16 @@ export default function MultiInputForm() {
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                     <CustomInput
                       labelText="First Name"
-                      id="firstName"
+                      // id="firstName"
+                      // onChange={handleInput(event)}
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
+                      }}
+                      inputProps={{
+                        value: values.firstName,
+                        onChange: handleChange("firstName"),
+                        id: "firstName",
                       }}
                     />
                   </GridItem>
@@ -462,4 +470,6 @@ export default function MultiInputForm() {
       </GridContainer>
     </div>
   );
-}
+};
+
+export default MultiInputForm;

@@ -69,6 +69,7 @@ const loanAmountStyle = theme => ({
     width: "auto",
     textAlign: "center"
   },
+  
   socialLine: {
     marginTop: "1rem",
     textAlign: "center",

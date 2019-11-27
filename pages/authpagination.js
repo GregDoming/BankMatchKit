@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 // import Helmet from "react-helmet";
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Axios from "axios";
 import produce from "immer";
 import { useImmerReducer } from "use-immer";
@@ -20,7 +20,6 @@ import { convertUser } from "lib/userSchema";
 
 import styles from "assets/jss/nextjs-material-kit-pro/components/paginationStyle.js";
 
-
 const useStyles = makeStyles(styles);
 
 const toggleReducer = (draft, action) => {
@@ -29,11 +28,23 @@ const toggleReducer = (draft, action) => {
       draft[event.target.id] = event.target.textContent;
       return;
     }
+    case "handleFormInput": {
+      draft[event.target.id] = event.target.value;
+    }
+    case "handleNumberInput": {
+      const re = /^[0-9\b]+$/;
+      if (event.target.value === "" || re.test(event.target.value)) {
+        draft[event.target.id] = parseInt(event.target.value)
+      }
+    }
     default:
       break;
   }
-  return state;
+  return;
 };
+
+const FormDispatchContext = React.createContext();
+const FormStateContext = React.createContext();
 
 function getSteps() {
   return ["Step 1", "Step 2", "Step 3"];
@@ -53,8 +64,7 @@ function getStepContent(step) {
 }
 
 const AuthPagination = props => {
-  const initialState = props.flatState
-  console.log(initialState)
+  const initialState = props.flatState;
   const [state, dispatch] = useImmerReducer(toggleReducer, initialState);
 
   const classes = useStyles();
@@ -70,7 +80,15 @@ const AuthPagination = props => {
     event.preventDefault();
     dispatch({ type: "toggle" });
   };
-  
+
+  const handleInput = (event, val) => {
+    dispatch({ type: "handleFormInput" });
+  };
+
+  const handleNumberInput = (event, val) => {
+    dispatch({ type: "handleNumberInput" });
+  };
+
   const completedSteps = () => {
     return Object.keys(completed).length;
   };
@@ -90,8 +108,9 @@ const AuthPagination = props => {
 
   const handleNext = async () => {
     event.preventDefault();
+    console.log(state)
     const objCopy = JSON.parse(JSON.stringify(state));
-    const formInfo = convertUser(objCopy)
+    const formInfo = convertUser(objCopy);
     await Axios.post("/api/users/updateUserData", { formInfo });
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
@@ -125,9 +144,16 @@ const AuthPagination = props => {
   const renderView = activeStep => {
     switch (activeStep) {
       case 0:
-        return <ViewOne />;
+        return <ViewOne handleInput={handleInput} toggleFormState={state} />;
       case 1:
-        return <ViewTwo onToggleChange={onToggleChange} toggleFormState={state} />;
+        return (
+          <ViewTwo
+            onToggleChange={onToggleChange}
+            toggleFormState={state}
+            handleInput={handleInput}
+            handleNumberInput={handleNumberInput}
+          />
+        );
       case 2:
         return <ViewThree />;
       default:
@@ -136,45 +162,51 @@ const AuthPagination = props => {
   };
 
   return (
-    <div className={classes.root}>
-      <Helmet>
-        <style>{"body { background-color: #96aadf; }"}</style>
-      </Helmet>
-      {renderView(activeStep)}
-      <Box
-        className={classes.bottomStepper}
-        style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
-      >
-        <MobileStepper
-          variant="dots"
-          steps={6}
-          position="bottom"
-          activeStep={activeStep}
-          className={classes.root}
-          style={{
-            backgroundColor: "transparent",
-            width: "60%",
-            textAlign: "center",
-            margin: "auto"
-          }}
-          nextButton={
-            <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
-              Next
-              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </Button>
-          }
-          backButton={
-            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-              Back
-            </Button>
-          }
-        />
-      </Box>
-    </div>
+    <FormStateContext.Provider value={state}>
+      <FormDispatchContext.Provider value={dispatch}>
+        <div className={classes.root}>
+          <Helmet>
+            <style>{"body { background-color: #96aadf; }"}</style>
+          </Helmet>
+          {renderView(activeStep)}
+          <Box
+            className={classes.bottomStepper}
+            style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
+          >
+            <MobileStepper
+              variant="dots"
+              steps={6}
+              position="bottom"
+              activeStep={activeStep}
+              className={classes.root}
+              style={{
+                backgroundColor: "transparent",
+                width: "60%",
+                textAlign: "center",
+                margin: "auto"
+              }}
+              nextButton={
+                <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+                  Next
+                  {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                </Button>
+              }
+              backButton={
+                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                  {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                  Back
+                </Button>
+              }
+            />
+          </Box>
+        </div>
+      </FormDispatchContext.Provider>
+    </FormStateContext.Provider>
   );
 };
 
 AuthPagination.getInitialProps = isUserAuthenticated;
 
-export default AuthPagination;
+export default AuthPagination
+
+export { AuthPagination as AuthPagination, FormDispatchContext, FormStateContext };
