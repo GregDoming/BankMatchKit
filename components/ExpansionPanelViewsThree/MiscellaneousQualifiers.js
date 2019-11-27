@@ -1,0 +1,156 @@
+import React, { useContext } from "react";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardHeader from "components/Card/CardHeader.js";
+
+import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
+import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
+import { FormStateContext } from "pages/authpagination.js";
+
+const useStyles = makeStyles(toggleFormStyle);
+
+const MiscellaneousQualifiers = props => {
+  const classes = useStyles();
+
+  const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "1031 Exchange",
+    "Non-profit",
+    "Non-recourse",
+    "Factoring",
+    "Cannabis Related",
+    "Start Up"
+  ];
+  const toggleNameArrTwo = [
+    "Asset Based lending (O.O.)",
+    "Residential Bridge",
+    "Interest Only (indefinite)",
+    "Interest Only into Term",
+    "Asset Based lending (Inv.)"
+  ];
+  const toggleArrOne = [
+    "miscellaneousQualifiersExchange",
+    "miscellaneousQualifiersNonProfit",
+    "miscellaneousQualifiersNonRecourse",
+    "miscellaneousQualifiersFactoring",
+    "miscellaneousQualifiersCannabisRelated",
+    "miscellaneousQualifiersStartUp"
+  ];
+  const toggleArrTwo = [
+    "multiUnitHotelMotelNoFlag",
+    "miscellaneousQualifiersResidentialBridge",
+    "miscellaneousQualifiersInterestOnlyIndefinite",
+    "miscellaneousQualifiersInterestOnlyIntoTerm",
+    "miscellaneousQualifiersAssestBasedLending"
+  ];
+  const depositNameArr = ["Relationship Pricing", "Required Deposit Relationship"];
+  const depositRelationshipArr = [
+    "miscellaneousQualifiersRelationshipPricing",
+    "miscellaneousQualifiersRequiredDepositRelationship"
+  ];
+  const lienPositionNameArr = [
+    "First Lien Position",
+    "Second Lien Position",
+    "Subordinate Financing"
+  ];
+  const lienPositionArr = [
+    "miscellaneousQualifiersFirstLienPosition",
+    "miscellaneousQualifiersSecondLientPosition",
+    "miscellaneousQualifiersSubordinateFinancing"
+  ];
+
+  const { onToggleChange } = props;
+  const state = useContext(FormStateContext);
+
+  return (
+    <div className={classes.outerContainer}>
+      <div className={classes.growFlex}>
+        <Card>
+          <CardBody>
+            <CardHeader className={classes.cardHeader} color="success">
+              Miscellaneous Criteria
+            </CardHeader>
+            <div className={classes.topRowContainer}>
+              <div className={classes.toggleGridItem}>
+                {toggleArrOne.map((toggleName, index) => {
+                  return (
+                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <ThreeToggleSwitch
+                        onToggleChange={onToggleChange}
+                        values={valuesArr}
+                        id={toggleName}
+                        selected={state[toggleName]}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                {toggleArrTwo.map((toggleName, index) => {
+                  return (
+                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                      <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
+                      <ThreeToggleSwitch
+                        onToggleChange={onToggleChange}
+                        values={valuesArr}
+                        id={toggleName}
+                        selected={state[toggleName]}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+        <div>
+          <Card>
+            <CardBody>
+              <CardHeader className={classes.cardHeader} color="success">
+                Deposit Relationship
+              </CardHeader>
+              {depositRelationshipArr.map((toggleName, index) => {
+                return (
+                  <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <label className={classes.labelStyle}>{depositNameArr[index]}</label>
+                    <ThreeToggleSwitch
+                      onToggleChange={onToggleChange}
+                      values={valuesArr}
+                      id={toggleName}
+                      selected={state[toggleName]}
+                    />
+                  </div>
+                );
+              })}
+            </CardBody>
+          </Card>
+        </div>
+        <Card>
+          <CardBody>
+            <CardHeader className={classes.cardHeader} color="success">
+              Lien Position
+            </CardHeader>
+            {lienPositionArr.map((toggleName, index) => {
+              return (
+                <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                  <label className={classes.labelStyle}>{lienPositionNameArr[index]}</label>
+                  <ThreeToggleSwitch
+                    onToggleChange={onToggleChange}
+                    values={valuesArr}
+                    id={toggleName}
+                    selected={state[toggleName]}
+                  />
+                </div>
+              );
+            })}
+          </CardBody>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default MiscellaneousQualifiers;

@@ -22,6 +22,8 @@ import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
 import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
 import ViewThree from "components/AuthPaginationViews/ViewThree.js";
+import ViewFour from "components/AuthPaginationViews/ViewFour.js";
+
 import { isUserAuthenticated } from "lib/auth";
 import { convertUser } from "lib/userSchema";
 
@@ -54,7 +56,7 @@ const FormDispatchContext = React.createContext();
 const FormStateContext = React.createContext();
 
 function getSteps() {
-  return ["Step 1", "Step 2", "Step 3"];
+  return ["Step 1", "Step 2", "Step 3", "Step 4"];
 }
 
 function getStepContent(step) {
@@ -65,6 +67,8 @@ function getStepContent(step) {
       return "Step 2: ";
     case 2:
       return "Step 3: ";
+    case 3:
+      return "Step 4: ";
     default:
       return "Unknown step";
   }
@@ -174,6 +178,8 @@ const AuthPagination = props => {
         );
       case 2:
         return <ViewThree onToggleChange={onToggleChange} />;
+      case 3:
+        return <ViewFour onToggleChange={onToggleChange} />;
       default:
         return "Unknown step";
     }
