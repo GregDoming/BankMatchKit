@@ -624,6 +624,10 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
+      privateMoneyMinimumDCR: {
+        type: Number,
+        default: 0
+      },
       privateMoneyFixedRateAmortized: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],

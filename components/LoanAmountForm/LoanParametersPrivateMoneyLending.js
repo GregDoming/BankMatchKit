@@ -12,21 +12,32 @@ import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import InputLabel from "@material-ui/core/InputLabel";
 
-
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanAmountStyle.js";
 
 const useStyles = makeStyles(loanAmountStyle);
-const defaultLoanArr = ["Minimum", "Maximum", "Max LTV %", "MinDCR"];
-const loanArr = [
-  "SBAFiveFourMinumumLoanAmount",
-  "SBAFiveFourMaximumLoanAmount",
-  "SBAFiveFourMaxLTVPercent",
-  "SBAFiveFourMinDCR"
+const defaultLoanArr = ["Interest Rate Range (%)", "Term Range (Years)", "Fees (Flat, $)", "Fees (Points, %)", "Closing Costs ($)", "Days to Funding"];
+const maxLoanArr = [
+  "Minimum Loan Amount",
+  "Maximum Loan Amount ",
+  "Maximum LTV (%) (Commercial)",
+  "Maximum LTV (%) (Residential)",
+  "Maximum ARV (%) (Commercial)",
+  "Maximum ARV (%) (Residential)",
+  "Minimum DCR"
+];
+const minLoanArr = [
+  "privateMoneyMinumumLoanAmount",
+  "privateMoneyMaximumLoanAmount",
+  "privateMoneyMaxLTVPercentCommercial",
+  "privateMoneyMaxLTVPercentResidential",
+  "privateMoneyMaxARVCommercial",
+  "privateMoneyMaxARVResidential",
+  "privateMoneyMinimumDCR"
 ];
 
-const LoanAmountFiveFour = () => {
+const LoanParametersPrivateMoneyLending = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -41,12 +52,12 @@ const LoanAmountFiveFour = () => {
       <Card>
         <CardBody>
           <CardHeader className={classes.cardHeaderTwo} color="success">
-            Loan Amount
+          Loan Parameters
           </CardHeader>
-          {loanArr.map((loanName, index) => {
+          {maxLoanArr.map((loanName, index) => {
             return (
-              <div key={"FiveFourLoan" + index.toString()}>
-                <InputLabel key={"FiveFourLoan2" + index.toString()} margin={"dense"}>
+              <div key={"ParametersPrivateMoneyLoan" + index.toString()}>
+                <InputLabel key={"ParametersPrivateMoneyLoan2" + index.toString()} margin={"dense"}>
                   {defaultLoanArr[index]}
                 </InputLabel>
                 <CustomInput
@@ -54,7 +65,7 @@ const LoanAmountFiveFour = () => {
                     className: classes.numberStyle,
                     margin: "dense"
                   }}
-                  key={"FiveFourLoanTwo" + index.toString()}
+                  key={"ParametersPrivateMoneyLoanTwo" + index.toString()}
                   inputProps={{
                     startAdornment: <InputAdornment position="start">$</InputAdornment>,
                     type: "text",
@@ -74,4 +85,4 @@ const LoanAmountFiveFour = () => {
   );
 };
 
-export default LoanAmountFiveFour;
+export default LoanParametersPrivateMoneyLending;

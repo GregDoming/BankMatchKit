@@ -17,6 +17,8 @@ import ConstructionNonSBARealEstate from "components/ExpansionPanelViews/Constru
 import BusinessLendingNonSBA from "components/ExpansionPanelViews/BusinessLendingNonSBA.js";
 import NonCommercialResidentialLending from "components/ExpansionPanelViews/NonCommercialResidentialLending.js";
 import SBAFiveFour from "components/ExpansionPanelViews/SBAFiveFour";
+import PrivateMoneyLending from "components/ExpansionPanelViews/PrivateMoneyLending";
+
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -53,6 +55,10 @@ const ToggleForm = props => {
     <NonCommercialResidentialLending
       onToggleChange={onToggleChange}
       toggleFormState={toggleFormState}
+    />,
+    <PrivateMoneyLending
+      onToggleChange={onToggleChange}
+      toggleFormState={toggleFormState}
     />
   ];
 
@@ -63,7 +69,8 @@ const ToggleForm = props => {
     "SBA 504 Loans",
     "Construction (Non-SBA Real Estate)",
     "Business Lending (Non-SBA)",
-    "Non-Commercial Residential Lending (Real Estate)"
+    "Non-Commercial Residential Lending (Real Estate)",
+    "Private Money Lending"
   ];
 
   return (

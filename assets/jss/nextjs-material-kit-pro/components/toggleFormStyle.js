@@ -61,6 +61,10 @@ const toggleFormStyle = {
     flex: 5,
     marginRight: "2%"
   },
+  customFlex: {
+    flex: 1,
+    marginRight: "2%"
+  },
   shrinkFlex: {
     flex: 1
   },

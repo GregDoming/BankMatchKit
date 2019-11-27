@@ -47,8 +47,8 @@ const LoanAmountSBASeven = () => {
           </CardHeader>
           {loanArr.map((loanName, index) => {
             return (
-              <div key={"OwnerLoan" + index.toString()}>
-                <InputLabel key={"OwnerLoan" + index.toString()} margin={"dense"}>
+              <div key={"SBASevenLoan" + index.toString()}>
+                <InputLabel key={"SBASevenLoan2" + index.toString()} margin={"dense"}>
                   {defaultLoanArr[index]}
                 </InputLabel>
                 <CustomInput
@@ -56,7 +56,7 @@ const LoanAmountSBASeven = () => {
                     className: classes.numberStyle,
                     margin: "dense"
                   }}
-                  key={"OwnerLoanTwo" + index.toString()}
+                  key={"SBASevenLoanTwo" + index.toString()}
                   inputProps={{
                     startAdornment: <InputAdornment position="start">$</InputAdornment>,
                     type: "text",

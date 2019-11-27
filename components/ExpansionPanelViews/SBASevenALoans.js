@@ -44,7 +44,7 @@ const SBASevenALoans = props => {
         <Card>
           <CardBody>
             <CardHeader className={classes.cardHeader} color="success">
-              Purpose
+            SBA 7a Loan Types
             </CardHeader>
             <div className={classes.topRowContainer}>
               <div className={classes.toggleGridItem}>

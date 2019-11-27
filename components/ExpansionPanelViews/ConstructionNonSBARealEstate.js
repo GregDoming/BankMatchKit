@@ -28,9 +28,9 @@ const ConstructionNonSBARealEstate = props => {
     "constructiontoPermanent",
     "landDevelopment",
     "residential",
-    "PUD",
-    ];
-    const toggleArrTwo = [
+    "PUD"
+  ];
+  const toggleArrTwo = [
     "purchaseWithLand",
     "entitlements",
     "miniperm",
@@ -38,7 +38,7 @@ const ConstructionNonSBARealEstate = props => {
     "brokenProject",
     "manufacturedHomeSingleWide",
     "manufacturedHomeDoubleWide"
-    ];
+  ];
 
   const handleFocus = event => {};
 
@@ -50,15 +50,18 @@ const ConstructionNonSBARealEstate = props => {
     <div className={classes.outerContainer}>
       <div className={classes.growFlex}>
         <Card>
+            <div className={classes.topRowContainer}>
           <CardBody>
             <CardHeader className={classes.cardHeader} color="success">
               Purpose
             </CardHeader>
-            <div className={classes.topRowContainer}>
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"ConstructionNon" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"ConstructionNon" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
@@ -72,10 +75,18 @@ const ConstructionNonSBARealEstate = props => {
                   );
                 })}
               </div>
+              </CardBody>
+              <CardBody>
+            <CardHeader className={classes.cardHeader} color="success">
+              Qualifiers
+            </CardHeader>
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"ConstructionNon2" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"ConstructionNon2" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
@@ -89,8 +100,8 @@ const ConstructionNonSBARealEstate = props => {
                   );
                 })}
               </div>
-            </div>
           </CardBody>
+            </div>
         </Card>
       </div>
       <div className={classes.shrinkFlex}>

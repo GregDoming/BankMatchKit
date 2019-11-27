@@ -46,7 +46,7 @@ const LoanAmountOwner = () => {
           {loanArr.map((loanName, index) => {
             return (
               <div key={"OwnerLoan" + index.toString()}>
-                <InputLabel key={"OwnerLoan" + index.toString()} margin={"dense"}>
+                <InputLabel key={"OwnerLoan2" + index.toString()} margin={"dense"}>
                   {defaultLoanArr[index]}
                 </InputLabel>
                 <CustomInput
