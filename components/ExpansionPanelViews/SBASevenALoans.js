@@ -50,7 +50,7 @@ const SBASevenALoans = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                    <div key={"SBASevenA" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
@@ -67,7 +67,7 @@ const SBASevenALoans = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <div key={"SBASevenA2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>

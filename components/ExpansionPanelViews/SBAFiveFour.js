@@ -45,7 +45,7 @@ const SBAFiveFour = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                    <div key={"SBAFiveFour" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
@@ -62,7 +62,7 @@ const SBAFiveFour = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <div key={"SBAFiveFour2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
