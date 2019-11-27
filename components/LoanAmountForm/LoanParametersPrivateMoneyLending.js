@@ -15,29 +15,48 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanAmountStyle.js";
+import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
+
 
 const useStyles = makeStyles(loanAmountStyle);
-const defaultLoanArr = ["Interest Rate Range (%)", "Term Range (Years)", "Fees (Flat, $)", "Fees (Points, %)", "Closing Costs ($)", "Days to Funding"];
+
+const valuesArr = ["YES", "UNKNOWN", "NO"];
+const customLoanArr = [
+  "Fixed Rate Amortized",
+  "Adjustable Rate Amortized",
+  "Interest Only"
+];
+const toggleLoanArr = [
+  "privateMoneyAdjustableRateAmortized",
+  "privateMoneyFixedRateAmortized",
+  "privateMoneyinterestOnly"
+];
+const defaultLoanArr = [
+  "Interest Rate Range (%)",
+  "Term Range (Years)",
+  "Fees (Flat, $)",
+  "Fees (Points, %)",
+  "Closing Costs ($)",
+  "Days to Funding"
+];
 const maxLoanArr = [
-  "Minimum Loan Amount",
-  "Maximum Loan Amount ",
-  "Maximum LTV (%) (Commercial)",
-  "Maximum LTV (%) (Residential)",
-  "Maximum ARV (%) (Commercial)",
-  "Maximum ARV (%) (Residential)",
-  "Minimum DCR"
+  "privateMoneyInterestRateMax",
+  "privateMoneyTermRangeMax",
+  "privateMoneyFeesFlatMax",
+  "privateMoneyFeesPointsMax",
+  "privateClosingCostsMax",
+  "privateDaysToFundingMax"
 ];
 const minLoanArr = [
-  "privateMoneyMinumumLoanAmount",
-  "privateMoneyMaximumLoanAmount",
-  "privateMoneyMaxLTVPercentCommercial",
-  "privateMoneyMaxLTVPercentResidential",
-  "privateMoneyMaxARVCommercial",
-  "privateMoneyMaxARVResidential",
-  "privateMoneyMinimumDCR"
+  "privateMoneyInterestRateMin",
+  "privateMoneyTermRangeMin",
+  "privateMoneyFeesFlatMin",
+  "privateMoneyFeesPointsMin",
+  "privateClosingCostsMin",
+  "privateDaysToFundingMin"
 ];
 
-const LoanParametersPrivateMoneyLending = () => {
+const LoanParametersPrivateMoneyLending = props => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -46,15 +65,32 @@ const LoanParametersPrivateMoneyLending = () => {
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
 
+  const { onToggleChange, toggleFormState } = props;
+
   const classes = useStyles();
   return (
     <React.Fragment>
       <Card>
         <CardBody>
           <CardHeader className={classes.cardHeaderTwo} color="success">
-          Loan Parameters
+            Loan Parameters
           </CardHeader>
-          {maxLoanArr.map((loanName, index) => {
+          {toggleLoanArr.map((toggleName, index) => {
+                  return (
+                    <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                      <label className={classes.labelStyle}>
+                        {customLoanArr}
+                      </label>
+                      <ThreeToggleSwitch
+                        onToggleChange={onToggleChange}
+                        values={valuesArr}
+                        id={toggleName}
+                        selected={state[toggleName]}
+                      />
+                    </div>
+                  );
+                })}
+          {minLoanArr.map((loanName, index) => {
             return (
               <div key={"ParametersPrivateMoneyLoan" + index.toString()}>
                 <InputLabel key={"ParametersPrivateMoneyLoan2" + index.toString()} margin={"dense"}>
@@ -62,8 +98,9 @@ const LoanParametersPrivateMoneyLending = () => {
                 </InputLabel>
                 <CustomInput
                   formControlProps={{
-                    className: classes.numberStyle,
-                    margin: "dense"
+                    className: classes.borderNumberStyle,
+                    margin: "dense",
+                    variant: "outlined"
                   }}
                   key={"ParametersPrivateMoneyLoanTwo" + index.toString()}
                   inputProps={{
@@ -73,6 +110,38 @@ const LoanParametersPrivateMoneyLending = () => {
                     value: state[loanName],
                     onChange: () => dispatch({ type: "handleNumberInput", payload: loanName }),
                     id: loanName
+                  }}
+                  autoFocus
+                />
+                {/* {index < 3 && (
+                  <React.Fragment>
+                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
+                      <label className={classes.labelStyle}>
+                        {customLoanArr[index]}
+                      </label>
+                      <ThreeToggleSwitch
+                        onToggleChange={onToggleChange}
+                        values={valuesArr}
+                        id={toggleLoanArr[index]}
+                        selected={state[toggleLoanArr[index]]}
+                      />
+                    </div>
+                  </React.Fragment>
+                )} */}
+                <CustomInput
+                  formControlProps={{
+                    className: classes.numberStyle,
+                    margin: "dense"
+                  }}
+                  key={"ParametersPrivateMoneyLoanMinTwo" + index.toString()}
+                  inputProps={{
+                    startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    type: "text",
+                    label: "With normal TextField",
+                    value: state[maxLoanArr[index]],
+                    onChange: () =>
+                      dispatch({ type: "handleNumberInput", payload: maxLoanArr[index] }),
+                    id: maxLoanArr[index]
                   }}
                   autoFocus
                 />

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-// import Helmet from "react-helmet";
+import clsx from "clsx";
+
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Axios from "axios";
 import produce from "immer";
@@ -11,7 +12,13 @@ import Box from "@material-ui/core/Box";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import Snackbar from "@material-ui/core/Snackbar";
+import ErrorIcon from "@material-ui/icons/Error";
+import SnackbarContent from "@material-ui/core/SnackbarContent";
+import Icon from "@material-ui/core/Icon";
 
+// import SnackbarContent from "components/Snackbar/SnackbarContent.js";
+import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
 import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
 import ViewThree from "components/AuthPaginationViews/ViewThree.js";
@@ -34,8 +41,7 @@ const toggleReducer = (draft, action) => {
     case "handleNumberInput": {
       const re = /^[0-9\b]+$/;
       if (event.target.value === "" || re.test(event.target.value)) {
-        if (isNaN())
-        draft[event.target.id] = parseInt(event.target.value) || 0
+        if (isNaN()) draft[event.target.id] = parseInt(event.target.value) || 0;
       }
     }
     default:
@@ -67,6 +73,8 @@ function getStepContent(step) {
 const AuthPagination = props => {
   const initialState = props.flatState;
   const [state, dispatch] = useImmerReducer(toggleReducer, initialState);
+  const [minMaxErrorMessage, setminMaxErrorMessage] = React.useState("");
+  const [openError, setOpenError] = React.useState(false);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -86,6 +94,8 @@ const AuthPagination = props => {
     dispatch({ type: "handleFormInput" });
   };
 
+  const handleClose = () => setOpenError(false);
+
   const handleNumberInput = (event, val) => {
     dispatch({ type: "handleNumberInput" });
   };
@@ -102,14 +112,21 @@ const AuthPagination = props => {
     return completedSteps() === totalSteps();
   };
 
-  const submitForm = async formData => {
-    event.preventDefault();
-    await Axios.post("/api/users/updateUserData", formData);
-  };
-
   const handleNext = async () => {
     event.preventDefault();
-    console.log(state)
+    if (
+      state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
+      state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
+      state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
+      state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
+      state.privateClosingCostsMax < state.privateClosingCostsMin ||
+      state.privateDaysToFundingMax < state.privateDaysToFundingMin
+    ) {
+      setminMaxErrorMessage("Minimum form value must be larger than maximum form value");
+      setOpenError(true);
+      return;
+    }
+
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);
     await Axios.post("/api/users/updateUserData", { formInfo });
@@ -199,6 +216,31 @@ const AuthPagination = props => {
                 </Button>
               }
             />
+            {/* Error Snackbar */}
+            {minMaxErrorMessage && (
+              <Snackbar
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center"
+                }}
+                ContentProps={{
+                  classes: {
+                    root: classes.snackbar
+                  }
+                }}
+                TransitionComponent={Transition}
+                open={openError}
+                onClose={handleClose}
+                autoHideDuration={6000}
+                variant="error"
+                message={
+                  <span>
+                    <Icon className={clsx(classes.icon, classes.iconVariant)} />
+                    {minMaxErrorMessage}
+                  </span>
+                }
+              />
+            )}
           </Box>
         </div>
       </FormDispatchContext.Provider>
@@ -208,6 +250,6 @@ const AuthPagination = props => {
 
 AuthPagination.getInitialProps = isUserAuthenticated;
 
-export default AuthPagination
+export default AuthPagination;
 
-export { AuthPagination as AuthPagination, FormDispatchContext, FormStateContext };
+export { AuthPagination, FormDispatchContext, FormStateContext };

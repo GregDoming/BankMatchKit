@@ -250,8 +250,7 @@ const Signup = ({ ...props }) => {
                                 </Icon>
                               </InputAdornment>
                             ),        
-                            type: showPassword ? "text" : "password",
-                            
+                            type: showPassword ? "text" : "password",           
                             placeholder: "Confirm Password...",
                             name: "confirmPassword",
                             inputRef: register({ required: "is required field" })

@@ -34,6 +34,14 @@ const loanAmountStyle = theme => ({
       padding: 0
     }
   },
+  borderNumberStyle: {
+    "& input::-webkit-clear-button, & input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+      display: "none",
+      margin: 0,
+      padding: 0,
+      border: "1px black"
+    }
+  },
   underline: {
     '&:after': {
       transition: 'none',

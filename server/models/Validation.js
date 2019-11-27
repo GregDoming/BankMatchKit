@@ -27,7 +27,12 @@ const signupValidation = data => {
 
 }
 
+const minMaxValidation = data => {
+  
+}
+
 
 module.exports = {
-  signupValidation
+  signupValidation,
+  minMaxValidation
 }

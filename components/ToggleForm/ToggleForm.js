@@ -25,7 +25,7 @@ const useStyles = makeStyles(toggleFormStyle);
 const ToggleForm = props => {
   const classes = useStyles();
 
-  const { onToggleChange, toggleFormState, handleInput, handleNumberInput } = props;
+  const { onToggleChange, toggleFormState } = props;
 
   const componentArr = [
     <OwnerOccupied
@@ -58,7 +58,6 @@ const ToggleForm = props => {
     />,
     <PrivateMoneyLending
       onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
     />
   ];
 

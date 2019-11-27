@@ -655,7 +655,7 @@ const userSchema = new mongoose.Schema(
         type: Number,
         default: 0
       },
-      privateMoneyTermRateMin: {
+      privateMoneyTermRangeMin: {
         type: Number,
         default: 0
       },
@@ -664,6 +664,30 @@ const userSchema = new mongoose.Schema(
         default: 0
       },
       privateMoneyFeesFlatMax: {
+        type: Number,
+        default: 0
+      },
+      privateMoneyFeesPointsMin: {
+        type: Number,
+        default: 0
+      },
+      privateMoneyFeesPointsMax: {
+        type: Number,
+        default: 0
+      },
+      privateClosingCostsMin: {
+        type: Number,
+        default: 0
+      },
+      privateClosingCostsMax: {
+        type: Number,
+        default: 0
+      },
+      privateDaysToFundingMin: {
+        type: Number,
+        default: 0
+      },
+      privateDaysToFundingMax: {
         type: Number,
         default: 0
       }

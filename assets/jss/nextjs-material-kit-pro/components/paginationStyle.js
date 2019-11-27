@@ -16,6 +16,9 @@ const paginationStyle = {
     listStyle: "none",
     borderRadius: "0.25rem"
   },
+  snackbar: {
+    color: "red"
+  },
   paginationItem: {
     display: "inline"
   },

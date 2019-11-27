@@ -5,7 +5,6 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
-import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
 import LoanAmountOwner from "components/LoanAmountForm/LoanAmountOwner.js";
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 import LoanLimitsPrivateMoneyLending from "../LoanAmountForm/LoanLimitsPrivateMoneyLending";
@@ -29,7 +28,8 @@ const PrivateMoneyLending = props => {
 
   const handleFocus = event => {};
 
-  const { onToggleChange } = props;
+  const { onToggleChange, toggleFormState } = props;
+
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
 
@@ -39,7 +39,10 @@ const PrivateMoneyLending = props => {
         <LoanLimitsPrivateMoneyLending />
       </div>
       <div className={classes.customFlex}>
-        <LoanParametersPrivateMoneyLending />
+        <LoanParametersPrivateMoneyLending
+          onToggleChange={onToggleChange}
+          toggleFormState={toggleFormState}
+        />
       </div>
     </div>
   );
