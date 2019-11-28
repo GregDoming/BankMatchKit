@@ -41,6 +41,7 @@ const MenuProps = {
 
 const MultiInputForm = props => {
   const classes = useStyles();
+  const [checked, setChecked] = React.useState(false);
   const [values, setValues] = React.useState({
     checkedClientPaysBroker: true,
     secondaryEmailAddress: "",
@@ -55,9 +56,15 @@ const MultiInputForm = props => {
   });
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
+  const { clientPaysBrokerDemand, lenderPaysRebates, brokerPaidThroughEscrow } = state;
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value.trim() });
+  };
+  const toggleChecked = async () => {
+    event.preventDefault()
+    setChecked(prev => !prev);
+    dispatch({ type: "handleBinaryToggle", payload: checked });
   };
 
   return (
@@ -106,7 +113,7 @@ const MultiInputForm = props => {
                       inputProps={{
                         value: state.secondaryEmailAddress,
                         onChange: () =>
-                          dispatch({ type: "handleFormInput", payload: "secondaryEmailAddress" }),
+                          dispatch({ type: "handleFormInput"}),
                         id: "secondaryEmailAddress"
                       }}
                       labelText="Secondary Email Address"
@@ -124,7 +131,7 @@ const MultiInputForm = props => {
                         label: "With normal TextField",
                         value: state.phoneNumber,
                         onChange: () =>
-                          dispatch({ type: "handlePhoneNumberInput", payload: "phoneNumber" }),
+                          dispatch({ type: "handleNumberInput"}),
                         id: "phoneNumber"
                       }}
                       autoFocus
@@ -139,7 +146,7 @@ const MultiInputForm = props => {
                         label: "With normal TextField",
                         value: state.workNumber,
                         onChange: () =>
-                          dispatch({ type: "handlePhoneNumberInput", payload: "workNumber" }),
+                          dispatch({ type: "handleNumberInput" }),
                         id: "workNumber"
                       }}
                       autoFocus
@@ -155,52 +162,41 @@ const MultiInputForm = props => {
             <CardBody>
               <GridContainer className={classes.customContainer}>
                 <div className={classes.rowContainer}>
-                  <h5>Client Pays Broker Demand</h5>
-                  {/* <FormControlLabel
+                  <FormControlLabel
+                    label={"Client Pays Broker Demand"}
                     control={
                       <Switch
-                        // classes={this.props.classes}
-                        checked={checkedClientPaysBroker}
-                        onChange={handleChange("checkedClientPaysBroker")}
-                        value={checkedClientPaysBroker}
+                        onClick={toggleChecked}
+                        checked={clientPaysBrokerDemand}
                         color="primary"
+                        id="clientPaysBrokerDemand"
                       />
                     }
                     labelPlacement="start"
-                    label={values.checkedClientPaysBroker ? "On" : "Off"}
-                  /> */}
-                  <h5>Lender Pays Rebates to Broker</h5>
+                  />
                   <FormControlLabel
+                    label={"Lender Pays Rebates"}
                     control={
                       <Switch
-                        onChange={() =>
-                          dispatch({ type: "handleBinaryToggle", payload: "lenderPaysRebates" })
-                        }
-                        value={state.lenderPaysRebates}
+                        onClick={toggleChecked}
+                        checked={lenderPaysRebates}
                         color="primary"
                         id="lenderPaysRebates"
                       />
                     }
                     labelPlacement="start"
-                    // label={state.lenderPaysRebates ? "YES" : "NO"}
                   />
-                  <h5>Broker Paid Through Escrow</h5>
                   <FormControlLabel
+                    label={"Broker Paid Through Escrow"}
                     control={
                       <Switch
-                        onChange={() =>
-                          dispatch({
-                            type: "handleBinaryToggle",
-                            payload: "brokerPaidThroughEscrow"
-                          })
-                        }
-                        value={state.brokerPaidThroughEscrow}
+                        onChange={toggleChecked}
+                        checked={brokerPaidThroughEscrow}
                         color="primary"
                         id="brokerPaidThroughEscrow"
                       />
                     }
                     labelPlacement="start"
-                    label={state.brokerPaidThroughEscrow ? "YES" : "NO"}
                   />
                 </div>
               </GridContainer>
@@ -215,9 +211,9 @@ const MultiInputForm = props => {
                 State
                 <SingleStateSelect />
               </GridItem>
-              <div className={classes.spacerDiv}/>
+              <div className={classes.spacerDiv} />
               <GridItem className={classes.gridSelect}>
-              Type Of Lender
+                Type Of Lender
                 <MultiLenderSelect />
               </GridItem>
             </div>
@@ -240,33 +236,31 @@ const MultiInputForm = props => {
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                    <InputLabel id="companyNumber">Company Phone Number</InputLabel>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
+                  <CustomInput
+                      labelText="Company Phone Number"
                       inputProps={{
-                        value: values.companyPhoneNumber,
-                        onChange: handleChange("companyPhoneNumber"),
-                        id: "formatted-text-mask-input",
-                        inputComponent: MaskedNumberInput
+                        type: "text",
+                        label: "With normal TextField",
+                        value: state.companyPhoneNumber,
+                        onChange: () =>
+                          dispatch({ type: "handleNumberInput"}),
+                        id: "companyPhoneNumber"
                       }}
+                      autoFocus
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                    <InputLabel id="fax">Fax</InputLabel>
-                    <CustomInput
-                      formControlProps={{
-                        fullWidth: true,
-                        className: classes.customFormControlClasses
-                      }}
+                  <CustomInput
+                      labelText="fax"
                       inputProps={{
-                        value: values.fax,
-                        onChange: handleChange("fax"),
-                        id: "formatted-text-mask-input",
-                        inputComponent: MaskedNumberInput
+                        type: "text",
+                        label: "With normal TextField",
+                        value: state.companyPhoneNumber,
+                        onChange: () =>
+                          dispatch({ type: "handleNumberInput"}),
+                        id: "fax"
                       }}
+                      autoFocus
                     />
                   </GridItem>
                 </GridContainer>

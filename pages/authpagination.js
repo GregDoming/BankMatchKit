@@ -74,8 +74,10 @@ const toggleReducer = (draft, action) => {
       return
     }
     case "handleBinaryToggle": {
-      // event.preventDefault();
-      // draft[event.target.id] = !event.target.checked;
+      console.log(action)
+
+      draft[event.target.id] = !action.payload;
+      action.paylod = !action.payload
       return;
     }
     default:
@@ -150,7 +152,7 @@ const AuthPagination = props => {
 
   const handleNext = async () => {
     event.preventDefault();
-    const re = /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/;
+    // const re = /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/;
 
     if (
       state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
@@ -164,11 +166,11 @@ const AuthPagination = props => {
       setOpenError(true);
       return;
     }
-    if (re.test(state.phoneNumber)) {
-      setminMaxErrorMessage("Must enter a valid phone number");
-      setOpenError(true);
-      return;
-    }
+    // if (re.test(state.phoneNumber)) {
+    //   setminMaxErrorMessage("Must enter a valid phone number");
+    //   setOpenError(true);
+    //   return;
+    // }
 
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);
@@ -201,8 +203,6 @@ const AuthPagination = props => {
     setActiveStep(0);
     setCompleted({});
   };
-
-  console.log(state)
 
   const renderView = activeStep => {
     switch (activeStep) {
