@@ -38,21 +38,45 @@ const toggleReducer = (draft, action) => {
       return;
     }
     case "handleNumberInput": {
-      console.log("regualr number")
       const re = /^[0-9\b]+$/;
       if (event.target.value === "" || re.test(event.target.value)) {
         if (isNaN()) draft[event.target.id] = parseInt(event.target.value) || 0;
       }
+      return;
     }
     case "handlePhoneNumberInput": {
       draft[event.target.id] = event.target.value;
+      return;
     }
     case "handleFormInput": {
       draft[event.target.id] = event.target.value;
+      return;
+    }
+    case "handleStateSelector": {
+      draft["companyState"] = action.payload.value;
+      return;
+    }
+    case "handleLenderSelect": {
+      const lenderName = [
+        "lenderNameBank",
+        "lenderNameCDFI",
+        "lenderNameCreditUnion",
+        "lenderNameInsuranceCompany",
+        "lenderNameNonBankLender",
+        "lenderNamePrivateEquity"
+      ];
+      lenderName.forEach((lender) => {
+        draft[lender] = false
+      });
+      action.payload.forEach(lender => {
+        draft[lender.value] = true;
+      });
+      return
     }
     case "handleBinaryToggle": {
-      draft[event.target.id] = !event.target.value
-
+      // event.preventDefault();
+      // draft[event.target.id] = !event.target.checked;
+      return;
     }
     default:
       break;
@@ -139,12 +163,12 @@ const AuthPagination = props => {
       setminMaxErrorMessage("Minimum form value must be larger than maximum form value");
       setOpenError(true);
       return;
-    };
-    if (!re.test(state.phoneNumber)) {
-      setminMaxErrorMessage("Must enter a valid phone number")
+    }
+    if (re.test(state.phoneNumber)) {
+      setminMaxErrorMessage("Must enter a valid phone number");
       setOpenError(true);
       return;
-    };
+    }
 
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);
@@ -177,6 +201,8 @@ const AuthPagination = props => {
     setActiveStep(0);
     setCompleted({});
   };
+
+  console.log(state)
 
   const renderView = activeStep => {
     switch (activeStep) {

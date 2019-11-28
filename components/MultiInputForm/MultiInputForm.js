@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
@@ -7,94 +7,42 @@ import Card from "@material-ui/core/Card";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import ListItemText from "@material-ui/core/ListItemText";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import CardHeader from "@material-ui/core/CardHeader";
+import Input from "@material-ui/core/Input";
+import Checkbox from "@material-ui/core/Checkbox";
 import FormGroup from "@material-ui/core/FormGroup";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import Radio from "@material-ui/core/Radio";
+// import Select from "@material-ui/core/Select";
+import makeAnimated from "react-select/animated";
 
 import MaskedNumberInput from "components/MaskedNumberInput/MaskedNumberInput.js";
 import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
+import MultiLenderSelect from "components/MultiSelect/MultiLenderSelect.js";
+import SingleStateSelect from "components/SingleSelect/SingleStateSelect.js";
 
 import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiInputFormStyle.js";
 
 const useStyles = makeStyles(multiInputFormStyle);
 
-const lenderSelect = [
-  "Bank",
-  "CDFI",
-  "Credit Union",
-  "Insurance Company",
-  "Non Bank Lender",
-  "Private Equity"
-];
-
-const listOfStates = [
-  "AK - Alaska",
-  "AL - Alabama",
-  "AR - Arkansas",
-  "AS - American Samoa",
-  "AZ - Arizona",
-  "CA - California",
-  "CO - Colorado",
-  "CT - Connecticut",
-  "DC - District of Columbia",
-  "DE - Delaware",
-  "FL - Florida",
-  "GA - Georgia",
-  "GU - Guam",
-  "HI - Hawaii",
-  "IA - Iowa",
-  "ID - Idaho",
-  "IL - Illinois",
-  "IN - Indiana",
-  "KS - Kansas",
-  "KY - Kentucky",
-  "LA - Louisiana",
-  "MA - Massachusetts",
-  "MD - Maryland",
-  "ME - Maine",
-  "MI - Michigan",
-  "MN - Minnesota",
-  "MO - Missouri",
-  "MS - Mississippi",
-  "MT - Montana",
-  "NC - North Carolina",
-  "ND - North Dakota",
-  "NE - Nebraska",
-  "NH - New Hampshire",
-  "NJ - New Jersey",
-  "NM - New Mexico",
-  "NV - Nevada",
-  "NY - New York",
-  "OH - Ohio",
-  "OK - Oklahoma",
-  "OR - Oregon",
-  "PA - Pennsylvania",
-  "PR - Puerto Rico",
-  "RI - Rhode Island",
-  "SC - South Carolina",
-  "SD - South Dakota",
-  "TN - Tennessee",
-  "TX - Texas",
-  "UT - Utah",
-  "VA - Virginia",
-  "VI - Virgin Islands",
-  "VT - Vermont",
-  "WA - Washington",
-  "WI - Wisconsin",
-  "WV - West Virginia",
-  "WY - Wyoming"
-];
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+};
 
 const MultiInputForm = props => {
   const classes = useStyles();
-  const [multipleSelect, setMultipleSelect] = React.useState([]);
-  const [simpleSelect, setSimpleSelect] = React.useState("");
   const [values, setValues] = React.useState({
+    checkedClientPaysBroker: true,
     secondaryEmailAddress: "",
     workNumber: "",
     nameOfCompany: "",
@@ -110,14 +58,6 @@ const MultiInputForm = props => {
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value.trim() });
-  };
-
-  const handleMultiple = event => {
-    setMultipleSelect(event.target.value);
-  };
-
-  const handleSimple = event => {
-    setSimpleSelect(event.target.value);
   };
 
   return (
@@ -210,58 +150,78 @@ const MultiInputForm = props => {
             </CardBody>
           </Card>
         </GridItem>
-        <Card className={classes.cardSignupToggle}>
-          <h5 className={classes.cardTitle}>BROKER RELATIONSHIP</h5>
-          <CardBody>
-            <div className={classes.rowContainer} >
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={state.clientPaysBrokerDemand}
-                    onChange={dispatch({ type: "handleBinaryToggle" })}
-                    value={state.clientPaysBrokerDemand}
-                    color="primary"
+        <GridItem xs={12} sm={5} md={10}>
+          <Card className={classes.cardCompanySignupToggle}>
+            <CardBody>
+              <GridContainer className={classes.customContainer}>
+                <div className={classes.rowContainer}>
+                  <h5>Client Pays Broker Demand</h5>
+                  {/* <FormControlLabel
+                    control={
+                      <Switch
+                        // classes={this.props.classes}
+                        checked={checkedClientPaysBroker}
+                        onChange={handleChange("checkedClientPaysBroker")}
+                        value={checkedClientPaysBroker}
+                        color="primary"
+                      />
+                    }
+                    labelPlacement="start"
+                    label={values.checkedClientPaysBroker ? "On" : "Off"}
+                  /> */}
+                  <h5>Lender Pays Rebates to Broker</h5>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        onChange={() =>
+                          dispatch({ type: "handleBinaryToggle", payload: "lenderPaysRebates" })
+                        }
+                        value={state.lenderPaysRebates}
+                        color="primary"
+                        id="lenderPaysRebates"
+                      />
+                    }
+                    labelPlacement="start"
+                    // label={state.lenderPaysRebates ? "YES" : "NO"}
                   />
-                }
-                labelPlacement="start"
-                label={state.clientPaysBrokerDemand ? "YES" : "NO"}
-              />
-
-
-              <h5 className={classes.cardTitle}>BROKER RELATIONSHIP</h5>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={state.lenderPaysRebates}
-                    onChange={dispatch({ type: "handleBinaryToggle" })}
-                    value={state.lenderPaysRebates}
-                    color="primary"
+                  <h5>Broker Paid Through Escrow</h5>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        onChange={() =>
+                          dispatch({
+                            type: "handleBinaryToggle",
+                            payload: "brokerPaidThroughEscrow"
+                          })
+                        }
+                        value={state.brokerPaidThroughEscrow}
+                        color="primary"
+                        id="brokerPaidThroughEscrow"
+                      />
+                    }
+                    labelPlacement="start"
+                    label={state.brokerPaidThroughEscrow ? "YES" : "NO"}
                   />
-                }
-                labelPlacement="start"
-                label={state.lenderPaysRebates ? "YES" : "NO"}
-              />
-
-
-              <h5 className={classes.cardTitle}>Lender RELATIONSHIP</h5>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={state.brokerPaidThroughEscrow}
-                    onChange={dispatch({ type: "handleBinaryToggle" })}
-                    value={state.brokerPaidThroughEscrow}
-                    color="primary"
-                  />
-                }
-                labelPlacement="start"
-                label={state.brokerPaidThroughEscrow ? "YES" : "NO"}
-              />
-              </div>
-          </CardBody>
-        </Card>
+                </div>
+              </GridContainer>
+            </CardBody>
+          </Card>
+        </GridItem>
         <GridItem xs={12} sm={10} md={10}>
-          <Card className={classes.cardSignup}>
-            <h5 className={classes.cardTitle}>YOUR COMPANY INFO</h5>
+          <Card className={classes.cardCompanySelect}>
+            <h4 className={classes.cardTitle}>YOUR COMPANY INFO</h4>
+            <div className={classes.rowContainerSelect}>
+              <GridItem className={classes.gridSelect}>
+                State
+                <SingleStateSelect />
+              </GridItem>
+              <div className={classes.spacerDiv}/>
+              <GridItem className={classes.gridSelect}>
+              Type Of Lender
+                <MultiLenderSelect />
+              </GridItem>
+            </div>
+            <CardHeader></CardHeader>
             <CardBody>
               <form className={classes.customForm}>
                 <GridContainer justify="center" className={classes.customContainer}>
@@ -271,57 +231,13 @@ const MultiInputForm = props => {
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
+                      inputProps={{
+                        value: state.nameOfCompany,
+                        onChange: () => dispatch({ type: "handleFormInput" }),
+                        id: "nameOfCompany"
+                      }}
                       labelText="Name of Company"
-                      id="nameOfCompany"
                     />
-                  </GridItem>
-                  <GridItem
-                    className={classes.customFormControlClasses}
-                    xs={12}
-                    sm={6}
-                    md={5}
-                    lg={5}
-                  >
-                    <FormControl style={{ minWidth: 160 }}>
-                      <InputLabel id="demo-mutiple-checkbox-label">Type of Lender</InputLabel>
-                      <Select
-                        multiple
-                        value={multipleSelect}
-                        onChange={handleMultiple}
-                        MenuProps={{
-                          className: classes.selectMenu,
-                          classes: { paper: classes.selectPaper }
-                        }}
-                        classes={{ select: classes.select }}
-                        inputProps={{
-                          name: "Type of Lender",
-                          id: "multiple-select"
-                        }}
-                      >
-                        <MenuItem
-                          disabled
-                          classes={{
-                            root: classes.selectMenuItem
-                          }}
-                        >
-                          Type of Lender
-                        </MenuItem>
-                        {lenderSelect.map((lenderType, index) => {
-                          return (
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value={index + 1}
-                              key={"lenderSelect" + index.toString()}
-                            >
-                              {lenderType}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
                     <InputLabel id="companyNumber">Company Phone Number</InputLabel>
@@ -373,51 +289,6 @@ const MultiInputForm = props => {
                       labelText="City"
                       id="city"
                     />
-                  </GridItem>
-                  <GridItem xs={12} sm={5} md={5}>
-                    <FormControl style={{ minWidth: 120 }}>
-                      <InputLabel htmlFor="simple-select" className={classes.selectLabel}>
-                        State
-                      </InputLabel>
-                      <Select
-                        fullWidth={true}
-                        MenuProps={{
-                          className: classes.selectMenu
-                        }}
-                        classes={{
-                          select: classes.select
-                        }}
-                        value={simpleSelect}
-                        onChange={handleSimple}
-                        inputProps={{
-                          name: "simpleSelect",
-                          id: "simple-select"
-                        }}
-                      >
-                        <MenuItem
-                          disabled
-                          classes={{
-                            root: classes.selectMenuItem
-                          }}
-                        >
-                          Single Select
-                        </MenuItem>
-                        {listOfStates.map((stateName, index) => {
-                          return (
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                              }}
-                              value={index + 1}
-                              key={"listOfStates" + index.toString()}
-                            >
-                              {stateName}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
                     <FormControl style={{ minWidth: 10 }}>

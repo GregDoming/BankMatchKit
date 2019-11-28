@@ -38,6 +38,45 @@ const multiInputFormStyle = {
       padding: "10px 10%",
       width: "90%"
   },
+  cardCompanySignupToggle: {
+    borderRadius: "1px",
+    boxShadow:
+      "0 16px 24px 2px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.14), 0 6px 30px 5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.12), 0 8px 10px -5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.2);",
+    marginBottom: "10px",
+    padding: "10px 10%",
+    width: "90%",
+    overFlow: "visible"
+},
+gridSelect: {
+  width: "50%"
+},
+spacerDiv: {
+  height: "0",
+  flex: "0 1 200px",
+  marginRight: "15%",
+  marginLeft: "15%"
+},
+cardCompanySelect: {
+  borderRadius: "1px",
+  boxShadow:
+    "0 16px 24px 2px rgba(" +
+    hexToRgb(blackColor) +
+    ", 0.14), 0 6px 30px 5px rgba(" +
+    hexToRgb(blackColor) +
+    ", 0.12), 0 8px 10px -5px rgba(" +
+    hexToRgb(blackColor) +
+    ", 0.2);",
+  marginBottom: "10px",
+  padding: "0",
+  width: "90%",
+  overFlow: "visible"
+},
   customToggleItem: {
     flex: 2,
     marginRight: "15px",
@@ -164,6 +203,11 @@ const multiInputFormStyle = {
   rowContainer: {
     display: "flex",
     flexFlow: "row"
+  },
+  rowContainerSelect: {
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-between"
   },
   container: {
     margin: "auto",

@@ -125,6 +125,85 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default: false
       },
+      companyState: {
+        type: String,
+        enum: [
+          "AK - Alaska",
+          "AL - Alabama",
+          "AZ - Arizona",
+          "CA - California",
+          "CO - Colorado",
+          "CT - Connecticut",
+          "DE - Delaware",
+          "FL - Florida",
+          "GA - Georgia",
+          "HI - Hawaii",
+          "IA - Iowa",
+          "ID - Idaho",
+          "IL - Illinois",
+          "IN - Indiana",
+          "KS - Kansas",
+          "KY - Kentucky",
+          "LA - Louisiana",
+          "MA - Massachusetts",
+          "MD - Maryland",
+          "ME - Maine",
+          "MI - Michigan",
+          "MN - Minnesota",
+          "MO - Missouri",
+          "MS - Mississippi",
+          "MT - Montana",
+          "NC - North Carolina",
+          "ND - North Dakota",
+          "NE - Nebraska",
+          "NE - Nebraska",
+          "NJ - New Jersey",
+          "NM - New Mexico",
+          "NV - Nevada",
+          "NY - New York",
+          "OH - Ohio",
+          "OK - Oklahoma",
+          "OR - Oregon",
+          "PA - Pennsylvania",
+          "PR - Puerto Rico",
+          "RI - Rhode Island",
+          "SC - South Carolina",
+          "SD - South Dakota",
+          "TN - Tennessee",
+          "TX - Texas",
+          "UT - Utah",
+          "VA - Virginia",
+          "VT - Vermont",
+          "WA - Washington",
+          "WI - Wisconsin",
+          "WV - West Virginia",
+          "WY - Wyoming"
+        ]
+      },
+      lenderNameBank: {
+        type: Boolean,
+        default: false
+      },
+      lenderNameCDFI: {
+        type: Boolean,
+        default: false
+      },
+      lenderNameCreditUnion: {
+        type: Boolean,
+        default: false
+      },
+      lenderNameInsuranceCompany: {
+        type: Boolean,
+        default: false
+      },
+      lenderNameNonBankLender: {
+        type: Boolean,
+        default: false
+      },
+      lenderNamePrivateEquity: {
+        type: Boolean,
+        default: false
+      },
     },
     ownerOccupied: {
       purchase: {
