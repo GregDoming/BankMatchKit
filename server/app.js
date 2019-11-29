@@ -91,7 +91,7 @@ mongoose
     }
   };
   
-  if (!dev) {
+  if (!dev && (req.secure || req.headers("x-forwarded-proto") === "https")) {
     sessionConfig.cookie.secure = true; // serve secure cookies in production environment
     server.set("trust proxy", 1); // trust first proxy
   }
