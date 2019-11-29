@@ -4,18 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
-import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import ListItemText from "@material-ui/core/ListItemText";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CardHeader from "@material-ui/core/CardHeader";
-import Input from "@material-ui/core/Input";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormGroup from "@material-ui/core/FormGroup";
 // import Select from "@material-ui/core/Select";
 import makeAnimated from "react-select/animated";
 
@@ -62,7 +57,7 @@ const MultiInputForm = props => {
     setValues({ ...values, [name]: event.target.value.trim() });
   };
   const toggleChecked = async () => {
-    event.preventDefault()
+    event.preventDefault();
     setChecked(prev => !prev);
     dispatch({ type: "handleBinaryToggle", payload: checked });
   };
@@ -112,8 +107,7 @@ const MultiInputForm = props => {
                       }}
                       inputProps={{
                         value: state.secondaryEmailAddress,
-                        onChange: () =>
-                          dispatch({ type: "handleFormInput"}),
+                        onChange: () => dispatch({ type: "handleFormInput" }),
                         id: "secondaryEmailAddress"
                       }}
                       labelText="Secondary Email Address"
@@ -130,11 +124,9 @@ const MultiInputForm = props => {
                         type: "text",
                         label: "With normal TextField",
                         value: state.phoneNumber,
-                        onChange: () =>
-                          dispatch({ type: "handleNumberInput"}),
+                        onChange: () => dispatch({ type: "handleNumberInput" }),
                         id: "phoneNumber"
                       }}
-                      autoFocus
                     />
                   </GridItem>
                   <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
@@ -145,11 +137,9 @@ const MultiInputForm = props => {
                         type: "text",
                         label: "With normal TextField",
                         value: state.workNumber,
-                        onChange: () =>
-                          dispatch({ type: "handleNumberInput" }),
+                        onChange: () => dispatch({ type: "handleNumberInput" }),
                         id: "workNumber"
                       }}
-                      autoFocus
                     />
                   </GridItem>
                 </GridContainer>
@@ -236,31 +226,27 @@ const MultiInputForm = props => {
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                  <CustomInput
+                    <CustomInput
                       labelText="Company Phone Number"
                       inputProps={{
                         type: "text",
                         label: "With normal TextField",
                         value: state.companyPhoneNumber,
-                        onChange: () =>
-                          dispatch({ type: "handleNumberInput"}),
+                        onChange: () => dispatch({ type: "handleNumberInput" }),
                         id: "companyPhoneNumber"
                       }}
-                      autoFocus
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
-                  <CustomInput
+                    <CustomInput
                       labelText="fax"
                       inputProps={{
                         type: "text",
                         label: "With normal TextField",
                         value: state.companyPhoneNumber,
-                        onChange: () =>
-                          dispatch({ type: "handleNumberInput"}),
+                        onChange: () => dispatch({ type: "handleNumberInput" }),
                         id: "fax"
                       }}
-                      autoFocus
                     />
                   </GridItem>
                 </GridContainer>
@@ -323,26 +309,36 @@ const MultiInputForm = props => {
                 <div className={classes.rowContainer}>
                   <CustomInput
                     labelText="Source Name"
-                    id="sourceName"
                     formControlProps={{
                       fullWidth: true,
                       className: classes.customFormControlClasses
                     }}
+                    inputProps={{
+                      value: state.sourceName,
+                      onChange: () => dispatch({ type: "handleFormInput" }),
+                      id: "sourceName"
+                    }}
                   />
                   <CustomInput
-                    labelText="Source Number"
-                    id="sourcePhone"
-                    formControlProps={{
-                      fullWidth: true,
-                      className: classes.customFormControlClasses
+                    labelText="Source Phone"
+                    inputProps={{
+                      type: "text",
+                      label: "With normal TextField",
+                      value: state.sourcePhone,
+                      onChange: () => dispatch({ type: "handleNumberInput" }),
+                      id: "sourcePhone"
                     }}
                   />
                   <CustomInput
                     labelText="Source Email"
-                    id="sourceEmail"
                     formControlProps={{
                       fullWidth: true,
                       className: classes.customFormControlClasses
+                    }}
+                    inputProps={{
+                      value: state.sourceEmail,
+                      onChange: () => dispatch({ type: "handleFormInput" }),
+                      id: "sourceEmail"
                     }}
                   />
                 </div>

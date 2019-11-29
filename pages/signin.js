@@ -37,9 +37,7 @@ import Router from "next/router";
 const useStyles = makeStyles(loginPageStyle);
 
 const Signin = (props) => {
-  const [checked, setChecked] = React.useState([1]);
   const [openError, setOpenError] = React.useState(false);
-  const [openSuccess, setOpenSuccess] = React.useState(false);
   const [isLoading, setisLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [showPassword, setShowPassword]= React.useState(false);

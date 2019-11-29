@@ -23,9 +23,9 @@ const BusinessLendingNonSBA = props => {
     "businessAcquisitionsMergers",
     "franchisePurchases",
     "revolvingBLOCFirstPosition",
-    "revolvingBLOCSecondPosition",
-    ];
-    const toggleArrTwo = [
+    "revolvingBLOCSecondPosition"
+  ];
+  const toggleArrTwo = [
     "accountsReceivable",
     "crossCollateral",
     "equipment",
@@ -35,7 +35,7 @@ const BusinessLendingNonSBA = props => {
     "purchaseOrderFinancing",
     "realEstate",
     "stockSavings"
-    ];
+  ];
 
   const handleFocus = event => {};
 
@@ -47,18 +47,15 @@ const BusinessLendingNonSBA = props => {
     <div className={classes.outerContainer}>
       <div className={classes.growFlex}>
         <Card>
-            <div className={classes.topRowContainer}>
-          <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
-              Business Loan Types
-            </CardHeader>
+          <div className={classes.topRowContainer}>
+            <CardBody>
+              <CardHeader className={classes.cardHeader} color="success">
+                Business Loan Types
+              </CardHeader>
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div
-                      key={"BusinessNon" + index.toString()}
-                      className={classes.rowContainer}
-                    >
+                    <div key={"BusinessNon" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
@@ -72,18 +69,15 @@ const BusinessLendingNonSBA = props => {
                   );
                 })}
               </div>
-              </CardBody>
-              <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
-              Collateral Types
-            </CardHeader>
+            </CardBody>
+            <CardBody>
+              <CardHeader className={classes.cardHeader} color="success">
+                Collateral Types
+              </CardHeader>
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div
-                      key={"BusinessNon2" + index.toString()}
-                      className={classes.rowContainer}
-                    >
+                    <div key={"BusinessNon2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
@@ -97,8 +91,8 @@ const BusinessLendingNonSBA = props => {
                   );
                 })}
               </div>
-          </CardBody>
-            </div>
+            </CardBody>
+          </div>
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
