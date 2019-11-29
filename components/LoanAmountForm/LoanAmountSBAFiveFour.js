@@ -27,11 +27,6 @@ const loanArr = [
 ];
 
 const LoanAmountFiveFour = () => {
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
-
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
 

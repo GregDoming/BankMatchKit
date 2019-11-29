@@ -29,11 +29,6 @@ const loanArr = [
 ];
 
 const LoanAmountInvestmentNon = () => {
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
-
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
 
