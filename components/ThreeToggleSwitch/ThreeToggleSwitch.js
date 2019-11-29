@@ -33,6 +33,7 @@ class ThreeToggleSwitch extends Component {
   };
 
   handleChange = val => {
+    event.preventDefault();
     this.setState({ selected: val });
   };
 
