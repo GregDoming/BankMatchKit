@@ -170,7 +170,7 @@ const Signup = ({ ...props }) => {
                               </InputAdornment>
                             ),
                             placeholder: "Username...",
-                            name: "userName",
+                            name: "username",
                             inputRef: register({ required: "is required field" })
                           }}
                         />                       

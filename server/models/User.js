@@ -14,13 +14,13 @@ const userSchema = new mongoose.Schema(
       unique: true,
       required: "Email is required"
     },
-    userName: {
+    username: {
       type: String,
       trim: true,
       unique: true,
       minlength: 4,
-      maxlength: 10,
-      required: "userName is required"
+      maxlength: 14,
+      required: "username is required"
     },
     password: {
       type: String,
@@ -1074,7 +1074,7 @@ const autoPopulateFollowingAndFollowers = function(next) {
 userSchema.pre("findOne", autoPopulateFollowingAndFollowers);
 
 /* passportLocalMongoose takes our User schema and sets up a passport "local" authentication strategy using our email as the username field */
-userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+userSchema.plugin(passportLocalMongoose, { usernameQueryFields: ["email"] });
 
 /* The MongoDBErrorHandler plugin gives us a better 'unique' error, rather than: "11000 duplicate key" */
 userSchema.plugin(mongodbErrorHandler);

@@ -149,8 +149,8 @@ const Signin = (props) => {
                             <Email className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "Email...",
-                        name: "email",
+                        placeholder: "Username or email...",
+                        name: "username",
                         inputRef: register({ required: "is required field" })
                       }}
                     />

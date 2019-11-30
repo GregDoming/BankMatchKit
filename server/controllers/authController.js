@@ -20,14 +20,14 @@ exports.validateSignup = async (req, res, next) => {
 };
 
 exports.signup = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   //Encrypts password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const user = await new User({
-    userName,
+    username,
     email,
     password: hashedPassword
   });
@@ -36,7 +36,7 @@ exports.signup = async (req, res) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.json(user.userName);
+    res.json(user.username);
   });
 };
 

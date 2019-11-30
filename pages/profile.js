@@ -47,7 +47,7 @@ import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePa
 const useStyles = makeStyles(profilePageStyle);
 
 const Profile = ({ ...rest}) => {
-  const [userName, setUserName] = React.useState("");
+  const [username, setUsername] = React.useState("");
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
   
@@ -82,7 +82,7 @@ const Profile = ({ ...rest}) => {
                   <img src={christian} alt="..." className={imageClasses} />
                 </div>
                 <div className={classes.name}>
-                  <h3 className={classes.title}>{userName}</h3>
+                  <h3 className={classes.title}>{username}</h3>
                   <h6>DESIGNER</h6>
                   <Button
                     justIcon

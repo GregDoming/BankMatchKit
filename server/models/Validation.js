@@ -2,7 +2,7 @@ const Joi = require('@hapi/joi');
 
 const signupValidation = data => {
   const schema = Joi.object({
-    userName: Joi.string()
+    username: Joi.string()
       .alphanum()
       .min(3)
       .max(20)

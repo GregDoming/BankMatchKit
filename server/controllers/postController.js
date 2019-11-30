@@ -25,7 +25,7 @@ exports.resizeImage = async (req, _res, next) => {
     return next();
   }
   const extension = req.file.mimetype.split("/")[1];
-  req.body.image = `/static/uploads/avatars/${req.user.userName}-${Date.now()}
+  req.body.image = `/static/uploads/avatars/${req.user.username}-${Date.now()}
   .${extension}`;
   const image = await jimp.read(req.file.buffer);
   await image.resize(750, jimp.AUTO);
