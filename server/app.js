@@ -6,6 +6,9 @@ const logger = require("morgan");
 const passport = require("passport");
 const helmet = require("helmet");
 const compression = require("compression");
+const sslRedirect = require("heroku-ssl-redirect");
+const http = require("http");
+const https = require("https")
 
 const authController = require("./controllers/authController");
 
@@ -91,7 +94,7 @@ mongoose
     }
   };
   
-  if (!dev && (req.secure || req.headers("x-forwarded-proto") === "https")) {
+  if (!dev) {
     sessionConfig.cookie.secure = true; // serve secure cookies in production environment
     server.set("trust proxy", 1); // trust first proxy
   }
@@ -103,6 +106,9 @@ mongoose
   /* Add passport middleware to set passport up */
   server.use(passport.initialize());
   server.use(passport.session());
+
+  server.use(sslRedirect());
+
 
   server.use((req, res, next) => {
     /* custom middleware to put our user data (from passport) on the req.user so we can access it as such anywhere in our app */
