@@ -27,10 +27,6 @@ import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.
 const useStyles = makeStyles(aboutUsStyle);
 
 export default function AboutUsPage() {
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
   const classes = useStyles();
   return (
     <div>

@@ -36,6 +36,7 @@ import SnackbarContent from "components/Snackbar/SnackbarContent.js"
 import Transition from "components/Transition/Transition.js";
 import { signupUser, checkString, isUserAuthenticated } from 'lib/auth.js';
 
+import Router from "next/router";
 import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
 
@@ -61,6 +62,8 @@ const Signup = ({ ...props }) => {
 
     try {
       await signupUser(user);
+      await Router.push("/signin");
+
 
       setErrorMessage("");
       setOpenSuccess(true);
@@ -102,12 +105,6 @@ const Signup = ({ ...props }) => {
     }
     setChecked(newChecked);
   };
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
-
   const classes = useStyles();
   return (
     <div>

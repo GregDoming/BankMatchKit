@@ -27,7 +27,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Transition from "components/Transition/Transition";
 
-import { signinUser, checkString, isUserAuthenticated } from "../lib/auth";
+import { signinUser, checkString } from "../lib/auth";
 
 import loginPageStyle from "assets/jss/nextjs-material-kit-pro/pages/loginPageStyle.js";
 
@@ -41,13 +41,6 @@ const Signin = (props) => {
   const [isLoading, setisLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [showPassword, setShowPassword]= React.useState(false);
-
-  React.useEffect(() => {
-    if (isLoading) {
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
-    }
-  });
   //For use with React-Hook-Form
   const { register, handleSubmit } = useForm();
   const onSubmit = async user => {

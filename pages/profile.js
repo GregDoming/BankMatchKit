@@ -51,13 +51,6 @@ const Profile = ({ ...rest}) => {
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
   
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
-
-
-
   const classes = useStyles();
   const imageClasses = classNames(
     classes.imgRaised,

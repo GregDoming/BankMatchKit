@@ -108,10 +108,6 @@ const CustomSkinMap = withScriptjs(
 const useStyles = makeStyles(contactUsStyle);
 
 export default function ContactUsPage() {
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
   const classes = useStyles();
   return (
     <div>

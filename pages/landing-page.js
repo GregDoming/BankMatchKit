@@ -31,10 +31,6 @@ import { landingPageAuth } from "../lib/auth";
 const useStyles = makeStyles(landingPageStyle);
 
 const LandingPage = (props) => {
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
   const classes = useStyles();
   return (
     <div>
