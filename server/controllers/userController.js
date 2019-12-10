@@ -2,10 +2,29 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const multer = require("multer");
 const jimp = require("jimp");
+const { createReadStream, createWriteStream } = require('fs');
+const { parse } = require("json2csv");
+const { formatAllUsers } = require("../../lib/helper.js")
+const fs = require("fs")
 
 exports.getUsers = async (req, res) => {
   const users = await User.find().select(`_id name email createdAt updatedAt`);
   res.json(users);
+};
+
+exports.downloadCSV = async (req, res) => {
+  try {
+
+    const users = await User.find({});
+    const formattedUsers = formatAllUsers(users)
+    const csv = await parse(formattedUsers);
+
+    res.setHeader("Content-disposition", "attachment; filename=lender.csv");
+    res.set("Content-type", "text/csv");
+    res.status(200).send(csv);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.getAuthUser = (req, res) => {
@@ -19,8 +38,8 @@ exports.getAuthUser = (req, res) => {
 };
 
 exports.getUserId = async (req, res, next, id) => {
-  res.json(req.user)
-}
+  res.json(req.user);
+};
 
 exports.getUserById = async (req, res, next, id) => {
   const user = await User.findOne({ _id: id });

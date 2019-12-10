@@ -40,7 +40,7 @@ import marc from "assets/img/faces/marc.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
 
-import { isUserAuthenticated } from 'lib/auth';
+import { isUserAuthenticated, downloadCSV } from 'lib/auth';
 
 import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
@@ -48,6 +48,8 @@ const useStyles = makeStyles(profilePageStyle);
 
 const Profile = ({ ...rest}) => {
   const [username, setUsername] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [csv, setCSV] = React.useState("");
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
   
@@ -57,6 +59,12 @@ const Profile = ({ ...rest}) => {
     classes.imgRoundedCircle,
     classes.imgFluid
   );
+
+  const onClickCSV = async (event) => {
+    event.preventDefault();
+    await downloadCSV();
+    // setCSV(csv = csvFile);
+  }
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
@@ -76,6 +84,10 @@ const Profile = ({ ...rest}) => {
                 </div>
                 <div className={classes.name}>
                   <h3 className={classes.title}>{username}</h3>
+                  {/* <a href="#" onClick={event => onClickCSV(event)}>Download</a> */}
+                  <Button
+                  onClick={event => onClickCSV(event)}
+                  >Download CSV</Button>
                   <h6>DESIGNER</h6>
                   <Button
                     justIcon
@@ -159,7 +171,7 @@ const Profile = ({ ...rest}) => {
                                 <Badge
                                   color="warning"
                                   className={classes.badge}
-                                >
+                                  >
                                   Spring 2016
                                 </Badge>
                                 <a href="#pablo">
@@ -176,7 +188,7 @@ const Profile = ({ ...rest}) => {
                               style={{
                                 backgroundImage: "url(" + clemOnojeghuo + ")"
                               }}
-                            >
+                              >
                               <CardBody background className={classes.cardBody}>
                                 <Badge color="info" className={classes.badge}>
                                   Spring 2016
@@ -185,8 +197,7 @@ const Profile = ({ ...rest}) => {
                                   <h2 className={classes.cardTitleWhite}>
                                     High Heels
                                   </h2>
-                                </a>
-                              </CardBody>
+                                </a>                              </CardBody>
                             </Card>
                           </GridItem>
                           <GridItem xs={12} sm={12} md={6}>

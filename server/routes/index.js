@@ -43,6 +43,8 @@ router.put(
   catchErrors(userController.deleteFollower)
 );
 
+router.get("/api/auth/CSV", userController.downloadCSV)
+
 router
   .route("/api/users/:userId")
   .get(userController.getAuthUser)
