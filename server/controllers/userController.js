@@ -4,7 +4,7 @@ const multer = require("multer");
 const jimp = require("jimp");
 const { createReadStream, createWriteStream } = require('fs');
 const { parse } = require("json2csv");
-const { formatAllUsers } = require("../../lib/helper.js")
+const helper = require("../../lib/helper.js")
 const fs = require("fs")
 
 exports.getUsers = async (req, res) => {
@@ -16,7 +16,7 @@ exports.downloadCSV = async (req, res) => {
   try {
 
     const users = await User.find({});
-    const formattedUsers = formatAllUsers(users)
+    const formattedUsers = helper.formatAllUsers(users)
     const csv = await parse(formattedUsers);
 
     res.setHeader("Content-disposition", "attachment; filename=lender.csv");
