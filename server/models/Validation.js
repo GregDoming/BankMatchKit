@@ -13,7 +13,9 @@ const signupValidation = data => {
       .required(),
 
     password: Joi.string()
-      .pattern(/^[a-zA-Z0-9]{3,30}$/),
+      .min(3)
+      .max(22)
+      .required(),
 
     confirmPassword: Joi.string()
     .valid(Joi.ref('password'))

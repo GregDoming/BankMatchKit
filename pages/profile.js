@@ -49,7 +49,6 @@ const useStyles = makeStyles(profilePageStyle);
 const Profile = ({ ...rest}) => {
   const [username, setUsername] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const [csv, setCSV] = React.useState("");
   //When using the useEffect hook you have to write the helper functions 
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
   
@@ -62,8 +61,9 @@ const Profile = ({ ...rest}) => {
 
   const onClickCSV = async (event) => {
     event.preventDefault();
+    setLoading({loading: true});
     await downloadCSV();
-    // setCSV(csv = csvFile);
+    setLoading({loading: false});
   }
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);

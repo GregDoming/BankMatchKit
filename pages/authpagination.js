@@ -13,8 +13,6 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Snackbar from "@material-ui/core/Snackbar";
-import ErrorIcon from "@material-ui/icons/Error";
-import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Icon from "@material-ui/core/Icon";
 
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
@@ -74,8 +72,6 @@ const toggleReducer = (draft, action) => {
       return
     }
     case "handleBinaryToggle": {
-      console.log(action)
-
       draft[event.target.id] = !action.payload;
       action.paylod = !action.payload
       return;
@@ -152,8 +148,6 @@ const AuthPagination = props => {
 
   const handleNext = async () => {
     event.preventDefault();
-    // const re = /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/;
-
     if (
       state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
       state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
@@ -162,15 +156,10 @@ const AuthPagination = props => {
       state.privateClosingCostsMax < state.privateClosingCostsMin ||
       state.privateDaysToFundingMax < state.privateDaysToFundingMin
     ) {
-      setminMaxErrorMessage("Minimum form value must be larger than maximum form value");
+      setminMaxErrorMessage("Minimum value must be larger than maximum value");
       setOpenError(true);
       return;
     }
-    // if (re.test(state.phoneNumber)) {
-    //   setminMaxErrorMessage("Must enter a valid phone number");
-    //   setOpenError(true);
-    //   return;
-    // }
 
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);
