@@ -31,7 +31,7 @@ exports.signup = async (req, res) => {
 
   const user = await new User({
     username: formatUsername,
-    emai: formatEmail,
+    email: formatEmail,
     password: hashedPassword
   });
 

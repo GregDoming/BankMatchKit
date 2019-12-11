@@ -163,6 +163,7 @@ const AuthPagination = props => {
 
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);
+    console.log(formInfo)
     await Axios.post("/api/users/updateUserData", { formInfo });
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
