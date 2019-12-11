@@ -28,7 +28,6 @@ exports.signup = async (req, res) => {
   const formatUsername = username.replace(/\s/g, '');
   const formatEmail = email.replace(/\s/g, '');
 
-
   const user = await new User({
     username: formatUsername,
     email: formatEmail,

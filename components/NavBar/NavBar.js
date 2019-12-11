@@ -47,45 +47,65 @@ const Navbar = props => {
         user._id ? (
           <List className={classes.list + " " + classes.mlAuto}>
             <ListItem className={classes.listItem}>
-              <Button className={classes.navLink} variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}>
-                <Link href="/profile">
-                  <a style={{ color: "rgba(233, 241, 228, 1)"}} className={classes.inActiveLink}>Profile</a>
-                </Link>
-              </Button>
+              <Link href="/profile">
+                <Button
+                  className={classes.navLink}
+                  variant="outlined"
+                  style={{ fontSize: "18px", fontWeight: "100", padding: "24px" }}
+                >
+                  <a style={{ color: "rgba(233, 241, 228, 1)" }} className={classes.inActiveLink}>
+                    Profile
+                  </a>
+                </Button>
+              </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
-              <Button className={classes.navLink} variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}>
-                <Link href="/authpagination">
-                  <a style={{ color: "rgba(233, 241, 228, 1)"}} className={classes.inActiveLink}>Edit Profile</a>
-                </Link>
-              </Button>
+              <Link href="/authpagination">
+                <Button
+                  className={classes.navLink}
+                  variant="outlined"
+                  style={{ fontSize: "18px", fontWeight: "100", padding: "24px" }}
+                >
+                  <a style={{ color: "rgba(233, 241, 228, 1)" }} className={classes.inActiveLink}>
+                    Edit Profile
+                  </a>
+                </Button>
+              </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
               <Button
                 variant="outlined"
                 className={classes.navLink}
                 onClick={signoutUser}
-                style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}}
+                style={{ fontSize: "18px", fontWeight: "100", padding: "24px" }}
               >
-                <a style={{ color: "rgba(233, 241, 228, 1)"}} className={classes.inActiveLink}>Sign Out</a>
+                <a style={{ color: "rgba(233, 241, 228, 1)" }} className={classes.inActiveLink}>
+                  Sign Out
+                </a>
               </Button>
             </ListItem>
           </List>
         ) : (
           <List className={classes.list + " " + classes.mlAuto}>
             <ListItem className={classes.listItem}>
-              <Button  variant="outlined" style={{ fontSize: '18px', fontWeight: "100", padding:"24px"}} >
-                <Link href="/signin">
-                  <a style={{ color: "rgba(233, 241, 228, 1)"}}>Sign in</a>
-                </Link>
-              </Button>
+              <Link href="/signin">
+                <Button
+                  variant="outlined"
+                  style={{ fontSize: "18px", fontWeight: "100", padding: "24px" }}
+                >
+                  <a style={{ color: "rgba(233, 241, 228, 1)" }}>Sign in</a>
+                </Button>
+              </Link>
             </ListItem>
             <ListItem className={classes.listItem}>
-              <Button variant="outlined" style={{ fontSize: '18px', fontWeight: "100", height: "100%", padding:"24px"}}>
-                <Link href="/signup">
-                  <a style={{ color: "rgba(233, 241, 228, 1)"}}>Sign up</a>
-                </Link>
-              </Button>
+              <Link href="/signup">
+                <Button
+                  variant="outlined"
+                  style={{ fontSize: "18px", fontWeight: "100", height: "100%", padding: "24px" }}
+                >
+                  <a style={{ color: "rgba(233, 241, 228, 1)" }}>Sign up</a>
+                </Button>
+              </Link>
             </ListItem>
           </List>
         )
