@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 const mongodbErrorHandler = require("mongoose-mongodb-errors");
 const passportLocalMongoose = require("passport-local-mongoose");
-const bcrypt = require("bcryptjs");
-const formInfoData = require("./UserHelper");
 
 const userSchema = new mongoose.Schema(
   {
@@ -84,6 +82,11 @@ const userSchema = new mongoose.Schema(
         default: 0
       },
       companyStreetAddress: {
+        type: String,
+        trim: true,
+        default: ""
+      },
+      city: {
         type: String,
         trim: true,
         default: ""

@@ -47,7 +47,8 @@ const MultiInputForm = props => {
     fax: "(  )    -    ",
     companyStreetAddress: "",
     zip: "",
-    personalNotes: ""
+    personalNotes: "",
+    city: ""
   });
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
@@ -253,31 +254,45 @@ const MultiInputForm = props => {
                 <GridContainer className={classes.customContainer}>
                   <GridItem xs={12} sm={5} md={5}>
                     <CustomInput
+                      labelText={"Zip"}
                       formControlProps={{
                         className: classes.customFormControlClasses
                       }}
-                      labelText="Company Street Address"
-                      id="companyStreetAddress"
+                      inputProps={{
+                        type: "text",
+                        label: "With normal TextField",
+                        value: state.zip,
+                        onChange: () => dispatch({ type: "handleNumberInput" }),
+                        id: "zip"
+                      }}
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
                     <CustomInput
+                      labelText={"Company Street Address"}
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
                       }}
-                      labelText="City"
-                      id="city"
+                      inputProps={{
+                        value: state.companyStreetAddress,
+                        onChange: () => dispatch({ type: "handleFormInput" }),
+                        id: "companyStreetAddress"
+                      }}
                     />
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5}>
                     <FormControl style={{ minWidth: 10 }}>
                       <CustomInput
+                      labelText={"City"}
                         formControlProps={{
                           className: classes.customFormControlClasses
                         }}
-                        labelText="zip"
-                        id="zip"
+                        inputProps={{
+                          value: state.city,
+                          onChange: () => dispatch({ type: "handleFormInput" }),
+                          id: "city"
+                        }}
                       />
                     </FormControl>
                   </GridItem>
