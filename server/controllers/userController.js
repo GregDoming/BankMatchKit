@@ -27,6 +27,23 @@ exports.downloadCSV = async (req, res) => {
   }
 };
 
+exports.getLenderQuery = async (req, res) => {
+  try {
+    const userArr = [];
+    const user = await User.find({$and:req.body});
+
+    user.forEach((foundUser) => {
+      userArr.push(foundUser["userProfile"])
+    })
+
+    res.status(200).send(userArr)
+
+  } catch(err) {
+    console.log(err)
+
+  }
+}
+
 exports.getAuthUser = (req, res) => {
   if (!req.isAuthUser) {
     res.status(403).json({

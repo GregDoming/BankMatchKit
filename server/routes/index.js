@@ -44,6 +44,8 @@ router.put(
 );
 
 router.get("/api/auth/CSV", userController.downloadCSV)
+router.post("/api/auth/lenderQuery", userController.getLenderQuery)
+
 
 router
   .route("/api/users/:userId")

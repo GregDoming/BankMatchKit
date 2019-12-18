@@ -60,15 +60,12 @@ const SingleStateSelect = () => {
   const dispatch = useContext(FormDispatchContext);
   const state = useContext(FormStateContext);
 
+  const defaultVal = { value: state.companyState, label: state.companyState };
+
   const handleChange = selectedOption => {
     event.preventDefault();
     dispatch({ type: "handleStateSelector", payload: selectedOption });
   };
-
-  const defaultVal = { value: state.companyState, label: state.companyState };
-  
-    
-
 
   return (
     <Select
