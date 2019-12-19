@@ -1,11 +1,4 @@
 import React from "react";
-// react components used to create a google map
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from "react-google-maps";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";

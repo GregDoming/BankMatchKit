@@ -2,13 +2,6 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-// react components used to create a google map
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from "react-google-maps";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
