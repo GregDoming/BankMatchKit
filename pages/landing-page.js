@@ -52,13 +52,6 @@ const LandingPage = (props) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.container}>
-          <SectionProduct />
-          <SectionTeam />
-          <SectionWork />
-        </div>
-      </div>
       <Footer
         content={
           <div>
