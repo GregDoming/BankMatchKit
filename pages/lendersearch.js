@@ -5,25 +5,19 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/Card/Card.js";
-import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
-import IconButton from "@material-ui/core/IconButton";
 
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
 
 import { getQueryResults } from "lib/api";
-import { get } from "http";
 
 const useStyles = makeStyles(lenderSearchStyle);
 
@@ -32,7 +26,6 @@ const LenderSearch = () => {
   const [searchCompleted, setSearchCompleted] = useState(false);
   const [searchArr, setSearchArr] = useState([]);
   const [foundUsers, setFoundUsers] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [idNumber, setIdNumber] = useState(0);
   const [queryFieldsObj, setqueryFieldsObj] = useState({
     0: "",
@@ -103,7 +96,6 @@ const LenderSearch = () => {
     formatFoundUsers(queryResults.data)
     setFoundUsers(formatFoundUsers(queryResults.data));
     setSearchCompleted(true);
-    // console.log(foundUsers[0])
   };
 
   const formatFoundUsers = users => {
