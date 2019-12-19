@@ -56,7 +56,7 @@ const userSchema = new mongoose.Schema(
         trim: true,
         default: 0
       },
-      nameOfCompanylastName: {
+      nameOfCompany: {
         type: String,
         trim: true,
         default: ""
