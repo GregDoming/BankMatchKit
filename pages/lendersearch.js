@@ -14,6 +14,7 @@ import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
+import SearchTable from "components/SearchTable/SearchTable.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
 
@@ -66,12 +67,10 @@ const LenderSearch = () => {
 
   const handleClose = event => {
     event.preventDefault();
+    
     const newArr = [...searchArr];
-    const newQueryArr = [...queryFieldsArr];
-    queryFieldsArr.pop();
     newArr.pop();
     setSearchArr(newArr);
-    setqueryFieldsArr(newQueryArr);
   };
 
   const handleChange = (event, value) => {
@@ -118,8 +117,12 @@ const LenderSearch = () => {
   //   console.log(foundUsers), [foundUsers]
   // })
   // useEffect(() => console.log(typeof foundUsers[0]));
+
   return searchCompleted ? (
+    <>
+    <SearchTable/>
     <div className={classes.spaceTop}>{foundUsers.map(ele => {return ele})}</div>
+    </>
   ) : (
     <div className={classNames(classes.main, classes.mainRaised)}>
       <div className={classes.container}>
