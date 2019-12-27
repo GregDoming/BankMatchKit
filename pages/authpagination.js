@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import clsx from "clsx";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -32,7 +32,7 @@ const useStyles = makeStyles(styles);
 const toggleReducer = (draft, action) => {
   switch (action.type) {
     case "toggle": {
-      event.preventDefault()
+      event.preventDefault();
       draft[event.target.id] = event.target.textContent;
       return;
     }
@@ -64,17 +64,17 @@ const toggleReducer = (draft, action) => {
         "lenderNameNonBankLender",
         "lenderNamePrivateEquity"
       ];
-      lenderName.forEach((lender) => {
-        draft[lender] = false
+      lenderName.forEach(lender => {
+        draft[lender] = false;
       });
       action.payload.forEach(lender => {
         draft[lender.value] = true;
       });
-      return
+      return;
     }
     case "handleBinaryToggle": {
       draft[event.target.id] = !action.payload;
-      action.paylod = !action.payload
+      action.paylod = !action.payload;
       return;
     }
     default:
@@ -82,10 +82,6 @@ const toggleReducer = (draft, action) => {
   }
   return;
 };
-
-//Setup to re-introduce context for the multi input form.
-const FormDispatchContext = React.createContext();
-const FormStateContext = React.createContext();
 
 function getSteps() {
   return ["Step 1", "Step 2", "Step 3", "Step 4"];
@@ -212,15 +208,11 @@ const AuthPagination = props => {
       case 0:
         return <ViewOne dispatch={dispatch} state={state} />;
       case 1:
-        return (
-          <ViewTwo
-          dispatch={dispatch} state={state}
-          />
-        );
+        return <ViewTwo dispatch={dispatch} state={state} />;
       case 2:
         return <ViewThree dispatch={dispatch} state={state} />;
       case 3:
-        return <ViewFour odispatch={dispatch} state={state} />;
+        return <ViewFour dispatch={dispatch} state={state} />;
       default:
         return "Unknown step";
     }
