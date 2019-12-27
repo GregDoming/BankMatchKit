@@ -25,6 +25,12 @@ const lenderSearchStyle = {
     ...container,
     maxWidth: "970px !important"
   },
+  customRaised: {
+    ...mainRaised,
+    marginTop: "105px",
+    marginBottom: "0px"
+
+  },
   spaceTop: {
     marginTop: "15%"
   },
@@ -146,7 +152,23 @@ const lenderSearchStyle = {
     marginBottom: "10px",
     marginLeft: "10%",
     padding: "0",
-    width: "90%",
+    width: "100%",
+    overFlow: "visible"
+  },
+  cardCompanyResult: {
+    borderRadius: "1px",
+    boxShadow:
+      "0 16px 24px 2px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.14), 0 6px 30px 5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.12), 0 8px 10px -5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.2);",
+    marginBottom: "10px",
+    marginLeft: "10%",
+    padding: "0",
+    width: "100%",
     overFlow: "visible"
   },
   customToggleItem: {
@@ -208,8 +230,13 @@ const lenderSearchStyle = {
     width: "90%"
   },
   title: {
-    ...title,
-    marginLeft: "10%"
+    color: grayColor[1],
+    textDecoration: "none",
+    fontWeight: "700",
+    marginLeft: "5%",
+    marginBottom: "25px",
+    minHeight: "32px",
+    fontFamily: `"Roboto Slab", "Times New Roman", serif`
   },
   cardTitle: {
     ...cardTitle,

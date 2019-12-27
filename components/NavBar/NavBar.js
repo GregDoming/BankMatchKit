@@ -46,6 +46,19 @@ const Navbar = props => {
       links={
         user._id ? (
           <List className={classes.list + " " + classes.mlAuto}>
+             <ListItem className={classes.listItem}>
+              <Link href="/lendersearch">
+                <Button
+                  className={classes.navLink}
+                  variant="outlined"
+                  style={{ fontSize: "18px", fontWeight: "100", padding: "24px" }}
+                >
+                  <a style={{ color: "rgba(233, 241, 228, 1)" }} className={classes.inActiveLink}>
+                    Admin
+                  </a>
+                </Button>
+              </Link>
+            </ListItem>
             <ListItem className={classes.listItem}>
               <Link href="/profile">
                 <Button

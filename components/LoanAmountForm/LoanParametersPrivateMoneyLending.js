@@ -57,10 +57,7 @@ const minLoanArr = [
 ];
 
 const LoanParametersPrivateMoneyLending = props => {
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
-
-  const { onToggleChange, toggleFormState } = props;
+  const { dispatch, state } = props;
 
   const classes = useStyles();
   return (
@@ -77,7 +74,7 @@ const LoanParametersPrivateMoneyLending = props => {
                         {customLoanArr}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -108,21 +105,6 @@ const LoanParametersPrivateMoneyLending = props => {
                   }}
                   autoFocus
                 />
-                {/* {index < 3 && (
-                  <React.Fragment>
-                    <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {customLoanArr[index]}
-                      </label>
-                      <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
-                        values={valuesArr}
-                        id={toggleLoanArr[index]}
-                        selected={state[toggleLoanArr[index]]}
-                      />
-                    </div>
-                  </React.Fragment>
-                )} */}
                 <CustomInput
                   formControlProps={{
                     className: classes.numberStyle,

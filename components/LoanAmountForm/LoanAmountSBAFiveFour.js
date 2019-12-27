@@ -26,9 +26,9 @@ const loanArr = [
   "SBAFiveFourMinDCR"
 ];
 
-const LoanAmountFiveFour = () => {
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+const LoanAmountFiveFour = props => {
+  const { dispatch, state } = props;
+
 
   const classes = useStyles();
   return (

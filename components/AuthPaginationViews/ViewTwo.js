@@ -21,16 +21,11 @@ export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const { onToggleChange, toggleFormState, handleInput, handleNumberInput } = props;
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.root}>
-      <ToggleForm
-        onToggleChange={onToggleChange}
-        toggleFormState={toggleFormState}
-        handleInput={handleInput}
-        handleNumberInput={handleNumberInput}
-      />
+      <ToggleForm dispatch={dispatch} state={state} />
     </div>
   );
 }

@@ -7,7 +7,6 @@ import CardHeader from "components/Card/CardHeader.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import { FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -22,12 +21,7 @@ const FinancialCreditIssuesQualifiers = props => {
     "Foreclosure",
     "Short Sale"
   ];
-  const toggleNameArrTwo = [
-    "Tax Liens",
-    "Low FICO",
-    "Low Liquidity",
-    "Judgements"
-  ];
+  const toggleNameArrTwo = ["Tax Liens", "Low FICO", "Low Liquidity", "Judgements"];
   const toggleArrOne = [
     "financialCreditIssueBankruptcy",
     "financialCreditIssueNonUSCitizen",
@@ -42,8 +36,7 @@ const FinancialCreditIssuesQualifiers = props => {
     "financialCreditIssueJudgements"
   ];
 
-  const { onToggleChange } = props;
-  const state = useContext(FormStateContext);
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.outerContainer}>
@@ -57,10 +50,14 @@ const FinancialCreditIssuesQualifiers = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"financialCredit" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"financialCredit" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -72,10 +69,14 @@ const FinancialCreditIssuesQualifiers = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"financialCredit2" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"financialCredit2" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}

@@ -17,9 +17,7 @@ const HealthCare = props => {
   const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleNameArr = ["Doctor's Office", "Hospital"];
   const toggleArrOne = ["healthcareDoctorsOffice", "healthcareHospital"];
-
-  const { onToggleChange } = props;
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = props;
 
   return (
     <div className={classes.outerContainer}>
@@ -36,7 +34,8 @@ const HealthCare = props => {
                     <div key={"Healthcare" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -49,7 +48,8 @@ const HealthCare = props => {
                 <div key={"Healthcare2"} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>Medical Lab</label>
                   <ThreeToggleSwitch
-                    onToggleChange={onToggleChange}
+                    dispatch={dispatch}
+                    state={state}
                     values={valuesArr}
                     id={"healthcareMedicalLab"}
                     selected={state["healthcareMedicalLab"]}

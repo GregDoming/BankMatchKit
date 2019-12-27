@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Axios from "axios";
@@ -23,6 +24,7 @@ import ViewThree from "components/AuthPaginationViews/ViewThree.js";
 import ViewFour from "components/AuthPaginationViews/ViewFour.js";
 
 import { isUserAuthenticated } from "lib/auth";
+import { adminUserAuthenticated } from "lib/auth";
 import { convertUser } from "lib/userSchema";
 
 import styles from "assets/jss/nextjs-material-kit-pro/components/paginationStyle.js";
@@ -32,7 +34,6 @@ const useStyles = makeStyles(styles);
 const toggleReducer = (draft, action) => {
   switch (action.type) {
     case "toggle": {
-      event.preventDefault()
       draft[event.target.id] = event.target.textContent;
       return;
     }
@@ -64,17 +65,17 @@ const toggleReducer = (draft, action) => {
         "lenderNameNonBankLender",
         "lenderNamePrivateEquity"
       ];
-      lenderName.forEach((lender) => {
-        draft[lender] = false
+      lenderName.forEach(lender => {
+        draft[lender] = false;
       });
       action.payload.forEach(lender => {
         draft[lender.value] = true;
       });
-      return
+      return;
     }
     case "handleBinaryToggle": {
       draft[event.target.id] = !action.payload;
-      action.paylod = !action.payload
+      action.paylod = !action.payload;
       return;
     }
     default:
@@ -83,7 +84,6 @@ const toggleReducer = (draft, action) => {
   return;
 };
 
-//Setup to re-introduce context for the multi input form.
 const FormDispatchContext = React.createContext();
 const FormStateContext = React.createContext();
 
@@ -97,17 +97,17 @@ function getStepContent(step) {
       return "Step 1";
     case 1:
       return "Step 2: ";
-    // case 2:
-    //   return "Step 3: ";
-    // case 3:
-    //   return "Step 4: ";
+    case 2:
+      return "Step 3: ";
+    case 3:
+      return "Step 4: ";
     default:
       return "Unknown step";
   }
 }
 
-const AuthPagination = props => {
-  const initialState = props.flatState;
+const AdminPagination = props => {
+  const initialState = props.flatUser;
   const [state, dispatch] = useImmerReducer(toggleReducer, initialState);
   const [minMaxErrorMessage, setminMaxErrorMessage] = React.useState("");
   const [openError, setOpenError] = React.useState(false);
@@ -121,20 +121,7 @@ const AuthPagination = props => {
     return steps.length;
   };
 
-  // const onToggleChange = (event, val) => {
-  //   event.preventDefault();
-  //   dispatch({ type: "toggle" });
-  // };
-
-  const handleInput = (event, val) => {
-    dispatch({ type: "handleFormInput" });
-  };
-
   const handleClose = () => setOpenError(false);
-
-  const handleNumberInput = (event, val) => {
-    dispatch({ type: "handleNumberInput" });
-  };
 
   const completedSteps = () => {
     return Object.keys(completed).length;
@@ -165,7 +152,7 @@ const AuthPagination = props => {
 
     const objCopy = JSON.parse(JSON.stringify(state));
     const formInfo = convertUser(objCopy);
-    await Axios.post("/api/users/updateUserData", { formInfo });
+    await Axios.post("/api/users/updateAdminUserData", { formInfo });
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -175,24 +162,7 @@ const AuthPagination = props => {
     setActiveStep(newActiveStep);
   };
 
-  const handleBack = async () => {
-    event.preventDefault();
-    if (
-      state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
-      state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
-      state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
-      state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
-      state.privateClosingCostsMax < state.privateClosingCostsMin ||
-      state.privateDaysToFundingMax < state.privateDaysToFundingMin
-    ) {
-      setminMaxErrorMessage("Minimum value must be larger than maximum value");
-      setOpenError(true);
-      return;
-    }
-
-    const objCopy = JSON.parse(JSON.stringify(state));
-    const formInfo = convertUser(objCopy);
-    await Axios.post("/api/users/updateUserData", { formInfo });
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
@@ -217,15 +187,11 @@ const AuthPagination = props => {
       case 0:
         return <ViewOne dispatch={dispatch} state={state} />;
       case 1:
-        return (
-          <ViewTwo
-          dispatch={dispatch} state={state}
-          />
-        );
-      // case 2:
-      //   return <ViewThree dispatch={dispatch} state={state} />;
-      // case 3:
-      //   return <ViewFour odispatch={dispatch} state={state} />;
+        return <ViewTwo dispatch={dispatch} state={state} />;
+      case 2:
+        return <ViewThree dispatch={dispatch} state={state} />;
+      case 3:
+        return <ViewFour dispatch={dispatch} state={state} />;
       default:
         return "Unknown step";
     }
@@ -300,10 +266,8 @@ const AuthPagination = props => {
   );
 };
 
-AuthPagination.getInitialProps = isUserAuthenticated;
+AdminPagination.getInitialProps = adminUserAuthenticated;
 
-export default AuthPagination;
+export default AdminPagination;
 
-export { AuthPagination, FormDispatchContext, FormStateContext };
-
-// export default AuthPagination;
+export { AdminPagination, FormDispatchContext, FormStateContext };

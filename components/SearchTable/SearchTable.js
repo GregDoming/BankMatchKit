@@ -1,18 +1,85 @@
 import React from "react";
+import Router from "next/router";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 // material-ui icons
 import Check from "@material-ui/icons/Check";
+import Person from "@material-ui/icons/Person";
+import Edit from "@material-ui/icons/Edit";
+import Close from "@material-ui/icons/Close";
 // core components
 import Table from "components/Table/Table.js";
+import Button from "components/CustomButtons/Button.js";
+import Tooltip from "@material-ui/core/Tooltip";
+
+import { adminGetUserById } from "lib/api";
+import { convertState } from 'lib/auth';
+
 
 import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
 
 const useStyles = makeStyles(style);
 
-const SearchTable = () => {
-  const [checked, setChecked] = React.useState([1, 3, 5]);
+const SearchTable = props => {
+  const { queryArr, checkArr } = props;
+  const [checked, setChecked] = React.useState(checkArr);
+  const [userIdArr, setUserIdArr] = React.useState([]);
+
+  // const closure = obj => {
+  //   const what = {};
+  //   const convertState = obj => {
+  //     for (let key in obj) {
+  //       if (obj.hasOwnProperty(key)) {
+  //         if (typeof obj[key] === "object") convertState(obj[key]);
+  //         if (typeof obj[key] === "string" || typeof obj[key] === "number" || typeof obj[key] === "boolean") what[key] = obj[key];
+  //       }
+  //     }
+  //   };
+  //   convertState(obj);
+  //   return what;
+  // };
+
+  // export const isUserAuthenticated = async ctx => {
+  //   const { req, res } = ctx;
+  //   const currentPath = req ? req.url : window.location.pathname;
+  //   const { bankMatchCookie } = nextCookie(ctx);
+
+  //   if (req) {
+  //     const response = await axios.get(`/api/users/${bankMatchCookie}`);
+  //     if (!req.user && currentPath !== "/signin") redirectUser(res, "/signin");
+  //     if (req.user) {
+  //       const auth = { user: req.user };
+  //       const flatState = closure(response.data);
+  //       return { auth, flatState };
+  //     }
+
+  //     return { response };
+  //   }
+
+  //   const response = await axios.get(`/api/users/${bankMatchCookie}`);
+  //   const auth = { user: response.data };
+  //   const flatState = closure(response.data);
+
+  //   return { auth, flatState };
+  // };
+
+  const handleEditProfileClick = async event => {
+    event.preventDefault();
+    try {
+      const id = event.currentTarget.id
+      // await adminGetUserById(id);
+      // console.log(id)
+      Router.push({
+        pathname: "/adminpagination",
+        query: { id: id }
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleToggle = value => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -24,75 +91,104 @@ const SearchTable = () => {
     }
     setChecked(newChecked);
   };
+
+  const formatQueryArr = arr => {
+    const formattedArr = [];
+    const tempArrTwo = [];
+
+    arr.forEach((user, index) => {
+      const userProfile = user[0];
+      const email = user[1].email;
+      const id = user[1].id;
+      const tempArr = [];
+      const simpleButtons = [
+        // { color: "info", icon: Person, value: "Unknow Use"  },
+        { color: "success", icon: Edit, value: "Edit Profile" },
+        { color: "danger", icon: Close, value: "Close Row" }
+      ].map((prop, key) => {
+        return (
+          <Tooltip
+            id={"tooltip-top" + prop.key}
+            title={prop.value}
+            placement="top"
+            key={"tooltipTop" + key}
+          >
+            <Button
+              onClick={event => handleEditProfileClick(event)}
+              id={id}
+              simple
+              justIcon
+              size="sm"
+              color={prop.color}
+              key={"buttonTop" + key}
+            >
+              <prop.icon />
+            </Button>
+          </Tooltip>
+        );
+      });
+
+      tempArr.push(
+        <Checkbox
+          checked={checked.indexOf(index) !== -1}
+          tabIndex={-1}
+          onClick={() => handleToggle(index)}
+          checkedIcon={<Check className={classes.checkedIcon} />}
+          icon={<Check className={classes.uncheckedIcon} />}
+          classes={{
+            checked: classes.checked,
+            root: classes.checkRoot
+          }}
+        />,
+        userProfile.firstName,
+        userProfile.lastName,
+        email,
+        userProfile.companyName,
+        userProfile.phoneNumber,
+        userProfile.city,
+        simpleButtons
+      );
+
+      formattedArr.push(tempArr);
+    });
+
+    tempArrTwo.push({
+      total: true,
+      colspan: "5",
+      amount: (
+        <span>
+          <b>{arr.length}</b>
+        </span>
+      )
+    });
+
+    return formattedArr;
+  };
+
   const classes = useStyles();
   return (
     <Table
       striped
-      tableHead={["#", "", "Product Name", "Type", "Qty", "Price", "Amount"]}
-      tableData={[
-        [
-          "1",
-          <Checkbox
-            checked={checked.indexOf(1) !== -1}
-            tabIndex={-1}
-            onClick={() => handleToggle(1)}
-            checkedIcon={<Check className={classes.checkedIcon} />}
-            icon={<Check className={classes.uncheckedIcon} />}
-            classes={{
-              checked: classes.checked,
-              root: classes.checkRoot
-            }}
-          />,
-          "Moleskine Agenda",
-          "Office",
-          "25",
-          "€ 49",
-          "€ 1,225"
-        ],
-        [
-          "2",
-          <Checkbox
-            checked={checked.indexOf(2) !== -1}
-            tabIndex={-1}
-            onClick={() => handleToggle(2)}
-            checkedIcon={<Check className={classes.checkedIcon} />}
-            icon={<Check className={classes.uncheckedIcon} />}
-            classes={{
-              checked: classes.checked,
-              root: classes.checkRoot
-            }}
-          />,
-          "Stabilo Pen",
-          "Office",
-          "30",
-          "€ 10",
-          "€ 300"
-        ],
-        {
-          total: true,
-          colspan: "5",
-          amount: (
-            <span>
-              <small>€</small>1,525
-            </span>
-          )
-        }
+      tableHead={[
+        "",
+        "First Name",
+        "Last Name",
+        "Email",
+        "Company Name",
+        "Phone Number",
+        "City",
+        ""
       ]}
+      tableData={formatQueryArr(queryArr)}
       customCellClasses={[
         classes.textCenter,
         classes.padding0,
         classes.textRight,
         classes.textRight
       ]}
-      customClassesForCells={[0, 1, 5, 6]}
-      customHeadCellClasses={[
-        classes.textCenter,
-        classes.textRight,
-        classes.textRight
-      ]}
-      customHeadClassesForCells={[0, 5, 6]}
+      customHeadCellClasses={[classes.textCenter, classes.textRight, classes.textRight]}
     />
   );
-}
+};
 
 export default SearchTable;

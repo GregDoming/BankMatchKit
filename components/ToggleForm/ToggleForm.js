@@ -19,46 +19,22 @@ import NonCommercialResidentialLending from "components/ExpansionPanelViews/NonC
 import SBAFiveFour from "components/ExpansionPanelViews/SBAFiveFour";
 import PrivateMoneyLending from "components/ExpansionPanelViews/PrivateMoneyLending";
 
-
 const useStyles = makeStyles(toggleFormStyle);
 
 const ToggleForm = props => {
   const classes = useStyles();
 
-  const { onToggleChange, toggleFormState } = props;
+  const { state, dispatch } = props;
 
   const componentArr = [
-    <OwnerOccupied
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <InvestmentNon
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <SBASevenALoans
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <SBAFiveFour
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <ConstructionNonSBARealEstate
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <BusinessLendingNonSBA
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <NonCommercialResidentialLending
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <PrivateMoneyLending
-      onToggleChange={onToggleChange}
-    />
+    <OwnerOccupied dispatch={dispatch} state={state} />,
+    <InvestmentNon dispatch={dispatch} state={state} />,
+    <SBASevenALoans dispatch={dispatch} state={state} />,
+    <SBAFiveFour dispatch={dispatch} state={state} />,
+    <ConstructionNonSBARealEstate dispatch={dispatch} state={state} />,
+    <BusinessLendingNonSBA dispatch={dispatch} state={state} />,
+    <NonCommercialResidentialLending dispatch={dispatch} state={state} />,
+    <PrivateMoneyLending dispatch={dispatch} state={state} />
   ];
 
   const expansionPanelArr = [
@@ -76,7 +52,10 @@ const ToggleForm = props => {
     <div className={classes.container}>
       {componentArr.map((component, index) => {
         return (
-          <ExpansionPanel key={"ToggleForm" + expansionPanelArr[index]} TransitionProps={{ unmountOnExit: true }} >
+          <ExpansionPanel
+            key={"ToggleForm" + expansionPanelArr[index]}
+            TransitionProps={{ unmountOnExit: true }}
+          >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"

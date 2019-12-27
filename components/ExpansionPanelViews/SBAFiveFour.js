@@ -27,11 +27,9 @@ const SBAFiveFour = props => {
     "SBAFiveFourRefinanceBridge"
   ];
 
-  const handleFocus = event => {};
-
-  const { onToggleChange } = props;
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = props;
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
@@ -39,7 +37,7 @@ const SBAFiveFour = props => {
         <Card>
           <CardBody>
             <CardHeader className={classes.cardHeader} color="success">
-            SBA 504 Loan Types
+              SBA 504 Loan Types
             </CardHeader>
             <div className={classes.topRowContainer}>
               <div className={classes.toggleGridItem}>
@@ -50,7 +48,7 @@ const SBAFiveFour = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -67,7 +65,7 @@ const SBAFiveFour = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -81,7 +79,7 @@ const SBAFiveFour = props => {
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
-        <LoanAmountSBAFiveFour />
+        <LoanAmountSBAFiveFour dispatch={dispatch} state={state} />
       </div>
     </div>
   );

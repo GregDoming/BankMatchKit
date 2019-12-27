@@ -7,7 +7,6 @@ import CardHeader from "components/Card/CardHeader.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import { FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -61,8 +60,7 @@ const MiscellaneousQualifiers = props => {
     "miscellaneousQualifiersSubordinateFinancing"
   ];
 
-  const { onToggleChange } = props;
-  const state = useContext(FormStateContext);
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.outerContainer}>
@@ -76,10 +74,14 @@ const MiscellaneousQualifiers = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"miscellaneousQualifiers" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"miscellaneousQualifiers" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -91,10 +93,14 @@ const MiscellaneousQualifiers = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"miscellaneousQualifiers2" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"miscellaneousQualifiers2" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -114,7 +120,10 @@ const MiscellaneousQualifiers = props => {
               </CardHeader>
               {depositRelationshipArr.map((toggleName, index) => {
                 return (
-                  <div key={"miscellaneousQualifiers3" + index.toString()} className={classes.rowContainer}>
+                  <div
+                    key={"miscellaneousQualifiers3" + index.toString()}
+                    className={classes.rowContainer}
+                  >
                     <label className={classes.labelStyle}>{depositNameArr[index]}</label>
                     <ThreeToggleSwitch
                       onToggleChange={onToggleChange}

@@ -36,9 +36,9 @@ const loanArr = [
   "privateMoneyMinimumDCR"
 ];
 
-const LoanLimitsPrivateMoneyLending = () => {
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+const LoanLimitsPrivateMoneyLending = props => {
+  const { dispatch, state } = props;
+
 
   const classes = useStyles();
   return (

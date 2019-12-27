@@ -21,29 +21,14 @@ const useStyles = makeStyles(toggleFormStyle);
 const ToggleFormTwo = props => {
   const classes = useStyles();
 
-  const { onToggleChange, toggleFormState } = props;
+  const { state, dispatch } = props;
 
   const componentArr = [
-    <MultiUnitLiving
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <Automotive
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <Healthcare
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <Retail
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />,
-    <Miscellaneous
-      onToggleChange={onToggleChange}
-      toggleFormState={toggleFormState}
-    />
+    <MultiUnitLiving dispatch={dispatch} state={state} />,
+    <Automotive dispatch={dispatch} state={state} />,
+    <Healthcare dispatch={dispatch} state={state} />,
+    <Retail dispatch={dispatch} state={state} />,
+    <Miscellaneous dispatch={dispatch} state={state} />
   ];
 
   const expansionPanelArr = [
@@ -51,14 +36,17 @@ const ToggleFormTwo = props => {
     "Automotive",
     "Healthcare",
     "Retail",
-    "Miscellaneous",
+    "Miscellaneous"
   ];
 
   return (
     <div className={classes.container}>
       {componentArr.map((component, index) => {
         return (
-          <ExpansionPanel key={"ToggleFormTwo" + expansionPanelArr[index]} TransitionProps={{ unmountOnExit: true }} >
+          <ExpansionPanel
+            key={"ToggleFormTwo" + expansionPanelArr[index]}
+            TransitionProps={{ unmountOnExit: true }}
+          >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"

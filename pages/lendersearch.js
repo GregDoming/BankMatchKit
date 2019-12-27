@@ -8,6 +8,8 @@ import Card from "components/Card/Card.js";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
+import CardBody from "components/Card/CardBody.js";
+import CardHeader from "components/Card/CardHeader.js";
 
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -19,6 +21,9 @@ import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSe
 import listOfLenderTypes from "lib/listOfLenderTypes";
 
 import { getQueryResults } from "lib/api";
+import { adminUser } from "lib/auth";
+
+
 
 const useStyles = makeStyles(lenderSearchStyle);
 
@@ -26,8 +31,9 @@ const LenderSearch = () => {
   const classes = useStyles();
   const [searchCompleted, setSearchCompleted] = useState(false);
   const [searchArr, setSearchArr] = useState([]);
-  const [foundUsers, setFoundUsers] = useState([]);
   const [idNumber, setIdNumber] = useState(0);
+  const [queryArr, setQueryArr] = useState([]);
+  const [checkArr, setCheckArr] = useState([]);
   const [queryFieldsObj, setqueryFieldsObj] = useState({
     0: "",
     1: "",
@@ -67,7 +73,7 @@ const LenderSearch = () => {
 
   const handleClose = event => {
     event.preventDefault();
-    
+
     const newArr = [...searchArr];
     newArr.pop();
     setSearchArr(newArr);
@@ -76,6 +82,16 @@ const LenderSearch = () => {
   const handleChange = (event, value) => {
     const keyNumber = event.target.id.replace(/(^\d+)(.+$)/i, "$1");
     queryFieldsObj[keyNumber] = value.value;
+  };
+
+  const formatCheckArr = (arr) => {
+    const formattedArr = [];
+
+    arr.forEach((ele, index) => {
+      formattedArr.push(index)
+    });
+
+    return formattedArr;
   };
 
   const handleSearch = async () => {
@@ -91,45 +107,31 @@ const LenderSearch = () => {
       }
     }
     const queryResults = await getQueryResults(queryFieldsArr);
-    console.log(queryResults.data);
-    formatFoundUsers(queryResults.data)
-    setFoundUsers(formatFoundUsers(queryResults.data));
+    setCheckArr(formatCheckArr(queryResults.data));
+    setQueryArr(queryResults.data);
     setSearchCompleted(true);
   };
 
-  const formatFoundUsers = users => {
-    const finalArr = [];
-    users.forEach((user, index) => {
-      for (let key in user) {
-        if (user.hasOwnProperty(key)) {
-          finalArr.push(
-              <b key={`${key} + ${index} + ${user[key]}`}>{user[key]}</b>
-          );
-        }
-      }
-      finalArr.push(<br key={"br" + index}></br>)
-    });
-    console.log(finalArr);
-    return finalArr;
-  };
-
-  // useEffect(() => {
-  //   console.log(foundUsers), [foundUsers]
-  // })
-  // useEffect(() => console.log(typeof foundUsers[0]));
-
   return searchCompleted ? (
-    <>
-    <SearchTable/>
-    <div className={classes.spaceTop}>{foundUsers.map(ele => {return ele})}</div>
-    </>
+    <div className={classNames(classes.main)}>
+      <div className={classes.container}>
+        <GridContainer>
+          <GridItem xs={12} sm={10} md={10}>
+            <Card className={classes.cardCompanyResult}>
+              <SearchTable queryArr={queryArr} checkArr={checkArr} />
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
+    </div>
   ) : (
-    <div className={classNames(classes.main, classes.mainRaised)}>
+    <div className={classNames(classes.main)}>
       <div className={classes.container}>
         <h2 className={classes.title}>Admin Search</h2>
         <GridContainer>
           <GridItem xs={12} sm={10} md={10}>
             <Card className={classes.cardCompanySelect}>
+              <CardHeader color="warning"></CardHeader>
               <h4 className={classes.cardTitle}>Search Fields</h4>
               <div className={classes.headerWrapper}>
                 <h5 className={classes.selectTitle}>Loan Type</h5>
@@ -179,5 +181,7 @@ const LenderSearch = () => {
     </div>
   );
 };
+
+LenderSearch.getInitialProps = adminUser
 
 export default LenderSearch;

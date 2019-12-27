@@ -10,7 +10,6 @@ import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 import LoanLimitsPrivateMoneyLending from "../LoanAmountForm/LoanLimitsPrivateMoneyLending";
 import LoanParametersPrivateMoneyLending from "../LoanAmountForm/LoanParametersPrivateMoneyLending";
 
-
 const useStyles = makeStyles(toggleFormStyle);
 
 const PrivateMoneyLending = props => {
@@ -26,23 +25,18 @@ const PrivateMoneyLending = props => {
   ];
   const toggleArrTwo = ["revolvingBusinessLOC1stPosition", "revolvingBusinessLOC2stPosition"];
 
-  const handleFocus = event => {};
+  const { dispatch, state } = props;
 
-  const { onToggleChange, toggleFormState } = props;
-
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
       <div className={classes.customFlex}>
-        <LoanLimitsPrivateMoneyLending />
+        <LoanLimitsPrivateMoneyLending dispatch={dispatch} state={state} />
       </div>
       <div className={classes.customFlex}>
-        <LoanParametersPrivateMoneyLending
-          onToggleChange={onToggleChange}
-          toggleFormState={toggleFormState}
-        />
+        <LoanParametersPrivateMoneyLending dispatch={dispatch} state={state} />
       </div>
     </div>
   );

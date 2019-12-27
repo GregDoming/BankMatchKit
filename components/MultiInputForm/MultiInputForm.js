@@ -11,11 +11,10 @@ import GridItem from "components/Grid/GridItem.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CardHeader from "@material-ui/core/CardHeader";
-// import Select from "@material-ui/core/Select";
-import makeAnimated from "react-select/animated";
 
 import MaskedNumberInput from "components/MaskedNumberInput/MaskedNumberInput.js";
-import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
+
+// import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 import MultiLenderSelect from "components/MultiSelect/MultiLenderSelect.js";
 import SingleStateSelect from "components/SingleSelect/SingleStateSelect.js";
 
@@ -50,8 +49,11 @@ const MultiInputForm = props => {
     personalNotes: "",
     city: ""
   });
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
+
+  const { state, dispatch } = props;
+
   const { clientPaysBrokerDemand, lenderPaysRebates, brokerPaidThroughEscrow } = state;
 
   const handleChange = name => event => {
@@ -200,12 +202,12 @@ const MultiInputForm = props => {
             <div className={classes.rowContainerSelect}>
               <GridItem className={classes.gridSelect}>
                 State
-                <SingleStateSelect />
+                <SingleStateSelect dispatch={dispatch} state={state} />
               </GridItem>
               <div className={classes.spacerDiv} />
               <GridItem className={classes.gridSelect}>
                 Type Of Lender
-                <MultiLenderSelect />
+                <MultiLenderSelect state={state} dispatch={dispatch} />
               </GridItem>
             </div>
             <CardHeader></CardHeader>

@@ -12,10 +12,14 @@ const lenderName = [
   { value: "lenderNamePrivateEquity", label: "Private Equity" }
 ];
 
-const MultiLenderSelect = () => {
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+const MultiLenderSelect = props => {
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
   // console.log(state)
+
+  const { dispatch, state } = props;
+
+
   const {
     lenderNameBank,
     lenderNameCDFI,

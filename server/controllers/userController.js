@@ -2,21 +2,36 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const multer = require("multer");
 const jimp = require("jimp");
-const { createReadStream, createWriteStream } = require('fs');
+const { createReadStream, createWriteStream } = require("fs");
 const { parse } = require("json2csv");
-const helper = require("../../lib/helper.js")
-const fs = require("fs")
+const helper = require("../../lib/helper.js");
+const fs = require("fs");
 
 exports.getUsers = async (req, res) => {
   const users = await User.find().select(`_id name email createdAt updatedAt`);
   res.json(users);
 };
 
+exports.adminsGetUserById = async (req, res) => {
+  try {
+    //Check to see if it is the correct time to load the page
+    if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+      console.log(req.params.id)
+      const editUser = await User.findById(req.params.id );
+      res.status(200).json(editUser)
+    } else {
+      console.log("Invalid Id")
+    }
+    // console.log(editUser)
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.downloadCSV = async (req, res) => {
   try {
-
     const users = await User.find({});
-    const formattedUsers = helper.formatAllUsers(users)
+    const formattedUsers = helper.formatAllUsers(users);
     const csv = await parse(formattedUsers);
 
     res.setHeader("Content-disposition", "attachment; filename=lender.csv");
@@ -30,19 +45,17 @@ exports.downloadCSV = async (req, res) => {
 exports.getLenderQuery = async (req, res) => {
   try {
     const userArr = [];
-    const user = await User.find({$and:req.body});
+    const user = await User.find({ $and: req.body });
 
-    user.forEach((foundUser) => {
-      userArr.push(foundUser["userProfile"])
-    })
+    user.forEach(foundUser => {
+      userArr.push([foundUser["userProfile"], { email: foundUser["email"], id: foundUser["_id"] }]);
+    });
 
-    res.status(200).send(userArr)
-
-  } catch(err) {
-    console.log(err)
-
+    res.status(200).send(userArr);
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
 exports.getAuthUser = (req, res) => {
   if (!req.isAuthUser) {
@@ -70,6 +83,7 @@ exports.getUserById = async (req, res, next, id) => {
   }
   next();
 };
+
 
 exports.getUserByIdandUpdate = async (req, res, next, id) => {
   const user = await User.findOne({ _id: id });
@@ -132,13 +146,33 @@ exports.resizeAvatar = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res) => {
-  req.body.updatedAt = new Date().toISOString();
-  const updatedUser = await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { $set: req.body.formInfo },
-    { new: true, runValidators: true }
-  );
-  res.json(updatedUser);
+  try {
+    req.body.updatedAt = new Date().toISOString();
+    console.log(req.body.formInfo)
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.user._id },
+      { $set: req.body.formInfo },
+      { new: true, runValidators: true }
+    );
+    res.json(updatedUser);
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+exports.updateAdminUser = async (req, res) => {
+  try {
+    req.body.updatedAt = new Date().toISOString();
+    console.log(req.body.formInfo)
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.body.formInfo._id },
+      { $set: req.body.formInfo },
+      { new: true, runValidators: true }
+    );
+    res.json(updatedUser);
+  } catch (err) {
+    console.log(err)
+  }
 };
 
 exports.deleteUser = async (req, res) => {

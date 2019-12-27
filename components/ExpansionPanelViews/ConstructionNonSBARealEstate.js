@@ -8,7 +8,6 @@ import CardHeader from "components/Card/CardHeader.js";
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
 import LoanAmountConstructionNon from "components/LoanAmountForm/LoanAmountConstructionNon.js";
-import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -42,9 +41,10 @@ const ConstructionNonSBARealEstate = props => {
 
   const handleFocus = event => {};
 
-  const { onToggleChange } = props;
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = props;
+
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
@@ -66,7 +66,7 @@ const ConstructionNonSBARealEstate = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -91,7 +91,7 @@ const ConstructionNonSBARealEstate = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -105,7 +105,7 @@ const ConstructionNonSBARealEstate = props => {
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
-        <LoanAmountConstructionNon />
+        <LoanAmountConstructionNon dispatch={dispatch} state={state}/>
       </div>
     </div>
   );

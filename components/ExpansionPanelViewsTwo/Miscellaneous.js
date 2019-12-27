@@ -44,8 +44,7 @@ const Miscellaneous = props => {
     "miscellaneousLeaseholdProperty"
   ];
 
-  const { onToggleChange } = props;
-  const state = useContext(FormStateContext);
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.outerContainer}>
@@ -59,10 +58,14 @@ const Miscellaneous = props => {
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
-                    <div key={"miscellaneousOccupied" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"miscellaneousOccupied" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -74,10 +77,14 @@ const Miscellaneous = props => {
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
-                    <div key={"miscellaneousOccupied2" + index.toString()} className={classes.rowContainer}>
+                    <div
+                      key={"miscellaneousOccupied2" + index.toString()}
+                      className={classes.rowContainer}
+                    >
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}

@@ -26,9 +26,9 @@ const loanArr = [
   "ownerMinDCR"
 ];
 
-const LoanAmountOwner = () => {
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+const LoanAmountOwner = props => {
+  const { dispatch, state } = props;
+
 
   const classes = useStyles();
   return (

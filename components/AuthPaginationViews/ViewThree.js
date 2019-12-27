@@ -21,12 +21,12 @@ export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const { onToggleChange } = props;
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.root}>
       <ToggleFormTwo
-        onToggleChange={onToggleChange}
+        dispatch={dispatch} state={state}
       />
     </div>
   );

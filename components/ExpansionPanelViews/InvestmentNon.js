@@ -27,9 +27,10 @@ const InvestmentNon = props => {
 
   const handleFocus = event => {};
 
-  const { onToggleChange } = props;
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = props;
+
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
@@ -48,7 +49,7 @@ const InvestmentNon = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -65,7 +66,7 @@ const InvestmentNon = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -79,7 +80,7 @@ const InvestmentNon = props => {
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
-        <LoanAmountInvestmentNon />
+        <LoanAmountInvestmentNon dispatch={dispatch} state={state}/>
       </div>
     </div>
   );

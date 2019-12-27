@@ -19,11 +19,10 @@ const NonCommercialResidentialLending = props => {
   const toggleArrOne = ["conventionalFNMA", "governmentFHA", "kRehab"];
   const toggleArrTwo = ["portfolio", "jumbo"];
 
-  const handleFocus = event => {};
+  const { dispatch, state } = props;
 
-  const { onToggleChange } = props;
-  const dispatch = useContext(FormDispatchContext);
-  const state = useContext(FormStateContext);
+  // const dispatch = useContext(FormDispatchContext);
+  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
@@ -42,7 +41,7 @@ const NonCommercialResidentialLending = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -59,7 +58,7 @@ const NonCommercialResidentialLending = props => {
                         {toggleName.replace(/^\w/, c => c.toUpperCase())}
                       </label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}

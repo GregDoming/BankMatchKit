@@ -18,14 +18,14 @@ const useStyles = makeStyles(toggleFormStyle);
 const ToggleFormThree = props => {
   const classes = useStyles();
 
-  const { onToggleChange } = props;
+  const { state, dispatch } = props;
 
   const componentArr = [
     <FinancialCreditIssuesQualifiers
-      onToggleChange={onToggleChange}
+    dispatch={dispatch} state={state}
     />,
     <MiscellaneousQualifiers
-      onToggleChange={onToggleChange}
+    dispatch={dispatch} state={state}
     />
   ];
 

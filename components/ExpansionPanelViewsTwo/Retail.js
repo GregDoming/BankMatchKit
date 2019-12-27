@@ -7,7 +7,6 @@ import CardHeader from "components/Card/CardHeader.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import { FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -18,8 +17,7 @@ const Retail = props => {
   const toggleNameArr = ["Restaurant", "Shopping Mall/Strip Mall"];
   const toggleArrOne = ["retailMall", "retailRestaurant"];
 
-  const { onToggleChange } = props;
-  const state = useContext(FormStateContext);
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.outerContainer}>
@@ -36,7 +34,8 @@ const Retail = props => {
                     <div key={"retail" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -49,7 +48,8 @@ const Retail = props => {
                 <div key={"retail2"} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>Single Tenant Retail</label>
                   <ThreeToggleSwitch
-                    onToggleChange={onToggleChange}
+                    dispatch={dispatch}
+                    state={state}
                     values={valuesArr}
                     id={"retailSingleTenant"}
                     selected={state["retailSingleTenant"]}

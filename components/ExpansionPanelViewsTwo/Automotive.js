@@ -7,7 +7,6 @@ import CardHeader from "components/Card/CardHeader.js";
 
 import toggleFormStyle from "assets/jss/nextjs-material-kit-pro/components/toggleFormStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
-import { FormStateContext } from "pages/authpagination.js";
 
 const useStyles = makeStyles(toggleFormStyle);
 
@@ -15,25 +14,12 @@ const MultiUnitLiving = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
-    "Body Shop",
-    "Car Wash"
-  ];
-  const toggleNameArrTwo = [
-    "Dealership",
-    "Gas Station"
-  ];
-  const toggleArrOne = [
-    "automotiveBodyShop",
-    "automotiveCarWash"
-  ];
-  const toggleArrTwo = [
-    "automotiveDealerShip",
-    "automotiveGasStation"
-  ];
+  const toggleNameArr = ["Body Shop", "Car Wash"];
+  const toggleNameArrTwo = ["Dealership", "Gas Station"];
+  const toggleArrOne = ["automotiveBodyShop", "automotiveCarWash"];
+  const toggleArrTwo = ["automotiveDealerShip", "automotiveGasStation"];
 
-  const { onToggleChange } = props;
-  const state = useContext(FormStateContext);
+  const { state, dispatch } = props;
 
   return (
     <div className={classes.outerContainer}>
@@ -50,7 +36,8 @@ const MultiUnitLiving = props => {
                     <div key={"automotive" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}
@@ -65,7 +52,8 @@ const MultiUnitLiving = props => {
                     <div key={"automotive2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
-                        onToggleChange={onToggleChange}
+                        dispatch={dispatch}
+                        state={state}
                         values={valuesArr}
                         id={toggleName}
                         selected={state[toggleName]}

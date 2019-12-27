@@ -25,26 +25,31 @@ router.post("/api/auth/signin", authController.signin);
 router.get("/api/auth/signout", authController.signout);
 
 /**
+ * ADMIN ROUTES: /api/admin
+ */
+router.get("/api/admin/id/:id", userController.adminsGetUserById)
+/**
  * USER ROUTES: /api/users
  */
 router.param("userId", userController.getUserById);
 
-router.post("/api/users/updateUserData", userController.updateUser)
+router.post("/api/users/updateUserData", userController.updateUser);
+router.post("/api/users/updateAdminUserData", userController.updateAdminUser);
 router.put(
   "/api/users/follow",
   authController.checkAuth,
   catchErrors(userController.addFollowing),
   catchErrors(userController.addFollower)
-);
-router.put(
-  "/api/users/unfollow",
-  authController.checkAuth,
-  catchErrors(userController.deleteFollowing),
-  catchErrors(userController.deleteFollower)
-);
-
-router.get("/api/auth/CSV", userController.downloadCSV)
-router.post("/api/auth/lenderQuery", userController.getLenderQuery)
+  );
+  router.put(
+    "/api/users/unfollow",
+    authController.checkAuth,
+    catchErrors(userController.deleteFollowing),
+    catchErrors(userController.deleteFollower)
+    );
+    
+    router.get("/api/auth/CSV", userController.downloadCSV)
+    router.post("/api/auth/lenderQuery", userController.getLenderQuery)
 
 
 router
