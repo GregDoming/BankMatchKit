@@ -50,6 +50,10 @@ const profilePageStyle = {
   mainRaised: {
     ...mainRaised
   },
+  columnContainer: {
+    display: "flex",
+    flexFlow: "column"
+  },
   title: {
     ...title,
     position: "relative",

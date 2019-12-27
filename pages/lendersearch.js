@@ -20,10 +20,8 @@ import SearchTable from "components/SearchTable/SearchTable.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
 
-import { getQueryResults } from "lib/api";
+import { getQueryResults, getAllUsersQuery } from "lib/api";
 import { adminUser } from "lib/auth";
-
-
 
 const useStyles = makeStyles(lenderSearchStyle);
 
@@ -84,14 +82,26 @@ const LenderSearch = () => {
     queryFieldsObj[keyNumber] = value.value;
   };
 
-  const formatCheckArr = (arr) => {
+  const formatCheckArr = arr => {
     const formattedArr = [];
 
     arr.forEach((ele, index) => {
-      formattedArr.push(index)
+      formattedArr.push(index);
     });
 
     return formattedArr;
+  };
+
+  const resetSearch = (event, bool) => {
+    event.preventDefault();
+    setSearchCompleted(false);
+  };
+
+  const handleClickAll = async () => {
+    const queryResults = await getAllUsersQuery();
+    setCheckArr(formatCheckArr(queryResults.data));
+    setQueryArr(queryResults.data);
+    setSearchCompleted(true);
   };
 
   const handleSearch = async () => {
@@ -115,6 +125,16 @@ const LenderSearch = () => {
   return searchCompleted ? (
     <div className={classNames(classes.main)}>
       <div className={classes.container}>
+        <Button
+          type="button"
+          color="success"
+          className={classes.highButton}
+          style={{ minHeight: "60px", fontSize: "20px" }}
+          onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
+        >
+          <SearchIcon style={{ color: "#FFFFFF" }} />
+          Reset Search
+        </Button>
         <GridContainer>
           <GridItem xs={12} sm={10} md={10}>
             <Card className={classes.cardCompanyResult}>
@@ -144,6 +164,16 @@ const LenderSearch = () => {
                 >
                   <SearchIcon style={{ color: "#FFFFFF" }} />
                   Search
+                </Button>
+                <Button
+                  type="button"
+                  color="success"
+                  className={classes.highButton}
+                  style={{ minHeight: "60px", fontSize: "20px" }}
+                  onClick={handleClickAll}
+                >
+                  <SearchIcon style={{ color: "#FFFFFF" }} />
+                  Search All
                 </Button>
               </div>
               <ul>
@@ -182,6 +212,6 @@ const LenderSearch = () => {
   );
 };
 
-LenderSearch.getInitialProps = adminUser
+LenderSearch.getInitialProps = adminUser;
 
 export default LenderSearch;

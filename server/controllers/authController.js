@@ -78,10 +78,16 @@ exports.checkAuth = (req, res, next) => {
   }
 };
 
-exports.authBool = (req, res, next) => {
-  if (req.isAuthenticated()) {
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    // roles ['admin', 'user']
     
+
+    if(!roles.includes(req.user.roles)) {
+      return res.status(403)
+    }
+    console.log("here how")
+    next();
   }
-  
 }
 

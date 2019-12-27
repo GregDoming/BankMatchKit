@@ -28,13 +28,15 @@ router.get("/api/auth/signout", authController.signout);
  * ADMIN ROUTES: /api/admin
  */
 router.get("/api/admin/id/:id", userController.adminsGetUserById)
+router.get("/api/auth/allLenderQuery", authController.restrictTo("admin"), userController.getAllLenderQuery)
+
 /**
  * USER ROUTES: /api/users
  */
 router.param("userId", userController.getUserById);
 
 router.post("/api/users/updateUserData", userController.updateUser);
-router.post("/api/users/updateAdminUserData", userController.updateAdminUser);
+router.post("/api/users/updateAdminUserData", authController.restrictTo("admin"), userController.updateAdminUser);
 router.put(
   "/api/users/follow",
   authController.checkAuth,
@@ -49,7 +51,7 @@ router.put(
     );
     
     router.get("/api/auth/CSV", userController.downloadCSV)
-    router.post("/api/auth/lenderQuery", userController.getLenderQuery)
+    router.post("/api/auth/lenderQuery", authController.restrictTo("admin"), userController.getLenderQuery)
 
 
 router

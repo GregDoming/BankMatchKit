@@ -57,6 +57,23 @@ exports.getLenderQuery = async (req, res) => {
   }
 };
 
+exports.getAllLenderQuery = async (req, res) => {
+  try {
+    const userArr = [];
+    const user = await User.find()
+
+    user.forEach(foundUser => {
+      userArr.push([foundUser["userProfile"], { email: foundUser["email"], id: foundUser["_id"] }]);
+    });
+
+    console.log(userArr)
+
+    res.status(200).send(userArr);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.getAuthUser = (req, res) => {
   if (!req.isAuthUser) {
     res.status(403).json({

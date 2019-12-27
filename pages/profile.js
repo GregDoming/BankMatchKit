@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import axios from "axios";
+import Link from "next/link";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -28,6 +29,7 @@ import Parallax from "components/Parallax/Parallax.js";
 import Clearfix from "components/Clearfix/Clearfix.js";
 import Button from "components/CustomButtons/Button.js";
 
+
 import christian from "assets/img/faces/christian.jpg";
 import oluEletu from "assets/img/examples/olu-eletu.jpg";
 import clemOnojeghuo from "assets/img/examples/clem-onojeghuo.jpg";
@@ -40,31 +42,29 @@ import marc from "assets/img/faces/marc.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
 
-import { isUserAuthenticated, downloadCSV } from 'lib/auth'
+import { isUserAuthenticated, downloadCSV } from "lib/auth";
 
 import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
 const useStyles = makeStyles(profilePageStyle);
 
-const Profile = ({ ...rest}) => {
+const Profile = props => {
   const [username, setUsername] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  //When using the useEffect hook you have to write the helper functions 
+  //When using the useEffect hook you have to write the helper functions
   //inside of the react hook. Also useEffect CAN NOT be an asynchronous function
-  
-  const classes = useStyles();
-  const imageClasses = classNames(
-    classes.imgRaised,
-    classes.imgRoundedCircle,
-    classes.imgFluid
-  );
 
-  const onClickCSV = async (event) => {
+  const classes = useStyles();
+  const imageClasses = classNames(classes.imgRaised, classes.imgRoundedCircle, classes.imgFluid);
+
+  const { roles } = props.auth.user;
+
+  const onClickCSV = async event => {
     event.preventDefault();
-    setLoading({loading: true});
+    setLoading({ loading: true });
     await downloadCSV();
-    setLoading({loading: false});
-  }
+    setLoading({ loading: false });
+  };
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
@@ -85,32 +85,25 @@ const Profile = ({ ...rest}) => {
                 <div className={classes.name}>
                   <h3 className={classes.title}>{username}</h3>
                   {/* <a href="#" onClick={event => onClickCSV(event)}>Download</a> */}
-                  <Button
-                  onClick={event => onClickCSV(event)}
-                  >Download CSV</Button>
+                  {roles === "admin" ? (
+                    <div className={classes.columnContainer} >
+                      <Link href="/lendersearch">
+                        <Button>
+                          <a>Admin Area</a>
+                        </Button>
+                      </Link>
+                      <Button onClick={event => onClickCSV(event)}>Download CSV</Button>
+                    </div>
+                  ) : null}
+
                   <h6>DESIGNER</h6>
-                  <Button
-                    justIcon
-                    simple
-                    color="dribbble"
-                    className={classes.margin5}
-                  >
+                  <Button justIcon simple color="dribbble" className={classes.margin5}>
                     <i className={classes.socials + " fab fa-dribbble"} />
                   </Button>
-                  <Button
-                    justIcon
-                    simple
-                    color="twitter"
-                    className={classes.margin5}
-                  >
+                  <Button justIcon simple color="twitter" className={classes.margin5}>
                     <i className={classes.socials + " fab fa-twitter"} />
                   </Button>
-                  <Button
-                    justIcon
-                    simple
-                    color="pinterest"
-                    className={classes.margin5}
-                  >
+                  <Button justIcon simple color="pinterest" className={classes.margin5}>
                     <i className={classes.socials + " fab fa-pinterest"} />
                   </Button>
                 </div>
@@ -122,12 +115,7 @@ const Profile = ({ ...rest}) => {
                   placement="top"
                   classes={{ tooltip: classes.tooltip }}
                 >
-                  <Button
-                    justIcon
-                    round
-                    color="primary"
-                    className={classes.followButton}
-                  >
+                  <Button justIcon round color="primary" className={classes.followButton}>
                     <Add className={classes.followIcon} />
                   </Button>
                 </Tooltip>
@@ -136,10 +124,9 @@ const Profile = ({ ...rest}) => {
           </GridContainer>
           <div className={classNames(classes.description, classes.textCenter)}>
             <p>
-              An artist of considerable range, Chet Faker — the name taken by
-              Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-              and records all of his own music, giving it a warm, intimate feel
-              with a solid groove structure.{" "}
+              An artist of considerable range, Chet Faker — the name taken by Melbourne-raised,
+              Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving
+              it a warm, intimate feel with a solid groove structure.{" "}
             </p>
           </div>
           <div className={classes.profileTabs}>
@@ -152,12 +139,7 @@ const Profile = ({ ...rest}) => {
                   tabIcon: Palette,
                   tabContent: (
                     <GridContainer>
-                      <GridItem
-                        xs={12}
-                        sm={12}
-                        md={7}
-                        className={classes.gridItem}
-                      >
+                      <GridItem xs={12} sm={12} md={7} className={classes.gridItem}>
                         <h4 className={classes.title}>Latest Collections</h4>
                         <GridContainer className={classes.collections}>
                           <GridItem xs={12} sm={12} md={6}>
@@ -168,16 +150,11 @@ const Profile = ({ ...rest}) => {
                               }}
                             >
                               <CardBody background className={classes.cardBody}>
-                                <Badge
-                                  color="warning"
-                                  className={classes.badge}
-                                  >
+                                <Badge color="warning" className={classes.badge}>
                                   Spring 2016
                                 </Badge>
                                 <a href="#pablo">
-                                  <h2 className={classes.cardTitleWhite}>
-                                    Stilleto
-                                  </h2>
+                                  <h2 className={classes.cardTitleWhite}>Stilleto</h2>
                                 </a>
                               </CardBody>
                             </Card>
@@ -188,16 +165,15 @@ const Profile = ({ ...rest}) => {
                               style={{
                                 backgroundImage: "url(" + clemOnojeghuo + ")"
                               }}
-                              >
+                            >
                               <CardBody background className={classes.cardBody}>
                                 <Badge color="info" className={classes.badge}>
                                   Spring 2016
                                 </Badge>
                                 <a href="#pablo">
-                                  <h2 className={classes.cardTitleWhite}>
-                                    High Heels
-                                  </h2>
-                                </a>                              </CardBody>
+                                  <h2 className={classes.cardTitleWhite}>High Heels</h2>
+                                </a>{" "}
+                              </CardBody>
                             </Card>
                           </GridItem>
                           <GridItem xs={12} sm={12} md={6}>
@@ -212,9 +188,7 @@ const Profile = ({ ...rest}) => {
                                   Summer 2016
                                 </Badge>
                                 <a href="#pablo">
-                                  <h2 className={classes.cardTitleWhite}>
-                                    Flats
-                                  </h2>
+                                  <h2 className={classes.cardTitleWhite}>Flats</h2>
                                 </a>
                               </CardBody>
                             </Card>
@@ -227,28 +201,18 @@ const Profile = ({ ...rest}) => {
                               }}
                             >
                               <CardBody background className={classes.cardBody}>
-                                <Badge
-                                  color="success"
-                                  className={classes.badge}
-                                >
+                                <Badge color="success" className={classes.badge}>
                                   Winter 2016
                                 </Badge>
                                 <a href="#pablo">
-                                  <h2 className={classes.cardTitleWhite}>
-                                    Men{"'"}s Sneakers
-                                  </h2>
+                                  <h2 className={classes.cardTitleWhite}>Men{"'"}s Sneakers</h2>
                                 </a>
                               </CardBody>
                             </Card>
                           </GridItem>
                         </GridContainer>
                       </GridItem>
-                      <GridItem
-                        xs={12}
-                        sm={12}
-                        md={2}
-                        className={classes.gridItem}
-                      >
+                      <GridItem xs={12} sm={12} md={2} className={classes.gridItem}>
                         <h4 className={classes.title}>Stats</h4>
                         <ul className={classes.listUnstyled}>
                           <li>
@@ -267,9 +231,8 @@ const Profile = ({ ...rest}) => {
                         <hr />
                         <h4 className={classes.title}>About this work</h4>
                         <p className={classes.description}>
-                          French luxury footwear and fashion. The footwear has
-                          incorporated shiny, red-lacquered soles that have
-                          become his signature.
+                          French luxury footwear and fashion. The footwear has incorporated shiny,
+                          red-lacquered soles that have become his signature.
                         </p>
                         <hr />
                         <h4 className={classes.title}>Focus</h4>
@@ -285,12 +248,7 @@ const Profile = ({ ...rest}) => {
                   tabContent: (
                     <div>
                       <GridContainer justify="center">
-                        <GridItem
-                          xs={12}
-                          sm={12}
-                          md={5}
-                          className={classes.gridItem}
-                        >
+                        <GridItem xs={12} sm={12} md={5} className={classes.gridItem}>
                           <Card profile plain className={classes.card}>
                             <GridContainer>
                               <GridItem xs={12} sm={12} md={5}>
@@ -309,28 +267,20 @@ const Profile = ({ ...rest}) => {
                               </GridItem>
                               <GridItem xs={12} sm={12} md={7}>
                                 <CardBody plain>
-                                  <h4 className={classes.cardTitle}>
-                                    Gigi Hadid
-                                  </h4>
+                                  <h4 className={classes.cardTitle}>Gigi Hadid</h4>
                                   <Muted>
                                     <h6>MODEL</h6>
                                   </Muted>
                                   <p className={classes.description}>
-                                    Don{"'"}t be scared of the truth because we
-                                    need to restart the human foundation in
-                                    truth...
+                                    Don{"'"}t be scared of the truth because we need to restart the
+                                    human foundation in truth...
                                   </p>
                                 </CardBody>
                               </GridItem>
                             </GridContainer>
                           </Card>
                         </GridItem>
-                        <GridItem
-                          xs={12}
-                          sm={12}
-                          md={5}
-                          className={classes.gridItem}
-                        >
+                        <GridItem xs={12} sm={12} md={5} className={classes.gridItem}>
                           <Card profile plain className={classes.card}>
                             <GridContainer>
                               <GridItem xs={12} sm={12} md={5}>
@@ -349,16 +299,13 @@ const Profile = ({ ...rest}) => {
                               </GridItem>
                               <GridItem xs={12} sm={12} md={7}>
                                 <CardBody plain>
-                                  <h4 className={classes.cardTitle}>
-                                    Marc Jacobs
-                                  </h4>
+                                  <h4 className={classes.cardTitle}>Marc Jacobs</h4>
                                   <Muted>
                                     <h6>DESIGNER</h6>
                                   </Muted>
                                   <p className={classes.description}>
-                                    Don{"'"}t be scared of the truth because we
-                                    need to restart the human foundation in
-                                    truth...
+                                    Don{"'"}t be scared of the truth because we need to restart the
+                                    human foundation in truth...
                                   </p>
                                 </CardBody>
                               </GridItem>
@@ -367,12 +314,7 @@ const Profile = ({ ...rest}) => {
                         </GridItem>
                       </GridContainer>
                       <GridContainer justify="center">
-                        <GridItem
-                          xs={12}
-                          sm={12}
-                          md={5}
-                          className={classes.gridItem}
-                        >
+                        <GridItem xs={12} sm={12} md={5} className={classes.gridItem}>
                           <Card profile plain className={classes.card}>
                             <GridContainer>
                               <GridItem xs={12} sm={12} md={5}>
@@ -391,9 +333,7 @@ const Profile = ({ ...rest}) => {
                               </GridItem>
                               <GridItem xs={12} sm={12} md={7}>
                                 <CardBody plain>
-                                  <h4 className={classes.cardTitle}>
-                                    Kendall Jenner
-                                  </h4>
+                                  <h4 className={classes.cardTitle}>Kendall Jenner</h4>
                                   <Muted>
                                     <h6>MODEL</h6>
                                   </Muted>
@@ -406,12 +346,7 @@ const Profile = ({ ...rest}) => {
                             </GridContainer>
                           </Card>
                         </GridItem>
-                        <GridItem
-                          xs={12}
-                          sm={12}
-                          md={5}
-                          className={classes.gridItem}
-                        >
+                        <GridItem xs={12} sm={12} md={5} className={classes.gridItem}>
                           <Card profile plain className={classes.card}>
                             <GridContainer>
                               <GridItem xs={12} sm={12} md={5}>
@@ -422,8 +357,7 @@ const Profile = ({ ...rest}) => {
                                   <div
                                     className={classes.coloredShadow}
                                     style={{
-                                      backgroundImage:
-                                        "url(" + cardProfile2Square + ")",
+                                      backgroundImage: "url(" + cardProfile2Square + ")",
                                       opacity: "1"
                                     }}
                                   />
@@ -431,9 +365,7 @@ const Profile = ({ ...rest}) => {
                               </GridItem>
                               <GridItem xs={12} sm={12} md={7}>
                                 <CardBody plain>
-                                  <h4 className={classes.cardTitle}>
-                                    George West
-                                  </h4>
+                                  <h4 className={classes.cardTitle}>George West</h4>
                                   <Muted>
                                     <h6>MODEL/DJ</h6>
                                   </Muted>
@@ -455,33 +387,13 @@ const Profile = ({ ...rest}) => {
                   tabContent: (
                     <GridContainer justify="center">
                       <GridItem xs={12} sm={12} md={3}>
-                        <img
-                          alt="..."
-                          src={mariyaGeorgieva}
-                          className={navImageClasses}
-                        />
-                        <img
-                          alt="..."
-                          src={clemOnojegaw}
-                          className={navImageClasses}
-                        />
+                        <img alt="..." src={mariyaGeorgieva} className={navImageClasses} />
+                        <img alt="..." src={clemOnojegaw} className={navImageClasses} />
                       </GridItem>
                       <GridItem xs={12} sm={12} md={3}>
-                        <img
-                          alt="..."
-                          src={clemOnojeghuo}
-                          className={navImageClasses}
-                        />
-                        <img
-                          alt="..."
-                          src={oluEletu}
-                          className={navImageClasses}
-                        />
-                        <img
-                          alt="..."
-                          src={cynthiaDelRio}
-                          className={navImageClasses}
-                        />
+                        <img alt="..." src={clemOnojeghuo} className={navImageClasses} />
+                        <img alt="..." src={oluEletu} className={navImageClasses} />
+                        <img alt="..." src={cynthiaDelRio} className={navImageClasses} />
                       </GridItem>
                     </GridContainer>
                   )
@@ -535,12 +447,9 @@ const Profile = ({ ...rest}) => {
               </List>
             </div>
             <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=njsmkp-profile"
-                target="_blank"
-              >
+              &copy; {1900 + new Date().getYear()} , made with <Favorite className={classes.icon} />{" "}
+              by{" "}
+              <a href="https://www.creative-tim.com?ref=njsmkp-profile" target="_blank">
                 Creative Tim
               </a>{" "}
               for a better web.
@@ -555,4 +464,3 @@ const Profile = ({ ...rest}) => {
 Profile.getInitialProps = isUserAuthenticated;
 
 export default Profile;
-

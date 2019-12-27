@@ -6,8 +6,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Link from "next/link";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
 import Header from "components/Header/Header.js";
 // import Button from "components/CustomButtons/Button.js";
 import Button from "@material-ui/core/Button";
@@ -33,7 +31,7 @@ const Navbar = props => {
 
   const classes = useStyles();
   const user = checkUser(props);
-
+  
   return (
     <Header
       brand="Bank Match"
@@ -46,19 +44,6 @@ const Navbar = props => {
       links={
         user._id ? (
           <List className={classes.list + " " + classes.mlAuto}>
-             <ListItem className={classes.listItem}>
-              <Link href="/lendersearch">
-                <Button
-                  className={classes.navLink}
-                  variant="outlined"
-                  style={{ fontSize: "18px", fontWeight: "100", padding: "24px" }}
-                >
-                  <a style={{ color: "rgba(233, 241, 228, 1)" }} className={classes.inActiveLink}>
-                    Admin
-                  </a>
-                </Button>
-              </Link>
-            </ListItem>
             <ListItem className={classes.listItem}>
               <Link href="/profile">
                 <Button
