@@ -97,10 +97,10 @@ function getStepContent(step) {
       return "Step 1";
     case 1:
       return "Step 2: ";
-    // case 2:
-    //   return "Step 3: ";
-    // case 3:
-    //   return "Step 4: ";
+    case 2:
+      return "Step 3: ";
+    case 3:
+      return "Step 4: ";
     default:
       return "Unknown step";
   }
@@ -120,11 +120,6 @@ const AuthPagination = props => {
   const totalSteps = () => {
     return steps.length;
   };
-
-  // const onToggleChange = (event, val) => {
-  //   event.preventDefault();
-  //   dispatch({ type: "toggle" });
-  // };
 
   const handleInput = (event, val) => {
     dispatch({ type: "handleFormInput" });
@@ -222,10 +217,10 @@ const AuthPagination = props => {
           dispatch={dispatch} state={state}
           />
         );
-      // case 2:
-      //   return <ViewThree dispatch={dispatch} state={state} />;
-      // case 3:
-      //   return <ViewFour odispatch={dispatch} state={state} />;
+      case 2:
+        return <ViewThree dispatch={dispatch} state={state} />;
+      case 3:
+        return <ViewFour odispatch={dispatch} state={state} />;
       default:
         return "Unknown step";
     }

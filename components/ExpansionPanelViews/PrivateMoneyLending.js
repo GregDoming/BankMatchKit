@@ -27,9 +27,6 @@ const PrivateMoneyLending = props => {
 
   const { dispatch, state } = props;
 
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
-
   return (
     <div className={classes.outerContainer}>
       <div className={classes.customFlex}>

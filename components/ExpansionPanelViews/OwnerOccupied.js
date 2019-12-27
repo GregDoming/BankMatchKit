@@ -25,11 +25,7 @@ const OwnerOccupied = props => {
   ];
   const toggleArrTwo = ["revolvingBusinessLOC1stPosition", "revolvingBusinessLOC2stPosition"];
 
-  const handleFocus = event => {};
-
   const { dispatch, state } = props;
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
