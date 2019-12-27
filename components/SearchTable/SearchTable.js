@@ -27,50 +27,10 @@ const SearchTable = props => {
   const [checked, setChecked] = React.useState(checkArr);
   const [userIdArr, setUserIdArr] = React.useState([]);
 
-  // const closure = obj => {
-  //   const what = {};
-  //   const convertState = obj => {
-  //     for (let key in obj) {
-  //       if (obj.hasOwnProperty(key)) {
-  //         if (typeof obj[key] === "object") convertState(obj[key]);
-  //         if (typeof obj[key] === "string" || typeof obj[key] === "number" || typeof obj[key] === "boolean") what[key] = obj[key];
-  //       }
-  //     }
-  //   };
-  //   convertState(obj);
-  //   return what;
-  // };
-
-  // export const isUserAuthenticated = async ctx => {
-  //   const { req, res } = ctx;
-  //   const currentPath = req ? req.url : window.location.pathname;
-  //   const { bankMatchCookie } = nextCookie(ctx);
-
-  //   if (req) {
-  //     const response = await axios.get(`/api/users/${bankMatchCookie}`);
-  //     if (!req.user && currentPath !== "/signin") redirectUser(res, "/signin");
-  //     if (req.user) {
-  //       const auth = { user: req.user };
-  //       const flatState = closure(response.data);
-  //       return { auth, flatState };
-  //     }
-
-  //     return { response };
-  //   }
-
-  //   const response = await axios.get(`/api/users/${bankMatchCookie}`);
-  //   const auth = { user: response.data };
-  //   const flatState = closure(response.data);
-
-  //   return { auth, flatState };
-  // };
-
   const handleEditProfileClick = async event => {
     event.preventDefault();
     try {
       const id = event.currentTarget.id
-      // await adminGetUserById(id);
-      // console.log(id)
       Router.push({
         pathname: "/adminpagination",
         query: { id: id }

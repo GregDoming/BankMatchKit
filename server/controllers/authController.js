@@ -86,7 +86,6 @@ exports.restrictTo = (...roles) => {
     if(!roles.includes(req.user.roles)) {
       return res.status(403)
     }
-    console.log("here how")
     next();
   }
 }

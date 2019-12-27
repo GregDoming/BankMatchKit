@@ -47,10 +47,9 @@ const MultiInputForm = props => {
     companyStreetAddress: "",
     zip: "",
     personalNotes: "",
-    city: ""
+    city: "",
+    personalNotes: ""
   });
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
 
   const { state, dispatch } = props;
 

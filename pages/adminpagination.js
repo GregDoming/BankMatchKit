@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
 
@@ -83,9 +83,6 @@ const toggleReducer = (draft, action) => {
   }
   return;
 };
-
-const FormDispatchContext = React.createContext();
-const FormStateContext = React.createContext();
 
 function getSteps() {
   return ["Step 1", "Step 2", "Step 3", "Step 4"];
@@ -198,76 +195,70 @@ const AdminPagination = props => {
   };
 
   return (
-    <FormStateContext.Provider value={state}>
-      <FormDispatchContext.Provider value={dispatch}>
-        <div className={classes.root}>
-          <Helmet>
-            <style>{"body { background-color: #96aadf; }"}</style>
-          </Helmet>
-          {renderView(activeStep)}
-          <Box
-            className={classes.bottomStepper}
-            style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
-          >
-            <MobileStepper
-              variant="dots"
-              steps={6}
-              position="bottom"
-              activeStep={activeStep}
-              className={classes.root}
-              style={{
-                backgroundColor: "transparent",
-                width: "60%",
-                textAlign: "center",
-                margin: "auto"
-              }}
-              nextButton={
-                <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
-                  Next
-                  {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                </Button>
+    <div className={classes.root}>
+      <Helmet>
+        <style>{"body { background-color: #96aadf; }"}</style>
+      </Helmet>
+      {renderView(activeStep)}
+      <Box
+        className={classes.bottomStepper}
+        style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
+      >
+        <MobileStepper
+          variant="dots"
+          steps={6}
+          position="bottom"
+          activeStep={activeStep}
+          className={classes.root}
+          style={{
+            backgroundColor: "transparent",
+            width: "60%",
+            textAlign: "center",
+            margin: "auto"
+          }}
+          nextButton={
+            <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+              Next
+              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </Button>
+          }
+          backButton={
+            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              Back
+            </Button>
+          }
+        />
+        {/* Error Snackbar */}
+        {minMaxErrorMessage && (
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center"
+            }}
+            ContentProps={{
+              classes: {
+                root: classes.snackbar
               }
-              backButton={
-                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                  {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                  Back
-                </Button>
-              }
-            />
-            {/* Error Snackbar */}
-            {minMaxErrorMessage && (
-              <Snackbar
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center"
-                }}
-                ContentProps={{
-                  classes: {
-                    root: classes.snackbar
-                  }
-                }}
-                TransitionComponent={Transition}
-                open={openError}
-                onClose={handleClose}
-                autoHideDuration={6000}
-                variant="error"
-                message={
-                  <span>
-                    <Icon className={clsx(classes.icon, classes.iconVariant)} />
-                    {minMaxErrorMessage}
-                  </span>
-                }
-              />
-            )}
-          </Box>
-        </div>
-      </FormDispatchContext.Provider>
-    </FormStateContext.Provider>
+            }}
+            TransitionComponent={Transition}
+            open={openError}
+            onClose={handleClose}
+            autoHideDuration={6000}
+            variant="error"
+            message={
+              <span>
+                <Icon className={clsx(classes.icon, classes.iconVariant)} />
+                {minMaxErrorMessage}
+              </span>
+            }
+          />
+        )}
+      </Box>
+    </div>
   );
 };
 
 AdminPagination.getInitialProps = adminUserAuthenticated;
 
 export default AdminPagination;
-
-export { AdminPagination, FormDispatchContext, FormStateContext };

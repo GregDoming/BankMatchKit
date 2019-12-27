@@ -27,8 +27,8 @@ const customLoanArr = [
   "Interest Only"
 ];
 const toggleLoanArr = [
-  "privateMoneyAdjustableRateAmortized",
   "privateMoneyFixedRateAmortized",
+  "privateMoneyAdjustableRateAmortized",
   "privateMoneyinterestOnly"
 ];
 const defaultLoanArr = [
@@ -71,7 +71,7 @@ const LoanParametersPrivateMoneyLending = props => {
                   return (
                     <div key={"LoanParam2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {customLoanArr}
+                        {customLoanArr[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
