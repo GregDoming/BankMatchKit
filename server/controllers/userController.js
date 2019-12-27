@@ -16,13 +16,11 @@ exports.adminsGetUserById = async (req, res) => {
   try {
     //Check to see if it is the correct time to load the page
     if (mongoose.Types.ObjectId.isValid(req.params.id)) {
-      console.log(req.params.id)
       const editUser = await User.findById(req.params.id );
       res.status(200).json(editUser)
     } else {
       console.log("Invalid Id")
     }
-    // console.log(editUser)
   } catch (err) {
     console.log(err);
   }
@@ -180,7 +178,6 @@ exports.updateUser = async (req, res) => {
 exports.updateAdminUser = async (req, res) => {
   try {
     req.body.updatedAt = new Date().toISOString();
-    console.log(req.body.formInfo)
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.body.formInfo._id },
       { $set: req.body.formInfo },

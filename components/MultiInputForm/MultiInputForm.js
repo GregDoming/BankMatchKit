@@ -46,7 +46,6 @@ const MultiInputForm = props => {
     fax: "(  )    -    ",
     companyStreetAddress: "",
     zip: "",
-    personalNotes: "",
     city: "",
     personalNotes: ""
   });
@@ -245,7 +244,7 @@ const MultiInputForm = props => {
                       inputProps={{
                         type: "text",
                         label: "With normal TextField",
-                        value: state.companyPhoneNumber,
+                        value: state.fax,
                         onChange: () => dispatch({ type: "handleNumberInput" }),
                         id: "fax"
                       }}
@@ -319,6 +318,11 @@ const MultiInputForm = props => {
                       className={classes.textField}
                       margin="normal"
                       variant="outlined"
+                      inputProps={{
+                        value: state.personalNotes,
+                        onChange: () => dispatch({ type: "handleFormInput" }),
+                        id: "personalNotes"
+                      }}
                     />
                   </GridItem>
                 </GridContainer>
