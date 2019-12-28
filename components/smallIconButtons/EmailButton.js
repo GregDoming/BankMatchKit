@@ -7,20 +7,24 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
+
+import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Close from "@material-ui/icons/Close";
+// @material-ui/icon
 import Assignment from "@material-ui/icons/Assignment";
 import Mail from "@material-ui/icons/Mail";
 import Face from "@material-ui/icons/Face";
 // core components
-import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import Button from "components/CustomButtons/Button.js";
+import Tooltip from "@material-ui/core/Tooltip";
+import Close from "@material-ui/icons/Close";
+import Email from "@material-ui/icons/Email";
 
-import style from "assets/jss/nextjs-material-kit-pro/components/emailModalStyle.js";
+import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -28,32 +32,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const useStyles = makeStyles(style);
 
-const EmailModal = props => {
+
+const EmailButton = props => {
+  const { index, id, handleXClick } = props;
   const [emailModal, setEmailModal] = React.useState(false);
+
   const classes = useStyles();
 
-  const { queryArr } = props;
-
-  const getEmailList = arr => {
-    const emailArr = [];
-
-    arr.forEach((user) => {
-      emailArr.push(user[1].email);
-    })
-    return emailArr.join(' ')
-  }
-
   return (
-    <div>
+    <>
       <Button
-        type="button"
-        color="success"
-        className={classes.highButton}
-        style={{ minHeight: "60px", fontSize: "20px" }}
-        round
+        id={id}
+        simple
+        index={index}
+        justIcon
+        size="sm"
+        color="info"
+        key={"EmailTop" + index}
         onClick={() => setEmailModal(true)}
       >
-        Compose Email <Assignment />
+        <Email />
       </Button>
       <Dialog
         classes={{
@@ -100,8 +98,7 @@ const EmailModal = props => {
                     fullWidth: true
                   }}
                   inputProps={{
-                    placeholder: "To",
-                    value: getEmailList(queryArr)
+                    placeholder: "To"
                   }}
                 />
                 <CustomInput
@@ -131,8 +128,8 @@ const EmailModal = props => {
           </DialogActions>
         </Card>
       </Dialog>
-    </div>
+      </>
   );
 };
 
-export default EmailModal;
+export default EmailButton;

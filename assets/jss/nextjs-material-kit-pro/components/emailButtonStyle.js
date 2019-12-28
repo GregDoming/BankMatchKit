@@ -16,7 +16,7 @@ import tooltipsStyle from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
 import popoverStyles from "assets/jss/nextjs-material-kit-pro/popoverStyles.js";
 import customCheckboxRadioSwitch from "assets/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js";
 
-const emailModalStyle = theme => ({
+const emailButtonStyle = theme => ({
   container,
   description,
   cardTitle,
@@ -130,4 +130,4 @@ const emailModalStyle = theme => ({
   }
 });
 
-export default emailModalStyle;
+export default emailButtonStyle;

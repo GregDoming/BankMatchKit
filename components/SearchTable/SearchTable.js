@@ -6,12 +6,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 // material-ui icons
 import Check from "@material-ui/icons/Check";
-import Person from "@material-ui/icons/Person";
-import Edit from "@material-ui/icons/Edit";
-import Close from "@material-ui/icons/Close";
 // core components
 import Table from "components/Table/Table.js";
+import DeleteButton from "components/smallIconButtons/DeleteButton.js";
 import EditProfileButton from "components/smallIconButtons/EditProfileButton.js";
+import EmailButton from "components/smallIconButtons/EmailButton.js";
 
 
 import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
@@ -19,7 +18,7 @@ import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/c
 const useStyles = makeStyles(style);
 
 const SearchTable = props => {
-  const { queryArr, checkArr } = props;
+  const { queryArr, checkArr, handleXClick } = props;
   const [checked, setChecked] = React.useState(checkArr);
   const [userIdArr, setUserIdArr] = React.useState([]);
 
@@ -34,11 +33,6 @@ const SearchTable = props => {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleXClick = event => {
-    event.preventDefault();
-    console.log(event.currentTarget.index);
   };
 
   const handleToggle = value => {
@@ -63,11 +57,31 @@ const SearchTable = props => {
       const id = user[1].id;
       const tempArr = [];
       const simpleButtons = [
-        <EditProfileButton index={index} id={id} handleEditProfileClick={handleEditProfileClick} />
+        <>
+          <EditProfileButton
+            key={"EditProfileButton" + index}
+            index={index}
+            id={id}
+            handleEditProfileClick={handleEditProfileClick}
+          />
+          <DeleteButton
+            key={"DeleteProfileButton" + index}
+            index={index}
+            id={id}
+            handleXClick={handleXClick}
+          />
+          <EmailButton
+            key={"EmailButton" + index}
+            index={index}
+            id={id}
+            handleXClick={handleXClick}
+          />
+        </>
       ];
 
       tempArr.push(
         <Checkbox
+          key={"checkbox" + index}
           checked={checked.indexOf(index) !== -1}
           tabIndex={-1}
           onClick={() => handleToggle(index)}

@@ -10,6 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
+import Assignment from "@material-ui/icons/Assignment";
 
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -85,7 +86,11 @@ const LenderSearch = () => {
 
   const handleXClick = event => {
     event.preventDefault();
-  }
+
+    const arrCopy = [...queryArr];
+    arrCopy.splice(event.currentTarget.index, 1);
+    setQueryArr(arrCopy);
+  };
 
   const formatCheckArr = arr => {
     const formattedArr = [];
@@ -132,6 +137,7 @@ const LenderSearch = () => {
       <div className={classes.container}>
         <div className={classes.rowContainer}>
           <Button
+          key="searchButton"
             type="button"
             color="success"
             className={classes.highButton}
@@ -141,12 +147,12 @@ const LenderSearch = () => {
             <SearchIcon style={{ color: "#FFFFFF" }} />
             Reset Search
           </Button>
-          <EmailModal></EmailModal>
+          <EmailModal queryArr={queryArr} />
         </div>
         <GridContainer>
           <GridItem xs={12} sm={10} md={10}>
             <Card className={classes.cardCompanyResult}>
-              <SearchTable queryArr={queryArr} checkArr={checkArr} />
+              <SearchTable handleXClick={handleXClick} queryArr={queryArr} checkArr={checkArr} />
             </Card>
           </GridItem>
         </GridContainer>
