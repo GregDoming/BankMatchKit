@@ -19,6 +19,7 @@ const DeleteButton = props => {
         onClick={event => handleXClick(event)}
         id={id}
         simple
+        value={index}
         index={index}
         justIcon
         size="sm"

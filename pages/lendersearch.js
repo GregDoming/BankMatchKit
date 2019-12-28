@@ -88,7 +88,7 @@ const LenderSearch = () => {
     event.preventDefault();
 
     const arrCopy = [...queryArr];
-    arrCopy.splice(event.currentTarget.index, 1);
+    arrCopy.splice(event.currentTarget.value, 1);
     setQueryArr(arrCopy);
   };
 

@@ -18,7 +18,6 @@ const EditProfileButton = props => {
         onClick={event => handleEditProfileClick(event)}
         id={id}
         simple
-        index={index}
         justIcon
         size="sm"
         color="success"
