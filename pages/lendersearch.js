@@ -19,6 +19,7 @@ import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import SearchTable from "components/SearchTable/SearchTable.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
+import EmailModal from "components/EmailModal/EmailModal.js";
 
 import { getQueryResults, getAllUsersQuery } from "lib/api";
 import { adminUser } from "lib/auth";
@@ -82,6 +83,10 @@ const LenderSearch = () => {
     queryFieldsObj[keyNumber] = value.value;
   };
 
+  const handleXClick = event => {
+    event.preventDefault();
+  }
+
   const formatCheckArr = arr => {
     const formattedArr = [];
 
@@ -125,16 +130,19 @@ const LenderSearch = () => {
   return searchCompleted ? (
     <div className={classNames(classes.main)}>
       <div className={classes.container}>
-        <Button
-          type="button"
-          color="success"
-          className={classes.highButton}
-          style={{ minHeight: "60px", fontSize: "20px" }}
-          onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
-        >
-          <SearchIcon style={{ color: "#FFFFFF" }} />
-          Reset Search
-        </Button>
+        <div className={classes.rowContainer}>
+          <Button
+            type="button"
+            color="success"
+            className={classes.highButton}
+            style={{ minHeight: "60px", fontSize: "20px" }}
+            onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
+          >
+            <SearchIcon style={{ color: "#FFFFFF" }} />
+            Reset Search
+          </Button>
+          <EmailModal></EmailModal>
+        </div>
         <GridContainer>
           <GridItem xs={12} sm={10} md={10}>
             <Card className={classes.cardCompanyResult}>

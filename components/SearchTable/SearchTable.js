@@ -11,11 +11,7 @@ import Edit from "@material-ui/icons/Edit";
 import Close from "@material-ui/icons/Close";
 // core components
 import Table from "components/Table/Table.js";
-import Button from "components/CustomButtons/Button.js";
-import Tooltip from "@material-ui/core/Tooltip";
-
-import { adminGetUserById } from "lib/api";
-import { convertState } from 'lib/auth';
+import EditProfileButton from "components/smallIconButtons/EditProfileButton.js";
 
 
 import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
@@ -30,14 +26,19 @@ const SearchTable = props => {
   const handleEditProfileClick = async event => {
     event.preventDefault();
     try {
-      const id = event.currentTarget.id
+      const id = event.currentTarget.id;
       Router.push({
         pathname: "/adminpagination",
         query: { id: id }
-      })
+      });
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleXClick = event => {
+    event.preventDefault();
+    console.log(event.currentTarget.index);
   };
 
   const handleToggle = value => {
@@ -62,31 +63,8 @@ const SearchTable = props => {
       const id = user[1].id;
       const tempArr = [];
       const simpleButtons = [
-        // { color: "info", icon: Person, value: "Unknow Use"  },
-        { color: "success", icon: Edit, value: "Edit Profile" },
-        { color: "danger", icon: Close, value: "Close Row" }
-      ].map((prop, key) => {
-        return (
-          <Tooltip
-            id={"tooltip-top" + prop.key}
-            title={prop.value}
-            placement="top"
-            key={"tooltipTop" + key}
-          >
-            <Button
-              onClick={event => handleEditProfileClick(event)}
-              id={id}
-              simple
-              justIcon
-              size="sm"
-              color={prop.color}
-              key={"buttonTop" + key}
-            >
-              <prop.icon />
-            </Button>
-          </Tooltip>
-        );
-      });
+        <EditProfileButton index={index} id={id} handleEditProfileClick={handleEditProfileClick} />
+      ];
 
       tempArr.push(
         <Checkbox

@@ -29,10 +29,13 @@ const lenderSearchStyle = {
     ...mainRaised,
     marginTop: "105px",
     marginBottom: "0px"
-
   },
   spaceTop: {
     marginTop: "15%"
+  },
+  rowContainer: {
+    display: "flex",
+    flexFlow: "row"
   },
   headerWrapper: {
     display: "flex",

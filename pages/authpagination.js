@@ -117,15 +117,7 @@ const AuthPagination = props => {
     return steps.length;
   };
 
-  const handleInput = (event, val) => {
-    dispatch({ type: "handleFormInput" });
-  };
-
   const handleClose = () => setOpenError(false);
-
-  const handleNumberInput = (event, val) => {
-    dispatch({ type: "handleNumberInput" });
-  };
 
   const completedSteps = () => {
     return Object.keys(completed).length;

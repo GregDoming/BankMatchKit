@@ -64,8 +64,6 @@ exports.getAllLenderQuery = async (req, res) => {
       userArr.push([foundUser["userProfile"], { email: foundUser["email"], id: foundUser["_id"] }]);
     });
 
-    console.log(userArr)
-
     res.status(200).send(userArr);
   } catch (err) {
     console.log(err);
@@ -163,7 +161,6 @@ exports.resizeAvatar = async (req, res, next) => {
 exports.updateUser = async (req, res) => {
   try {
     req.body.updatedAt = new Date().toISOString();
-    console.log(req.body.formInfo)
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.user._id },
       { $set: req.body.formInfo },

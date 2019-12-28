@@ -310,11 +310,10 @@ const MultiInputForm = props => {
                   <GridItem xs={12} sm={5} md={5}>
                     <TextField
                       id="outlined-multiline-static"
-                      label="Multiline"
+                      label="Notes"
                       multiline
                       rows="8"
                       fullWidth={true}
-                      defaultValue="Default Value"
                       className={classes.textField}
                       margin="normal"
                       variant="outlined"
