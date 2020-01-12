@@ -62,8 +62,8 @@ export default function Header(props) {
     [classes[color]]: color,
     [classes.absolute]: absolute,
     [classes.fixed]: fixed,
-    // [classes.minHeight]: "100px",
-    // [classes.boxShadow]: "15px 20px 20px rgba(0, 0, 0, 0.25), inset 15px 13px 10px rgba(0, 0, 0, 0.22)"
+    [classes.minHeight]: "100px",
+    [classes.boxShadow]: "15px 20px 20px rgba(0, 0, 0, 0.25), inset 15px 13px 10px rgba(0, 0, 0, 0.22)"
   });
   return (
     <AppBar className={appBarClasses}  >
