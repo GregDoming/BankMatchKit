@@ -12,7 +12,7 @@ const navigationPageStyle = {
   title: {
     textDecoration: "none",
     fontWeight: "700",
-    marginTop: "-18%",
+    marginTop: "-16vh",
     marginBottom: "25px",
     minHeight: "32px",
     fontFamily: `"Roboto Slab", "Times New Roman", serif`,
@@ -23,7 +23,10 @@ const navigationPageStyle = {
     background: whiteColor,
     position: "relative",
     zIndex: "3",
-    marginTop: "-14%"
+    marginRight: "8%",
+    marginLeft: "8%",
+    marginTop: "-40vh",
+    
   },
   block: {
     color: "inherit",

@@ -1,7 +1,7 @@
 import React from "react";
+import Link from 'next/link';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui/icons
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 // core components
@@ -23,9 +23,10 @@ const NavigationCards = () => {
   const classes = useStyles();
   return (
     <div className={classes.section}>
-      <GridContainer>
-        <GridItem xs={12} sm={6} md={6}>
-          <Card raised background style={{ backgroundImage: "url(" + office2 + ")" }}>
+      <GridContainer className={classes.navigationContainer} spacing={"1"}>
+        <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
+          <Link href="/authpagination">
+          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + office2 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Lender Portal</h6>
               <a href="#pablo">
@@ -37,17 +38,19 @@ const NavigationCards = () => {
                 back is..."
               </p>
               <Button round href="#pablo" color="danger">
-                <FormatAlignLeft className={classes.icons} /> Read article
+                <FormatAlignLeft className={classes.icons} /> More info
               </Button>
             </CardBody>
           </Card>
+          </Link>
         </GridItem>
-        <GridItem xs={12} sm={6} md={6}>
-          <Card raised background style={{ backgroundImage: "url(" + blog8 + ")" }}>
+        <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
+          <Link href="/underConstruction">
+          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + blog8 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Broker Portal</h6>
               <a href="#pablo">
-                <h3 className={classes.cardTitle}>Create or edit your Boker profile</h3>
+                <h3 className={classes.cardTitle}>Create or edit your Broker profile</h3>
               </a>
               <p className={classes.category}>
                 Don{"'"}t be scared of the truth because we need to restart the human foundation in
@@ -55,17 +58,19 @@ const NavigationCards = () => {
                 back is...
               </p>
               <Button round href="#pablo" color="primary">
-                <FormatAlignLeft className={classes.icons} /> Read article
+                <FormatAlignLeft className={classes.icons} /> More info
               </Button>
             </CardBody>
           </Card>
+          </Link>
         </GridItem>
-        <GridItem xs={12} sm={6} md={6}>
-          <Card raised background style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
+        <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
+          <Link href="/lendersearch">
+          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
             <CardBody background>
-              <h6 className={classes.category}>MARKETING</h6>
+              <h6 className={classes.category}>Admin</h6>
               <a href="#pablo">
-                <h3 className={classes.cardTitle}>0 to 100.000 Customers in 6 months</h3>
+                <h3 className={classes.cardTitle}>Admin Area</h3>
               </a>
               <p className={classes.category}>
                 Don{"'"}t be scared of the truth because we need to restart the human foundation in
@@ -73,50 +78,39 @@ const NavigationCards = () => {
                 back is...
               </p>
               <Button round href="#pablo" color="warning">
-                <FormatAlignLeft className={classes.icons} /> Read case study
+                <FormatAlignLeft className={classes.icons} /> More info
               </Button>
-              <Tooltip
-                id="tooltip-pocket"
-                title="Save to Pocket"
-                placement="top"
-                classes={{ tooltip: classes.tooltip }}
-              >
                 <Button color="white" simple justIcon>
                   <i className="fab fa-get-pocket" />
                 </Button>
-              </Tooltip>
             </CardBody>
           </Card>
+          </Link>
         </GridItem>
-        <GridItem xs={12} sm={6} md={6}>
-          <Card raised background style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
+        <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
+          <Link href="/underConstruction">
+          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Custom Software</h6>
               <a href="#pablo">
-                <h3 className={classes.cardTitle}>Use our custom algorithims to find the company or person that can help you</h3>
+                <h3 className={classes.cardTitle}>Software Unique to Our Platform</h3>
               </a>
               <p className={classes.category}>
                 Don{"'"}t be scared of the truth because we need to restart the human foundation in
               </p>
               <Button round href="#pablo" color="warning">
-                <FormatAlignLeft className={classes.icons} /> Read case study
+                <FormatAlignLeft className={classes.icons} /> More info
               </Button>
-              <Tooltip
-                id="tooltip-pocket"
-                title="Save to Pocket"
-                placement="top"
-                classes={{ tooltip: classes.tooltip }}
-              >
                 <Button color="white" simple justIcon>
                   <i className="fab fa-get-pocket" />
                 </Button>
-              </Tooltip>
             </CardBody>
           </Card>
+          </Link>
         </GridItem>
       </GridContainer>
     </div>
   );
 }
 
-export default NavigationCards
+export default NavigationCards;

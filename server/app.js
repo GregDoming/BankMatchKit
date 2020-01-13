@@ -8,7 +8,8 @@ const helmet = require("helmet");
 const compression = require("compression");
 const sslRedirect = require("heroku-ssl-redirect");
 const http = require("http");
-const https = require("https")
+const https = require("https");
+const cors = require("cors")
 
 const authController = require("./controllers/authController");
 
@@ -98,7 +99,6 @@ mongoose
     sessionConfig.cookie.secure = true; // serve secure cookies in production environment
     server.set("trust proxy", 1); // trust first proxy
   }
-  // server.use(cors())
 
   /* Apply our session configuration to express-session */
   server.use(session(sessionConfig));

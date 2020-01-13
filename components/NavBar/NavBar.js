@@ -39,7 +39,7 @@ const Navbar = props => {
       z-index="1"
       changeColorOnScroll={{
         height: 100,
-        color: "primary"
+        color: "info"
       }}
       links={
         user._id ? (

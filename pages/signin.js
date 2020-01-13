@@ -50,7 +50,7 @@ const Signin = (props) => {
 
     try {
       await signinUser(user);
-      await Router.push("/profile");
+      await Router.push("/landing-page");
 
       setErrorMessage("");
       setOpenSuccess(true);

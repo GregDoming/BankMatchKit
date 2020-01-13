@@ -1,8 +1,4 @@
-import {
-  whiteColor,
-  hexToRgb,
-  cardTitle
-} from "assets/jss/nextjs-material-kit-pro.js";
+import { whiteColor, hexToRgb, cardTitle } from "assets/jss/nextjs-material-kit-pro.js";
 
 import tooltipsStyle from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
 
@@ -11,7 +7,18 @@ const navigationCardsStyle = {
   section: {
     backgroundPosition: "50%",
     backgroundSize: "cover",
-    padding: "70px 0",
+    padding: "70px 0"
+  },
+  navigationCard: {
+    height: "85%",
+    width: "100%"
+  },
+  navigationContainer: {
+    width: "80%",
+    margin: "auto"
+  },
+  linkPointer: {
+    cursor: "pointer"
   },
   textCenter: {
     textAlign: "center"

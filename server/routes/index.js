@@ -3,6 +3,8 @@ const express = require("express");
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
 const postController = require("../controllers/postController");
+const cors = require("cors");
+
 
 const router = express.Router();
 
