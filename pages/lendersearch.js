@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Router from 'next/router'
+import Link from "next/link";
+import Router from 'next/router';
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -187,6 +188,7 @@ const LenderSearch = () => {
                     <SearchIcon style={{ color: "#FFFFFF" }} />
                     Search
                   </Button>
+                  <Link href="/lendersearch/searchall">
                   <Button
                     type="button"
                     color="success"
@@ -197,6 +199,7 @@ const LenderSearch = () => {
                     <SearchIcon style={{ color: "#FFFFFF" }} />
                     Search All
                   </Button>
+                  </Link>
                   <Button
                     type="button"
                     color="success"

@@ -140,7 +140,11 @@ mongoose
       // server.get("/profile", authController.checkAuth)
       
       // server.get("/authpagination", authController.checkAuth)
-      
+      server.get("/lendersearch/searchall", (req, res) => {
+        const routeParams = Object.assign({}, req.params, req.query);
+        console.log(routeParams)
+        return app.render(req, res, "/lendersearch", routeParams);
+      });
       
       /* create custom routes with route params. If the server gets a request with a query on it put the
       results into an objext with the key of "userId" and the object will get query parametsers that 
