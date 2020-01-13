@@ -15,6 +15,8 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 
+import GetAppIcon from '@material-ui/icons/GetApp';
+
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import SearchTable from "components/SearchTable/SearchTable.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
@@ -22,7 +24,7 @@ import listOfLenderTypes from "lib/listOfLenderTypes";
 import EmailModal from "components/EmailModal/EmailModal.js";
 
 import { getQueryResults, getAllUsersQuery } from "lib/api";
-import { adminUser } from "lib/auth";
+import { adminUser, downloadCSV } from "lib/auth";
 
 const useStyles = makeStyles(lenderSearchStyle);
 
@@ -110,7 +112,7 @@ const LenderSearch = () => {
     const queryResults = await getAllUsersQuery();
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
-    Router.push("/lendersearch/searchall");
+    // Router.push("/lendersearch/searchall");
     setSearchCompleted(true);
   };
 
@@ -143,7 +145,7 @@ const LenderSearch = () => {
               type="button"
               color="success"
               className={classes.highButton}
-              style={{ minHeight: "60px", fontSize: "20px" }}
+              // style={{ minHeight: "60px", fontSize: "20px" }}
               onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
             >
               <SearchIcon style={{ color: "#FFFFFF" }} />
@@ -179,7 +181,7 @@ const LenderSearch = () => {
                     type="button"
                     color="success"
                     className={classes.highButton}
-                    style={{ minHeight: "60px", fontSize: "20px" }}
+                    // style={{ minHeight: "60px", fontSize: "20px" }}
                     onClick={handleSearch}
                   >
                     <SearchIcon style={{ color: "#FFFFFF" }} />
@@ -194,6 +196,16 @@ const LenderSearch = () => {
                   >
                     <SearchIcon style={{ color: "#FFFFFF" }} />
                     Search All
+                  </Button>
+                  <Button
+                    type="button"
+                    color="success"
+                    className={classes.highButton}
+                    // style={{ minHeight: "60px", fontSize: "20px" }}
+                    onClick={handleClickAll}
+                  >
+                    <GetAppIcon style={{ color: "#FFFFFF" }} />
+                    Download CSV
                   </Button>
                 </div>
                 <ul>
