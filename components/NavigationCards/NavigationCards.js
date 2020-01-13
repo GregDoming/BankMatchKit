@@ -7,7 +7,7 @@ import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
+import LinkCard from "components/Card/LinkCard.js";
 import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
 
@@ -23,10 +23,10 @@ const NavigationCards = () => {
   const classes = useStyles();
   return (
     <div className={classes.section}>
-      <GridContainer className={classes.navigationContainer} spacing={"1"}>
+      <GridContainer className={classes.navigationContainer}>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
           <Link href="/authpagination">
-          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + office2 + ")" }}>
+          <LinkCard raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + office2 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Lender Portal</h6>
               <a href="#pablo">
@@ -41,12 +41,12 @@ const NavigationCards = () => {
                 <FormatAlignLeft className={classes.icons} /> More info
               </Button>
             </CardBody>
-          </Card>
+          </LinkCard>
           </Link>
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
           <Link href="/underConstruction">
-          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + blog8 + ")" }}>
+          <LinkCard raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + blog8 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Broker Portal</h6>
               <a href="#pablo">
@@ -61,12 +61,12 @@ const NavigationCards = () => {
                 <FormatAlignLeft className={classes.icons} /> More info
               </Button>
             </CardBody>
-          </Card>
+          </LinkCard>
           </Link>
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
           <Link href="/lendersearch">
-          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
+          <LinkCard raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Admin</h6>
               <a href="#pablo">
@@ -84,12 +84,12 @@ const NavigationCards = () => {
                   <i className="fab fa-get-pocket" />
                 </Button>
             </CardBody>
-          </Card>
+          </LinkCard>
           </Link>
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
           <Link href="/underConstruction">
-          <Card raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
+          <LinkCard raised background className={classes.navigationCard} style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
             <CardBody background>
               <h6 className={classes.category}>Custom Software</h6>
               <a href="#pablo">
@@ -105,7 +105,7 @@ const NavigationCards = () => {
                   <i className="fab fa-get-pocket" />
                 </Button>
             </CardBody>
-          </Card>
+          </LinkCard>
           </Link>
         </GridItem>
       </GridContainer>

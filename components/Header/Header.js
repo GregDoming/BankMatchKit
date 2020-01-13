@@ -20,22 +20,33 @@ import styles from "assets/jss/nextjs-material-kit-pro/components/headerStyle.js
 
 const useStyles = makeStyles(styles);
 
-export default function Header(props) {
+const Header = (props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
   const classes = useStyles();
   React.useEffect(() => {
     if (props.changeColorOnScroll) {
-      window.addEventListener("scroll", headerColorChange);
+      window.addEventListener("scroll", headerScrollChange);
     }
     return function cleanup() {
       if (props.changeColorOnScroll) {
-        window.removeEventListener("scroll", headerColorChange);
+        window.removeEventListener("scroll", headerScrollChange);
       }
     };
   });
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const headerScrollChange = () => {
+    if (windowsScrollTop > changeColorOnScroll.height) {
+      console.log("scrolledtop")
+      setIsScrolled(true)
+    } else {
+      console.log("scrolledbottom")
+
+      setIsScrolled(false)
+    }
+  }
   const headerColorChange = () => {
     const { color, changeColorOnScroll } = props;
 
@@ -152,3 +163,5 @@ Header.propTypes = {
     ]).isRequired
   })
 };
+
+export default Header;

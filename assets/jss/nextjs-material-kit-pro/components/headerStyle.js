@@ -19,13 +19,13 @@ import {
 const headerStyle = theme => ({
   appBar: {
     display: "flex",
-    border: "0",
-    borderRadius: "3px",
+    borderRadius: "0px",
+    border: "1",
+    borderColor: primaryColor,
     padding: "0.625rem 0",
     marginBottom: "20px",
     color: grayColor[15],
     width: "100%",
-    backgroundColor: "rgba(11, 71, 61, 0.37)",
     boxShadow:
       "0 4px 18px 0px rgba(" +
       hexToRgb(blackColor) +

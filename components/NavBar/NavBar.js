@@ -12,11 +12,7 @@ import Button from "@material-ui/core/Button";
 import ActiveLink from "components/ActiveLink/ActiveLink.js";
 
 import navbarsStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/navbarsStyle.js";
-import { signoutUser, isUserAuthenticated } from "lib/auth";
-
-import image from "assets/img/bg.jpg";
-import profileImage from "assets/img/faces/avatar.jpg";
-import Axios from "axios";
+import { signoutUser } from "lib/auth";
 
 const useStyles = makeStyles(navbarsStyle);
 
@@ -37,10 +33,7 @@ const Navbar = props => {
       brand="Bank Match"
       fixed
       z-index="1"
-      changeColorOnScroll={{
-        height: 100,
-        color: "info"
-      }}
+      color="transparent"
       links={
         user._id ? (
           <List className={classes.list + " " + classes.mlAuto}>

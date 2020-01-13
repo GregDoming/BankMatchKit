@@ -90,7 +90,7 @@ export default class MyApp extends App {
         <Head>
           <title>Bank Match</title>
         </Head>
-        <NavBar {...this.props}></NavBar>
+        <NavBar color="transparent" {...this.props}></NavBar>
         <Component {...pageProps} />
       </React.Fragment>
       </HelmetProvider>

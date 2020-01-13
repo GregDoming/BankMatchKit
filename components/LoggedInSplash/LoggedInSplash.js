@@ -39,7 +39,6 @@ const LoggedInSplash = () => {
               <List className={classes.list}>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/?ref=njsmkp-blog-posts"
                     target="_blank"
                     className={classes.block}
                   >
@@ -48,7 +47,6 @@ const LoggedInSplash = () => {
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-blog-posts"
                     target="_blank"
                     className={classes.block}
                   >
@@ -57,7 +55,6 @@ const LoggedInSplash = () => {
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="http://blog.creative-tim.com/?ref=njsmkp-blog-posts"
                     className={classes.block}
                   >
                     Blog
@@ -65,7 +62,6 @@ const LoggedInSplash = () => {
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/license?ref=njsmkp-blog-posts"
                     target="_blank"
                     className={classes.block}
                   >
@@ -77,7 +73,7 @@ const LoggedInSplash = () => {
             <div className={classes.right}>
               &copy; {1900 + new Date().getYear()} , made with <Favorite className={classes.icon} />{" "}
               by{" "}
-              <a href="https://www.creative-tim.com?ref=njsmkp-blog-posts" target="_blank">
+              <a target="_blank">
                 Creative Tim
               </a>{" "}
               for a better web.
