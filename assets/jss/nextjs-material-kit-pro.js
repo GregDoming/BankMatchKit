@@ -357,7 +357,7 @@ const cardSubtitle = {
 const main = {
   background: whiteColor,
   position: "relative",
-  zIndex: "3"
+  zIndex: "3",
 };
 
 const mainRaised = {

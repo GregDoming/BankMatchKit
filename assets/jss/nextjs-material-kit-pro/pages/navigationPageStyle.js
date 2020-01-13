@@ -1,12 +1,6 @@
-import {
-  container,
-  title,
-  main,
-  whiteColor,
-  mainRaised
-} from "assets/jss/nextjs-material-kit-pro.js";
+import { container, title, whiteColor, mainRaised } from "assets/jss/nextjs-material-kit-pro.js";
 
-const blogPostsPageStyle = {
+const navigationPageStyle = {
   container: {
     ...container,
     zIndex: "2",
@@ -16,12 +10,20 @@ const blogPostsPageStyle = {
     textAlign: "center"
   },
   title: {
-    ...title,
+    textDecoration: "none",
+    fontWeight: "700",
+    marginTop: "-18%",
+    marginBottom: "25px",
+    minHeight: "32px",
+    fontFamily: `"Roboto Slab", "Times New Roman", serif`,
     color: whiteColor
   },
   main: {
-    ...main,
-    ...mainRaised
+    ...mainRaised,
+    background: whiteColor,
+    position: "relative",
+    zIndex: "3",
+    marginTop: "-14%"
   },
   block: {
     color: "inherit",
@@ -61,4 +63,4 @@ const blogPostsPageStyle = {
   }
 };
 
-export default blogPostsPageStyle;
+export default navigationPageStyle;

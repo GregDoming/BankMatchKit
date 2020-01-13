@@ -7,7 +7,6 @@ import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
@@ -16,11 +15,11 @@ import office2 from "assets/img/examples/office2.jpg";
 import blog8 from "assets/img/examples/blog8.jpg";
 import cardProject6 from "assets/img/examples/card-project6.jpg";
 
-import sectionPillsStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostsSections/sectionPillsStyle.js";
+import navigationCardsStyle from "assets/jss/nextjs-material-kit-pro/components/navigationCardsStyle.js";
 
-const useStyles = makeStyles(sectionPillsStyle);
+const useStyles = makeStyles(navigationCardsStyle);
 
-export default function SectionPills() {
+const NavigationCards = () => {
   const classes = useStyles();
   return (
     <div className={classes.section}>
@@ -28,14 +27,14 @@ export default function SectionPills() {
         <GridItem xs={12} sm={6} md={6}>
           <Card raised background style={{ backgroundImage: "url(" + office2 + ")" }}>
             <CardBody background>
-              <h6 className={classes.category}>WORLDS</h6>
+              <h6 className={classes.category}>Lender Portal</h6>
               <a href="#pablo">
-                <h3 className={classes.cardTitle}>The Best Productivity Apps on Market</h3>
+                <h3 className={classes.cardTitle}>Enter Here to create or edit your lender profile</h3>
               </a>
               <p className={classes.category}>
-                Don{"'"}t be scared of the truth because we need to restart the human foundation in
+                "Don{"'"}t be scared of the truth because we need to restart the human foundation in
                 truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-                back is...
+                back is..."
               </p>
               <Button round href="#pablo" color="danger">
                 <FormatAlignLeft className={classes.icons} /> Read article
@@ -46,9 +45,9 @@ export default function SectionPills() {
         <GridItem xs={12} sm={6} md={6}>
           <Card raised background style={{ backgroundImage: "url(" + blog8 + ")" }}>
             <CardBody background>
-              <h6 className={classes.category}>BUSINESS</h6>
+              <h6 className={classes.category}>Broker Portal</h6>
               <a href="#pablo">
-                <h3 className={classes.cardTitle}>Working on Wallstreet is Not So Easy</h3>
+                <h3 className={classes.cardTitle}>Create or edit your Boker profile</h3>
               </a>
               <p className={classes.category}>
                 Don{"'"}t be scared of the truth because we need to restart the human foundation in
@@ -92,14 +91,12 @@ export default function SectionPills() {
         <GridItem xs={12} sm={6} md={6}>
           <Card raised background style={{ backgroundImage: "url(" + cardProject6 + ")" }}>
             <CardBody background>
-              <h6 className={classes.category}>MARKETING</h6>
+              <h6 className={classes.category}>Custom Software</h6>
               <a href="#pablo">
-                <h3 className={classes.cardTitle}>0 to 100.000 Customers in 6 months</h3>
+                <h3 className={classes.cardTitle}>Use our custom algorithims to find the company or person that can help you</h3>
               </a>
               <p className={classes.category}>
                 Don{"'"}t be scared of the truth because we need to restart the human foundation in
-                truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-                back is...
               </p>
               <Button round href="#pablo" color="warning">
                 <FormatAlignLeft className={classes.icons} /> Read case study
@@ -121,3 +118,5 @@ export default function SectionPills() {
     </div>
   );
 }
+
+export default NavigationCards

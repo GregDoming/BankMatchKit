@@ -23,7 +23,6 @@ import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
 import ViewThree from "components/AuthPaginationViews/ViewThree.js";
 import ViewFour from "components/AuthPaginationViews/ViewFour.js";
 
-import { isUserAuthenticated } from "lib/auth";
 import { adminUserAuthenticated } from "lib/auth";
 import { convertUser } from "lib/userSchema";
 

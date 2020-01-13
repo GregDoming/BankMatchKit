@@ -13,10 +13,11 @@ import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 // sections for this page
 import NavigationCards from "components/NavigationCards/NavigationCards.js";
+import { adminUserAuthenticated } from "lib/auth";
 
-import blogPostsPageStyle from "assets/jss/nextjs-material-kit-pro/pages/navigationPageStyle.js";
+import navigationPageStyle from "assets/jss/nextjs-material-kit-pro/pages/navigationPageStyle.js";
 
-const useStyles = makeStyles(blogPostsPageStyle);
+const useStyles = makeStyles(navigationPageStyle);
 
 const Navigation = () => {
   const classes = useStyles();
@@ -97,5 +98,7 @@ const Navigation = () => {
     </div>
   );
 }
+
+Navigation.getInitialProps = adminUserAuthenticated;
 
 export default Navigation
