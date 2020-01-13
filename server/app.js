@@ -149,6 +149,11 @@ mongoose
     return app.render(req, res, "/profile", routeParams);
   });
 
+  server.get("/lendersearch/searchall", (req, res) => {
+    const routeParams = Object.assign({}, req.params, req.query);
+    return app.render(req, res, "/lendersearch", routeParams);
+  });
+
   /* default route
      - allows Next to handle all other routes
      - includes the numerous `/_next/...` routes which must    be exposedfor the next app to work correctly

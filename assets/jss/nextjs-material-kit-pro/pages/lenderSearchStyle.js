@@ -25,6 +25,15 @@ const lenderSearchStyle = {
     ...container,
     maxWidth: "970px !important"
   },
+   main: {
+    ...mainRaised,
+    background: whiteColor,
+    position: "relative",
+    zIndex: "3",
+    marginRight: "8%",
+    marginLeft: "8%",
+    marginTop: "-40vh",
+  },
   customRaised: {
     ...mainRaised,
     marginTop: "105px",

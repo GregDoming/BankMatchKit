@@ -1,7 +1,8 @@
 import {
   container,
   title,
-  grayColor
+  grayColor,
+  secondaryColor
 } from "assets/jss/nextjs-material-kit-pro.js";
 import headerLinksStyle from "assets/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
 
@@ -100,13 +101,13 @@ const navbarsStyle = theme => ({
     position: "relative",
     padding: "0.9375rem",
     fontWeight: "400",
-    fontSize: "12px",
+    fontSize: "20px",
     lineHeight: "20px",
     textDecoration: "none",
     margin: "0px",
     display: "inline-flex",
     "&:hover,&:focus": {
-      color: "inherit"
+      color: secondaryColor,
     },
     "& .fab,& .far,& .fal,& .fas,& .material-icons": {
       position: "relative",
@@ -132,8 +133,23 @@ const navbarsStyle = theme => ({
       height: "20px"
     }
   },
+  buttonLink: {
+    backgroundColor: "transparent",
+    fontWeight: "400",
+    fontSize: "20px",
+    lineHeight: "20px",
+    color: "white",
+    "&:hover,&:focus": {
+      color: "blue",
+      backgroundColor: "transparent",
+    },
+  },
   customButton: {
-    textColor: "white"
+    color: "white",
+    "&:hover,&:focus": {
+      color: secondaryColor,
+      backgroundColor: "transparent",
+    },
   },
   navLinkActive: {
     color: "white",

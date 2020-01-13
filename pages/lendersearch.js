@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Router from 'next/router'
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -8,9 +8,8 @@ import Card from "components/Card/Card.js";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
-import CardBody from "components/Card/CardBody.js";
+import Parallax from "components/Parallax/Parallax.js";
 import CardHeader from "components/Card/CardHeader.js";
-import Assignment from "@material-ui/icons/Assignment";
 
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -111,6 +110,7 @@ const LenderSearch = () => {
     const queryResults = await getAllUsersQuery();
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
+    Router.push("/lendersearch/searchall");
     setSearchCompleted(true);
   };
 
@@ -133,96 +133,103 @@ const LenderSearch = () => {
   };
 
   return searchCompleted ? (
-    <div className={classNames(classes.main)}>
-      <div className={classes.container}>
-        <div className={classes.rowContainer}>
-          <Button
-          key="searchButton"
-            type="button"
-            color="success"
-            className={classes.highButton}
-            style={{ minHeight: "60px", fontSize: "20px" }}
-            onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
-          >
-            <SearchIcon style={{ color: "#FFFFFF" }} />
-            Reset Search
-          </Button>
-          <EmailModal queryArr={queryArr} />
+    <>
+      <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
+      <div className={classes.main}>
+        <div className={classes.container}>
+          <div className={classes.rowContainer}>
+            <Button
+              key="searchButton"
+              type="button"
+              color="success"
+              className={classes.highButton}
+              style={{ minHeight: "60px", fontSize: "20px" }}
+              onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
+            >
+              <SearchIcon style={{ color: "#FFFFFF" }} />
+              Reset Search
+            </Button>
+            <EmailModal queryArr={queryArr} />
+          </div>
+          <GridContainer>
+            <GridItem xs={12} sm={10} md={10}>
+              <Card className={classes.cardCompanyResult}>
+                <SearchTable handleXClick={handleXClick} queryArr={queryArr} checkArr={checkArr} />
+              </Card>
+            </GridItem>
+          </GridContainer>
         </div>
-        <GridContainer>
-          <GridItem xs={12} sm={10} md={10}>
-            <Card className={classes.cardCompanyResult}>
-              <SearchTable handleXClick={handleXClick} queryArr={queryArr} checkArr={checkArr} />
-            </Card>
-          </GridItem>
-        </GridContainer>
       </div>
-    </div>
+    </>
   ) : (
-    <div className={classNames(classes.main)}>
-      <div className={classes.container}>
-        <h2 className={classes.title}>Admin Search</h2>
-        <GridContainer>
-          <GridItem xs={12} sm={10} md={10}>
-            <Card className={classes.cardCompanySelect}>
-              <CardHeader color="warning"></CardHeader>
-              <h4 className={classes.cardTitle}>Search Fields</h4>
-              <div className={classes.headerWrapper}>
-                <h5 className={classes.selectTitle}>Loan Type</h5>
-                <Button
-                  type="button"
-                  color="success"
-                  className={classes.highButton}
-                  style={{ minHeight: "60px", fontSize: "20px" }}
-                  onClick={handleSearch}
-                >
-                  <SearchIcon style={{ color: "#FFFFFF" }} />
-                  Search
-                </Button>
-                <Button
-                  type="button"
-                  color="success"
-                  className={classes.highButton}
-                  style={{ minHeight: "60px", fontSize: "20px" }}
-                  onClick={handleClickAll}
-                >
-                  <SearchIcon style={{ color: "#FFFFFF" }} />
-                  Search All
-                </Button>
-              </div>
-              <ul>
-                <li key={"lenderListThree"} className={classes.lender}>
-                  <SingleLoanSelect
-                    idNumber={0}
-                    isDisabled={isDisabled}
-                    lenderTypesList={lenderTypesList}
-                    key="singleLoanSelect"
-                    id="queryValues"
-                    handleChange={handleChange}
-                  />
-                </li>
-                <li key={"lenderListFour"} className={classes.lenderButton}>
-                  <Button justIcon round color="info" onClick={event => handleClick(event)}>
-                    <AddIcon style={{ color: "#FFFFFF" }} />
+    <>
+      <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
+
+      <div className={classNames(classes.main)}>
+        <div className={classes.container}>
+          <h2 className={classes.title}>Admin Search</h2>
+          <GridContainer>
+            <GridItem xs={12} sm={10} md={10}>
+              <Card className={classes.cardCompanySelect}>
+                <CardHeader color="warning"></CardHeader>
+                <h4 className={classes.cardTitle}>Search Fields</h4>
+                <div className={classes.headerWrapper}>
+                  <h5 className={classes.selectTitle}>Loan Type</h5>
+                  <Button
+                    type="button"
+                    color="success"
+                    className={classes.highButton}
+                    style={{ minHeight: "60px", fontSize: "20px" }}
+                    onClick={handleSearch}
+                  >
+                    <SearchIcon style={{ color: "#FFFFFF" }} />
+                    Search
                   </Button>
                   <Button
-                    key={"lenderListSix"}
-                    justIcon
-                    round
-                    color="info"
-                    onClick={event => handleClose(event)}
+                    type="button"
+                    color="success"
+                    className={classes.highButton}
+                    style={{ minHeight: "60px", fontSize: "20px" }}
+                    onClick={handleClickAll}
                   >
-                    <CloseIcon style={{ color: "#FFFFFF" }} />
+                    <SearchIcon style={{ color: "#FFFFFF" }} />
+                    Search All
                   </Button>
-                </li>
-                {searchArr}
-              </ul>
-              <div className={classes.spacerDiv} />
-            </Card>
-          </GridItem>
-        </GridContainer>
+                </div>
+                <ul>
+                  <li key={"lenderListThree"} className={classes.lender}>
+                    <SingleLoanSelect
+                      idNumber={0}
+                      isDisabled={isDisabled}
+                      lenderTypesList={lenderTypesList}
+                      key="singleLoanSelect"
+                      id="queryValues"
+                      handleChange={handleChange}
+                    />
+                  </li>
+                  <li key={"lenderListFour"} className={classes.lenderButton}>
+                    <Button justIcon round color="info" onClick={event => handleClick(event)}>
+                      <AddIcon style={{ color: "#FFFFFF" }} />
+                    </Button>
+                    <Button
+                      key={"lenderListSix"}
+                      justIcon
+                      round
+                      color="info"
+                      onClick={event => handleClose(event)}
+                    >
+                      <CloseIcon style={{ color: "#FFFFFF" }} />
+                    </Button>
+                  </li>
+                  {searchArr}
+                </ul>
+                <div className={classes.spacerDiv} />
+              </Card>
+            </GridItem>
+          </GridContainer>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

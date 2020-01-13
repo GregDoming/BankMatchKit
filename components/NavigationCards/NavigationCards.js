@@ -37,7 +37,7 @@ const NavigationCards = () => {
                 truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
                 back is..."
               </p>
-              <Button round href="#pablo" color="danger">
+              <Button round href="#pablo" color="secondary">
                 <FormatAlignLeft className={classes.icons} /> More info
               </Button>
             </CardBody>
@@ -57,7 +57,7 @@ const NavigationCards = () => {
                 truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
                 back is...
               </p>
-              <Button round href="#pablo" color="primary">
+              <Button round href="#pablo" color="secondary">
                 <FormatAlignLeft className={classes.icons} /> More info
               </Button>
             </CardBody>
@@ -77,7 +77,7 @@ const NavigationCards = () => {
                 truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
                 back is...
               </p>
-              <Button round href="#pablo" color="warning">
+              <Button round href="#pablo" color="primary">
                 <FormatAlignLeft className={classes.icons} /> More info
               </Button>
                 <Button color="white" simple justIcon>
@@ -98,7 +98,7 @@ const NavigationCards = () => {
               <p className={classes.category}>
                 Don{"'"}t be scared of the truth because we need to restart the human foundation in
               </p>
-              <Button round href="#pablo" color="warning">
+              <Button round href="#pablo" color="primary">
                 <FormatAlignLeft className={classes.icons} /> More info
               </Button>
                 <Button color="white" simple justIcon>

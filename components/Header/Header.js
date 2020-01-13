@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
+import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 import Close from "@material-ui/icons/Close";
@@ -20,48 +21,42 @@ import styles from "assets/jss/nextjs-material-kit-pro/components/headerStyle.js
 
 const useStyles = makeStyles(styles);
 
-const Header = (props) => {
+const Header = props => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const classes = useStyles();
+
   React.useEffect(() => {
-    if (props.changeColorOnScroll) {
-      window.addEventListener("scroll", headerScrollChange);
-    }
+    window.addEventListener("scroll", () => headerScrollChange());
     return function cleanup() {
-      if (props.changeColorOnScroll) {
-        window.removeEventListener("scroll", headerScrollChange);
-      }
+      window.removeEventListener("scroll", () => headerScrollChange());
     };
   });
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const headerScrollChange = () => {
-    if (windowsScrollTop > changeColorOnScroll.height) {
-      console.log("scrolledtop")
-      setIsScrolled(true)
-    } else {
-      console.log("scrolledbottom")
 
-      setIsScrolled(false)
+  const headerScrollChange = () => {
+    if (window.pageYOffset > 100) {
+      setIsScrolled(true);
     }
-  }
+
+    if (window.pageYOffset < 100) {
+      setIsScrolled(false);
+    }
+  };
+
   const headerColorChange = () => {
     const { color, changeColorOnScroll } = props;
 
     const windowsScrollTop = window.pageYOffset;
     if (windowsScrollTop > changeColorOnScroll.height) {
-      document.body
-        .getElementsByTagName("header")[0]
-        .classList.remove(classes[color]);
+      document.body.getElementsByTagName("header")[0].classList.remove(classes[color]);
       document.body
         .getElementsByTagName("header")[0]
         .classList.add(classes[changeColorOnScroll.color]);
     } else {
-      document.body
-        .getElementsByTagName("header")[0]
-        .classList.add(classes[color]);
+      document.body.getElementsByTagName("header")[0].classList.add(classes[color]);
       document.body
         .getElementsByTagName("header")[0]
         .classList.remove(classes[changeColorOnScroll.color]);
@@ -74,25 +69,57 @@ const Header = (props) => {
     [classes.absolute]: absolute,
     [classes.fixed]: fixed,
     [classes.minHeight]: "100px",
-    [classes.boxShadow]: "15px 20px 20px rgba(0, 0, 0, 0.25), inset 15px 13px 10px rgba(0, 0, 0, 0.22)"
+    [classes.boxShadow]:
+      "15px 20px 20px rgba(0, 0, 0, 0.25), inset 15px 13px 10px rgba(0, 0, 0, 0.22)"
   });
-  return (
-    <AppBar className={appBarClasses}  >
-      <Toolbar className={classes.container} >
+  return isScrolled ? (
+    <>
+      <AppBar className={appBarClasses}>
+        <Toolbar className={classes.container}>
+          <Button className={classes.title}>
+            <Link href="/presentation">
+              <a>{brand}</a>
+            </Link>
+          </Button>
+          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerToggle}>
+            <Menu />
+          </IconButton>
+        </Toolbar>
+          <Drawer
+            variant="temporary"
+            anchor={"right"}
+            open={mobileOpen}
+
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            onClose={handleDrawerToggle}
+          >
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerToggle}
+              className={classes.closeButtonDrawer}
+            >
+              <Close />
+            </IconButton>
+            <div className={classes.appResponsiveColumn}>{links}</div>
+          </Drawer>
+      </AppBar>
+    </>
+  ) : (
+    <AppBar className={appBarClasses}>
+      <Toolbar className={classes.container}>
         <Button className={classes.title}>
-          <Link href="/landing-page">
-            <a style={{ color: "#f6f8a5"}}>{brand}</a>
+          <Link href="/presentation">
+            <a>{brand}</a>
           </Link>
         </Button>
         <Hidden smDown implementation="css" className={classes.hidden}>
           <div className={classes.collapse}>{links}</div>
         </Hidden>
         <Hidden mdUp>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-          >
+          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerToggle}>
             <Menu />
           </IconButton>
         </Hidden>
@@ -102,6 +129,7 @@ const Header = (props) => {
           variant="temporary"
           anchor={"right"}
           open={mobileOpen}
+          color="blue"
           classes={{
             paper: classes.drawerPaper
           }}
@@ -120,7 +148,7 @@ const Header = (props) => {
       </Hidden>
     </AppBar>
   );
-}
+};
 
 Header.defaultProp = {
   color: "white"

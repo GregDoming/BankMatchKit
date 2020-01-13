@@ -22,8 +22,8 @@ const useStyles = makeStyles(navigationPageStyle);
 const LoggedInSplash = () => {
   const classes = useStyles();
   return (
-    <div>
-      <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
+    <>
+      <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
@@ -81,7 +81,7 @@ const LoggedInSplash = () => {
           </div>
         }
       />
-    </div>
+    </>
   );
 };
 

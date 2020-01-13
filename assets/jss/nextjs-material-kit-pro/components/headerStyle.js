@@ -90,8 +90,16 @@ const headerStyle = theme => ({
     }
   },
   appResponsive: {
+
     margin: "20px 10px",
-    marginTop: "0px"
+    marginTop: "0px",
+  },
+  appResponsiveColumn: {
+    display: "flex",
+    flexFlow: "column",
+    margin: "20px 10px",
+    marginTop: "0px",
+    width: "100%"
   },
   primary: {
     backgroundColor: primaryColor[0],
