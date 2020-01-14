@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Router from 'next/router';
+import { useRouter } from 'next/router'
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -29,7 +29,7 @@ import { adminUser, downloadCSV } from "lib/auth";
 
 const useStyles = makeStyles(lenderSearchStyle);
 
-const LenderSearch = () => {
+const LenderSearch = (props) => {
   const classes = useStyles();
   const [searchCompleted, setSearchCompleted] = useState(false);
   const [searchArr, setSearchArr] = useState([]);
@@ -51,6 +51,19 @@ const LenderSearch = () => {
   });
   const [lenderTypesList, setLenderTypesList] = useState(listOfLenderTypes);
   const [isDisabled, setIsDisabled] = useState(false);
+
+  const router = useRouter()
+
+  console.log(router.query)
+
+  useEffect(() => {
+    if (router.query.complete === "yes") {
+      setSearchCompleted(true);
+    } else {
+      setSearchCompleted(false);
+
+    }
+  });
 
   const handleClick = event => {
     event.preventDefault();
@@ -114,7 +127,7 @@ const LenderSearch = () => {
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
     // Router.push("/lendersearch/searchall");
-    setSearchCompleted(true);
+    // setSearchCompleted(true);
   };
 
   const handleSearch = async () => {
@@ -188,7 +201,7 @@ const LenderSearch = () => {
                     <SearchIcon style={{ color: "#FFFFFF" }} />
                     Search
                   </Button>
-                  <Link href="/lendersearch/searchall">
+                  <Link href={`/lendersearch?complete=yes`}>
                   <Button
                     type="button"
                     color="success"
