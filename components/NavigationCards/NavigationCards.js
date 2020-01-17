@@ -13,7 +13,8 @@ import Button from "components/CustomButtons/Button.js";
 
 import office2 from "assets/img/examples/office2.jpg";
 import blog8 from "assets/img/examples/blog8.jpg";
-import cardProject6 from "assets/img/examples/card-project6.jpg";
+import construction from "assets/img/construction.jpg";
+import city from "assets/img/examples/city.jpg";
 
 import navigationCardsStyle from "assets/jss/nextjs-material-kit-pro/components/navigationCardsStyle.js";
 
@@ -35,7 +36,7 @@ const NavigationCards = () => {
               <CardBody background>
                 <h3 className={classes.cardTitle}>Lender Portal</h3>
                 <h6 className={classes.category}>
-                  Enter Here to create or edit your lender profile
+                  Manage and Search the Lender Database
                 </h6>
                 <a href="#pablo"></a>
                 <Button round href="#pablo" color="secondary">
@@ -54,10 +55,8 @@ const NavigationCards = () => {
               style={{ backgroundImage: "url(" + blog8 + ")" }}
             >
               <CardBody background>
-                <h3 className={classes.cardTitle}>Broker Portal</h3>
-                <h6 className={classes.category}>
-                  Create or edit your Broker profile
-                </h6>
+                <h3 className={classes.cardTitle}>Broker Groups</h3>
+                <h6 className={classes.category}>Manage Broker Groups</h6>
                 <a href="#pablo"></a>
                 <Button round href="#pablo" color="secondary">
                   <FormatAlignLeft className={classes.icons} /> More info
@@ -72,18 +71,15 @@ const NavigationCards = () => {
               raised
               background
               className={classes.navigationCard}
-              style={{ backgroundImage: "url(" + cardProject6 + ")" }}
+              style={{ backgroundImage: "url(" + city + ")" }}
             >
               <CardBody background>
-                <h6 className={classes.category}>Admin</h6>
                 <a href="#pablo">
-                  <h3 className={classes.cardTitle}>Admin Area</h3>
+                  <h3 className={classes.cardTitle}>Loan Database</h3>
                 </a>
-                <Button round href="#pablo" color="primary">
+                <h6 className={classes.category}>Manage and Shop Deals</h6>
+                <Button round href="#pablo" color="secondary">
                   <FormatAlignLeft className={classes.icons} /> More info
-                </Button>
-                <Button color="white" simple justIcon>
-                  <i className="fab fa-get-pocket" />
                 </Button>
               </CardBody>
             </LinkCard>
@@ -95,20 +91,14 @@ const NavigationCards = () => {
               raised
               background
               className={classes.navigationCard}
-              style={{ backgroundImage: "url(" + cardProject6 + ")" }}
+              style={{ backgroundImage: "url(" + construction + ")" }}
             >
               <CardBody background>
-                <h6 className={classes.category}>Custom Software</h6>
-                <a href="#pablo">
-                  <h3 className={classes.cardTitle}>
-                    Software Unique to Our Platform
-                  </h3>
-                </a>
-                <Button round href="#pablo" color="primary">
+                <h3 className={classes.cardTitle}>Loan Analysis Tools</h3>
+                <h6 className={classes.category}>Analyze and Compare Aspects of Different Offers</h6>
+                <a href="#pablo"></a>
+                <Button round href="#pablo" color="secondary">
                   <FormatAlignLeft className={classes.icons} /> More info
-                </Button>
-                <Button color="white" simple justIcon>
-                  <i className="fab fa-get-pocket" />
                 </Button>
               </CardBody>
             </LinkCard>
