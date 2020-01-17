@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const multer = require("multer");
-const jimp = require("jimp");
+// const jimp = require("jimp");
 const { createReadStream, createWriteStream } = require("fs");
 const { parse } = require("json2csv");
 const helper = require("../../lib/helper.js");
@@ -145,18 +145,18 @@ const avatarUploadOptions = {
 
 exports.uploadAvatar = multer(avatarUploadOptions).single("avatar");
 
-exports.resizeAvatar = async (req, res, next) => {
-  if (!req.file) {
-    return next();
-  }
-  const extension = req.file.mimetype.split("/")[1];
-  req.body.avatar = `/static/uploads/avatars/${req.user.name}-${Date.now()}
-  .${extension}`;
-  const image = await jimp.read(req.file.buffer);
-  await image.resize(250, jimp.AUTO);
-  await image.write(`./${req.body.avatar}`);
-  next();
-};
+// exports.resizeAvatar = async (req, res, next) => {
+//   if (!req.file) {
+//     return next();
+//   }
+//   const extension = req.file.mimetype.split("/")[1];
+//   req.body.avatar = `/static/uploads/avatars/${req.user.name}-${Date.now()}
+//   .${extension}`;
+//   const image = await jimp.read(req.file.buffer);
+//   await image.resize(250, jimp.AUTO);
+//   await image.write(`./${req.body.avatar}`);
+//   next();
+// };
 
 exports.updateUser = async (req, res) => {
   try {
