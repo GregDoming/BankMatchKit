@@ -1,4 +1,5 @@
 import {
+  mainRaised,
   grayColor,
   primaryColor,
   infoColor,
@@ -10,6 +11,16 @@ import {
 } from "assets/jss/nextjs-material-kit-pro.js";
 
 const paginationStyle = {
+  main: {
+    ...mainRaised,
+    background: whiteColor,
+    position: "relative",
+    zIndex: "3",
+    marginRight: "8%",
+    marginLeft: "8%",
+    marginTop: "-40vh",
+    
+  },
   pagination: {
     display: "flex",
     paddingLeft: "0",
@@ -18,6 +29,11 @@ const paginationStyle = {
   },
   snackbar: {
     color: "red"
+  },
+  parallax: {
+position: "absolute",
+top: "50px",
+backgroundColor: "red"
   },
   paginationItem: {
     display: "inline"

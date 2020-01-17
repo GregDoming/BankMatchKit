@@ -26,7 +26,7 @@ const NavigationCards = () => {
     <div className={classes.section}>
       <GridContainer className={classes.navigationContainer}>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
-          <Link href="/authpagination">
+          <Link href="/profile">
             <LinkCard
               raised
               background

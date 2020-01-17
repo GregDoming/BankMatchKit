@@ -38,33 +38,20 @@ const LoggedInSplash = () => {
             <div className={classes.left}>
               <List className={classes.list}>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    target="_blank"
-                    className={classes.block}
-                  >
+                  <a target="_blank" className={classes.block}>
                     Creative Tim
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    target="_blank"
-                    className={classes.block}
-                  >
+                  <a target="_blank" className={classes.block}>
                     About us
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    className={classes.block}
-                  >
-                    Blog
-                  </a>
+                  <a className={classes.block}>Blog</a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    target="_blank"
-                    className={classes.block}
-                  >
+                  <a target="_blank" className={classes.block}>
                     Licenses
                   </a>
                 </ListItem>
@@ -72,11 +59,7 @@ const LoggedInSplash = () => {
             </div>
             <div className={classes.right}>
               &copy; {1900 + new Date().getYear()} , made with <Favorite className={classes.icon} />{" "}
-              by{" "}
-              <a target="_blank">
-                Creative Tim
-              </a>{" "}
-              for a better web.
+              by <a target="_blank">Creative Tim</a> for a better web.
             </div>
           </div>
         }
