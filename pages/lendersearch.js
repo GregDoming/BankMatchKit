@@ -54,14 +54,11 @@ const LenderSearch = (props) => {
 
   const router = useRouter()
 
-  console.log(router.query)
-
   useEffect(() => {
     if (router.query.complete === "yes") {
       setSearchCompleted(true);
     } else {
       setSearchCompleted(false);
-
     }
   });
 
@@ -180,7 +177,6 @@ const LenderSearch = (props) => {
   ) : (
     <>
       <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
-
       <div className={classNames(classes.main)}>
         <div className={classes.container}>
           <h2 className={classes.title}>Admin Search</h2>
@@ -201,7 +197,7 @@ const LenderSearch = (props) => {
                     <SearchIcon style={{ color: "#FFFFFF" }} />
                     Search
                   </Button>
-                  <Link href={`/lendersearch?complete=yes`}>
+                  <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
                   <Button
                     type="button"
                     color="success"

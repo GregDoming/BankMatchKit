@@ -13,25 +13,26 @@ import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 // sections for this page
 import NavigationCards from "components/NavigationCards/NavigationCards.js";
-import { adminUser } from "lib/auth";
+import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js"
 
 import navigationPageStyle from "assets/jss/nextjs-material-kit-pro/pages/navigationPageStyle.js";
 
 const useStyles = makeStyles(navigationPageStyle);
 
-const LoggedInSplash = () => {
+const LenderPortal = () => {
   const classes = useStyles();
   return (
     <>
-      <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax>
-      <div className={classes.main}>
+      {/* <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax> */}
+      {/* <div className={classes.main}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-              <h2 className={classes.title}>Where would you like to do?</h2>
+              <h2 className={classes.title}>What would you like to do?</h2>
             </GridItem>
           </GridContainer>
           <NavigationCards />
-      </div>
+      </div> */}
+      <LenderNavigationTabs/>
       <Footer
         content={
           <div>
@@ -85,6 +86,4 @@ const LoggedInSplash = () => {
   );
 };
 
-LoggedInSplash.getInitialProps = adminUser;
-
-export default LoggedInSplash;
+export default LenderPortal;
