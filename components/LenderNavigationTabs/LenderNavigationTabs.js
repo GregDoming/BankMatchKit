@@ -27,7 +27,7 @@ const LenderNavigationTabs = () => {
 
   return (
     <>
-    <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax>
+    {/* <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax> */}
     <Paper square className={classes.root}>
       <Tabs
         value={value}
@@ -36,7 +36,6 @@ const LenderNavigationTabs = () => {
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"
-        orientation="vertical"
       >
         <Tab icon={<PhoneIcon />} label="RECENTS" />
         <Tab icon={<FavoriteIcon />} label="FAVORITES" />
