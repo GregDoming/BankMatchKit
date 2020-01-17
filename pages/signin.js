@@ -178,7 +178,7 @@ const Signin = (props) => {
                   </CardBody>
                   <div className={classes.textCenter}>
                     <Button simple color="primary" size="lg" type="submit">
-                      Get started
+                      Get Started !
                     </Button>
                   </div>
                 </form>
