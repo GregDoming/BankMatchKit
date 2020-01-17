@@ -51,7 +51,7 @@ const LenderPortal = () => {
                     target="_blank"
                     className={classes.block}
                   >
-                    About us
+                    About us G
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
