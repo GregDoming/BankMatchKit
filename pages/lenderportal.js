@@ -13,7 +13,7 @@ import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 // sections for this page
 import NavigationCards from "components/NavigationCards/NavigationCards.js";
-import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js"
+import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js";
 
 import navigationPageStyle from "assets/jss/nextjs-material-kit-pro/pages/navigationPageStyle.js";
 

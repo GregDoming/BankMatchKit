@@ -23,6 +23,7 @@ import SearchTable from "components/SearchTable/SearchTable.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
 import EmailModal from "components/EmailModal/EmailModal.js";
+import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js";
 
 import { getQueryResults, getAllUsersQuery } from "lib/api";
 import { adminUser, downloadCSV } from "lib/auth";
@@ -176,7 +177,10 @@ const LenderSearch = (props) => {
     </>
   ) : (
     <>
-      <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
+              <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
+        <div className={classes.main}>
+          <LenderNavigationTabs router={router} />
+        </div>
       <div className={classNames(classes.main)}>
         <div className={classes.container}>
           <h2 className={classes.title}>Admin Search</h2>

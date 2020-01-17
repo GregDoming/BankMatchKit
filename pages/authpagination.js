@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
+import { useRouter } from 'next/router';
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -13,7 +14,10 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Snackbar from "@material-ui/core/Snackbar";
 import Icon from "@material-ui/core/Icon";
-
+import Parallax from "components/Parallax/Parallax.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js";
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
@@ -112,6 +116,7 @@ const AuthPagination = props => {
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
   const theme = useTheme();
+  const router = useRouter()
   const totalSteps = () => {
     return steps.length;
   };
@@ -210,67 +215,71 @@ const AuthPagination = props => {
   };
 
   return (
-    <div className={classes.root}>
-      <Helmet>
-        <style>{"body { background-color: #96aadf; }"}</style>
-      </Helmet>
-      {renderView(activeStep)}
-      <Box
-        className={classes.bottomStepper}
-        style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
-      >
-        <MobileStepper
-          variant="dots"
-          steps={6}
-          position="bottom"
-          activeStep={activeStep}
-          className={classes.root}
-          style={{
-            backgroundColor: "transparent",
-            width: "60%",
-            textAlign: "center",
-            margin: "auto"
-          }}
-          nextButton={
-            <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
-              Next
-              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </Button>
-          }
-          backButton={
-            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-              Back
-            </Button>
-          }
-        />
-        {/* Error Snackbar */}
-        {minMaxErrorMessage && (
-          <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center"
+    <>
+      <div className={classes.root}>
+        <Helmet>{/* <style>{"body { background-color: #96aadf; }"}</style> */}</Helmet>
+        <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
+        <div className={classes.main}>
+          <LenderNavigationTabs router={router} />
+          {renderView(activeStep)}
+        </div>
+        <Box
+          className={classes.bottomStepper}
+          style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
+        >
+          <MobileStepper
+            variant="dots"
+            steps={6}
+            position="bottom"
+            activeStep={activeStep}
+            className={classes.root}
+            style={{
+              backgroundColor: "transparent",
+              width: "60%",
+              textAlign: "center",
+              margin: "auto"
             }}
-            ContentProps={{
-              classes: {
-                root: classes.snackbar
-              }
-            }}
-            TransitionComponent={Transition}
-            open={openError}
-            onClose={handleClose}
-            autoHideDuration={6000}
-            variant="error"
-            message={
-              <span>
-                <Icon className={clsx(classes.icon, classes.iconVariant)} />
-                {minMaxErrorMessage}
-              </span>
+            nextButton={
+              <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+                Next
+                {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              </Button>
+            }
+            backButton={
+              <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                Back
+              </Button>
             }
           />
-        )}
-      </Box>
-    </div>
+          {/* Error Snackbar */}
+          {minMaxErrorMessage && (
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center"
+              }}
+              ContentProps={{
+                classes: {
+                  root: classes.snackbar
+                }
+              }}
+              TransitionComponent={Transition}
+              open={openError}
+              onClose={handleClose}
+              autoHideDuration={6000}
+              variant="error"
+              message={
+                <span>
+                  <Icon className={clsx(classes.icon, classes.iconVariant)} />
+                  {minMaxErrorMessage}
+                </span>
+              }
+            />
+          )}
+        </Box>
+      </div>
+    </>
   );
 };
 

@@ -25,12 +25,12 @@ const LoggedInSplash = () => {
     <>
       <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-              <h2 className={classes.title}>Where would you like to do?</h2>
-            </GridItem>
-          </GridContainer>
-          <NavigationCards />
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
+            <h2 className={classes.title}>Where would you like to do?</h2>
+          </GridItem>
+        </GridContainer>
+        <NavigationCards />
       </div>
       <Footer
         content={
@@ -38,33 +38,20 @@ const LoggedInSplash = () => {
             <div className={classes.left}>
               <List className={classes.list}>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    target="_blank"
-                    className={classes.block}
-                  >
+                  <a target="_blank" className={classes.block}>
                     Creative Tim
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    target="_blank"
-                    className={classes.block}
-                  >
+                  <a target="_blank" className={classes.block}>
                     About us
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    className={classes.block}
-                  >
-                    Blog
-                  </a>
+                  <a className={classes.block}>Blog</a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <a
-                    target="_blank"
-                    className={classes.block}
-                  >
+                  <a target="_blank" className={classes.block}>
                     Licenses
                   </a>
                 </ListItem>
@@ -72,11 +59,7 @@ const LoggedInSplash = () => {
             </div>
             <div className={classes.right}>
               &copy; {1900 + new Date().getYear()} , made with <Favorite className={classes.icon} />{" "}
-              by{" "}
-              <a target="_blank">
-                Creative Tim
-              </a>{" "}
-              for a better web.
+              by <a target="_blank">Creative Tim</a> for a better web.
             </div>
           </div>
         }
