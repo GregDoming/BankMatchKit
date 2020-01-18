@@ -25,12 +25,12 @@ const LoggedInSplash = () => {
     <>
       <Parallax image={require("assets/img/bluetool.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-              <h2 className={classes.title}>Where would you like to go?</h2>
-            </GridItem>
-          </GridContainer>
-          <NavigationCards />
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
+            <h2 className={classes.title}>Where would you like to go?</h2>
+          </GridItem>
+        </GridContainer>
+        <NavigationCards />
       </div>
       <Footer
         content={

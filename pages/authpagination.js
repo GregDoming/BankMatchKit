@@ -15,8 +15,6 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Snackbar from "@material-ui/core/Snackbar";
 import Icon from "@material-ui/core/Icon";
 import Parallax from "components/Parallax/Parallax.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
 import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js";
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Transition from "components/Transition/Transition.js";
@@ -222,7 +220,6 @@ const AuthPagination = props => {
         <div className={classes.main}>
           <LenderNavigationTabs router={router} />
           {renderView(activeStep)}
-        </div>
         <Box
           className={classes.bottomStepper}
           style={{ marginTop: "calc(5% + 60px)", bottom: "0", position: "fixed" }}
@@ -278,6 +275,7 @@ const AuthPagination = props => {
             />
           )}
         </Box>
+        </div>
       </div>
     </>
   );

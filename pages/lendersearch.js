@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -16,7 +16,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 
-import GetAppIcon from '@material-ui/icons/GetApp';
+import GetAppIcon from "@material-ui/icons/GetApp";
 
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import SearchTable from "components/SearchTable/SearchTable.js";
@@ -30,7 +30,7 @@ import { adminUser, downloadCSV } from "lib/auth";
 
 const useStyles = makeStyles(lenderSearchStyle);
 
-const LenderSearch = (props) => {
+const LenderSearch = props => {
   const classes = useStyles();
   const [searchCompleted, setSearchCompleted] = useState(false);
   const [searchArr, setSearchArr] = useState([]);
@@ -53,7 +53,7 @@ const LenderSearch = (props) => {
   const [lenderTypesList, setLenderTypesList] = useState(listOfLenderTypes);
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     if (router.query.complete === "yes") {
@@ -177,11 +177,9 @@ const LenderSearch = (props) => {
     </>
   ) : (
     <>
-              <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
-        <div className={classes.main}>
-          <LenderNavigationTabs router={router} />
-        </div>
-      <div className={classNames(classes.main)}>
+      <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
+      <div className={classes.main}>
+        <LenderNavigationTabs router={router} />
         <div className={classes.container}>
           <h2 className={classes.title}>Admin Search</h2>
           <GridContainer>
@@ -202,16 +200,16 @@ const LenderSearch = (props) => {
                     Search
                   </Button>
                   <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
-                  <Button
-                    type="button"
-                    color="success"
-                    className={classes.highButton}
-                    style={{ minHeight: "60px", fontSize: "20px" }}
-                    onClick={handleClickAll}
-                  >
-                    <SearchIcon style={{ color: "#FFFFFF" }} />
-                    Search All
-                  </Button>
+                    <Button
+                      type="button"
+                      color="success"
+                      className={classes.highButton}
+                      style={{ minHeight: "60px", fontSize: "20px" }}
+                      onClick={handleClickAll}
+                    >
+                      <SearchIcon style={{ color: "#FFFFFF" }} />
+                      Search All
+                    </Button>
                   </Link>
                   <Button
                     type="button"

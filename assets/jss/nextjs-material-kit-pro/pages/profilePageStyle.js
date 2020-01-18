@@ -32,6 +32,15 @@ const profilePageStyle = {
       transform: "translate3d(0, -50%, 0)"
     }
   },
+  main: {
+    ...mainRaised,
+    background: whiteColor,
+    position: "relative",
+    zIndex: "3",
+    marginRight: "8%",
+    marginLeft: "8%",
+    marginTop: "-40vh",
+  },
   description: {
     margin: "1.071rem auto 0",
     maxWidth: "600px",
@@ -42,13 +51,6 @@ const profilePageStyle = {
   },
   name: {
     marginTop: "-80px"
-  },
-
-  main: {
-    ...main
-  },
-  mainRaised: {
-    ...mainRaised
   },
   columnContainer: {
     display: "flex",
