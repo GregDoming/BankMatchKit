@@ -47,7 +47,7 @@ const NavigationCards = () => {
           </Link>
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
-          <Link href="/underConstruction">
+          <Link href="/brokerportal">
             <LinkCard
               raised
               background
