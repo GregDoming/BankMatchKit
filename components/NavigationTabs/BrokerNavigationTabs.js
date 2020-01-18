@@ -11,7 +11,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
 import { getTab } from "lib/auth";
 
-const LenderNavigationTabs = props => {
+const BrokerNavigationTabs = props => {
   const [value, setValue] = React.useState(0);
   const router = useRouter();
 
@@ -20,13 +20,13 @@ const LenderNavigationTabs = props => {
       case "/profile":
         setValue(0);
         break;
-      case "/authpagination":
+      case "/underConstruction":
         setValue(1);
         break;
-      case "/lendersearch":
+      case "/underConstruction":
         setValue(2);
         break;
-      case "/adminPagination":
+      case "/underConstruction":
         setValue(2);
         break;
       default:
@@ -44,12 +44,12 @@ const LenderNavigationTabs = props => {
         centered
       >
         <Link href="/profile">
-        <Tab icon={<HomeIcon />} label="HOME" />
+          <Tab icon={<HomeIcon />} label="HOME" />
         </Link>
-        <Link href="/authpagination">
+        <Link href="/underConstruction">
           <Tab icon={<EditIcon />} label="EDIT" />
         </Link>
-        <Link href="/lendersearch">
+        <Link href="/underConstruction">
           <Tab icon={<SearchIcon />} label="SEARCH" />
         </Link>
         <Link href="/underConstruction">
@@ -60,6 +60,6 @@ const LenderNavigationTabs = props => {
   );
 };
 
-LenderNavigationTabs.getInitialProps = getTab;
+BrokerNavigationTabs.getInitialProps = getTab;
 
-export default LenderNavigationTabs;
+export default BrokerNavigationTabs;
