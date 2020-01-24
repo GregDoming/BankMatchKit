@@ -15,7 +15,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Snackbar from "@material-ui/core/Snackbar";
 import Icon from "@material-ui/core/Icon";
 import Parallax from "components/Parallax/Parallax.js";
-import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js";
+import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";

@@ -11,7 +11,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
 import { getTab } from "lib/auth";
 
-const BrokerNavigationTabs = props => {
+const ToolsNavigationTabs = props => {
   const [value, setValue] = React.useState(0);
   const router = useRouter();
 
@@ -46,17 +46,20 @@ const BrokerNavigationTabs = props => {
         <Link href="/landing-page">
           <Tab icon={<HomeIcon />} label="HOME" />
         </Link>
-        <Link href="/brokercreateprofile">
-          <Tab icon={<EditIcon />} label="Create Broker Profile" />
+        <Link href="/toolsloancompare">
+          <Tab icon={<EditIcon />} label="Compare Loans" />
         </Link>
-        <Link href="/brokermanagegroups">
-          <Tab icon={<EditIcon />} label="Manage Broker Groups" />
+        <Link href="/toolsbanklocations">
+          <Tab icon={<EditIcon />} label="Bank Locations" />
+        </Link>
+        <Link href="/toolsx">
+          <Tab icon={<EditIcon />} label="X Tool" />
         </Link>
       </Tabs>
     </Paper>
   );
 };
 
-BrokerNavigationTabs.getInitialProps = getTab;
+ToolsNavigationTabs.getInitialProps = getTab;
 
-export default BrokerNavigationTabs;
+export default ToolsNavigationTabs;

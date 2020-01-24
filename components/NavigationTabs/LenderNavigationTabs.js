@@ -44,7 +44,7 @@ const LenderNavigationTabs = props => {
         centered
       >
         <Link href="/profile">
-        <Tab icon={<HomeIcon />} label="HOME2" />
+          <Tab icon={<HomeIcon />} label="HOME" />
         </Link>
         <Link href="/authpagination">
           <Tab icon={<EditIcon />} label="EDIT" />
