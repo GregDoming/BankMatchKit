@@ -10,10 +10,11 @@ import GridItem from "components/Grid/GridItem.js";
 import LinkCard from "components/Card/LinkCard.js";
 import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
+import NavCardModals from "components/NavCardModals/NavCardModals.js";
 
 import office2 from "assets/img/examples/office2.jpg";
 import blog8 from "assets/img/examples/blog8.jpg";
-import construction from "assets/img/construction.jpg";
+import bg2 from "assets/img/examples/bg2.jpg";
 import city from "assets/img/examples/city.jpg";
 
 import navigationCardsStyle from "assets/jss/nextjs-material-kit-pro/components/navigationCardsStyle.js";
@@ -45,9 +46,10 @@ const NavigationCards = () => {
               </CardBody>
             </LinkCard>
           </Link>
+                {/* <NavCardModals/> */}
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
-          <Link href="/underConstruction">
+          <Link href="/brokerportal">
             <LinkCard
               raised
               background
@@ -66,7 +68,7 @@ const NavigationCards = () => {
           </Link>
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
-          <Link href="/lendersearch">
+          <Link href="/loanportal">
             <LinkCard
               raised
               background
@@ -86,15 +88,15 @@ const NavigationCards = () => {
           </Link>
         </GridItem>
         <GridItem className={classes.linkPointer} xs={12} sm={6} md={6} lg={6}>
-          <Link href="/underConstruction">
+          <Link href="/toolsportal">
             <LinkCard
               raised
               background
               className={classes.navigationCard}
-              style={{ backgroundImage: "url(" + construction + ")" }}
+              style={{ backgroundImage: "url(" + bg2 + ")" }}
             >
               <CardBody background>
-                <h3 className={classes.cardTitle}>Loan Analysis Tools</h3>
+                <h3 className={classes.cardTitle}>Analysis Tools</h3>
                 <h6 className={classes.category}>Analyze and Compare Aspects of Different Offers</h6>
                 <a href="#pablo"></a>
                 <Button round href="#pablo" color="secondary">

@@ -23,7 +23,7 @@ import SearchTable from "components/SearchTable/SearchTable.js";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
 import EmailModal from "components/EmailModal/EmailModal.js";
-import LenderNavigationTabs from "components/LenderNavigationTabs/LenderNavigationTabs.js";
+import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 
 import { getQueryResults, getAllUsersQuery } from "lib/api";
 import { adminUser, downloadCSV } from "lib/auth";

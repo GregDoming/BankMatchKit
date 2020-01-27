@@ -8,7 +8,7 @@ import GridItem from "components/Grid/GridItem.js";
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Parallax from "components/Parallax/Parallax.js";
-import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
+import LoanNavigationTabs from "components/NavigationTabs/LoanNavigationTabs.js";
 
 import { isUserAuthenticated, downloadCSV } from "lib/auth";
 
@@ -41,10 +41,10 @@ const Profile = props => {
     <>
       <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
-        <LenderNavigationTabs />
+        <LoanNavigationTabs />
       <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-            <h2 className={classes.title}>Welcome to the Lender Portal, {props.auth.user.username}</h2>
+            <h2 className={classes.title}>Welcome to the Loan Database, {props.auth.user.username}</h2>
           </GridItem>
         </GridContainer>
         {/* {renderView(activeStep)} */}

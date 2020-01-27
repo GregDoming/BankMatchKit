@@ -11,7 +11,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
 import { getTab } from "lib/auth";
 
-const LenderNavigationTabs = props => {
+const LoanNavigationTabs = props => {
   const [value, setValue] = React.useState(0);
   const router = useRouter();
 
@@ -20,13 +20,13 @@ const LenderNavigationTabs = props => {
       case "/profile":
         setValue(0);
         break;
-      case "/authpagination":
+      case "/underConstruction":
         setValue(1);
         break;
-      case "/lendersearch":
+      case "/underConstruction":
         setValue(2);
         break;
-      case "/adminPagination":
+      case "/underConstruction":
         setValue(2);
         break;
       default:
@@ -43,23 +43,23 @@ const LenderNavigationTabs = props => {
         aria-label="icon label tabs example"
         centered
       >
-        <Link href="/profile">
-        <Tab icon={<HomeIcon />} label="HOME" />
+        <Link href="/landing-page">
+          <Tab icon={<HomeIcon />} label="HOME" />
         </Link>
-        <Link href="/authpagination">
-          <Tab icon={<EditIcon />} label="EDIT" />
+        <Link href="/loaninitiate">
+          <Tab icon={<EditIcon />} label="Initiate Loan" />
         </Link>
-        <Link href="/lendersearch">
-          <Tab icon={<SearchIcon />} label="SEARCH" />
+        <Link href="/loanmanage">
+          <Tab icon={<EditIcon />} label="Manage Loans" />
         </Link>
-        <Link href="/underConstruction">
-          <Tab icon={<PersonPinIcon />} label="MAP" />
+        <Link href="/loanarchive">
+          <Tab icon={<EditIcon />} label="Loan Archive" />
         </Link>
       </Tabs>
     </Paper>
   );
 };
 
-LenderNavigationTabs.getInitialProps = getTab;
+LoanNavigationTabs.getInitialProps = getTab;
 
-export default LenderNavigationTabs;
+export default LoanNavigationTabs;
