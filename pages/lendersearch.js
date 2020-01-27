@@ -130,7 +130,7 @@ const LenderSearch = props => {
 
   const handleSearch = async () => {
     const queryFieldsArr = [];
-
+console.log("searching")
     for (let key in queryFieldsObj) {
       if (queryFieldsObj.hasOwnProperty(key)) {
         if (queryFieldsObj[key] && queryFieldsArr.indexOf(queryFieldsObj[key]) === -1) {
