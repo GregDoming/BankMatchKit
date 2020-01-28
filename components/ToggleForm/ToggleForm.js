@@ -53,6 +53,7 @@ const ToggleForm = props => {
       {componentArr.map((component, index) => {
         return (
           <ExpansionPanel
+            className={classes.expansionPanel}
             key={"ToggleForm" + expansionPanelArr[index]}
             TransitionProps={{ unmountOnExit: true }}
           >

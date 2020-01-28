@@ -223,6 +223,12 @@ const toggleFormStyle = {
     width: "auto",
     textAlign: "center"
   },
+  expansionPanel: {
+    borderStyle: "outset",
+    borderWidth: "1px",
+    borderColor: primaryColor[1],
+    marginBottom: "2px"
+  },
   container: {
     margin: "auto",
     width: "90%",
@@ -240,6 +246,8 @@ const toggleFormStyle = {
     },
     zIndex: "2",
     paddingTop: "6%",
+    paddingBottom: "100px",
+
   },
   customForm: {
     justifyContent: "space-between",

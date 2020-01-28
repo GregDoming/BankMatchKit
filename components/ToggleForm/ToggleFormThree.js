@@ -21,24 +21,21 @@ const ToggleFormThree = props => {
   const { state, dispatch } = props;
 
   const componentArr = [
-    <FinancialCreditIssuesQualifiers
-    dispatch={dispatch} state={state}
-    />,
-    <MiscellaneousQualifiers
-    dispatch={dispatch} state={state}
-    />
+    <FinancialCreditIssuesQualifiers dispatch={dispatch} state={state} />,
+    <MiscellaneousQualifiers dispatch={dispatch} state={state} />
   ];
 
-  const expansionPanelArr = [
-    "Financial and/or Credit Issues",
-    "Miscellaneous"
-  ];
+  const expansionPanelArr = ["Financial and/or Credit Issues", "Miscellaneous"];
 
   return (
     <div className={classes.container}>
       {componentArr.map((component, index) => {
         return (
-          <ExpansionPanel key={"ToggleFormTwo" + expansionPanelArr[index]} TransitionProps={{ unmountOnExit: true }} >
+          <ExpansionPanel
+            className={classes.expansionPanel}
+            key={"ToggleFormTwo" + expansionPanelArr[index]}
+            TransitionProps={{ unmountOnExit: true }}
+          >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
