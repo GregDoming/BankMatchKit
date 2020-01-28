@@ -34,6 +34,11 @@ const lenderSearchStyle = {
     marginLeft: "8%",
     marginTop: "-40vh",
   },
+  loading: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto"
+  },
   customRaised: {
     ...mainRaised,
     marginTop: "105px",

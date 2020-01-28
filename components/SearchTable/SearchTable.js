@@ -17,7 +17,7 @@ import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/c
 
 const useStyles = makeStyles(style);
 
-const SearchTable = props => {
+const SearchTable = React.memo((props) => {
   const { queryArr, checkArr, handleXClick } = props;
   const [checked, setChecked] = React.useState(checkArr);
   const [userIdArr, setUserIdArr] = React.useState([]);
@@ -108,7 +108,7 @@ const SearchTable = props => {
       total: true,
       colspan: "5",
       amount: (
-        <span>
+        <span key={"span"}>
           <b>{arr.length}</b>
         </span>
       )
@@ -141,6 +141,6 @@ const SearchTable = props => {
       customHeadCellClasses={[classes.textCenter, classes.textRight, classes.textRight]}
     />
   );
-};
+});
 
 export default SearchTable;

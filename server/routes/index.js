@@ -3,6 +3,7 @@ const express = require("express");
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
 const postController = require("../controllers/postController");
+const emailController = require("../controllers/emailController");
 const cors = require("cors");
 
 
@@ -29,8 +30,8 @@ router.get("/api/auth/signout", authController.signout);
 /**
  * ADMIN ROUTES: /api/admin
  */
-router.get("/api/admin/id/:id", userController.adminsGetUserById)
-router.get("/api/auth/allLenderQuery", authController.restrictTo("admin"), userController.getAllLenderQuery)
+router.get("/api/admin/id/:id", userController.adminsGetUserById);
+router.get("/api/auth/allLenderQuery", authController.restrictTo("admin"), userController.getAllLenderQuery);
 
 /**
  * USER ROUTES: /api/users
@@ -39,6 +40,8 @@ router.param("userId", userController.getUserById);
 
 router.post("/api/users/updateUserData", userController.updateUser);
 router.post("/api/users/updateAdminUserData", authController.restrictTo("admin"), userController.updateAdminUser);
+router.post("/api/users/email", authController.restrictTo("admin"), emailController.sendList);
+
 router.put(
   "/api/users/follow",
   authController.checkAuth,

@@ -20,23 +20,26 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import SearchTable from "components/SearchTable/SearchTable.js";
-import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
 import EmailModal from "components/EmailModal/EmailModal.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
+import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";
 
 import { getQueryResults, getAllUsersQuery } from "lib/api";
 import { adminUser, downloadCSV } from "lib/auth";
 
+import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 const useStyles = makeStyles(lenderSearchStyle);
 
 const LenderSearch = props => {
   const classes = useStyles();
   const [searchCompleted, setSearchCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchArr, setSearchArr] = useState([]);
   const [idNumber, setIdNumber] = useState(0);
   const [queryArr, setQueryArr] = useState([]);
   const [checkArr, setCheckArr] = useState([]);
+  const [emailArr, setEmailArr] = useState([]);
   const [queryFieldsObj, setqueryFieldsObj] = useState({
     0: "",
     1: "",
@@ -84,6 +87,10 @@ const LenderSearch = props => {
     setIdNumber(idNumber + 1);
   };
 
+  const sendEmail = (event, emailArr) => {
+    console.log(emailArr);
+  };
+
   const handleClose = event => {
     event.preventDefault();
 
@@ -105,6 +112,12 @@ const LenderSearch = props => {
     setQueryArr(arrCopy);
   };
 
+  const formatEmailArr = arr => {
+    arr.forEach((ele) => {
+      // console.log(ele[1].email)
+    })
+  }
+
   const formatCheckArr = arr => {
     const formattedArr = [];
 
@@ -115,22 +128,22 @@ const LenderSearch = props => {
     return formattedArr;
   };
 
-  const resetSearch = (event, bool) => {
-    event.preventDefault();
-    setSearchCompleted(false);
+  const resetSearch = () => {
+    router.push("/lendersearch");
   };
 
   const handleClickAll = async () => {
+    setIsLoading(true);
     const queryResults = await getAllUsersQuery();
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
-    // Router.push("/lendersearch/searchall");
-    // setSearchCompleted(true);
+    formatEmailArr(queryResults.data)
+    setEmailArr(queryResults.data.email);
+    setIsLoading(false);
   };
 
   const handleSearch = async () => {
     const queryFieldsArr = [];
-console.log("searching")
     for (let key in queryFieldsObj) {
       if (queryFieldsObj.hasOwnProperty(key)) {
         if (queryFieldsObj[key] && queryFieldsArr.indexOf(queryFieldsObj[key]) === -1) {
@@ -140,16 +153,23 @@ console.log("searching")
         }
       }
     }
+    
+    setIsLoading(true);
     const queryResults = await getQueryResults(queryFieldsArr);
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
+    setEmailArr(queryResults.data.email);
+    setIsLoading(false);
     setSearchCompleted(true);
+
   };
 
   return searchCompleted ? (
     <>
       <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
+        <LenderNavigationTabs router={router} />
+
         <div className={classes.container}>
           <div className={classes.rowContainer}>
             <Button
@@ -157,13 +177,21 @@ console.log("searching")
               type="button"
               color="success"
               className={classes.highButton}
-              // style={{ minHeight: "60px", fontSize: "20px" }}
               onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
             >
-              <SearchIcon style={{ color: "#FFFFFF" }} />
+              <SearchIcon />
               Reset Search
             </Button>
-            <EmailModal queryArr={queryArr} />
+            <Button
+              key="emailButton"
+              type="button"
+              color="success"
+              className={classes.highButton}
+              onClick={(event, emailArr) => sendEmail(event, emailArr)}
+            >
+              <SearchIcon />
+              Send Email
+            </Button>
           </div>
           <GridContainer>
             <GridItem xs={12} sm={10} md={10}>
@@ -173,11 +201,14 @@ console.log("searching")
             </GridItem>
           </GridContainer>
         </div>
+        <div className={classes.centerContainer}>
+          <ConditionalLoadIcon className={classes.loading} isLoading={isLoading} size={90} />
+        </div>
       </div>
     </>
   ) : (
     <>
-      <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
+      <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LenderNavigationTabs router={router} />
         <div className={classes.container}>
@@ -193,7 +224,6 @@ console.log("searching")
                     type="button"
                     color="success"
                     className={classes.highButton}
-                    // style={{ minHeight: "60px", fontSize: "20px" }}
                     onClick={handleSearch}
                   >
                     <SearchIcon style={{ color: "#FFFFFF" }} />
@@ -215,7 +245,6 @@ console.log("searching")
                     type="button"
                     color="success"
                     className={classes.highButton}
-                    // style={{ minHeight: "60px", fontSize: "20px" }}
                     onClick={handleClickAll}
                   >
                     <GetAppIcon style={{ color: "#FFFFFF" }} />
