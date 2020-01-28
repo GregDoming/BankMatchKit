@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
 import { useRouter } from 'next/router';
@@ -114,7 +113,7 @@ const AuthPagination = props => {
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
   const theme = useTheme();
-  const router = useRouter()
+  const router = useRouter();
   const totalSteps = () => {
     return steps.length;
   };
@@ -215,7 +214,6 @@ const AuthPagination = props => {
   return (
     <>
       <div className={classes.root}>
-        <Helmet>{/* <style>{"body { background-color: #96aadf; }"}</style> */}</Helmet>
         <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
         <div className={classes.main}>
           <LenderNavigationTabs router={router} />
