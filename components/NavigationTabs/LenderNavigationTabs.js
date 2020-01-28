@@ -38,32 +38,31 @@ const LenderNavigationTabs = props => {
   });
 
   return (
-    <div >
-
-    <Paper  square>
-      <Tabs
-      className={classes.root}
-        value={value}
-        variant="fullWidth"
-        indicatorColor="secondary"
-        textColor="secondary"
-        aria-label="icon label tabs example"
-        centered
-      >
-        <Link href="/profile">
-          <Tab icon={<HomeIcon />} label="HOME" />
-        </Link>
-        <Link href="/authpagination">
-          <Tab icon={<EditIcon />} label="EDIT" />
-        </Link>
-        <Link href="/lendersearch">
-          <Tab icon={<SearchIcon />} label="SEARCH" />
-        </Link>
-        <Link href="/underConstruction">
-          <Tab icon={<PersonPinIcon />} label="MAP" />
-        </Link>
-      </Tabs>
-    </Paper>
+    <div>
+      <Paper square>
+        <Tabs
+          className={classes.root}
+          value={value}
+          variant="fullWidth"
+          indicatorColor="secondary"
+          textColor="secondary"
+          aria-label="icon label tabs example"
+          centered
+        >
+          <Link href="/profile">
+            <Tab icon={<HomeIcon />} label="HOME" />
+          </Link>
+          <Link href="/authpagination">
+            <Tab icon={<EditIcon />} label="EDIT" />
+          </Link>
+          <Link href="/lendersearch">
+            <Tab icon={<SearchIcon />} label="SEARCH" />
+          </Link>
+          <Link href="/underConstruction">
+            <Tab icon={<PersonPinIcon />} label="MAP" />
+          </Link>
+        </Tabs>
+      </Paper>
     </div>
   );
 };

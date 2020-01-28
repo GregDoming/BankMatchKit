@@ -1,6 +1,7 @@
 import {
   primaryColor,
   grayColor,
+  secondaryColor,
   cardTitle,
   whiteColor,
   blackColor,
@@ -23,7 +24,7 @@ const lenderSearchStyle = {
   description,
   container: {
     ...container,
-    maxWidth: "970px !important"
+    maxWidth: "970px !important",
   },
    main: {
     ...mainRaised,
@@ -38,6 +39,9 @@ const lenderSearchStyle = {
     display: "block",
     marginLeft: "auto",
     marginRight: "auto"
+  },
+  body: {
+    backgroundColor: "#d0e6f6"
   },
   customRaised: {
     ...mainRaised,
@@ -89,7 +93,7 @@ const lenderSearchStyle = {
     ...cardTitle,
     fontSize: "15px",
     marginLeft: "3%",
-    marginRight: "50%"
+    marginRight: "50%",
   },
   highButton: {
     minHeight: "50px"
@@ -198,9 +202,6 @@ const lenderSearchStyle = {
     justifyContent: "center",
     alignItems: "center"
   },
-  body: {
-    backgroundColor: "#324C67"
-  },
   pageHeader: {
     minHeight: "100vh",
     height: "auto",
@@ -247,7 +248,7 @@ const lenderSearchStyle = {
     width: "90%"
   },
   title: {
-    color: grayColor[1],
+    color: primaryColor,
     textDecoration: "none",
     fontWeight: "700",
     marginLeft: "5%",
@@ -345,7 +346,7 @@ const lenderSearchStyle = {
       maxWidth: "100%"
     },
     zIndex: "2",
-    paddingTop: "6%"
+    paddingTop: "6%",
   },
   customForm: {
     justifyContent: "space-between",

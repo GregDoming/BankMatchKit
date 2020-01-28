@@ -36,10 +36,22 @@ const headerStyle = theme => ({
     alignItems: "center",
     flexFlow: "row nowrap",
     justifyContent: "flex-start",
-    position: "fixed",
+    position: "fixed"
     // changeColorOnScroll:
     //   height: "100",
     //   backgroundColor: "info"
+  },
+  logo: {
+    margin: 'auto',
+    textAlign: 'center',
+    maxWidth: '50%',
+    maxHeight: '70%',
+  },
+  logoHorizontallyCenter: {
+    position: 'absolute', 
+    left: '50%', 
+    top: '50%',
+    transform: 'translate(-50%, -50%)'
   },
   absolute: {
     position: "absolute",
@@ -90,9 +102,8 @@ const headerStyle = theme => ({
     }
   },
   appResponsive: {
-
     margin: "20px 10px",
-    marginTop: "0px",
+    marginTop: "0px"
   },
   appResponsiveColumn: {
     display: "flex",

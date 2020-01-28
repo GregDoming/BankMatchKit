@@ -26,7 +26,7 @@ import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs
 import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";
 
 import { getQueryResults, getAllUsersQuery, sendEmailArr } from "lib/api";
-import { adminUser, downloadCSV } from "lib/auth";
+import { adminUser } from "lib/auth";
 
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 const useStyles = makeStyles(lenderSearchStyle);
@@ -164,7 +164,6 @@ const LenderSearch = props => {
   };
 
   const modalClick = event => {
-    // event.preventDefault();
     console.log("clicked");
   };
 
@@ -202,7 +201,6 @@ const LenderSearch = props => {
       <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LenderNavigationTabs router={router} />
-
         <div className={classes.container}>
           <div className={classes.rowContainer}>
             <Button
@@ -215,16 +213,6 @@ const LenderSearch = props => {
               <SearchIcon />
               Reset Search
             </Button>
-            {/* <Button
-              key="emailButton"
-              type="button"
-              color="success"
-              className={classes.highButton}
-              onClick={event => sendEmail(event)}
-            >
-              <SearchIcon />
-              Send Email
-            </Button> */}
             <EmailModal
               formattedEmailArr={formattedEmailArr}
               checked={checked}
@@ -256,12 +244,12 @@ const LenderSearch = props => {
       <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LenderNavigationTabs router={router} />
-        <div className={classes.container}>
+        <div className={classes.container} style={{backgroundColor: "gray[2]"}}>
           <h2 className={classes.title}>Admin Search</h2>
           <GridContainer>
             <GridItem xs={12} sm={10} md={10}>
               <Card className={classes.cardCompanySelect}>
-                <CardHeader color="warning"></CardHeader>
+                <CardHeader color="rose"></CardHeader>
                 <h4 className={classes.cardTitle}>Search Fields</h4>
                 <div className={classes.headerWrapper}>
                   <h5 className={classes.selectTitle}>Loan Type</h5>
@@ -336,4 +324,4 @@ const LenderSearch = props => {
 
 LenderSearch.getInitialProps = adminUser;
 
-export default React.memo(LenderSearch);
+export default LenderSearch;

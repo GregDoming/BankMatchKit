@@ -32,6 +32,9 @@ const profilePageStyle = {
       transform: "translate3d(0, -50%, 0)"
     }
   },
+  body: {
+    backgroundColor: "#d0e6f6"
+  },
   main: {
     ...mainRaised,
     background: whiteColor,

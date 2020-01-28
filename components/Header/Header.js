@@ -12,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
-import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 import Close from "@material-ui/icons/Close";
@@ -75,9 +74,9 @@ const Header = props => {
   return isScrolled ? (
     <>
       <AppBar className={appBarClasses}>
-        <Toolbar className={classes.container}>
+        <Toolbar className={classes.container}>      
           <Button className={classes.title}>
-            <Link href="/presentation">
+            <Link href="/presentation">    
               <a>{brand}</a>
             </Link>
           </Button>
@@ -85,26 +84,25 @@ const Header = props => {
             <Menu />
           </IconButton>
         </Toolbar>
-          <Drawer
-            variant="temporary"
-            anchor={"right"}
-            open={mobileOpen}
-
-            classes={{
-              paper: classes.drawerPaper
-            }}
-            onClose={handleDrawerToggle}
+        <Drawer
+          variant="temporary"
+          anchor={"right"}
+          open={mobileOpen}
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          onClose={handleDrawerToggle}
+        >
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+            className={classes.closeButtonDrawer}
           >
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerToggle}
-              className={classes.closeButtonDrawer}
-            >
-              <Close />
-            </IconButton>
-            <div className={classes.appResponsiveColumn}>{links}</div>
-          </Drawer>
+            <Close />
+          </IconButton>
+          <div className={classes.appResponsiveColumn}>{links}</div>
+        </Drawer>
       </AppBar>
     </>
   ) : (

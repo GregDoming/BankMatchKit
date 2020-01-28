@@ -10,12 +10,12 @@ import LoggedOutLinks from "components/NavLinks/LoggedOutLinks.js";
 
 import navbarsStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/navbarsStyle.js";
 
-
 const useStyles = makeStyles(navbarsStyle);
 
 const Navbar = props => {
   const checkUser = props => {
     const { pageProps } = props;
+    console.log(pageProps)
     if (pageProps.auth) {
       return pageProps.auth.user;
     }

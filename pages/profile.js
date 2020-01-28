@@ -13,6 +13,8 @@ import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs
 import { isUserAuthenticated, downloadCSV } from "lib/auth";
 
 import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
+import Logo from "assets/img/logo.svg";
+
 
 const useStyles = makeStyles(profilePageStyle);
 
@@ -27,7 +29,7 @@ const Profile = props => {
 
   const { roles } = props.auth.user;
 
-  console.log(props.auth.user)
+  console.log(props.auth.user);
 
   const onClickCSV = async event => {
     event.preventDefault();
@@ -38,18 +40,21 @@ const Profile = props => {
 
   // const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
-    <>
+    <div className={classes.body}>
       <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LenderNavigationTabs />
-      <GridContainer justify="center">
+        <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-            <h2 className={classes.title}>Welcome to the Lender Portal, {props.auth.user.username}</h2>
+            <h2 className={classes.title}>
+              Welcome to the Lender Portal, {props.auth.user.username}
+            </h2>
+            <img src={Logo} alt="logo"/>
           </GridItem>
         </GridContainer>
         {/* {renderView(activeStep)} */}
       </div>
-    </>
+    </div>
   );
 };
 

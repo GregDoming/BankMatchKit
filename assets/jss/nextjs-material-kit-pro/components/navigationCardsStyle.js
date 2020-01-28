@@ -1,6 +1,7 @@
 import { whiteColor, hexToRgb, cardTitle } from "assets/jss/nextjs-material-kit-pro.js";
 
 import tooltipsStyle from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
+import logo from "assets/img/logo.svg";
 
 const navigationCardsStyle = {
   ...tooltipsStyle,
@@ -11,11 +12,12 @@ const navigationCardsStyle = {
   },
   navigationCard: {
     height: "85%",
-    width: "100%"
+    width: "100%",
   },
   navigationContainer: {
     width: "80%",
-    margin: "auto"
+    margin: "auto",
+    backgroundImage: "url(assets/img/logo.svg)"
   },
   linkPointer: {
     cursor: "pointer"

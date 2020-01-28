@@ -16,6 +16,7 @@ import office2 from "assets/img/examples/office2.jpg";
 import blog8 from "assets/img/examples/blog8.jpg";
 import bg2 from "assets/img/examples/bg2.jpg";
 import city from "assets/img/examples/city.jpg";
+import logo from "assets/img/logo.svg"
 
 import navigationCardsStyle from "assets/jss/nextjs-material-kit-pro/components/navigationCardsStyle.js";
 
@@ -32,7 +33,7 @@ const NavigationCards = () => {
               raised
               background
               className={classes.navigationCard}
-              style={{ backgroundImage: "url(" + office2 + ")" }}
+              style={{ backgroundImage: "url(" + logo + ")" }}
             >
               <CardBody background>
                 <h3 className={classes.cardTitle}>Lender Portal</h3>
