@@ -10,10 +10,12 @@ exports.sendList = (req, res, next) => {
     }
   });
 
+  console.log(req.body)
+
   const mailOptions = {
     from: '"Example Team" <from@example.com>',
-    to: 'user1@example.com, user2@example.com',
-    subject: 'Nice Nodemailer test',
+    to: req.body,
+    subject: 'BankMatch Email Test',
     text: 'Hey there, it’s our first message sent with Nodemailer ',
     html: '<b>Hey there! </b><br> This is our first message sent with Nodemailer<br /><img src="cid:uniq-mailtrap.png" alt="mailtrap" />',
     attachments: []

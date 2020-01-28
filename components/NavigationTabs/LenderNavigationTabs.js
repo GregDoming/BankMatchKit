@@ -11,7 +11,11 @@ import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
 import { getTab } from "lib/auth";
 
+import navigationTabStyle from "assets/jss/nextjs-material-kit-pro/components/navigationTabStyle.js";
+const useStyles = makeStyles(navigationTabStyle);
+
 const LenderNavigationTabs = props => {
+  const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const router = useRouter();
 
@@ -34,8 +38,11 @@ const LenderNavigationTabs = props => {
   });
 
   return (
-    <Paper square>
+    <div >
+
+    <Paper  square>
       <Tabs
+      className={classes.root}
         value={value}
         variant="fullWidth"
         indicatorColor="secondary"
@@ -57,6 +64,7 @@ const LenderNavigationTabs = props => {
         </Link>
       </Tabs>
     </Paper>
+    </div>
   );
 };
 

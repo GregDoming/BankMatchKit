@@ -29,28 +29,23 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const useStyles = makeStyles(style);
 
 const EmailModal = props => {
+  const { sendEmail, emailArr, checked, formattedEmailArr } = props;
+
   const [emailModal, setEmailModal] = React.useState(false);
+  const [subjectText, setSubjectText] = React.useState("We will set this dynamically");
+  const [bodyText, setBodyText] = React.useState("We will set this dynamically");
+
   const classes = useStyles();
 
-  const { queryArr } = props;
 
-  const getEmailList = arr => {
-    const emailArr = [];
 
-    arr.forEach((user) => {
-      emailArr.push(user[1].email);
-    })
-    return emailArr.join(' ')
-  }
 
   return (
     <div>
       <Button
         type="button"
-        color="success"
+        color="primary"
         className={classes.highButton}
-        style={{ minHeight: "60px", fontSize: "20px" }}
-        round
         onClick={() => setEmailModal(true)}
       >
         Compose Email <Assignment />
@@ -101,7 +96,7 @@ const EmailModal = props => {
                   }}
                   inputProps={{
                     placeholder: "To",
-                    value: getEmailList(queryArr)
+                    value: formattedEmailArr
                   }}
                 />
                 <CustomInput
@@ -110,7 +105,8 @@ const EmailModal = props => {
                     fullWidth: true
                   }}
                   inputProps={{
-                    placeholder: "Subject"
+                    placeholder: "Subject",
+                    defaultValue: subjectText
                   }}
                 />
                 <TextField
@@ -118,14 +114,18 @@ const EmailModal = props => {
                   label="Multiline"
                   multiline
                   rows="6"
-                  defaultValue="Default Value"
+                  defaultValue={bodyText}
                   variant="outlined"
                 />
               </CardBody>
             </form>
           </DialogContent>
           <DialogActions className={`${classes.modalFooter} ${classes.justifyContentCenter}`}>
-            <Button color="primary" simple size="lg">
+            <Button key="emailButton"
+              type="button"
+              color="success"
+              className={classes.highButton}
+              onClick={() => sendEmail(event, emailArr, checked )}>
               Send
             </Button>
           </DialogActions>

@@ -17,9 +17,8 @@ import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/c
 
 const useStyles = makeStyles(style);
 
-const SearchTable = React.memo((props) => {
-  const { queryArr, checkArr, handleXClick } = props;
-  const [checked, setChecked] = React.useState(checkArr);
+const SearchTable = (props) => {
+  const { queryArr, handleXClick, tempCheckToggle, checked } = props;
   const [userIdArr, setUserIdArr] = React.useState([]);
 
   const handleEditProfileClick = async event => {
@@ -35,17 +34,17 @@ const SearchTable = React.memo((props) => {
     }
   };
 
-  const handleToggle = value => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  // const handleToggle = value => {
+  //   const currentIndex = checked.indexOf(value);
+  //   const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
+  //   if (currentIndex === -1) {
+  //     newChecked.push(value);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1);
+  //   }
+  //   setChecked(newChecked);
+  // };
 
   const formatQueryArr = arr => {
     const formattedArr = [];
@@ -84,7 +83,7 @@ const SearchTable = React.memo((props) => {
           key={"checkbox" + index}
           checked={checked.indexOf(index) !== -1}
           tabIndex={-1}
-          onClick={() => handleToggle(index)}
+          onClick={() => tempCheckToggle(index)}
           checkedIcon={<Check className={classes.checkedIcon} />}
           icon={<Check className={classes.uncheckedIcon} />}
           classes={{
@@ -141,6 +140,7 @@ const SearchTable = React.memo((props) => {
       customHeadCellClasses={[classes.textCenter, classes.textRight, classes.textRight]}
     />
   );
-});
+};
 
-export default SearchTable;
+
+export default React.memo(SearchTable);

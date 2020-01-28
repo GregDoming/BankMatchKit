@@ -25,7 +25,7 @@ import EmailModal from "components/EmailModal/EmailModal.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";
 
-import { getQueryResults, getAllUsersQuery } from "lib/api";
+import { getQueryResults, getAllUsersQuery, sendEmailArr } from "lib/api";
 import { adminUser, downloadCSV } from "lib/auth";
 
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
@@ -39,7 +39,9 @@ const LenderSearch = props => {
   const [idNumber, setIdNumber] = useState(0);
   const [queryArr, setQueryArr] = useState([]);
   const [checkArr, setCheckArr] = useState([]);
+  const [checked, setChecked] = useState([]);
   const [emailArr, setEmailArr] = useState([]);
+  const [formattedEmailArr, setFormattedEmailArr] = useState([]);
   const [queryFieldsObj, setqueryFieldsObj] = useState({
     0: "",
     1: "",
@@ -87,8 +89,34 @@ const LenderSearch = props => {
     setIdNumber(idNumber + 1);
   };
 
-  const sendEmail = (event, emailArr) => {
-    console.log(emailArr);
+  const tempCheckToggle = value => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    setChecked(newChecked);
+
+    const tempArr = [];
+
+    emailArr.forEach((ele, index) => {
+      if (checked.indexOf(index) !== -1) tempArr.push(ele);
+    });
+
+    setFormattedEmailArr(tempArr);
+  };
+
+  const sendEmail = (event, arr, checkArr) => {
+    const sendArr = [];
+
+    arr.forEach((ele, index) => {
+      if (checkArr.indexOf(index) !== -1) sendArr.push(ele);
+    });
+
+    sendEmailArr(sendArr);
   };
 
   const handleClose = event => {
@@ -113,10 +141,13 @@ const LenderSearch = props => {
   };
 
   const formatEmailArr = arr => {
-    arr.forEach((ele) => {
-      // console.log(ele[1].email)
-    })
-  }
+    const formattedEmail = [];
+
+    arr.forEach(ele => {
+      formattedEmail.push(ele[1].email);
+    });
+    return formattedEmail;
+  };
 
   const formatCheckArr = arr => {
     const formattedArr = [];
@@ -132,13 +163,17 @@ const LenderSearch = props => {
     router.push("/lendersearch");
   };
 
+  const modalClick = event => {
+    // event.preventDefault();
+    console.log("clicked");
+  };
+
   const handleClickAll = async () => {
     setIsLoading(true);
     const queryResults = await getAllUsersQuery();
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
-    formatEmailArr(queryResults.data)
-    setEmailArr(queryResults.data.email);
+    setEmailArr(formatEmailArr(queryResults.data));
     setIsLoading(false);
   };
 
@@ -153,15 +188,13 @@ const LenderSearch = props => {
         }
       }
     }
-    
+
     setIsLoading(true);
     const queryResults = await getQueryResults(queryFieldsArr);
     setCheckArr(formatCheckArr(queryResults.data));
     setQueryArr(queryResults.data);
-    setEmailArr(queryResults.data.email);
+    setEmailArr(formatEmailArr(queryResults.data));
     setIsLoading(false);
-    setSearchCompleted(true);
-
   };
 
   return searchCompleted ? (
@@ -175,28 +208,40 @@ const LenderSearch = props => {
             <Button
               key="searchButton"
               type="button"
-              color="success"
+              color="primary"
               className={classes.highButton}
               onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
             >
               <SearchIcon />
               Reset Search
             </Button>
-            <Button
+            {/* <Button
               key="emailButton"
               type="button"
               color="success"
               className={classes.highButton}
-              onClick={(event, emailArr) => sendEmail(event, emailArr)}
+              onClick={event => sendEmail(event)}
             >
               <SearchIcon />
               Send Email
-            </Button>
+            </Button> */}
+            <EmailModal
+              formattedEmailArr={formattedEmailArr}
+              checked={checked}
+              sendEmail={sendEmail}
+              emailArr={emailArr}
+            />
           </div>
           <GridContainer>
             <GridItem xs={12} sm={10} md={10}>
               <Card className={classes.cardCompanyResult}>
-                <SearchTable handleXClick={handleXClick} queryArr={queryArr} checkArr={checkArr} />
+                <SearchTable
+                  checked={checked}
+                  tempCheckToggle={tempCheckToggle}
+                  handleXClick={handleXClick}
+                  queryArr={queryArr}
+                  checkArr={checkArr}
+                />
               </Card>
             </GridItem>
           </GridContainer>
@@ -220,21 +265,22 @@ const LenderSearch = props => {
                 <h4 className={classes.cardTitle}>Search Fields</h4>
                 <div className={classes.headerWrapper}>
                   <h5 className={classes.selectTitle}>Loan Type</h5>
+                  <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/search"}>
                   <Button
                     type="button"
-                    color="success"
+                    color="primary"
                     className={classes.highButton}
                     onClick={handleSearch}
                   >
                     <SearchIcon style={{ color: "#FFFFFF" }} />
                     Search
                   </Button>
+                  </Link>
                   <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
                     <Button
                       type="button"
-                      color="success"
+                      color="primary"
                       className={classes.highButton}
-                      style={{ minHeight: "60px", fontSize: "20px" }}
                       onClick={handleClickAll}
                     >
                       <SearchIcon style={{ color: "#FFFFFF" }} />
@@ -243,7 +289,7 @@ const LenderSearch = props => {
                   </Link>
                   <Button
                     type="button"
-                    color="success"
+                    color="primary"
                     className={classes.highButton}
                     onClick={handleClickAll}
                   >
@@ -290,4 +336,4 @@ const LenderSearch = props => {
 
 LenderSearch.getInitialProps = adminUser;
 
-export default LenderSearch;
+export default React.memo(LenderSearch);
