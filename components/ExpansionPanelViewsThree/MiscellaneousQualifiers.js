@@ -67,7 +67,7 @@ const MiscellaneousQualifiers = props => {
       <div className={classes.growFlex}>
         <Card>
           <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
+            <CardHeader className={classes.cardHeader} >
               Miscellaneous Criteria
             </CardHeader>
             <div className={classes.topRowContainer}>
@@ -115,7 +115,7 @@ const MiscellaneousQualifiers = props => {
         <div>
           <Card>
             <CardBody>
-              <CardHeader className={classes.cardHeader} color="success">
+              <CardHeader className={classes.cardHeader} >
                 Deposit Relationship
               </CardHeader>
               {depositRelationshipArr.map((toggleName, index) => {
@@ -126,7 +126,8 @@ const MiscellaneousQualifiers = props => {
                   >
                     <label className={classes.labelStyle}>{depositNameArr[index]}</label>
                     <ThreeToggleSwitch
-                      onToggleChange={onToggleChange}
+                      dispatch={dispatch}
+                      state={state}
                       values={valuesArr}
                       id={toggleName}
                       selected={state[toggleName]}
@@ -139,7 +140,7 @@ const MiscellaneousQualifiers = props => {
         </div>
         <Card>
           <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
+            <CardHeader className={classes.cardHeader} >
               Lien Position
             </CardHeader>
             {lienPositionArr.map((toggleName, index) => {
@@ -147,7 +148,8 @@ const MiscellaneousQualifiers = props => {
                 <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>{lienPositionNameArr[index]}</label>
                   <ThreeToggleSwitch
-                    onToggleChange={onToggleChange}
+                    dispatch={dispatch}
+                    state={state}
                     values={valuesArr}
                     id={toggleName}
                     selected={state[toggleName]}

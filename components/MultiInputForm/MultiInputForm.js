@@ -52,8 +52,6 @@ const MultiInputForm = props => {
 
   const { state, dispatch } = props;
 
-  console.log(state)
-
   const { clientPaysBrokerDemand, lenderPaysRebates, brokerPaidThroughEscrow } = state;
 
   const handleChange = name => event => {

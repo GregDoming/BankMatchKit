@@ -74,7 +74,6 @@ const navbarsStyle = theme => ({
         color: "inherit",
         // background: "transparent"
       },
-    textColor: "white",
     fontWeight: "400",
     fontSize: "12px",
     textTransform: "uppercase",

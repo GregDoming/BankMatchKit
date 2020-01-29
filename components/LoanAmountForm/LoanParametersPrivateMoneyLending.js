@@ -64,7 +64,7 @@ const LoanParametersPrivateMoneyLending = props => {
     <React.Fragment>
       <Card>
         <CardBody>
-          <CardHeader className={classes.cardHeaderTwo} color="success">
+          <CardHeader className={classes.cardHeaderTwo} >
             Loan Parameters
           </CardHeader>
           {toggleLoanArr.map((toggleName, index) => {

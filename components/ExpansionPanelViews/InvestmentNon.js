@@ -37,7 +37,7 @@ const InvestmentNon = props => {
       <div className={classes.growFlex}>
         <Card>
           <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
+            <CardHeader className={classes.cardHeader} >
               Purpose
             </CardHeader>
             <div className={classes.topRowContainer}>

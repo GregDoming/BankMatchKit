@@ -120,7 +120,8 @@ LoggedOutLinks.propTypes = {
     "success",
     "warning",
     "danger",
-    "rose"
+    "rose",
+    "secondary"
   ])
 };
 

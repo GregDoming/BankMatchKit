@@ -75,9 +75,14 @@ const loanAmountStyle = theme => ({
   },
   cardHeader: {
     width: "auto",
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: grayColor[0]
   },
-  
+  cardHeaderTwo: {
+    width: "auto",
+    textAlign: "center",
+    backgroundColor: grayColor[0]
+  },
   socialLine: {
     marginTop: "1rem",
     textAlign: "center",

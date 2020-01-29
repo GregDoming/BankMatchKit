@@ -1,6 +1,7 @@
 import {
   primaryColor,
   grayColor,
+  secondaryColor,
   container,
   cardTitle,
   whiteColor,
@@ -218,10 +219,12 @@ const toggleFormStyle = {
   cardHeader: {
     marginBottom: "1%",
     maxWidth: "60%",
+    backgroundColor: grayColor[0]
   },
   cardHeaderTwo: {
     width: "auto",
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: grayColor[0]
   },
   expansionPanel: {
     borderStyle: "outset",

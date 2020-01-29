@@ -46,7 +46,7 @@ const BusinessLendingNonSBA = props => {
         <Card>
           <div className={classes.topRowContainer}>
             <CardBody>
-              <CardHeader className={classes.cardHeader} color="success">
+              <CardHeader className={classes.cardHeader} >
                 Business Loan Types
               </CardHeader>
               <div className={classes.toggleGridItem}>
@@ -68,7 +68,7 @@ const BusinessLendingNonSBA = props => {
               </div>
             </CardBody>
             <CardBody>
-              <CardHeader className={classes.cardHeader} color="success">
+              <CardHeader className={classes.cardHeader} >
                 Collateral Types
               </CardHeader>
               <div>

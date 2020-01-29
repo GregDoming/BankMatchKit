@@ -32,9 +32,9 @@ const Navbar = props => {
       color="transparent"
       links={
         user._id ? (
-          <LoggedInLinks dropdownHoverColor="info"/>
+          <LoggedInLinks dropdownHoverColor="secondary"/>
         ) : (
-          <LoggedOutLinks dropdownHoverColor="info"/>
+          <LoggedOutLinks dropdownHoverColor="secondary"/>
         )
       }
     />

@@ -38,7 +38,6 @@ const BrokerNavigationTabs = props => {
         value={value}
         variant="fullWidth"
         indicatorColor="secondary"
-        textColor="secondary"
         aria-label="icon label tabs example"
         centered
       >

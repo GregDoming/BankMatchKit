@@ -80,7 +80,7 @@ const Header = props => {
               <a>{brand}</a>
             </Link>
           </Button>
-          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerToggle}>
+          <IconButton color="secondary" aria-label="open drawer" onClick={handleDrawerToggle}>
             <Menu />
           </IconButton>
         </Toolbar>
@@ -94,14 +94,14 @@ const Header = props => {
           onClose={handleDrawerToggle}
         >
           <IconButton
-            color="inherit"
+            color="secondary"
             aria-label="open drawer"
             onClick={handleDrawerToggle}
             className={classes.closeButtonDrawer}
           >
             <Close />
           </IconButton>
-          <div className={classes.appResponsiveColumn}>{links}</div>
+          {links}
         </Drawer>
       </AppBar>
     </>

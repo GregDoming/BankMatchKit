@@ -142,7 +142,6 @@ mongoose
       // server.get("/authpagination", authController.checkAuth)
       server.get("/lendersearch/searchall", (req, res) => {
         const routeParams = Object.assign({}, req.params, req.query);
-        console.log(routeParams)
         return app.render(req, res, "/lendersearch", routeParams);
       });
       

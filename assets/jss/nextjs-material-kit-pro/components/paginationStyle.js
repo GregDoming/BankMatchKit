@@ -72,6 +72,26 @@ backgroundColor: "red"
       cursor: "pointer"
     }
   },
+  customButton: {
+    position: "sticky",
+    top: 0,
+    alignSelf: "flexStart",
+ 
+
+
+    backgroundColor: dangerColor[3],
+    "&,&:hover,&:focus": {
+      backgroundColor: dangerColor[2]
+    }
+  },
+  rowContainer: {
+    position: "sticky",
+    top: 0,
+    display: "flex",
+    flexFlow: "column",
+    alignItems: 'flex-end',
+
+  },
   primary: {
     "&,&:hover,&:focus": {
       backgroundColor: primaryColor[0],

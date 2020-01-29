@@ -45,7 +45,7 @@ const LoanLimitsPrivateMoneyLending = props => {
     <React.Fragment>
       <Card>
         <CardBody>
-          <CardHeader className={classes.cardHeaderTwo} color="success">
+          <CardHeader className={classes.cardHeaderTwo} >
           Loan Limits
           </CardHeader>
           {loanArr.map((loanName, index) => {

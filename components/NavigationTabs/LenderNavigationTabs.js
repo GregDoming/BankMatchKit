@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "components/CustomButtons/Button.js";
-import PersonIcon from '@material-ui/icons/Person';
+import PersonIcon from "@material-ui/icons/Person";
 
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import EditIcon from "@material-ui/icons/Edit";
@@ -28,16 +28,16 @@ const LenderNavigationTabs = props => {
   React.useEffect(() => {
     switch (router.asPath) {
       case "/profile":
-        setValue(0);
-        break;
-      case "/authpagination":
         setValue(1);
         break;
-      case "/lendersearch":
+      case "/authpagination":
         setValue(2);
         break;
+      case "/lendersearch":
+        setValue(3);
+        break;
       case "/adminPagination":
-        setValue(2);
+        setValue(3);
         break;
       default:
     }
@@ -51,7 +51,6 @@ const LenderNavigationTabs = props => {
           value={value}
           variant="fullWidth"
           indicatorColor="secondary"
-          textColor="secondary"
           aria-label="icon label tabs example"
           centered
         >
@@ -59,7 +58,7 @@ const LenderNavigationTabs = props => {
             <Tab icon={<HomeIcon />} label="HOME" />
           </Link>
           <Link href="/profile">
-            <Tab icon={<PersonIcon />} label="HOME" />
+            <Tab icon={<PersonIcon />} label="PROFILE" />
           </Link>
           <Link href="/authpagination">
             <Tab icon={<EditIcon />} label="EDIT" />
@@ -70,12 +69,15 @@ const LenderNavigationTabs = props => {
           <Link href="/underConstruction">
             <Tab icon={<PersonPinIcon />} label="MAP" />
           </Link>
-          <>
-          <Button onClick={() => downloadCSV()} className={classes.buttonStyle} >
+          <Link href="/underConstruction">
             <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
-          </Button>
-          </>
+          </Link>
         </Tabs>
+          {/* <div>
+            <Button onClick={() => downloadCSV()} className={classes.buttonStyle}>
+              <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
+            </Button>
+          </div> */}
       </Paper>
     </div>
   );

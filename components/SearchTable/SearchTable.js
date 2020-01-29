@@ -98,7 +98,7 @@ const SearchTable = (props) => {
       colspan: "5",
       amount: (
         <span key={"span"}>
-          <b>{arr.length}</b>
+          <b key="bbbbb">{arr.length}</b>
         </span>
       )
     });

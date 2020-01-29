@@ -52,7 +52,7 @@ const ConstructionNonSBARealEstate = props => {
         <Card>
             <div className={classes.topRowContainer}>
           <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
+            <CardHeader className={classes.cardHeader} >
               Purpose
             </CardHeader>
               <div className={classes.toggleGridItem}>
@@ -77,7 +77,7 @@ const ConstructionNonSBARealEstate = props => {
               </div>
               </CardBody>
               <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
+            <CardHeader className={classes.cardHeader} >
               Qualifiers
             </CardHeader>
               <div>

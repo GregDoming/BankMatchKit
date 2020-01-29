@@ -63,7 +63,6 @@ const LoggedInLinks = props => {
     };
     animateScroll();
   };
-  var onClickSections = {};
 
   const classes = useStyles();
   return (
@@ -112,7 +111,7 @@ const LoggedInLinks = props => {
 };
 
 LoggedInLinks.defaultProps = {
-  hoverColor: "primary"
+  hoverColor: "dark"
 };
 
 LoggedInLinks.propTypes = {
@@ -123,7 +122,8 @@ LoggedInLinks.propTypes = {
     "success",
     "warning",
     "danger",
-    "rose"
+    "rose",
+    "secondary"
   ])
 };
 

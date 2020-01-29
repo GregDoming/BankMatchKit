@@ -43,7 +43,7 @@ const SBASevenALoans = props => {
       <div className={classes.growFlex}>
         <Card>
           <CardBody>
-            <CardHeader className={classes.cardHeader} color="success">
+            <CardHeader className={classes.cardHeader} >
               SBA 7a Loan Types
             </CardHeader>
             <div className={classes.topRowContainer}>
