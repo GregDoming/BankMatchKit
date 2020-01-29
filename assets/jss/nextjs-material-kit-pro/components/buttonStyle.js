@@ -147,7 +147,7 @@ const buttonStyle = {
         hexToRgb(secondaryColor[0]) +
         ",.2)",
       color: "rgba(" + hexToRgb(blackColor) + ",.87)",
-      backgroundColor: grayColor[19]
+      backgroundColor: secondaryColor[1]
     }
   },
   info: {

@@ -44,7 +44,6 @@ const Signin = (props) => {
   //For use with React-Hook-Form
   const { register, handleSubmit } = useForm();
   const onSubmit = async user => {
-    console.log(event)
     event.preventDefault();
     setisLoading(true);
     setErrorMessage("");

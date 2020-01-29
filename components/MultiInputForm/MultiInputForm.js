@@ -52,6 +52,8 @@ const MultiInputForm = props => {
 
   const { state, dispatch } = props;
 
+  console.log(state)
+
   const { clientPaysBrokerDemand, lenderPaysRebates, brokerPaidThroughEscrow } = state;
 
   const handleChange = name => event => {
@@ -95,7 +97,7 @@ const MultiInputForm = props => {
                       }}
                       inputProps={{
                         value: state.lastName,
-                        onChange: () => dispatch({ type: "handleFormInput", payload: "lastName" }),
+                        onChange: () => dispatch({ tnameOfype: "handleFormInput", payload: "lastName" }),
                         id: "lastName"
                       }}
                     />

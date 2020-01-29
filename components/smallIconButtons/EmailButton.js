@@ -7,24 +7,18 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
-
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icon
-import Assignment from "@material-ui/icons/Assignment";
-import Mail from "@material-ui/icons/Mail";
-import Face from "@material-ui/icons/Face";
 // core components
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
-import Tooltip from "@material-ui/core/Tooltip";
 import Close from "@material-ui/icons/Close";
 import Email from "@material-ui/icons/Email";
 
 import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js";
+
+import { sendEmailObj } from "lib/api";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -34,8 +28,20 @@ const useStyles = makeStyles(style);
 
 
 const EmailButton = props => {
-  const { index, id, emailArr, sendSingleEmail, subjectText, bodyText } = props;
+  const { index, id, emailArr, subjectText, bodyText } = props;
   const [emailModal, setEmailModal] = React.useState(false);
+
+  const sendEmail = (event, arr) => {
+    event.preventDefault();
+    const sendObj = {};
+
+    sendObj["contactList"] = arr;
+    sendObj["subjectText"] = subjectText;
+    sendObj["bodyText"] = bodyText;
+
+    sendEmailObj(sendObj);
+    setEmailModal(false);
+  };
 
 
   const classes = useStyles();
@@ -132,7 +138,7 @@ const EmailButton = props => {
               key={"modalEmailButton"}
               value={index}
               className={classes.highButton}
-              onClick={(event) => sendSingleEmail(event, emailArr)}>
+              onClick={(event) => sendEmail(event, emailArr)}>
               Send
             </Button>
           </DialogActions>

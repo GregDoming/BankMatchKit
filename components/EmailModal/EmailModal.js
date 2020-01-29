@@ -11,8 +11,6 @@ import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Close from "@material-ui/icons/Close";
 import Assignment from "@material-ui/icons/Assignment";
-import Mail from "@material-ui/icons/Mail";
-import Face from "@material-ui/icons/Face";
 // core components
 import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
@@ -20,7 +18,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import { getQueryResults, getAllUsersQuery, sendEmailArr } from "lib/api";
+import { sendEmailObj } from "lib/api";
 
 import style from "assets/jss/nextjs-material-kit-pro/components/emailModalStyle.js";
 
@@ -49,15 +47,20 @@ const EmailModal = React.memo((props) => {
   };
 
   const sendEmail = (event, arr, checkArr) => {
-    const sendArr = [];
+    event.preventDefault();
+    const contactsArr = [];
+    const sendObj = {};
 
     arr.forEach((ele, index) => {
-      if (checkArr.indexOf(index) !== -1) sendArr.push(ele);
+      if (checkArr.indexOf(index) !== -1) contactsArr.push(ele);
     });
 
-    console.log(sendArr)
+    sendObj["contactList"] = contactsArr;
+    sendObj["subjectText"] = subjectText;
+    sendObj["bodyText"] = bodyText;
 
-    sendEmailArr(sendArr, subjectText, bodyText);
+    sendEmailObj(sendObj);
+    setEmailModal(false);
   };
 
   const classes = useStyles();
@@ -151,7 +154,7 @@ const EmailModal = React.memo((props) => {
               type="button"
               color="success"
               className={classes.highButton}
-              onClick={() => sendEmail(event, emailArr, checkArr)}
+              onClick={(event) => sendEmail(event, emailArr, checkArr)}
             >
               Send
             </Button>

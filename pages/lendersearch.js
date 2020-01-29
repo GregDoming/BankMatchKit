@@ -16,8 +16,6 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 
-import GetAppIcon from "@material-ui/icons/GetApp";
-
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import SearchTable from "components/SearchTable/SearchTable.js";
 import listOfLenderTypes from "lib/listOfLenderTypes";
@@ -25,7 +23,7 @@ import EmailModal from "components/EmailModal/EmailModal.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";
 
-import { getQueryResults, getAllUsersQuery, sendEmailArr } from "lib/api";
+import { getQueryResults, getAllUsersQuery, sendEmailObj } from "lib/api";
 import { adminUser } from "lib/auth";
 
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
@@ -149,17 +147,20 @@ const LenderSearch = React.memo(props => {
 
     sendArr.push(arr[event.currentTarget.value]);
 
-    sendEmailArr(sendArr, subjectText, bodyText);
+    sendEmailObj(sendArr, subjectText, bodyText);
   };
 
   const sendEmail = (event, arr, checkArr) => {
-    const sendArr = [];
+    const contactsArr = [];
+    const sendObj = {};
 
     arr.forEach((ele, index) => {
-      if (checkArr.indexOf(index) !== -1) sendArr.push(ele);
+      if (checkArr.indexOf(index) !== -1) contacts.push(ele);
     });
 
-    sendEmailArr(sendArr, subjectText, bodyText);
+    sendObj[""]
+
+    sendEmailObj(sendObj);
   };
 
   const formatEmailArr = arr => {
@@ -281,6 +282,8 @@ const LenderSearch = React.memo(props => {
                 <h4 className={classes.cardTitle}>Search Fields</h4>
                 <div className={classes.headerWrapper}>
                   <h5 className={classes.selectTitle}>Loan Type</h5>
+                  <GridContainer>
+                  <GridItem xs={12} sm={12} md={8}>
                   <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/search"}>
                     <Button
                       type="button"
@@ -292,6 +295,8 @@ const LenderSearch = React.memo(props => {
                       Search
                     </Button>
                   </Link>
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={8}>
                   <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
                     <Button
                       type="button"
@@ -303,15 +308,8 @@ const LenderSearch = React.memo(props => {
                       Search All
                     </Button>
                   </Link>
-                  <Button
-                    type="button"
-                    color="primary"
-                    className={classes.highButton}
-                    onClick={handleClickAll}
-                  >
-                    <GetAppIcon style={{ color: "#FFFFFF" }} />
-                    Download CSV
-                  </Button>
+                  </GridItem>
+                  </GridContainer>
                 </div>
                 <ul>
                   <li key={"lenderListThree"} className={classes.lender}>
@@ -325,17 +323,17 @@ const LenderSearch = React.memo(props => {
                     />
                   </li>
                   <li key={"lenderListFour"} className={classes.lenderButton}>
-                    <Button justIcon round color="info" onClick={event => handleClick(event)}>
-                      <AddIcon style={{ color: "#FFFFFF" }} />
+                    <Button className={classes.addButton} justIcon round color="primary" style={{ color: "#FFFFFF" }} onClick={event => handleClick(event)}>
+                      <AddIcon />
                     </Button>
                     <Button
                       key={"lenderListSix"}
                       justIcon
                       round
-                      color="info"
+                      color="secondary"
                       onClick={event => handleClose(event)}
                     >
-                      <CloseIcon style={{ color: "#FFFFFF" }} />
+                      <CloseIcon />
                     </Button>
                   </li>
                   {searchArr}

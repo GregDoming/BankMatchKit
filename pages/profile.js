@@ -29,8 +29,6 @@ const Profile = props => {
 
   const { roles } = props.auth.user;
 
-  console.log(props.auth.user);
-
   const onClickCSV = async event => {
     event.preventDefault();
     setLoading({ loading: true });

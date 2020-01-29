@@ -9,7 +9,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
-import { getTab } from "lib/auth";
 
 const LoanNavigationTabs = props => {
   const [value, setValue] = React.useState(0);
@@ -59,7 +58,5 @@ const LoanNavigationTabs = props => {
     </Paper>
   );
 };
-
-LoanNavigationTabs.getInitialProps = getTab;
 
 export default LoanNavigationTabs;

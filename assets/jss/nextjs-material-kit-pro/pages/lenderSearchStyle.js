@@ -43,6 +43,9 @@ const lenderSearchStyle = {
   body: {
     backgroundColor: "#d0e6f6"
   },
+  addButton: {
+color: primaryColor[1]
+  },
   customRaised: {
     ...mainRaised,
     marginTop: "105px",
@@ -69,7 +72,6 @@ const lenderSearchStyle = {
     width: "100%",
     display: "block"
   },
-
   lender: {
     minWidth: "40%",
     display: "inline-block",
@@ -96,7 +98,7 @@ const lenderSearchStyle = {
     marginRight: "50%",
   },
   highButton: {
-    minHeight: "50px"
+
   },
   info: {
     paddingBottom: "10px",

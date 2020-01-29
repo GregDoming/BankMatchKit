@@ -4,14 +4,19 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Button from "components/CustomButtons/Button.js";
+
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import EditIcon from "@material-ui/icons/Edit";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import { useRouter } from "next/router";
-import { getTab } from "lib/auth";
 
 import navigationTabStyle from "assets/jss/nextjs-material-kit-pro/components/navigationTabStyle.js";
+
+import { downloadCSV } from "lib/auth";
+
 const useStyles = makeStyles(navigationTabStyle);
 
 const LenderNavigationTabs = props => {
@@ -61,12 +66,15 @@ const LenderNavigationTabs = props => {
           <Link href="/underConstruction">
             <Tab icon={<PersonPinIcon />} label="MAP" />
           </Link>
+          <>
+          <Button onClick={() => downloadCSV()} className={classes.buttonStyle} >
+            <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
+          </Button>
+          </>
         </Tabs>
       </Paper>
     </div>
   );
 };
-
-LenderNavigationTabs.getInitialProps = getTab;
 
 export default LenderNavigationTabs;

@@ -62,7 +62,7 @@ const primaryColor = [
   "#4c46f1",
   "#dad9fc"
 ];
-const secondaryColor = ["#DD8C4E"];
+const secondaryColor = ["#DD8C4E", "#c4926c"];
 const warningColor = [
   "#ff9800",
   "#ffa726",
