@@ -34,8 +34,9 @@ const useStyles = makeStyles(style);
 
 
 const EmailButton = props => {
-  const { index, id, handleXClick } = props;
+  const { index, id, emailArr, sendSingleEmail, subjectText, bodyText } = props;
   const [emailModal, setEmailModal] = React.useState(false);
+
 
   const classes = useStyles();
 
@@ -45,6 +46,7 @@ const EmailButton = props => {
         id={id}
         simple
         index={index}
+        value={index}
         justIcon
         size="sm"
         color="info"
@@ -98,7 +100,8 @@ const EmailButton = props => {
                     fullWidth: true
                   }}
                   inputProps={{
-                    placeholder: "To"
+                    placeholder: "To",
+                    value: emailArr
                   }}
                 />
                 <CustomInput
@@ -107,7 +110,8 @@ const EmailButton = props => {
                     fullWidth: true
                   }}
                   inputProps={{
-                    placeholder: "Subject"
+                    placeholder: "Subject",
+                    value: subjectText
                   }}
                 />
                 <TextField
@@ -115,14 +119,20 @@ const EmailButton = props => {
                   label="Multiline"
                   multiline
                   rows="6"
-                  defaultValue="Default Value"
+                  defaultValue={bodyText}
                   variant="outlined"
                 />
               </CardBody>
             </form>
           </DialogContent>
           <DialogActions className={`${classes.modalFooter} ${classes.justifyContentCenter}`}>
-            <Button color="primary" simple size="lg">
+          <Button key="emailButton"
+              type="button"
+              color="success"
+              key={"modalEmailButton"}
+              value={index}
+              className={classes.highButton}
+              onClick={(event) => sendSingleEmail(event, emailArr)}>
               Send
             </Button>
           </DialogActions>

@@ -20,6 +20,8 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
+import { getQueryResults, getAllUsersQuery, sendEmailArr } from "lib/api";
+
 import style from "assets/jss/nextjs-material-kit-pro/components/emailModalStyle.js";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -28,17 +30,37 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const useStyles = makeStyles(style);
 
-const EmailModal = props => {
-  const { sendEmail, emailArr, checked, formattedEmailArr } = props;
-
+const EmailModal = React.memo((props) => {
   const [emailModal, setEmailModal] = React.useState(false);
   const [subjectText, setSubjectText] = React.useState("We will set this dynamically");
   const [bodyText, setBodyText] = React.useState("We will set this dynamically");
+  const {
+    emailArr,
+    checkArr
+  } = props;
+
+  const onSubjectTextChange = event => {
+    setSubjectText(event.target.value);
+  };
+
+  const onBodyTextChange = event => {
+    event.preventDefault();
+    setBodyText(event.currentTarget.value);
+  };
+
+  const sendEmail = (event, arr, checkArr) => {
+    const sendArr = [];
+
+    arr.forEach((ele, index) => {
+      if (checkArr.indexOf(index) !== -1) sendArr.push(ele);
+    });
+
+    console.log(sendArr)
+
+    sendEmailArr(sendArr, subjectText, bodyText);
+  };
 
   const classes = useStyles();
-
-
-
 
   return (
     <div>
@@ -96,7 +118,7 @@ const EmailModal = props => {
                   }}
                   inputProps={{
                     placeholder: "To",
-                    value: formattedEmailArr
+                    value: emailArr
                   }}
                 />
                 <CustomInput
@@ -104,9 +126,11 @@ const EmailModal = props => {
                   formControlProps={{
                     fullWidth: true
                   }}
+                  value={subjectText}
                   inputProps={{
                     placeholder: "Subject",
-                    defaultValue: subjectText
+                    value: subjectText,
+                    onChange: (event) => {onSubjectTextChange(event)}
                   }}
                 />
                 <TextField
@@ -114,18 +138,21 @@ const EmailModal = props => {
                   label="Multiline"
                   multiline
                   rows="6"
-                  defaultValue={bodyText}
+                  value={bodyText}
                   variant="outlined"
+                  onChange={event => onBodyTextChange(event)}
                 />
               </CardBody>
             </form>
           </DialogContent>
           <DialogActions className={`${classes.modalFooter} ${classes.justifyContentCenter}`}>
-            <Button key="emailButton"
+            <Button
+              key="emailButton"
               type="button"
               color="success"
               className={classes.highButton}
-              onClick={() => sendEmail(event, emailArr, checked )}>
+              onClick={() => sendEmail(event, emailArr, checkArr)}
+            >
               Send
             </Button>
           </DialogActions>
@@ -133,6 +160,6 @@ const EmailModal = props => {
       </Dialog>
     </div>
   );
-};
+});
 
 export default EmailModal;

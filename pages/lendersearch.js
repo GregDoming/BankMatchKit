@@ -31,7 +31,7 @@ import { adminUser } from "lib/auth";
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
 const useStyles = makeStyles(lenderSearchStyle);
 
-const LenderSearch = props => {
+const LenderSearch = React.memo(props => {
   const classes = useStyles();
   const [searchCompleted, setSearchCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +42,8 @@ const LenderSearch = props => {
   const [checked, setChecked] = useState([]);
   const [emailArr, setEmailArr] = useState([]);
   const [formattedEmailArr, setFormattedEmailArr] = useState([]);
+  const [subjectText, setSubjectText] = React.useState("We will set this dynamically");
+  const [bodyText, setBodyText] = React.useState("We will set this dynamically");
   const [queryFieldsObj, setqueryFieldsObj] = useState({
     0: "",
     1: "",
@@ -67,6 +69,17 @@ const LenderSearch = props => {
       setSearchCompleted(false);
     }
   });
+
+  const onSubjectTextChange = event => {
+    event.preventDefault();
+    setSubjectText(event.target.value);
+
+  };
+
+  const onBodyTextChange = event => {
+    event.preventDefault();
+    setBodyText(event.currentTarget.value);
+  };
 
   const handleClick = event => {
     event.preventDefault();
@@ -109,16 +122,6 @@ const LenderSearch = props => {
     setFormattedEmailArr(tempArr);
   };
 
-  const sendEmail = (event, arr, checkArr) => {
-    const sendArr = [];
-
-    arr.forEach((ele, index) => {
-      if (checkArr.indexOf(index) !== -1) sendArr.push(ele);
-    });
-
-    sendEmailArr(sendArr);
-  };
-
   const handleClose = event => {
     event.preventDefault();
 
@@ -131,13 +134,32 @@ const LenderSearch = props => {
     const keyNumber = event.target.id.replace(/(^\d+)(.+$)/i, "$1");
     queryFieldsObj[keyNumber] = value.value;
   };
-
+  // For the small icon component that shows up in seachTable
   const handleXClick = event => {
     event.preventDefault();
-
     const arrCopy = [...queryArr];
+
     arrCopy.splice(event.currentTarget.value, 1);
     setQueryArr(arrCopy);
+  };
+  //For sending a single Email
+  const sendSingleEmail = (event, arr) => {
+    event.preventDefault();
+    const sendArr = [];
+
+    sendArr.push(arr[event.currentTarget.value]);
+
+    sendEmailArr(sendArr, subjectText, bodyText);
+  };
+
+  const sendEmail = (event, arr, checkArr) => {
+    const sendArr = [];
+
+    arr.forEach((ele, index) => {
+      if (checkArr.indexOf(index) !== -1) sendArr.push(ele);
+    });
+
+    sendEmailArr(sendArr, subjectText, bodyText);
   };
 
   const formatEmailArr = arr => {
@@ -161,10 +183,6 @@ const LenderSearch = props => {
 
   const resetSearch = () => {
     router.push("/lendersearch");
-  };
-
-  const modalClick = event => {
-    console.log("clicked");
   };
 
   const handleClickAll = async () => {
@@ -215,9 +233,13 @@ const LenderSearch = props => {
             </Button>
             <EmailModal
               formattedEmailArr={formattedEmailArr}
-              checked={checked}
               sendEmail={sendEmail}
               emailArr={emailArr}
+              subjectText={subjectText}
+              bodyText={bodyText}
+              checkArr={checkArr}
+              onSubjectTextChange={onSubjectTextChange}
+              onBodyTextChange={onBodyTextChange}
             />
           </div>
           <GridContainer>
@@ -229,6 +251,12 @@ const LenderSearch = props => {
                   handleXClick={handleXClick}
                   queryArr={queryArr}
                   checkArr={checkArr}
+                  sendSingleEmail={sendSingleEmail}
+                  emailArr={emailArr}
+                  subjectText={subjectText}
+                  bodyText={bodyText}
+                  onSubjectTextChange={onSubjectTextChange}
+                  onBodyTextChange={onBodyTextChange}
                 />
               </Card>
             </GridItem>
@@ -244,7 +272,7 @@ const LenderSearch = props => {
       <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LenderNavigationTabs router={router} />
-        <div className={classes.container} style={{backgroundColor: "gray[2]"}}>
+        <div className={classes.container} style={{ backgroundColor: "gray[2]" }}>
           <h2 className={classes.title}>Admin Search</h2>
           <GridContainer>
             <GridItem xs={12} sm={10} md={10}>
@@ -254,15 +282,15 @@ const LenderSearch = props => {
                 <div className={classes.headerWrapper}>
                   <h5 className={classes.selectTitle}>Loan Type</h5>
                   <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/search"}>
-                  <Button
-                    type="button"
-                    color="primary"
-                    className={classes.highButton}
-                    onClick={handleSearch}
-                  >
-                    <SearchIcon style={{ color: "#FFFFFF" }} />
-                    Search
-                  </Button>
+                    <Button
+                      type="button"
+                      color="primary"
+                      className={classes.highButton}
+                      onClick={handleSearch}
+                    >
+                      <SearchIcon style={{ color: "#FFFFFF" }} />
+                      Search
+                    </Button>
                   </Link>
                   <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
                     <Button
@@ -320,7 +348,7 @@ const LenderSearch = props => {
       </div>
     </>
   );
-};
+});
 
 LenderSearch.getInitialProps = adminUser;
 

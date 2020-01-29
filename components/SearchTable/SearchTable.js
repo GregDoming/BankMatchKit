@@ -18,7 +18,7 @@ import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/c
 const useStyles = makeStyles(style);
 
 const SearchTable = (props) => {
-  const { queryArr, handleXClick, tempCheckToggle, checked } = props;
+  const { queryArr, handleXClick, tempCheckToggle, checked, handleEmailClick, emailArr, sendSingleEmail, subjectText, bodyText } = props;
   const [userIdArr, setUserIdArr] = React.useState([]);
 
   const handleEditProfileClick = async event => {
@@ -33,18 +33,6 @@ const SearchTable = (props) => {
       console.log(err);
     }
   };
-
-  // const handleToggle = value => {
-  //   const currentIndex = checked.indexOf(value);
-  //   const newChecked = [...checked];
-
-  //   if (currentIndex === -1) {
-  //     newChecked.push(value);
-  //   } else {
-  //     newChecked.splice(currentIndex, 1);
-  //   }
-  //   setChecked(newChecked);
-  // };
 
   const formatQueryArr = arr => {
     const formattedArr = [];
@@ -73,7 +61,11 @@ const SearchTable = (props) => {
             key={"EmailButton" + index}
             index={index}
             id={id}
-            handleXClick={handleXClick}
+            handleEmailClick={handleEmailClick}
+            sendSingleEmail={sendSingleEmail}
+            emailArr={emailArr}
+            subjectText={subjectText}
+            bodyText={bodyText}
           />
         </>
       ];
