@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "components/CustomButtons/Button.js";
+import PersonIcon from '@material-ui/icons/Person';
 
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import EditIcon from "@material-ui/icons/Edit";
@@ -54,8 +55,11 @@ const LenderNavigationTabs = props => {
           aria-label="icon label tabs example"
           centered
         >
-          <Link href="/profile">
+          <Link href="/landing-page">
             <Tab icon={<HomeIcon />} label="HOME" />
+          </Link>
+          <Link href="/profile">
+            <Tab icon={<PersonIcon />} label="HOME" />
           </Link>
           <Link href="/authpagination">
             <Tab icon={<EditIcon />} label="EDIT" />

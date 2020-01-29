@@ -18,8 +18,6 @@ const navigationTabsStyle = theme => ({
     backgroundColor: grayColor[0]
   },
   buttonStyle: {
-    outline: "1px solid",
-    outlineColor: secondaryColor[0],
     color: primaryColor[1],
     "&:hover": {
       color: secondaryColor[0]
