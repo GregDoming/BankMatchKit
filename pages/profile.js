@@ -29,14 +29,6 @@ const Profile = props => {
 
   const { roles } = props.auth.user;
 
-  const onClickCSV = async event => {
-    event.preventDefault();
-    setLoading({ loading: true });
-    await downloadCSV();
-    setLoading({ loading: false });
-  };
-
-  // const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div className={classes.body}>
       <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
@@ -50,7 +42,6 @@ const Profile = props => {
             <img src={Logo} alt="logo"/>
           </GridItem>
         </GridContainer>
-        {/* {renderView(activeStep)} */}
       </div>
     </div>
   );

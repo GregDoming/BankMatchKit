@@ -26,6 +26,7 @@ import PageChange from "components/PageChange/PageChange.js";
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavBar from "components/NavBar/NavBar.js";
+import UniversalFooter from "components/UniversalFooter/UniversalFooter.js";
 
 import "assets/scss/nextjs-material-kit-pro.scss?v=1.0.0";
 
@@ -89,8 +90,9 @@ export default class MyApp extends App {
           <Helmet>
             <style>{"body { background-color: #fafeeb; }"}</style>
           </Helmet>
-          <NavBar color="transparent" {...this.props}></NavBar>
+          <NavBar color="transparent" {...this.props}/>
           <Component {...pageProps} />
+          <UniversalFooter/>
         </React.Fragment>
       </HelmetProvider>
     );
