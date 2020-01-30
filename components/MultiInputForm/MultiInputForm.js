@@ -95,7 +95,7 @@ const MultiInputForm = props => {
                       }}
                       inputProps={{
                         value: state.lastName,
-                        onChange: () => dispatch({ tnameOfype: "handleFormInput", payload: "lastName" }),
+                        onChange: () => dispatch({ type: "handleFormInput", payload: "lastName" }),
                         id: "lastName"
                       }}
                     />

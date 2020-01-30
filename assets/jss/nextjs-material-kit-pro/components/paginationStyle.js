@@ -81,9 +81,13 @@ const paginationStyle = {
       hexToRgb(dangerColor[2]) +
       ", 0.2)",
     backgroundColor: dangerColor[3],
-    "&:hover,&:focus": {
+    "&:hover": {
       backgroundColor: dangerColor[2]
-    }
+    },
+    "&:focus": {
+      backgroundColor: dangerColor[3]
+    },
+
   },
   rowContainer: {
     position: "sticky",

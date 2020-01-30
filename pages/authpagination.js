@@ -16,12 +16,14 @@ import Icon from "@material-ui/core/Icon";
 import Parallax from "components/Parallax/Parallax.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import CustomButton from "components/CustomButtons/Button.js";
+import Alert from '@material-ui/lab/Alert';
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
 import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
 import ViewThree from "components/AuthPaginationViews/ViewThree.js";
 import ViewFour from "components/AuthPaginationViews/ViewFour.js";
+import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 
 import { isUserAuthenticated } from "lib/auth";
 import { convertUser } from "lib/userSchema";
@@ -108,6 +110,7 @@ const AuthPagination = props => {
   const [state, dispatch] = useImmerReducer(toggleReducer, initialState);
   const [minMaxErrorMessage, setminMaxErrorMessage] = React.useState("");
   const [openError, setOpenError] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -133,27 +136,38 @@ const AuthPagination = props => {
     return completedSteps() === totalSteps();
   };
 
-  // const saveClick = () => {
-  //   event.preventDefault();
-  //   if (
-  //     state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
-  //     state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
-  //     state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
-  //     state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
-  //     state.privateClosingCostsMax < state.privateClosingCostsMin ||
-  //     state.privateDaysToFundingMax < state.privateDaysToFundingMin
-  //   ) {
-  //     setminMaxErrorMessage("Minimum value must be larger than maximum value");
-  //     setOpenError(true);
-  //     return;
-  //   }
+  const saveClick = async () => {
+    event.preventDefault();
+    if (
+      state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
+      state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
+      state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
+      state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
+      state.privateClosingCostsMax < state.privateClosingCostsMin ||
+      state.privateDaysToFundingMax < state.privateDaysToFundingMin
+    ) {
+      setminMaxErrorMessage("Minimum value must be larger than maximum value");
+      setOpenError(true);
+      return;
+    }
 
-  //   const objCopy = JSON.parse(JSON.stringify(state));
-  //   const formInfo = convertUser(objCopy);
-  //   await Axios.post("/api/users/updateUserData", { formInfo });
-  // }
+    const objCopy = JSON.parse(JSON.stringify(state));
+    const formInfo = convertUser(objCopy);
+    try {
+      await Axios.post("/api/users/updateUserData", { formInfo });
+    } catch (error) {
+      console.log(error);
+    }
+    setOpen(true);
+  };
 
-  
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleNext = async () => {
     event.preventDefault();
@@ -241,9 +255,19 @@ const AuthPagination = props => {
         <div className={classes.main}>
           <LenderNavigationTabs router={router} />
           <div className={classes.rowContainer}>
-            <CustomButton size="lg" className={classes.customButton}>SAVE</CustomButton>
+            <CustomButton
+              size="lg"
+              onClick={event => saveClick(event)}
+              className={classes.customButton}
+            >
+              SAVE
+            </CustomButton>
           </div>
-
+          <Snackbar open={open} autoHideDuration={1800} onClose={handleSnackbarClose}>
+            <Alert onClose={handleSnackbarClose} severity="success">
+              INFORMATION SAVED SUCCESSFULLY!
+            </Alert>
+          </Snackbar>
           {renderView(activeStep)}
           <Box
             className={classes.bottomStepper}
