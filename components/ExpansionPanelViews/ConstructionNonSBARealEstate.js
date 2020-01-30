@@ -15,6 +15,29 @@ const ConstructionNonSBARealEstate = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "Investment",
+    "Renovation",
+    "ResidentialLongterm",
+    "ResidentialFixandFlip",
+    "GroundUpSpecHome",
+    "OwnerUser",
+    "TractHomes",
+    "Apartments",
+    "ConstructiontoPermanent",
+    "LandDevelopment",
+    "Residential",
+    "PUD"
+  ];
+  const toggleNameArrTwo = [
+    "Purchase With Lane",
+    "Entitlements",
+    "Mini-perm",
+    "Leased Land",
+    "Broken Project",
+    "Manufactured Home Single Wide",
+    "Manufactured Home Double Wide"
+  ];
   const toggleArrOne = [
     "investment",
     "renovation",
@@ -43,18 +66,13 @@ const ConstructionNonSBARealEstate = props => {
 
   const { dispatch, state } = props;
 
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
-
   return (
     <div className={classes.outerContainer}>
       <div className={classes.growFlex}>
         <Card>
-            <div className={classes.topRowContainer}>
-          <CardBody>
-            <CardHeader className={classes.cardHeader} >
-              Purpose
-            </CardHeader>
+          <div className={classes.topRowContainer}>
+            <CardBody>
+              <CardHeader className={classes.cardHeader}>Purpose</CardHeader>
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
@@ -62,9 +80,7 @@ const ConstructionNonSBARealEstate = props => {
                       key={"ConstructionNon" + index.toString()}
                       className={classes.rowContainer}
                     >
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}
@@ -75,11 +91,9 @@ const ConstructionNonSBARealEstate = props => {
                   );
                 })}
               </div>
-              </CardBody>
-              <CardBody>
-            <CardHeader className={classes.cardHeader} >
-              Qualifiers
-            </CardHeader>
+            </CardBody>
+            <CardBody>
+              <CardHeader className={classes.cardHeader}>Qualifiers</CardHeader>
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
@@ -87,9 +101,7 @@ const ConstructionNonSBARealEstate = props => {
                       key={"ConstructionNon2" + index.toString()}
                       className={classes.rowContainer}
                     >
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}
@@ -100,12 +112,12 @@ const ConstructionNonSBARealEstate = props => {
                   );
                 })}
               </div>
-          </CardBody>
-            </div>
+            </CardBody>
+          </div>
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
-        <LoanAmountConstructionNon dispatch={dispatch} state={state}/>
+        <LoanAmountConstructionNon dispatch={dispatch} state={state} />
       </div>
     </div>
   );

@@ -16,6 +16,17 @@ const InvestmentNon = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "Purchase",
+    "Refinance",
+    "Cashout Refinance",
+    "Renovation Improvement",
+    "Bridge"
+  ]
+  const toggleNameArrTwo = [
+    "Revolving Business LOC First Position",
+    "Revolving Business LOC Second Position"
+  ];
   const toggleArrOne = [
     "investmentPurchase",
     "investmentRefinance",
@@ -46,7 +57,7 @@ const InvestmentNon = props => {
                   return (
                     <div key={"InvestmentNon" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      {toggleNameArr[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
@@ -63,7 +74,7 @@ const InvestmentNon = props => {
                   return (
                     <div key={"InvestmentNon2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      {toggleNameArrTwo[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}

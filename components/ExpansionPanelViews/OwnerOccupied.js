@@ -16,6 +16,17 @@ const OwnerOccupied = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "Purchase",
+    "Refinance",
+    "CashOutRefinance",
+    "RenovationImprovement",
+    "Bridge"
+  ];
+  const toggleNameArrTwo = [
+    "Revolving Business LOC First Position",
+    "Revolving Business LOC Second Position"
+  ];
   const toggleArrOne = [
     "purchase",
     "refinance",
@@ -32,17 +43,13 @@ const OwnerOccupied = props => {
       <div className={classes.growFlex}>
         <Card>
           <CardBody>
-            <CardHeader className={classes.cardHeader} >
-              Purpose
-            </CardHeader>
+            <CardHeader className={classes.cardHeader}>Purpose</CardHeader>
             <div className={classes.topRowContainer}>
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}
@@ -57,9 +64,7 @@ const OwnerOccupied = props => {
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
                     <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}

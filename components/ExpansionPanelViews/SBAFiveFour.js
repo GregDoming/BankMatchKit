@@ -16,6 +16,16 @@ const SBAFiveFour = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "SBA 54 First Deed Real Estate",
+    "SBA 54 First Deed Real Equipment",
+    "SBA 54 Refinance Program"
+  ];
+  const toggleNameArrTwo = [
+    "SBA 54 First Deed Real Estate Bridge",
+    "SBA 54 First Deed Real Equipment Bridge",
+    "SBA 54 Refinance Program Bridge"
+  ]
   const toggleArrOne = [
     "SBAFiveFourFirstDeedRealEstate",
     "SBAFiveFourFirstDeedRealEquipment",
@@ -28,8 +38,6 @@ const SBAFiveFour = props => {
   ];
 
   const { dispatch, state } = props;
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
@@ -45,7 +53,7 @@ const SBAFiveFour = props => {
                   return (
                     <div key={"SBAFiveFour" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      {toggleNameArr[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
@@ -62,7 +70,7 @@ const SBAFiveFour = props => {
                   return (
                     <div key={"SBAFiveFour2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      {toggleNameArrTwo[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}

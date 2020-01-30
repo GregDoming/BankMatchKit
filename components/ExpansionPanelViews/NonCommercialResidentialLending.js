@@ -16,30 +16,25 @@ const NonCommercialResidentialLending = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = ["Conventional FNMA", "Government FHA", "K-Rehab"];
+  const toggleNameArrTwo = ["Portfolio", "Jumbo"];
   const toggleArrOne = ["conventionalFNMA", "governmentFHA", "kRehab"];
   const toggleArrTwo = ["portfolio", "jumbo"];
 
   const { dispatch, state } = props;
-
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
 
   return (
     <div className={classes.outerContainer}>
       <div className={classes.growFlex}>
         <Card>
           <CardBody>
-            <CardHeader className={classes.cardHeader} >
-              Loan Types
-            </CardHeader>
+            <CardHeader className={classes.cardHeader}>Loan Types</CardHeader>
             <div className={classes.topRowContainer}>
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}
@@ -54,9 +49,7 @@ const NonCommercialResidentialLending = props => {
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
                     <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}

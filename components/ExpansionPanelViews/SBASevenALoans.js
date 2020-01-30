@@ -16,6 +16,20 @@ const SBASevenALoans = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "SBA Express",
+    "Export Express WC",
+    "International Trade",
+    "Seasonal CAP Lines",
+    "Owner Occupied Commercial",
+    "Debt Refinance"
+  ];
+  const toggleNameArrTwo = [
+    "Contract CAP Lines",
+    "Builder's CAP Lines",
+    "Working CAP Lines",
+    "SBA Micro Loan"
+  ];
   const toggleArrOne = [
     "sbaExpress",
     "exoprtExpressWC",
@@ -52,7 +66,7 @@ const SBASevenALoans = props => {
                   return (
                     <div key={"SBASevenA" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      {toggleNameArr[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
@@ -69,7 +83,7 @@ const SBASevenALoans = props => {
                   return (
                     <div key={"SBASevenA2" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
+                      {toggleNameArrTwo[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}

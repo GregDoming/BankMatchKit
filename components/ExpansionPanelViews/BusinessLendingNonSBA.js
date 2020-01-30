@@ -15,6 +15,26 @@ const BusinessLendingNonSBA = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
+  const toggleNameArr = [
+    "Business Credit Card",
+    "Business Expansion RE",
+    "Equipment Financing",
+    "Business Acquisitions Mergers",
+    "Franchise Purchases",
+    "Revolving BLOC First Position",
+    "Revolving BLOC Second Position"
+  ];
+  const toggleNameArrTwo = [
+    "Accounts Receivable",
+    "Cross Collateral",
+    "Equipment",
+    "Invoice Financing",
+    "Irrevocable Trust",
+    "Projection Based",
+    "Purchase Order Financing",
+    "Real Estate",
+    "Stock Savings"
+  ];
   const toggleArrOne = [
     "businessCreditCard",
     "businessExpansionnoRE",
@@ -46,16 +66,12 @@ const BusinessLendingNonSBA = props => {
         <Card>
           <div className={classes.topRowContainer}>
             <CardBody>
-              <CardHeader className={classes.cardHeader} >
-                Business Loan Types
-              </CardHeader>
+              <CardHeader className={classes.cardHeader}>Business Loan Types</CardHeader>
               <div className={classes.toggleGridItem}>
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"BusinessNon" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}
@@ -68,16 +84,12 @@ const BusinessLendingNonSBA = props => {
               </div>
             </CardBody>
             <CardBody>
-              <CardHeader className={classes.cardHeader} >
-                Collateral Types
-              </CardHeader>
+              <CardHeader className={classes.cardHeader}>Collateral Types</CardHeader>
               <div>
                 {toggleArrTwo.map((toggleName, index) => {
                   return (
                     <div key={"BusinessNon2" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {toggleName.replace(/^\w/, c => c.toUpperCase())}
-                      </label>
+                      <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}
@@ -93,7 +105,7 @@ const BusinessLendingNonSBA = props => {
         </Card>
       </div>
       <div className={classes.shrinkFlex}>
-        <LoanAmountBusinessLending dispatch={dispatch} state={state}/>
+        <LoanAmountBusinessLending dispatch={dispatch} state={state} />
       </div>
     </div>
   );
