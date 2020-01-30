@@ -7,6 +7,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
 // core components
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
@@ -16,7 +17,7 @@ import Button from "components/CustomButtons/Button.js";
 import Close from "@material-ui/icons/Close";
 import Email from "@material-ui/icons/Email";
 
-import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js";
+import style from "assets/jss/nextjs-material-kit-pro/components/emailModalStyle.js";
 
 import { sendEmailObj } from "lib/api";
 
@@ -25,7 +26,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const useStyles = makeStyles(style);
-
 
 const EmailButton = props => {
   const { index, id, emailArr, subjectText, bodyText } = props;
@@ -43,24 +43,30 @@ const EmailButton = props => {
     setEmailModal(false);
   };
 
-
   const classes = useStyles();
 
   return (
     <>
-      <Button
-        id={id}
-        simple
-        index={index}
-        value={index}
-        justIcon
-        size="sm"
-        color="info"
-        key={"EmailTop" + index}
-        onClick={() => setEmailModal(true)}
+      <Tooltip
+        id={"EmailButtonTop" + index}
+        title="Send Single Email"
+        placement="top"
+        key={"EmailButtonTop" + index}
       >
-        <Email />
-      </Button>
+        <Button
+          id={id}
+          simple
+          index={index}
+          value={index}
+          justIcon
+          size="sm"
+          color="primary"
+          key={"EmailTop" + index}
+          onClick={() => setEmailModal(true)}
+        >
+          <Email />
+        </Button>
+      </Tooltip>
       <Dialog
         classes={{
           root: classes.modalRoot,
@@ -127,24 +133,27 @@ const EmailButton = props => {
                   rows="6"
                   defaultValue={bodyText}
                   variant="outlined"
+                  style={{ width: "100%" }}
                 />
               </CardBody>
             </form>
           </DialogContent>
           <DialogActions className={`${classes.modalFooter} ${classes.justifyContentCenter}`}>
-          <Button key="emailButton"
+            <Button
+              key="emailButton"
               type="button"
               color="success"
               key={"modalEmailButton"}
               value={index}
               className={classes.highButton}
-              onClick={(event) => sendEmail(event, emailArr)}>
+              onClick={event => sendEmail(event, emailArr)}
+            >
               Send
             </Button>
           </DialogActions>
         </Card>
       </Dialog>
-      </>
+    </>
   );
 };
 

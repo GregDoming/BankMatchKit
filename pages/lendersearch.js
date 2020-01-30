@@ -225,7 +225,6 @@ const LenderSearch = React.memo(props => {
             <Button
               key="searchButton"
               type="button"
-              color="primary"
               className={classes.highButtonShort}
               onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
             >

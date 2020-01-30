@@ -143,6 +143,7 @@ const EmailModal = React.memo((props) => {
                   rows="6"
                   value={bodyText}
                   variant="outlined"
+                  style={{width: "100%"}}
                   onChange={event => onBodyTextChange(event)}
                 />
               </CardBody>

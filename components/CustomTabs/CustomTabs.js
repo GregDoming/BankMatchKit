@@ -49,7 +49,6 @@ export default function CustomTabs(props) {
           }}
           value={value}
           onChange={handleChange}
-          textColor="inherit"
         >
           {tabs.map((prop, key) => {
             var icon = {};

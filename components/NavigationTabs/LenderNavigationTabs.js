@@ -43,6 +43,11 @@ const LenderNavigationTabs = props => {
     }
   });
 
+  const clickHandler = (event) => {
+    event.preventDefault()
+    downloadCSV()
+  }
+
   return (
     <div className={classes.stickyContainer}>
       <Paper square>
@@ -69,7 +74,7 @@ const LenderNavigationTabs = props => {
           <Link href="/underConstruction">
             <Tab icon={<PersonPinIcon />} label="MAP" />
           </Link>
-          <div className={classes.lighten}>
+          <div onClick={event => clickHandler(event)} className={classes.lighten}>
             <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
           </div>
         </Tabs>

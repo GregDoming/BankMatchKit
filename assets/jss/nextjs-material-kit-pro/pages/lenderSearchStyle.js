@@ -6,6 +6,7 @@ import {
   whiteColor,
   blackColor,
   container,
+  dangerColor,
   title,
   main,
   mainRaised,
@@ -107,26 +108,30 @@ const lenderSearchStyle = {
   },
   highButton: {
     boxShadow:
-    "2px 8px 6px 2px rgba(" +
-    hexToRgb(primaryColor[0]) +
-    ", 0.14), 0 1px 10px 0 rgba(" +
-    hexToRgb(primaryColor[0]) +
-    ", 0.12), 0 2px 4px -1px rgba(" +
-    hexToRgb(primaryColor[0]) +
-    ", 0.2)",
+      "2px 8px 6px 2px rgba(" +
+      hexToRgb(primaryColor[0]) +
+      ", 0.14), 0 1px 10px 0 rgba(" +
+      hexToRgb(primaryColor[0]) +
+      ", 0.12), 0 2px 4px -1px rgba(" +
+      hexToRgb(primaryColor[0]) +
+      ", 0.2)",
     alignSelf: "stretch",
     width: "100%"
   },
   highButtonShort: {
-    boxShadow:
-    "2px 8px 6px 2px rgba(" +
-    hexToRgb(primaryColor[0]) +
-    ", 0.14), 0 1px 10px 0 rgba(" +
-    hexToRgb(primaryColor[0]) +
-    ", 0.12), 0 2px 4px -1px rgba(" +
-    hexToRgb(primaryColor[0]) +
-    ", 0.2)",
     alignSelf: "stretch",
+    backgroundColor: secondaryColor[0],
+    "&:hover": {
+      boxShadow:
+        "2px 8px 6px 2px rgba(" +
+        hexToRgb(primaryColor[0]) +
+        ", 0.14), 0 1px 10px 0 rgba(" +
+        hexToRgb(primaryColor[0]) +
+        ", 0.12), 0 2px 4px -1px rgba(" +
+        hexToRgb(primaryColor[0]) +
+        ", 0.2)",
+      backgroundColor: secondaryColor[0]
+    }
   },
   info: {
     paddingBottom: "10px",
