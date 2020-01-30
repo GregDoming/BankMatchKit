@@ -84,16 +84,16 @@ const LoggedInLinks = props => {
                 <LineStyle className={classes.dropdownIcons} /> Lender Portal
               </a>
             </Link>,
-            <Link href="/underConstruction">
+            <Link href="/brokerportal">
               <a className={classes.dropdownLink}>
                 <Layers className={classes.dropdownIcons} />
                 Broker Portal
               </a>
             </Link>,
-            <Link href="/lenderSearch">
+            <Link href="/loanportal">
               <a className={classes.dropdownLink}>
                 <Layers className={classes.dropdownIcons} />
-                Admin Area
+                Loan Portal
               </a>
             </Link>
           ]}

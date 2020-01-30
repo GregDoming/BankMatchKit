@@ -12,11 +12,9 @@ import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import CardHeader from "@material-ui/core/CardHeader";
 
-import MaskedNumberInput from "components/MaskedNumberInput/MaskedNumberInput.js";
-
-// import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
-import MultiLenderSelect from "components/MultiSelect/MultiLenderSelect.js";
 import SingleStateSelect from "components/SingleSelect/SingleStateSelect.js";
+import SingleLenderSelect from "components/SingleSelect/SingleLenderSelect.js";
+
 
 import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiInputFormStyle.js";
 
@@ -64,15 +62,14 @@ const MultiInputForm = props => {
   };
 
   return (
-    <div className={classes.container}>
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={5} md={10}>
+      <GridContainer className={classes.container}>
+        <GridItem className={classes.gridItem} xs={12} sm={10} md={12}>
           <Card className={classes.cardSignup}>
             <h5 className={classes.cardTitle}>ABOUT YOU</h5>
             <CardBody>
               <form className={classes.customForm}>
                 <GridContainer className={classes.customContainer}>
-                  <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
+                  <GridItem className={classes.customGridItem} xs={12} sm={10} md={12}>
                     <CustomInput
                       labelText="First Name"
                       formControlProps={{
@@ -86,7 +83,7 @@ const MultiInputForm = props => {
                       }}
                     />
                   </GridItem>
-                  <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
+                  <GridItem className={classes.customGridItem} xs={12} sm={5} md={12}>
                     <CustomInput
                       labelText="Last Name"
                       formControlProps={{
@@ -148,7 +145,7 @@ const MultiInputForm = props => {
             </CardBody>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={5} md={10}>
+        <GridItem className={classes.gridItem} xs={12} sm={10} md={12}>
           <Card className={classes.cardCompanySignupToggle}>
             <CardBody>
               <GridContainer className={classes.customContainer}>
@@ -194,7 +191,7 @@ const MultiInputForm = props => {
             </CardBody>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={10} md={10}>
+        <GridItem className={classes.gridItem} xs={12} sm={10} md={12}>
           <Card className={classes.cardCompanySelect}>
             <h4 className={classes.cardTitle}>YOUR COMPANY INFO</h4>
             <div className={classes.rowContainerSelect}>
@@ -205,7 +202,7 @@ const MultiInputForm = props => {
               <div className={classes.spacerDiv} />
               <GridItem className={classes.gridSelect}>
                 Type Of Lender
-                <MultiLenderSelect state={state} dispatch={dispatch} />
+                <SingleLenderSelect state={state} dispatch={dispatch} />
               </GridItem>
             </div>
             <CardHeader></CardHeader>
@@ -301,13 +298,13 @@ const MultiInputForm = props => {
             </CardBody>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={10} md={10}>
+        <GridItem className={classes.gridItem} xs={12} sm={10} md={12}>
           <Card className={classes.cardSignup}>
             <h5 className={classes.cardTitle}>PERSONAL NOTES / AREAS OF EXCELLENCE</h5>
             <CardBody>
               <form className={classes.customForm}>
                 <GridContainer className={classes.customToggleForm}>
-                  <GridItem xs={12} sm={5} md={5}>
+                  <GridItem xs={12} sm={10} md={10}>
                     <TextField
                       id="outlined-multiline-static"
                       label="Notes"
@@ -330,7 +327,7 @@ const MultiInputForm = props => {
                     labelText="Source Name"
                     formControlProps={{
                       fullWidth: true,
-                      className: classes.customFormControlClasses
+                      className: classes.customFormTwo
                     }}
                     inputProps={{
                       value: state.sourceName,
@@ -340,6 +337,10 @@ const MultiInputForm = props => {
                   />
                   <CustomInput
                     labelText="Source Phone"
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormTwo
+                    }}
                     inputProps={{
                       type: "text",
                       label: "With normal TextField",
@@ -352,7 +353,7 @@ const MultiInputForm = props => {
                     labelText="Source Email"
                     formControlProps={{
                       fullWidth: true,
-                      className: classes.customFormControlClasses
+                      className: classes.customFormTwo
                     }}
                     inputProps={{
                       value: state.sourceEmail,
@@ -366,7 +367,6 @@ const MultiInputForm = props => {
           </Card>
         </GridItem>
       </GridContainer>
-    </div>
   );
 };
 

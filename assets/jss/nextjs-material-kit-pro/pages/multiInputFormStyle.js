@@ -13,10 +13,10 @@ import customCheckboxRadioSwitchStyle from "assets/jss/nextjs-material-kit-pro/c
 const multiInputFormStyle = {
   customContainer: {
     display: "flex",
-    flexWrap: "nowrap",
+    flexWrap: "nowrap"
   },
   customGridItem: {
-    flex: "1",
+    flex: "1"
   },
   centerContainer: {
     height: "10em",
@@ -25,18 +25,18 @@ const multiInputFormStyle = {
     justifyContent: "center"
   },
   cardSignupToggle: {
-      borderRadius: "1px",
-      boxShadow:
-        "0 16px 24px 2px rgba(" +
-        hexToRgb(blackColor) +
-        ", 0.14), 0 6px 30px 5px rgba(" +
-        hexToRgb(blackColor) +
-        ", 0.12), 0 8px 10px -5px rgba(" +
-        hexToRgb(blackColor) +
-        ", 0.2);",
-      marginBottom: "10px",
-      padding: "10px 10%",
-      width: "90%"
+    borderRadius: "1px",
+    boxShadow:
+      "0 16px 24px 2px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.14), 0 6px 30px 5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.12), 0 8px 10px -5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.2);",
+    marginBottom: "10px",
+    padding: "10px 10%",
+    width: "90%"
   },
   cardCompanySignupToggle: {
     borderRadius: "1px",
@@ -52,44 +52,44 @@ const multiInputFormStyle = {
     padding: "10px 10%",
     width: "90%",
     overFlow: "visible"
-},
-gridSelect: {
-  width: "50%"
-},
-spacerDiv: {
-  height: "0",
-  flex: "0 1 200px",
-  marginRight: "15%",
-  marginLeft: "15%"
-},
-cardCompanySelect: {
-  borderRadius: "1px",
-  boxShadow:
-    "0 16px 24px 2px rgba(" +
-    hexToRgb(blackColor) +
-    ", 0.14), 0 6px 30px 5px rgba(" +
-    hexToRgb(blackColor) +
-    ", 0.12), 0 8px 10px -5px rgba(" +
-    hexToRgb(blackColor) +
-    ", 0.2);",
-  marginBottom: "10px",
-  padding: "0",
-  width: "90%",
-  overFlow: "visible"
-},
+  },
+  gridSelect: {
+    width: "50%"
+  },
+  spacerDiv: {
+    height: "0",
+    flex: "0 1 200px",
+    marginRight: "15%",
+    marginLeft: "15%"
+  },
+  cardCompanySelect: {
+    borderRadius: "1px",
+    boxShadow:
+      "0 16px 24px 2px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.14), 0 6px 30px 5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.12), 0 8px 10px -5px rgba(" +
+      hexToRgb(blackColor) +
+      ", 0.2);",
+    marginBottom: "10px",
+    padding: "0",
+    width: "90%",
+    overFlow: "visible"
+  },
   customToggleItem: {
     flex: 2,
     marginRight: "15px",
-    marginLeft: "15px",
+    marginLeft: "15px"
   },
   customToggleForm: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
   },
-  body:{
+  body: {
     backgroundColor: "#324C67"
-  },   
+  },
   pageHeader: {
     minHeight: "100vh",
     height: "auto",
@@ -210,8 +210,6 @@ cardCompanySelect: {
     justifyContent: "space-between"
   },
   container: {
-    margin: "auto",
-    width: "100%",
     "@media (min-width: 576px)": {
       maxWidth: "540px"
     },
@@ -226,13 +224,24 @@ cardCompanySelect: {
     },
     zIndex: "2",
     paddingTop: "6%",
+    textAlign: "center",
+    width: "100%",
+    justifyContent: "space-evenly"
   },
   customForm: {
     justifyContent: "space-between",
     flexWrap: "no-wrap"
-    
+  },
+  gridItem: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  customFormTwo: {
+    justifyContent: "space-between",
+    flexWrap: "no-wrap",
+    marginRight: "5%"
   }
-  
-}
+};
 
 export default multiInputFormStyle;

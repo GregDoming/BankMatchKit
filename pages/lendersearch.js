@@ -226,7 +226,7 @@ const LenderSearch = React.memo(props => {
               key="searchButton"
               type="button"
               color="primary"
-              className={classes.highButton}
+              className={classes.highButtonShort}
               onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
             >
               <SearchIcon />
@@ -238,7 +238,7 @@ const LenderSearch = React.memo(props => {
               emailArr={emailArr}
               subjectText={subjectText}
               bodyText={bodyText}
-              checkArr={checkArr}
+              checked={checked}
               onSubjectTextChange={onSubjectTextChange}
               onBodyTextChange={onBodyTextChange}
             />
@@ -290,6 +290,7 @@ const LenderSearch = React.memo(props => {
                       color="primary"
                       className={classes.highButton}
                       onClick={handleSearch}
+                      size="lg"
                     >
                       <SearchIcon style={{ color: "#FFFFFF" }} />
                       Search
@@ -303,6 +304,7 @@ const LenderSearch = React.memo(props => {
                       color="primary"
                       className={classes.highButton}
                       onClick={handleClickAll}
+                      size="lg"
                     >
                       <SearchIcon style={{ color: "#FFFFFF" }} />
                       Search All

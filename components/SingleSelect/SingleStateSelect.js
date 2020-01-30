@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import Select from "react-select";
 
-// import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
-
 const listOfStates = [
   { value: "AK - Alaska", label: "AK - Alaska" },
   { value: "AL - Alabama", label: "AL - Alabama" },
@@ -58,8 +56,6 @@ const listOfStates = [
 
 const SingleStateSelect = props => {
   const { dispatch, state } = props;
-  // const dispatch = useContext(FormDispatchContext);
-  // const state = useContext(FormStateContext);
 
   const defaultVal = { value: state.companyState, label: state.companyState };
 

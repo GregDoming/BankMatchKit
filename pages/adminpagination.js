@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import dynamic from "next/dynamic";
 
 import Axios from "axios";
 import { useImmerReducer } from "use-immer";
@@ -16,6 +15,8 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Icon from "@material-ui/core/Icon";
 import Parallax from "components/Parallax/Parallax.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
+import CustomButton from "components/CustomButtons/Button.js";
+import Alert from '@material-ui/lab/Alert';
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
@@ -72,6 +73,10 @@ const toggleReducer = (draft, action) => {
       });
       return;
     }
+    case "handleLenderSelector": {
+      draft["typeOfLender"] = action.payload.value;
+      return;
+    }
     case "handleBinaryToggle": {
       draft[event.target.id] = !action.payload;
       action.paylod = !action.payload;
@@ -107,6 +112,7 @@ const AdminPagination = props => {
   const [state, dispatch] = useImmerReducer(toggleReducer, initialState);
   const [minMaxErrorMessage, setminMaxErrorMessage] = React.useState("");
   const [openError, setOpenError] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -132,6 +138,67 @@ const AdminPagination = props => {
   const allStepsCompleted = () => {
     return completedSteps() === totalSteps();
   };
+
+  const saveClick = async () => {
+    event.preventDefault();
+    if (
+      state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
+      state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
+      state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
+      state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
+      state.privateClosingCostsMax < state.privateClosingCostsMin ||
+      state.privateDaysToFundingMax < state.privateDaysToFundingMin
+    ) {
+      setminMaxErrorMessage("Minimum value must be larger than maximum value");
+      setOpenError(true);
+      return;
+    }
+
+    const objCopy = JSON.parse(JSON.stringify(state));
+    const formInfo = convertUser(objCopy);
+    try {
+      await Axios.post("/api/users/updateAdminUserData", { formInfo });
+    } catch (error) {
+      console.log(error);
+    }
+    setOpen(true);
+  };
+
+  const saveAndExitClick = async () => {
+    event.preventDefault();
+    if (
+      state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
+      state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
+      state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
+      state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
+      state.privateClosingCostsMax < state.privateClosingCostsMin ||
+      state.privateDaysToFundingMax < state.privateDaysToFundingMin
+    ) {
+      setminMaxErrorMessage("Minimum value must be larger than maximum value");
+      setOpenError(true);
+      return;
+    }
+
+    const objCopy = JSON.parse(JSON.stringify(state));
+    const formInfo = convertUser(objCopy);
+    try {
+      await Axios.post("/api/users/updateAdminUserData", { formInfo });
+    } catch (error) {
+      console.log(error);
+    }
+    setOpen(true);
+    router.push("/lendersearch");
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
 
   const handleNext = async () => {
     event.preventDefault();
@@ -200,6 +267,27 @@ const AdminPagination = props => {
       <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LenderNavigationTabs router={router} />
+        <div className={classes.rowContainer}>
+            <CustomButton
+              size="lg"
+              onClick={event => saveClick(event)}
+              className={classes.customButton}
+            >
+              SAVE
+            </CustomButton>
+            <CustomButton
+              size="lg"
+              onClick={event => saveAndExitClick(event)}
+              className={classes.customButton}
+            >
+              SAVE & Exit
+            </CustomButton>
+          </div>
+          <Snackbar open={open} autoHideDuration={1800} onClose={handleSnackbarClose}>
+            <Alert onClose={handleSnackbarClose} severity="success">
+              INFORMATION SAVED SUCCESSFULLY!
+            </Alert>
+          </Snackbar>
         {renderView(activeStep)}
         <Box
           className={classes.bottomStepper}

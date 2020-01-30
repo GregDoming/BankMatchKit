@@ -23,7 +23,6 @@ import ViewOne from "components/AuthPaginationViews/ViewOne.js";
 import ViewTwo from "components/AuthPaginationViews/ViewTwo.js";
 import ViewThree from "components/AuthPaginationViews/ViewThree.js";
 import ViewFour from "components/AuthPaginationViews/ViewFour.js";
-import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 
 import { isUserAuthenticated } from "lib/auth";
 import { convertUser } from "lib/userSchema";
@@ -56,6 +55,10 @@ const toggleReducer = (draft, action) => {
     }
     case "handleStateSelector": {
       draft["companyState"] = action.payload.value;
+      return;
+    }
+    case "handleLenderSelector": {
+      draft["typeOfLender"] = action.payload.value;
       return;
     }
     case "handleLenderSelect": {

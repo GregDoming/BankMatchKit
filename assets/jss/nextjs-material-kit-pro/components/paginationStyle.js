@@ -87,16 +87,19 @@ const paginationStyle = {
     "&:focus": {
       backgroundColor: dangerColor[3]
     },
-
+    alignSelf: "stretch"
   },
   rowContainer: {
     position: "sticky",
     top: 0,
+    margin: 0,
     display: "flex",
     flexFlow: "column",
     alignItems: "flex-end",
     marginRight: ".2%",
     marginLeft: "90%",
+    justifyContent: "flex-end",
+    alignContent: "flex-end",
     zIndex: 99999999999
   },
   primary: {

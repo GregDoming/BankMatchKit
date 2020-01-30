@@ -34,7 +34,7 @@ const EmailModal = React.memo((props) => {
   const [bodyText, setBodyText] = React.useState("We will set this dynamically");
   const {
     emailArr,
-    checkArr
+    checked
   } = props;
 
   const onSubjectTextChange = event => {
@@ -52,7 +52,7 @@ const EmailModal = React.memo((props) => {
     const sendObj = {};
 
     arr.forEach((ele, index) => {
-      if (checkArr.indexOf(index) !== -1) contactsArr.push(ele);
+      if (checked.indexOf(index) !== -1) contactsArr.push(ele);
     });
 
     sendObj["contactList"] = contactsArr;
@@ -154,7 +154,7 @@ const EmailModal = React.memo((props) => {
               type="button"
               color="success"
               className={classes.highButton}
-              onClick={(event) => sendEmail(event, emailArr, checkArr)}
+              onClick={(event) => sendEmail(event, emailArr, checked)}
             >
               Send
             </Button>

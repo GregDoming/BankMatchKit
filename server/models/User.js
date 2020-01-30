@@ -213,6 +213,18 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default: false
       },
+      typeOfLender: {
+        type: String,
+        enum: [
+          "Bank",
+          "CDFI",
+          "Credit Union",
+          "Insurance Company",
+          "Non-Bank Lender",
+          "PrivateEquity"
+        ],
+        default: "Bank"
+      }
     },
     ownerOccupied: {
       purchase: {

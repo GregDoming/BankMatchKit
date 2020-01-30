@@ -2,20 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ToggleFormTwo from "components/ToggleForm/ToggleFormTwo";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%"
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
-    flexShrink: 0
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
-  }
-}));
+import viewStyle from "assets/jss/nextjs-material-kit-pro/components/viewStyle.js";
+
+const useStyles = makeStyles(viewStyle);
 
 export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
@@ -25,9 +14,8 @@ export default function ControlledExpansionPanels(props) {
 
   return (
     <div className={classes.root}>
-      <ToggleFormTwo
-        dispatch={dispatch} state={state}
-      />
+      <h2 className={classes.cardTitle}>PROPERTY TYPES</h2>
+      <ToggleFormTwo dispatch={dispatch} state={state} />
     </div>
   );
 }

@@ -15,7 +15,6 @@ const lenderName = [
 const MultiLenderSelect = props => {
   const { dispatch, state } = props;
 
-
   const {
     lenderNameBank,
     lenderNameCDFI,

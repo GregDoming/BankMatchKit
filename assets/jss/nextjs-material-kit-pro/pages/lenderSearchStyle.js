@@ -113,8 +113,20 @@ const lenderSearchStyle = {
     hexToRgb(primaryColor[0]) +
     ", 0.12), 0 2px 4px -1px rgba(" +
     hexToRgb(primaryColor[0]) +
-    ", 0.2)"
-
+    ", 0.2)",
+    alignSelf: "stretch",
+    width: "100%"
+  },
+  highButtonShort: {
+    boxShadow:
+    "2px 8px 6px 2px rgba(" +
+    hexToRgb(primaryColor[0]) +
+    ", 0.14), 0 1px 10px 0 rgba(" +
+    hexToRgb(primaryColor[0]) +
+    ", 0.12), 0 2px 4px -1px rgba(" +
+    hexToRgb(primaryColor[0]) +
+    ", 0.2)",
+    alignSelf: "stretch",
   },
   info: {
     paddingBottom: "10px",
