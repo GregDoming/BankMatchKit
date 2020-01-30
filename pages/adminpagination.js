@@ -295,7 +295,7 @@ const AdminPagination = props => {
         >
           <MobileStepper
             variant="dots"
-            steps={6}
+            steps={4}
             position="bottom"
             activeStep={activeStep}
             className={classes.root}

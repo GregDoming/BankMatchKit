@@ -99,7 +99,7 @@ const lenderSearchStyle = {
     marginRight: "50%"
   },
   rowContainer: {
-    top: 80,
+    top: 72,
     display: "flex",
     flexFlow: "row",
     position: "sticky",

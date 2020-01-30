@@ -278,7 +278,7 @@ const AuthPagination = props => {
           >
             <MobileStepper
               variant="dots"
-              steps={6}
+              steps={4}
               position="bottom"
               activeStep={activeStep}
               className={classes.root}
@@ -301,7 +301,6 @@ const AuthPagination = props => {
                 </Button>
               }
             />
-            {/* Error Snackbar */}
             {minMaxErrorMessage && (
               <Snackbar
                 anchorOrigin={{
@@ -336,5 +335,3 @@ const AuthPagination = props => {
 AuthPagination.getInitialProps = isUserAuthenticated;
 
 export default AuthPagination;
-
-// export default AuthPagination;
