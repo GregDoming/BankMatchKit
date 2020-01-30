@@ -207,6 +207,7 @@ const Signin = (props) => {
             </GridItem>
           </GridContainer>
         </div>
+      </div>
     </div>
   );
 };
