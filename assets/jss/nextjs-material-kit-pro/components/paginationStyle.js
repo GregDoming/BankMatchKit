@@ -13,13 +13,12 @@ import {
 const paginationStyle = {
   main: {
     ...mainRaised,
-    background: whiteColor,
+    background: grayColor[6],
     position: "relative",
     zIndex: "3",
     marginRight: "8%",
     marginLeft: "8%",
-    marginTop: "-40vh",
-    
+    marginTop: "-40vh"
   },
   pagination: {
     display: "flex",
@@ -31,9 +30,9 @@ const paginationStyle = {
     color: "red"
   },
   parallax: {
-position: "absolute",
-top: "50px",
-backgroundColor: "red"
+    position: "absolute",
+    top: "50px",
+    backgroundColor: "red"
   },
   paginationItem: {
     display: "inline"
@@ -73,14 +72,16 @@ backgroundColor: "red"
     }
   },
   customButton: {
-    position: "sticky",
-    top: 0,
-    alignSelf: "flexStart",
- 
-
-
+    boxShadow:
+      "0 4px 5px 0 rgba(" +
+      hexToRgb(dangerColor[2]) +
+      ", 0.14), 0 1px 10px 0 rgba(" +
+      hexToRgb(dangerColor[2]) +
+      ", 0.12), 0 2px 4px -1px rgba(" +
+      hexToRgb(dangerColor[2]) +
+      ", 0.2)",
     backgroundColor: dangerColor[3],
-    "&,&:hover,&:focus": {
+    "&:hover,&:focus": {
       backgroundColor: dangerColor[2]
     }
   },
@@ -89,8 +90,10 @@ backgroundColor: "red"
     top: 0,
     display: "flex",
     flexFlow: "column",
-    alignItems: 'flex-end',
-
+    alignItems: "flex-end",
+    marginRight: ".2%",
+    marginLeft: "90%",
+    zIndex: 99999999999
   },
   primary: {
     "&,&:hover,&:focus": {
@@ -98,7 +101,7 @@ backgroundColor: "red"
       borderColor: primaryColor[0],
       color: whiteColor,
       boxShadow:
-        "0 4px 5px 0 rgba(" +
+        "2px 8px 5px 2px rgba(" +
         hexToRgb(primaryColor[0]) +
         ", 0.14), 0 1px 10px 0 rgba(" +
         hexToRgb(primaryColor[0]) +

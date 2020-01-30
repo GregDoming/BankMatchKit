@@ -36,10 +36,7 @@ const headerStyle = theme => ({
     alignItems: "center",
     flexFlow: "row nowrap",
     justifyContent: "flex-start",
-    position: "fixed"
-    // changeColorOnScroll:
-    //   height: "100",
-    //   backgroundColor: "info"
+    position: "fixed",
   },
   logo: {
     margin: 'auto',

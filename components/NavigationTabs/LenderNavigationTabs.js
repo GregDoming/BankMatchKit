@@ -44,7 +44,7 @@ const LenderNavigationTabs = props => {
   });
 
   return (
-    <div>
+    <div className={classes.stickyContainer}>
       <Paper square>
         <Tabs
           className={classes.root}
@@ -61,17 +61,17 @@ const LenderNavigationTabs = props => {
             <Tab icon={<PersonIcon />} label="PROFILE" />
           </Link>
           <Link href="/authpagination">
-            <Tab icon={<EditIcon />} label="EDIT" />
+            <Tab icon={<EditIcon />} label="EDIT PROFILE" />
           </Link>
           <Link href="/lendersearch">
-            <Tab icon={<SearchIcon />} label="SEARCH" />
+            <Tab icon={<SearchIcon />} label="SEARCH LENDER DATABASE" />
           </Link>
           <Link href="/underConstruction">
             <Tab icon={<PersonPinIcon />} label="MAP" />
           </Link>
-          <Link href="/underConstruction">
+          <div className={classes.lighten}>
             <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
-          </Link>
+          </div>
         </Tabs>
           {/* <div>
             <Button onClick={() => downloadCSV()} className={classes.buttonStyle}>

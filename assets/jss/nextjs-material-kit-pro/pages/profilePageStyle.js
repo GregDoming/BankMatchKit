@@ -37,7 +37,7 @@ const profilePageStyle = {
   },
   main: {
     ...mainRaised,
-    background: whiteColor,
+    background: grayColor[6],
     position: "relative",
     zIndex: "3",
     marginRight: "8%",

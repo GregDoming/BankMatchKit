@@ -133,6 +133,28 @@ const AuthPagination = props => {
     return completedSteps() === totalSteps();
   };
 
+  // const saveClick = () => {
+  //   event.preventDefault();
+  //   if (
+  //     state.privateMoneyInterestRateMax < state.privateMoneyInterestRateMin ||
+  //     state.privateMoneyTermRangeMax < state.privateMoneyTermRangeMin ||
+  //     state.privateMoneyFeesFlatMax < state.privateMoneyFeesFlatMin ||
+  //     state.privateMoneyFeesPointsMax < state.privateMoneyFeesPointsMin ||
+  //     state.privateClosingCostsMax < state.privateClosingCostsMin ||
+  //     state.privateDaysToFundingMax < state.privateDaysToFundingMin
+  //   ) {
+  //     setminMaxErrorMessage("Minimum value must be larger than maximum value");
+  //     setOpenError(true);
+  //     return;
+  //   }
+
+  //   const objCopy = JSON.parse(JSON.stringify(state));
+  //   const formInfo = convertUser(objCopy);
+  //   await Axios.post("/api/users/updateUserData", { formInfo });
+  // }
+
+  
+
   const handleNext = async () => {
     event.preventDefault();
     if (
@@ -219,8 +241,7 @@ const AuthPagination = props => {
         <div className={classes.main}>
           <LenderNavigationTabs router={router} />
           <div className={classes.rowContainer}>
-            <CustomButton className={classes.customButton}>SAVE & EXIT</CustomButton>
-            <CustomButton className={classes.customButton}>EXIT WITHOUT SAVE</CustomButton>
+            <CustomButton size="lg" className={classes.customButton}>SAVE</CustomButton>
           </div>
 
           {renderView(activeStep)}

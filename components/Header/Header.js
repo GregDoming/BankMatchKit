@@ -24,7 +24,8 @@ const Header = props => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const classes = useStyles();
-
+  
+  //Listens until px100 scroll on y-axis
   React.useEffect(() => {
     window.addEventListener("scroll", () => headerScrollChange());
     return function cleanup() {
@@ -36,31 +37,31 @@ const Header = props => {
   };
 
   const headerScrollChange = () => {
-    if (window.pageYOffset > 100) {
+    if (window.pageYOffset > 140) {
       setIsScrolled(true);
     }
 
-    if (window.pageYOffset < 100) {
+    if (window.pageYOffset < 140) {
       setIsScrolled(false);
     }
   };
 
-  const headerColorChange = () => {
-    const { color, changeColorOnScroll } = props;
+  // const headerColorChange = () => {
+  //   const { color, changeColorOnScroll } = props;
 
-    const windowsScrollTop = window.pageYOffset;
-    if (windowsScrollTop > changeColorOnScroll.height) {
-      document.body.getElementsByTagName("header")[0].classList.remove(classes[color]);
-      document.body
-        .getElementsByTagName("header")[0]
-        .classList.add(classes[changeColorOnScroll.color]);
-    } else {
-      document.body.getElementsByTagName("header")[0].classList.add(classes[color]);
-      document.body
-        .getElementsByTagName("header")[0]
-        .classList.remove(classes[changeColorOnScroll.color]);
-    }
-  };
+  //   const windowsScrollTop = window.pageYOffset;
+  //   if (windowsScrollTop > changeColorOnScroll.height) {
+  //     document.body.getElementsByTagName("header")[0].classList.remove(classes[color]);
+  //     document.body
+  //       .getElementsByTagName("header")[0]
+  //       .classList.add(classes[changeColorOnScroll.color]);
+  //   } else {
+  //     document.body.getElementsByTagName("header")[0].classList.add(classes[color]);
+  //     document.body
+  //       .getElementsByTagName("header")[0]
+  //       .classList.remove(classes[changeColorOnScroll.color]);
+  //   }
+  // };
   const { color, links, brand, fixed, absolute } = props;
   const appBarClasses = classNames({
     [classes.appBar]: true,
@@ -72,39 +73,40 @@ const Header = props => {
       "15px 20px 20px rgba(0, 0, 0, 0.25), inset 15px 13px 10px rgba(0, 0, 0, 0.22)"
   });
   return isScrolled ? (
-    <>
-      <AppBar className={appBarClasses}>
-        <Toolbar className={classes.container}>      
-          <Button className={classes.title}>
-            <Link href="/presentation">    
-              <a>{brand}</a>
-            </Link>
-          </Button>
-          <IconButton color="secondary" aria-label="open drawer" onClick={handleDrawerToggle}>
-            <Menu />
-          </IconButton>
-        </Toolbar>
-        <Drawer
-          variant="temporary"
-          anchor={"right"}
-          open={mobileOpen}
-          classes={{
-            paper: classes.drawerPaper
-          }}
-          onClose={handleDrawerToggle}
-        >
-          <IconButton
-            color="secondary"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-            className={classes.closeButtonDrawer}
-          >
-            <Close />
-          </IconButton>
-          {links}
-        </Drawer>
-      </AppBar>
-    </>
+    <div/>
+    // <>
+    //   <AppBar className={appBarClasses}>
+    //     <Toolbar className={classes.container}>      
+    //       <Button className={classes.title}>
+    //         <Link href="/presentation">    
+    //           <a>{brand}</a>
+    //         </Link>
+    //       </Button>
+    //       <IconButton color="secondary" aria-label="open drawer" onClick={handleDrawerToggle}>
+    //         <Menu />
+    //       </IconButton>
+    //     </Toolbar>
+    //     <Drawer
+    //       variant="temporary"
+    //       anchor={"right"}
+    //       open={mobileOpen}
+    //       classes={{
+    //         paper: classes.drawerPaper
+    //       }}
+    //       onClose={handleDrawerToggle}
+    //     >
+    //       <IconButton
+    //         color="secondary"
+    //         aria-label="open drawer"
+    //         onClick={handleDrawerToggle}
+    //         className={classes.closeButtonDrawer}
+    //       >
+    //         <Close />
+    //       </IconButton>
+    //       {links}
+    //     </Drawer>
+    //   </AppBar>
+    // </>
   ) : (
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>

@@ -22,7 +22,7 @@ export const SwitchSelection = styled.span`
   left: 0px;
   width: 70px;
   height: 26px;
-  background: #216BA5;
+  background: #2E73D8;
   border-radius: 3px;
   transition: left 0.25s ease-out;
 `;
@@ -40,7 +40,5 @@ export const SwitchLabel = styled.label`
 
   ${SwitchRadio}:checked + &{
     transition: 0.15s ease-out;
-    color: #fff;
   }
-  
 `;

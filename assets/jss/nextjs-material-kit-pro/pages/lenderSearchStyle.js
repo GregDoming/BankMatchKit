@@ -24,16 +24,16 @@ const lenderSearchStyle = {
   description,
   container: {
     ...container,
-    maxWidth: "970px !important",
+    maxWidth: "970px !important"
   },
-   main: {
+  main: {
     ...mainRaised,
-    background: whiteColor,
+    background: grayColor[6],
     position: "relative",
     zIndex: "3",
     marginRight: "8%",
     marginLeft: "8%",
-    marginTop: "-40vh",
+    marginTop: "-40vh"
   },
   loading: {
     display: "block",
@@ -44,7 +44,7 @@ const lenderSearchStyle = {
     backgroundColor: "#d0e6f6"
   },
   addButton: {
-color: primaryColor[1]
+    color: primaryColor[1]
   },
   customRaised: {
     ...mainRaised,
@@ -95,9 +95,25 @@ color: primaryColor[1]
     ...cardTitle,
     fontSize: "15px",
     marginLeft: "3%",
-    marginRight: "50%",
+    marginRight: "50%"
+  },
+  rowContainer: {
+    top: 80,
+    display: "flex",
+    flexFlow: "row",
+    position: "sticky",
+    zIndex: 999,
+    marginLeft: "4%"
   },
   highButton: {
+    boxShadow:
+    "2px 8px 6px 2px rgba(" +
+    hexToRgb(primaryColor[0]) +
+    ", 0.14), 0 1px 10px 0 rgba(" +
+    hexToRgb(primaryColor[0]) +
+    ", 0.12), 0 2px 4px -1px rgba(" +
+    hexToRgb(primaryColor[0]) +
+    ", 0.2)"
 
   },
   info: {
@@ -323,10 +339,7 @@ color: primaryColor[1]
   formContainer: {
     spacing: 3
   },
-  rowContainer: {
-    display: "flex",
-    flexFlow: "row"
-  },
+
   rowContainerSelect: {
     display: "flex",
     flexFlow: "row",
@@ -348,7 +361,7 @@ color: primaryColor[1]
       maxWidth: "100%"
     },
     zIndex: "2",
-    paddingTop: "6%",
+    paddingTop: "6%"
   },
   customForm: {
     justifyContent: "space-between",

@@ -99,7 +99,7 @@ export default function HeaderLinks(props) {
           buttonText="Components"
           buttonProps={{
             className: classes.navLink,
-            color: "transparent"
+            color: "black"
           }}
           buttonIcon={Apps}
           dropdownList={[
