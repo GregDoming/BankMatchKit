@@ -16,7 +16,7 @@ import Icon from "@material-ui/core/Icon";
 import Parallax from "components/Parallax/Parallax.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import CustomButton from "components/CustomButtons/Button.js";
-import Alert from '@material-ui/lab/Alert';
+import Alert from "@material-ui/lab/Alert";
 // import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Transition from "components/Transition/Transition.js";
 import ViewOne from "components/AuthPaginationViews/ViewOne.js";
@@ -59,6 +59,38 @@ const toggleReducer = (draft, action) => {
     }
     case "handleLenderSelector": {
       draft["typeOfLender"] = action.payload.value;
+      return;
+    }
+    case "handleLenderSpecialtySelect": {
+      draft[action.payload.tempString] = action.payload.num.label;
+      return;
+    }
+    case "handleSpecialityDelete": {
+      const { returnArr } = action.payload;
+      console.log(action.payload)
+      const stringArr = [
+        "specialtySelectZero",
+        "specialtySelectOne",
+        "specialtySelectTwo",
+        "specialtySelectThree",
+        "specialtySelectFour",
+        "specialtySelectFive",
+        "specialtySelectSix",
+        "specialtySelectSeven",
+        "specialtySelectEight",
+        "specialtySelectNine"
+      ];
+
+      let count = 0;
+      returnArr.forEach((ele, index) => {
+        draft[stringArr[index]] = ele
+        count ++;
+      });
+
+      while (count <= 10) {
+        draft[stringArr[count]] = "none"
+        count ++;
+      }
       return;
     }
     case "handleLenderSelect": {

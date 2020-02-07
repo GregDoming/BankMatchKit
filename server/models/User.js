@@ -213,6 +213,46 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default: false
       },
+      specialtySelectOne: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectTwo: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectThree: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectFour: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectFive: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectSix: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectSeven: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectEight: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectNine: {
+        type: String,
+        default: "none"
+      },
+      specialtySelectZero: {
+        type: String,
+        default: "none"
+      },
       typeOfLender: {
         type: String,
         enum: [

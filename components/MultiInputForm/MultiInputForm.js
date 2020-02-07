@@ -14,46 +14,24 @@ import CardHeader from "@material-ui/core/CardHeader";
 
 import SingleStateSelect from "components/SingleSelect/SingleStateSelect.js";
 import SingleLenderSelect from "components/SingleSelect/SingleLenderSelect.js";
+import LenderSpecialties from "components/LenderSpecialties/LenderSpecialties.js";
 
 import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiInputFormStyle.js";
 
 const useStyles = makeStyles(multiInputFormStyle);
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
-};
-
 const MultiInputForm = props => {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
-  const [values, setValues] = React.useState({
-    checkedClientPaysBroker: true,
-    secondaryEmailAddress: "",
-    workNumber: "",
-    nameOfCompany: "",
-    workNumber: "(  )    -    ",
-    companyPhoneNumber: "(  )    -    ",
-    fax: "(  )    -    ",
-    companyStreetAddress: "",
-    zip: "",
-    city: "",
-    personalNotes: ""
-  });
 
   const { state, dispatch } = props;
 
-  const { clientPaysBrokerDemand, lenderPaysRebates, brokerPaidThroughEscrow } = state;
+  const {
+    clientPaysBrokerDemand,
+    lenderPaysRebates,
+    brokerPaidThroughEscrow,
+  } = state;
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value.trim() });
-  };
   const toggleChecked = async () => {
     event.preventDefault();
     setChecked(prev => !prev);
@@ -199,7 +177,7 @@ const MultiInputForm = props => {
               <SingleStateSelect dispatch={dispatch} state={state} />
             </GridItem>
             <div className={classes.spacerDiv} />
-            <GridItem className={classes.gridSelect}>
+            <GridItem className={classes.gridSelect} style={{ overFlow: "visible" }}>
               Type Of Lender
               <SingleLenderSelect state={state} dispatch={dispatch} />
             </GridItem>
@@ -294,6 +272,121 @@ const MultiInputForm = props => {
                 </GridItem>
               </GridContainer>
             </form>
+          </CardBody>
+        </Card>
+      </GridItem>
+      <GridItem className={classes.gridItem} xs={12} sm={10} md={12}>
+        <Card className={classes.cardCompanySelect}>
+          <h4 className={classes.cardTitle}>YOUR COMPANY INFO</h4>
+          <div className={classes.rowContainerSelect}>
+            <GridItem className={classes.gridSelect}>
+              State
+              <SingleStateSelect dispatch={dispatch} state={state} />
+            </GridItem>
+            <div className={classes.spacerDiv} />
+            <GridItem className={classes.gridSelect} style={{ overFlow: "visible" }}>
+              Type Of Lender
+              <SingleLenderSelect state={state} dispatch={dispatch} />
+            </GridItem>
+          </div>
+          <CardHeader></CardHeader>
+          <CardBody>
+            <form className={classes.customForm}>
+              <GridContainer justify="center" className={classes.customContainer}>
+                <GridItem xs={12} sm={5} md={5}>
+                  <CustomInput
+                    labelText={"Company Street Address"}
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormControlClasses
+                    }}
+                    inputProps={{
+                      value: state.companyStreetAddress,
+                      onChange: () => dispatch({ type: "handleFormInput" }),
+                      id: "companyStreetAddress"
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={5} md={5}>
+                  <CustomInput
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormControlClasses
+                    }}
+                    inputProps={{
+                      value: state.nameOfCompany,
+                      onChange: () => dispatch({ type: "handleFormInput" }),
+                      id: "nameOfCompany"
+                    }}
+                    labelText="Name of Company"
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={5} md={5}>
+                  <CustomInput
+                    labelText="Company Phone Number"
+                    inputProps={{
+                      type: "text",
+                      label: "With normal TextField",
+                      value: state.companyPhoneNumber,
+                      onChange: () => dispatch({ type: "handleNumberInput" }),
+                      id: "companyPhoneNumber"
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <GridContainer className={classes.customContainer}>
+                <GridItem xs={12} sm={5} md={5}>
+                  <FormControl style={{ minWidth: 10 }}>
+                    <CustomInput
+                      labelText={"City"}
+                      formControlProps={{
+                        className: classes.customFormControlClasses
+                      }}
+                      inputProps={{
+                        value: state.city,
+                        onChange: () => dispatch({ type: "handleFormInput" }),
+                        id: "city"
+                      }}
+                    />
+                  </FormControl>
+                </GridItem>
+                <GridItem xs={12} sm={2} md={2}>
+                  <CustomInput
+                    labelText={"Zip"}
+                    formControlProps={{
+                      className: classes.customFormControlClasses
+                    }}
+                    inputProps={{
+                      type: "text",
+                      label: "With normal TextField",
+                      value: state.zip,
+                      onChange: () => dispatch({ type: "handleNumberInput" }),
+                      id: "zip"
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={5} md={5}>
+                  <CustomInput
+                    labelText="FAX"
+                    inputProps={{
+                      type: "text",
+                      label: "With normal TextField",
+                      value: state.fax,
+                      onChange: () => dispatch({ type: "handleNumberInput" }),
+                      id: "fax"
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+            </form>
+          </CardBody>
+        </Card>
+      </GridItem>
+      <GridItem className={classes.gridItem} xs={12} sm={10} md={12}>
+        <Card className={classes.cardSignup}>
+          <h5 className={classes.cardTitle}>LENDER SPECIALTIES</h5>
+          <CardBody>
+            <LenderSpecialties state={state} dispatch={dispatch} dispatch={dispatch} />
           </CardBody>
         </Card>
       </GridItem>

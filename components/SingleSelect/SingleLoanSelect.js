@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Select from "react-select";
 
-import listOfLenderTypes from "lib/listOfLenderTypes";
+import { listOfLenderTypes } from "lib/listOfLenderTypes";
 
 const SingleLoanSelect = props => {
   const { handleChange, idNumber } = props;

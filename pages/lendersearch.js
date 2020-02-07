@@ -18,7 +18,7 @@ import Button from "components/CustomButtons/Button.js";
 
 import SingleLoanSelect from "components/SingleSelect/SingleLoanSelect.js";
 import SearchTable from "components/SearchTable/SearchTable.js";
-import listOfLenderTypes from "lib/listOfLenderTypes";
+import { listOfLenderTypes } from "lib/listOfLenderTypes";
 import EmailModal from "components/EmailModal/EmailModal.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";

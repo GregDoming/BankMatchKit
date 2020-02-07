@@ -51,10 +51,11 @@ const multiInputFormStyle = {
     marginBottom: "10px",
     padding: "10px 10%",
     width: "90%",
-    overFlow: "visible"
+    overllow: "visible"
   },
   gridSelect: {
-    width: "50%"
+    width: "50%",
+    zIndex: 99999
   },
   spacerDiv: {
     height: "0",
@@ -75,7 +76,7 @@ const multiInputFormStyle = {
     marginBottom: "10px",
     padding: "0",
     width: "90%",
-    overFlow: "visible"
+    overflow: "visible"
   },
   customToggleItem: {
     flex: 2,
