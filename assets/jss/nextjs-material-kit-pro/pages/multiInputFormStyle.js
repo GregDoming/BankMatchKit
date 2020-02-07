@@ -229,6 +229,9 @@ const multiInputFormStyle = {
     width: "100%",
     justifyContent: "space-evenly"
   },
+  justify: {
+    justifyItems: "start"
+  },
   customForm: {
     justifyContent: "space-between",
     flexWrap: "no-wrap"

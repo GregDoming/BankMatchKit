@@ -17,6 +17,7 @@ import SingleLenderSelect from "components/SingleSelect/SingleLenderSelect.js";
 import LenderSpecialties from "components/LenderSpecialties/LenderSpecialties.js";
 
 import multiInputFormStyle from "assets/jss/nextjs-material-kit-pro/pages/multiInputFormStyle.js";
+import { mergeClasses } from "@material-ui/styles";
 
 const useStyles = makeStyles(multiInputFormStyle);
 
@@ -26,11 +27,7 @@ const MultiInputForm = props => {
 
   const { state, dispatch } = props;
 
-  const {
-    clientPaysBrokerDemand,
-    lenderPaysRebates,
-    brokerPaidThroughEscrow,
-  } = state;
+  const { clientPaysBrokerDemand, lenderPaysRebates, brokerPaidThroughEscrow } = state;
 
   const toggleChecked = async () => {
     event.preventDefault();
@@ -81,6 +78,23 @@ const MultiInputForm = props => {
                       className: classes.customFormControlClasses
                     }}
                     inputProps={{
+                      value: state.email,
+                      onChange: () => dispatch({ type: "handleFormInput" }),
+                      id: "secondaryEmailAddress",
+                      disabled: true,
+                    }}
+                    labelText="Primary Email Address"
+                    id="primaryEmailAddress"
+                    type="email"
+                  />
+                </GridItem>
+                <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
+                  <CustomInput
+                    formControlProps={{
+                      fullWidth: true,
+                      className: classes.customFormControlClasses
+                    }}
+                    inputProps={{
                       value: state.secondaryEmailAddress,
                       onChange: () => dispatch({ type: "handleFormInput" }),
                       id: "secondaryEmailAddress"
@@ -91,7 +105,7 @@ const MultiInputForm = props => {
                   />
                 </GridItem>
               </GridContainer>
-              <GridContainer justify="space-between">
+              <GridContainer className={classes.justify} >
                 <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                   <CustomInput
                     labelText="Mobile Number"
