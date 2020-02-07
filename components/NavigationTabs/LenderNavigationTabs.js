@@ -71,7 +71,7 @@ const LenderNavigationTabs = props => {
           <Link href="/lendersearch">
             <Tab icon={<SearchIcon />} label="SEARCH LENDER DATABASE" />
           </Link>
-          <Link href="/underConstruction">
+          <Link href="/map">
             <Tab icon={<PersonPinIcon />} label="MAP" />
           </Link>
           <div onClick={event => clickHandler(event)} className={classes.lighten}>

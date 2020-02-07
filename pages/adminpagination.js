@@ -56,6 +56,38 @@ const toggleReducer = (draft, action) => {
       draft["companyState"] = action.payload.value;
       return;
     }
+    case "handleLenderSpecialtySelect": {
+      draft[action.payload.tempString] = action.payload.num.label;
+      return;
+    }
+    case "handleSpecialityDelete": {
+      const { returnArr } = action.payload;
+      console.log(action.payload)
+      const stringArr = [
+        "specialtySelectZero",
+        "specialtySelectOne",
+        "specialtySelectTwo",
+        "specialtySelectThree",
+        "specialtySelectFour",
+        "specialtySelectFive",
+        "specialtySelectSix",
+        "specialtySelectSeven",
+        "specialtySelectEight",
+        "specialtySelectNine"
+      ];
+
+      let count = 0;
+      returnArr.forEach((ele, index) => {
+        draft[stringArr[index]] = ele
+        count ++;
+      });
+
+      while (count <= 10) {
+        draft[stringArr[count]] = "none"
+        count ++;
+      }
+      return;
+    }
     case "handleLenderSelect": {
       const lenderName = [
         "lenderNameBank",

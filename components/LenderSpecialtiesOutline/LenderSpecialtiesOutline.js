@@ -12,7 +12,7 @@ const useStyles = makeStyles(lenderSpecialtiesBoxesStyle);
 
 const LenderSpecialtiesOutline = props => {
   const classes = useStyles();
-  const { dispatch, idNumber, handleSpecialtiesChange, currentSpeciality, specialtiesArr, handleSpecialtiesError } = props;
+  const { dispatch, idnumber, handleSpecialtiesChange, currentSpeciality, specialtiesArr, handleSpecialtiesError } = props;
   const [isClicked, setIsClicked] = React.useState(false);
 
   const mouseDownHandler = event => {
@@ -28,7 +28,7 @@ const LenderSpecialtiesOutline = props => {
     <SingleSpecialtySelect
       specialtiesArr={specialtiesArr}
       currentSpeciality={currentSpeciality}
-      idNumber={idNumber}
+      idnumber={idnumber}
       handleSpecialtiesChange={handleSpecialtiesChange}
       handleSpecialtiesError={handleSpecialtiesError}
       key={"singleLoanSelectOutline"}

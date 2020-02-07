@@ -78,26 +78,13 @@ const LenderSpecialties = props => {
       }
     })
 
-    // while (specialtyStrings[index] !== "none" && rightListArr.length < 5) {
-    //   if (index % 2 === 0) {
-    //     leftListArr.push(
-    //       <LenderSpecialtiesBoxes handleSpecialtiesDelete={handleSpecialtiesDelete} key={"leftListArr" + index} id={specialtiesStringArr[index]} specialty={specialtyStrings[index]} />
-    //     );
-    //     index++;
-    //   } else {
-    //     rightListArr.push(
-    //       <LenderSpecialtiesBoxes handleSpecialtiesDelete={handleSpecialtiesDelete} key={"rightListArr" + index} id={specialtiesStringArr[index]} specialty={specialtyStrings[index]} />
-    //     );
-    //     index++;
-    //   }
-    // }
-
     if (leftListArr.length < 5 && leftListArr.length === rightListArr.length) {
       leftListArr.push(
         <LenderSpecialtiesOutline
           specialtiesArr={specialtyStrings}
           currentSpeciality={currentSpeciality}
-          idNumber={savedIndex}
+          idnumber={savedIndex}
+          key={"leftListArr" + savedIndex}
           state={state}
           dispatch={dispatch}
           handleSpecialtiesChange={handleSpecialtiesChange}
@@ -113,8 +100,9 @@ const LenderSpecialties = props => {
         <LenderSpecialtiesOutline
           specialtiesArr={specialtyStrings}
           currentSpeciality={currentSpeciality}
-          idNumber={savedIndex}
+          idnumber={savedIndex}
           state={state}
+          key={"rightListArr" + savedIndex}
           dispatch={dispatch}
           handleSpecialtiesChange={handleSpecialtiesChange}
           handleSpecialtiesError={handleSpecialtiesError}
@@ -171,7 +159,6 @@ const LenderSpecialties = props => {
     const tempSpecialtiesStringArr = [...specialtiesStringArr]
     const tempSpecialtyArr = [...specialtyStrings]
     tempSpecialtyArr.splice(index, 1, "none")
-    console.log(tempSpecialtyArr)
     const returnArr = [];
     const returnStringArr = [];
     event.preventDefault();

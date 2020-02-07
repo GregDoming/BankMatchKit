@@ -7,7 +7,7 @@ import { flatListOfLenderTypes } from "lib/listOfLenderTypes";
 
 //Takes 5 props to function the handlechagne function must be called handlecahgen when passed
 const SingleSpecialtySelect = props => {
-  const { idNumber, handleSpecialtiesChange, specialtiesArr, handleSpecialtiesError, resetOutline } = props;
+  const { idnumber, handleSpecialtiesChange, specialtiesArr, handleSpecialtiesError, resetOutline } = props;
   
   const handleChange = (event, value, current) => {
     if (specialtiesArr.indexOf(value.label) !== -1) {
@@ -24,8 +24,8 @@ const SingleSpecialtySelect = props => {
     <>
       <Autocomplete
         //To allow regex to grab first number in the string which corresponds to the index of the component
-        id={idNumber.toString()}
-        idNumber={idNumber}
+        id={idnumber.toString()}
+        idnumber={idnumber}
         options={flatListOfLenderTypes}
         getOptionLabel={option => option.label}
         style={{ minWidth: 500 }}

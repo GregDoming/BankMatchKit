@@ -7,11 +7,6 @@ const passport = require("passport");
 const helmet = require("helmet");
 const compression = require("compression");
 const sslRedirect = require("heroku-ssl-redirect");
-const http = require("http");
-const https = require("https");
-const cors = require("cors")
-
-const authController = require("./controllers/authController");
 
 // const cors = require('cors')
 

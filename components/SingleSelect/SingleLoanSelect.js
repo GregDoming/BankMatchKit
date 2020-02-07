@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Select from "react-select";
 
 import { listOfLenderTypes } from "lib/listOfLenderTypes";
 
 const SingleLoanSelect = props => {
-  const { handleChange, idNumber } = props;
+  const { handleChange, idnumber } = props;
 
   return (
     <Autocomplete
-      id={idNumber.toString()}
-      idnumber={idNumber}
+      id={idnumber.toString()}
+      idnumber={idnumber}
       options={listOfLenderTypes}
       getOptionLabel={option => option.label}
       style={{ minWidth: 500 }}

@@ -86,7 +86,7 @@ const LenderSearch = React.memo(props => {
       <li key={"topSearchList" + searchArr.length} className={classes.lenderColumn}>
         <div key={"searchListTwo" + searchArr.length} className={classes.lender}>
           <SingleLoanSelect
-            idNumber={searchArr.length + 1}
+            idnumber={searchArr.length + 1}
             isDisabled={isDisabled}
             handleChange={handleChange}
             lenderTypesList={lenderTypesList}
@@ -315,7 +315,7 @@ const LenderSearch = React.memo(props => {
                 <ul>
                   <li key={"lenderListThree"} className={classes.lender}>
                     <SingleLoanSelect
-                      idNumber={0}
+                      idnumber={0}
                       isDisabled={isDisabled}
                       lenderTypesList={lenderTypesList}
                       key="singleLoanSelect"
