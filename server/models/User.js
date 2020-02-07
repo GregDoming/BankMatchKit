@@ -270,7 +270,7 @@ const userSchema = new mongoose.Schema(
       purchase: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
-        default: "YES"
+        default: "UKNOWN"
       },
       refinance: {
         type: String,

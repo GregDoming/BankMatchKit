@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-// nodejs library that concatenates classes
-import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/Card/Card.js";
+import Snackbar from "@material-ui/core/Snackbar";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
+import Alert from "@material-ui/lab/Alert";
 import SearchIcon from "@material-ui/icons/Search";
 import Parallax from "components/Parallax/Parallax.js";
 import CardHeader from "components/Card/CardHeader.js";
@@ -33,6 +33,7 @@ const LenderSearch = React.memo(props => {
   const classes = useStyles();
   const [searchCompleted, setSearchCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const [searchArr, setSearchArr] = useState([]);
   const [idNumber, setIdNumber] = useState(0);
   const [queryArr, setQueryArr] = useState([]);
@@ -71,7 +72,6 @@ const LenderSearch = React.memo(props => {
   const onSubjectTextChange = event => {
     event.preventDefault();
     setSubjectText(event.target.value);
-
   };
 
   const onBodyTextChange = event => {
@@ -148,9 +148,11 @@ const LenderSearch = React.memo(props => {
     sendArr.push(arr[event.currentTarget.value]);
 
     sendEmailObj(sendArr, subjectText, bodyText);
+
+    setOpen(true);
   };
 
-  const sendEmail = (event, arr, checkArr) => {
+  const sendEmail = async (event, arr, checkArr) => {
     const contactsArr = [];
     const sendObj = {};
 
@@ -158,9 +160,13 @@ const LenderSearch = React.memo(props => {
       if (checkArr.indexOf(index) !== -1) contacts.push(ele);
     });
 
-    sendObj[""]
+    try {
+      await sendEmailObj(sendObj, subjectText, bodyText);
+    } catch (err) {
+      console.log(err);
+    }
 
-    sendEmailObj(sendObj);
+    setOpen(true);
   };
 
   const formatEmailArr = arr => {
@@ -187,6 +193,7 @@ const LenderSearch = React.memo(props => {
   };
 
   const handleClickAll = async () => {
+    
     setIsLoading(true);
     const queryResults = await getAllUsersQuery();
     setCheckArr(formatCheckArr(queryResults.data));
@@ -215,10 +222,22 @@ const LenderSearch = React.memo(props => {
     setIsLoading(false);
   };
 
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return searchCompleted ? (
     <>
       <Parallax image={require("assets/img/bg10.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
+        <Snackbar open={open} autoHideDuration={1800} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} severity="success">
+            EMAIL SENT SUCCESSFULLY!
+          </Alert>
+        </Snackbar>
         <LenderNavigationTabs router={router} />
         <div className={classes.container}>
           <div className={classes.rowContainer}>
@@ -282,34 +301,34 @@ const LenderSearch = React.memo(props => {
                 <div className={classes.headerWrapper}>
                   <h5 className={classes.selectTitle}>Loan Type</h5>
                   <GridContainer>
-                  <GridItem xs={12} sm={12} md={8}>
-                  <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/search"}>
-                    <Button
-                      type="button"
-                      color="primary"
-                      className={classes.highButton}
-                      onClick={handleSearch}
-                      size="lg"
-                    >
-                      <SearchIcon style={{ color: "#FFFFFF" }} />
-                      Search
-                    </Button>
-                  </Link>
-                  </GridItem>
-                  <GridItem xs={12} sm={12} md={8}>
-                  <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
-                    <Button
-                      type="button"
-                      color="primary"
-                      className={classes.highButton}
-                      onClick={handleClickAll}
-                      size="lg"
-                    >
-                      <SearchIcon style={{ color: "#FFFFFF" }} />
-                      Search All
-                    </Button>
-                  </Link>
-                  </GridItem>
+                    <GridItem xs={12} sm={12} md={8}>
+                      <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/search"}>
+                        <Button
+                          type="button"
+                          color="primary"
+                          className={classes.highButton}
+                          onClick={handleSearch}
+                          size="lg"
+                        >
+                          <SearchIcon style={{ color: "#FFFFFF" }} />
+                          Search
+                        </Button>
+                      </Link>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={8}>
+                      <Link href={`/lendersearch?complete=yes`} as={"/lendersearch/searchall"}>
+                        <Button
+                          type="button"
+                          color="primary"
+                          className={classes.highButton}
+                          onClick={handleClickAll}
+                          size="lg"
+                        >
+                          <SearchIcon style={{ color: "#FFFFFF" }} />
+                          Search All
+                        </Button>
+                      </Link>
+                    </GridItem>
                   </GridContainer>
                 </div>
                 <ul>
@@ -324,7 +343,14 @@ const LenderSearch = React.memo(props => {
                     />
                   </li>
                   <li key={"lenderListFour"} className={classes.lenderButton}>
-                    <Button className={classes.addButton} justIcon round color="primary" style={{ color: "#FFFFFF" }} onClick={event => handleClick(event)}>
+                    <Button
+                      className={classes.addButton}
+                      justIcon
+                      round
+                      color="primary"
+                      style={{ color: "#FFFFFF" }}
+                      onClick={event => handleClick(event)}
+                    >
                       <AddIcon />
                     </Button>
                     <Button
