@@ -4,10 +4,10 @@ import Select from "react-select";
 const lenderName = [
   { value: "Bank", label: "Bank" },
   { value: "CDFI", label: "CDFI" },
-  { value: "CreditUnion", label: "Credit Union" },
-  { value: "InsuranceCompany", label: "Insurance Company" },
-  { value: "NonBankLender", label: "Non Bank Lender" },
-  { value: "PrivateEquity", label: "Private Equity" }
+  { value: "Credit Union", label: "Credit Union" },
+  { value: "Insurance Company", label: "Insurance Company" },
+  { value: "Non-Bank Lender", label: "Non Bank Lender" },
+  { value: "Private Equity", label: "Private Equity" }
 ];
 
 const SingleLenderSelect = props => {

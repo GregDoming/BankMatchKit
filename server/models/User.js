@@ -261,7 +261,7 @@ const userSchema = new mongoose.Schema(
           "Credit Union",
           "Insurance Company",
           "Non-Bank Lender",
-          "PrivateEquity"
+          "Private Equity"
         ],
         default: "Bank"
       }
