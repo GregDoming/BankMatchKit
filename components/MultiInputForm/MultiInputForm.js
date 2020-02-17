@@ -108,7 +108,7 @@ const MultiInputForm = props => {
               <GridContainer className={classes.justify} >
                 <GridItem className={classes.customGridItem} xs={12} sm={5} md={5}>
                   <CustomInput
-                    labelText="Mobile Number"
+                    labelText="Cell Phone"
                     inputProps={{
                       type: "text",
                       label: "With normal TextField",
