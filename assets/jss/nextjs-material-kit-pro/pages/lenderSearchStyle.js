@@ -120,7 +120,7 @@ const lenderSearchStyle = {
   },
   highButtonShort: {
     alignSelf: "stretch",
-    backgroundColor: secondaryColor[0],
+    backgroundColor: primaryColor[0],
     "&:hover": {
       boxShadow:
         "2px 8px 6px 2px rgba(" +
@@ -130,7 +130,7 @@ const lenderSearchStyle = {
         ", 0.12), 0 2px 4px -1px rgba(" +
         hexToRgb(primaryColor[0]) +
         ", 0.2)",
-      backgroundColor: secondaryColor[0]
+      backgroundColor: primaryColor[0]
     }
   },
   info: {

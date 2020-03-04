@@ -1,32 +1,23 @@
-const nodemailer = require("nodemailer");
+
+const mailgun = require("mailgun-js");
 
 exports.sendList = (req, res, next) => {
-  const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
-    auth: {
-      user: "4357a3ef763790",
-      pass: "cb2bbf3105c5c7"
-    }
-  });
 
   const { contactList, subjectText, bodyText } = req.body;
 
-  const mailOptions = {
-    from: '"Example Team" <from@example.com>',
-    to: contactList,
+  const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_API_BASE_URL });
+  const data = {
+    from: "Greg <greg@bantcher.com>",
+    to: "ericaltshuler66@gmail.com",
     subject: subjectText,
-    text: bodyText,
-    html: '<b>Hey there! </b><br> This is our first message sent with Nodemailer<br /><img src="cid:uniq-mailtrap.png" alt="mailtrap" />',
-    attachments: []
+    text: bodyText
   };
-
-  transport.sendMail(mailOptions, (error, info) => {
+  mg.messages().send(data, function(error, body) {
     if (error) {
-      return console.log(error);
+      console.log(error)
+      res.send(error)
     }
-    console.log('Message sent: %s', info.messageId);
+    res.send("email sent")
+    console.log("email sent")
   });
-
-  res.send("Email sent")
 };

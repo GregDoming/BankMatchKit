@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user"
     },
+    lastSolicitationDate: {
+      type: String,
+      default: "1999-01-18T16:00:00Z"
+    },
     userProfile: {
       firstName: {
         type: String,

@@ -69,7 +69,7 @@ const EmailModal = React.memo((props) => {
     <div>
       <Button
         type="button"
-        color="primary"
+        color="secondary"
         className={classes.highButton}
         onClick={() => setEmailModal(true)}
       >

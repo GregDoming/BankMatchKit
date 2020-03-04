@@ -4,7 +4,6 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Button from "components/CustomButtons/Button.js";
 import PersonIcon from "@material-ui/icons/Person";
 
 import PersonPinIcon from "@material-ui/icons/PersonPin";
@@ -12,6 +11,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import GetAppIcon from "@material-ui/icons/GetApp";
+import ReceiptIcon from "@material-ui/icons/Receipt";
 import { useRouter } from "next/router";
 
 import navigationTabStyle from "assets/jss/nextjs-material-kit-pro/components/navigationTabStyle.js";
@@ -39,14 +39,17 @@ const LenderNavigationTabs = props => {
       case "/adminPagination":
         setValue(3);
         break;
+      case "/solicitations":
+        setValue(4);
+        break;
       default:
     }
   });
 
-  const clickHandler = (event) => {
-    event.preventDefault()
-    downloadCSV()
-  }
+  const clickHandler = event => {
+    event.preventDefault();
+    downloadCSV();
+  };
 
   return (
     <div className={classes.stickyContainer}>
@@ -71,6 +74,9 @@ const LenderNavigationTabs = props => {
           <Link href="/lendersearch">
             <Tab icon={<SearchIcon />} label="SEARCH LENDER DATABASE" />
           </Link>
+          <Link href="/solicitations">
+            <Tab icon={<ReceiptIcon />} label="SOLICITATIONS" />
+          </Link>
           <Link href="/map">
             <Tab icon={<PersonPinIcon />} label="MAP" />
           </Link>
@@ -78,7 +84,7 @@ const LenderNavigationTabs = props => {
             <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
           </div>
         </Tabs>
-          {/* <div>
+        {/* <div>
             <Button onClick={() => downloadCSV()} className={classes.buttonStyle}>
               <Tab icon={<GetAppIcon />} label="DOWNLOAD CSV" />
             </Button>

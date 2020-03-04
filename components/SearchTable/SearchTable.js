@@ -32,7 +32,7 @@ const SearchTable = (props) => {
       console.log(err);
     }
   };
-
+  // Takes all the users from the search and organizes them
   const formatQueryArr = arr => {
     const formattedArr = [];
     const tempArrTwo = [];
@@ -42,6 +42,7 @@ const SearchTable = (props) => {
       const email = user[1].email;
       const id = user[1].id;
       const tempArr = [];
+      console.log(userProfile.lastSolicitationDate)
       const simpleButtons = [
         <>
           <EditProfileButton
@@ -87,6 +88,7 @@ const SearchTable = (props) => {
         userProfile.nameOfCompany,
         userProfile.phoneNumber,
         userProfile.city,
+        userProfile.lastSolicitationDate,
         simpleButtons
       );
 
@@ -118,6 +120,7 @@ const SearchTable = (props) => {
         "Company Name",
         "Phone Number",
         "City",
+        "Last Solicition",
         ""
       ]}
       tableData={formatQueryArr(queryArr)}
