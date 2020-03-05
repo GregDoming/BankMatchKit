@@ -278,7 +278,6 @@ const LenderSearch = React.memo(props => {
                   queryArr={queryArr}
                   checkArr={checkArr}
                   sendSingleEmail={sendSingleEmail}
-                  emailArr={emailArr}
                   subjectText={subjectText}
                   bodyText={bodyText}
                   onSubjectTextChange={onSubjectTextChange}

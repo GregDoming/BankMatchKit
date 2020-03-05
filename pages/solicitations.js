@@ -23,7 +23,7 @@ import EmailModal from "components/EmailModal/EmailModal.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";
 
-import { getQueryResults, getAllUsersQuery, sendEmailObj } from "lib/api";
+import { sendEmailObj } from "lib/api";
 import { adminGetUsers } from "lib/auth";
 
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
@@ -31,43 +31,17 @@ const useStyles = makeStyles(lenderSearchStyle);
 
 const Solicitations = React.memo(props => {
   const classes = useStyles();
-  const [searchCompleted, setSearchCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const [searchArr, setSearchArr] = useState([]);
-  const [idNumber, setIdNumber] = useState(0);
-  const [queryArr, setQueryArr] = useState([]);
+  const [queryArr, setQueryArr] = useState(props.queryResults.data);
   const [checkArr, setCheckArr] = useState([]);
   const [checked, setChecked] = useState([]);
-  const [emailArr, setEmailArr] = useState([]);
+  const [emailArr, setEmailArr] = useState(props.emailArr);
   const [formattedEmailArr, setFormattedEmailArr] = useState([]);
   const [subjectText, setSubjectText] = React.useState("We will set this dynamically");
   const [bodyText, setBodyText] = React.useState("We will set this dynamically");
-  const [queryFieldsObj, setqueryFieldsObj] = useState({
-    0: "",
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-    7: "",
-    8: "",
-    9: "",
-    10: ""
-  });
-  const [lenderTypesList, setLenderTypesList] = useState(listOfLenderTypes);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (router.query.complete === "yes") {
-      setSearchCompleted(true);
-    } else {
-      setSearchCompleted(false);
-    }
-  });
 
   useEffect(() => {
     const tempArr = [];
@@ -89,26 +63,35 @@ const Solicitations = React.memo(props => {
     setBodyText(event.currentTarget.value);
   };
 
-  const handleClick = event => {
-    event.preventDefault();
-    setSearchArr(searchArr => [
-      ...searchArr,
-      <li key={"topSearchList" + searchArr.length} className={classes.lenderColumn}>
-        <div key={"searchListTwo" + searchArr.length} className={classes.lender}>
-          <SingleLoanSelect
-            idnumber={searchArr.length + 1}
-            isDisabled={isDisabled}
-            handleChange={handleChange}
-            lenderTypesList={lenderTypesList}
-            key={"singleLoanSelect" + searchArr.length}
-            id="queryValues"
-          />
-        </div>
-      </li>
-    ]);
+  const formatCheckArr = arr => {
+    const formattedArr = [];
 
-    setIdNumber(idNumber + 1);
+    arr.forEach((ele, index) => {
+      formattedArr.push(index);
+    });
+
+    return formattedArr;
   };
+
+  const formatEmailArr = arr => {
+    const formattedEmail = [];
+
+    arr.forEach(ele => {
+      formattedEmail.push(ele[1].email);
+    });
+    return formattedEmail;
+  };
+
+  const handleClickAll = async () => {
+    
+    setIsLoading(true);
+    const queryResults = await getAllUsersQuery();
+    setCheckArr(formatCheckArr(queryResults.data));
+    setQueryArr(queryResults.data);
+    setEmailArr(formatEmailArr(queryResults.data));
+    setIsLoading(false);
+  };
+
 
   const tempCheckToggle = value => {
     const currentIndex = checked.indexOf(value);
@@ -120,19 +103,6 @@ const Solicitations = React.memo(props => {
       newChecked.splice(currentIndex, 1);
     }
     setChecked(newChecked);
-  };
-
-  const handleClose = event => {
-    event.preventDefault();
-
-    const newArr = [...searchArr];
-    newArr.pop();
-    setSearchArr(newArr);
-  };
-
-  const handleChange = (event, value) => {
-    const keyNumber = event.target.id.replace(/(^\d+)(.+$)/i, "$1");
-    queryFieldsObj[keyNumber] = value.value;
   };
   // For the small icon component that shows up in seachTable
   const handleXClick = event => {
@@ -155,7 +125,6 @@ const Solicitations = React.memo(props => {
   };
 
   const sendEmail = async (event, arr, checkArr) => {
-    const contactsArr = [];
     const sendObj = {};
 
     arr.forEach((ele, index) => {
@@ -169,58 +138,6 @@ const Solicitations = React.memo(props => {
     }
 
     setOpen(true);
-  };
-
-  const formatEmailArr = arr => {
-    const formattedEmail = [];
-
-    arr.forEach(ele => {
-      formattedEmail.push(ele[1].email);
-    });
-    return formattedEmail;
-  };
-
-  const formatCheckArr = arr => {
-    const formattedArr = [];
-
-    arr.forEach((ele, index) => {
-      formattedArr.push(index);
-    });
-
-    return formattedArr;
-  };
-
-  const resetSearch = () => {
-    router.push("/lendersearch");
-  };
-
-  const handleClickAll = async () => {
-    setIsLoading(true);
-    const queryResults = await getAllUsersQuery();
-    setCheckArr(formatCheckArr(queryResults.data));
-    setQueryArr(queryResults.data);
-    setEmailArr(formatEmailArr(queryResults.data));
-    setIsLoading(false);
-  };
-
-  const handleSearch = async () => {
-    const queryFieldsArr = [];
-    for (let key in queryFieldsObj) {
-      if (queryFieldsObj.hasOwnProperty(key)) {
-        if (queryFieldsObj[key] && queryFieldsArr.indexOf(queryFieldsObj[key]) === -1) {
-          const tempObj = {};
-          tempObj[queryFieldsObj[key]] = "YES";
-          queryFieldsArr.push(tempObj);
-        }
-      }
-    }
-
-    setIsLoading(true);
-    const queryResults = await getQueryResults(queryFieldsArr);
-    setCheckArr(formatCheckArr(queryResults.data));
-    setQueryArr(queryResults.data);
-    setEmailArr(formatEmailArr(queryResults.data));
-    setIsLoading(false);
   };
 
   const handleSnackbarClose = (event, reason) => {
@@ -242,15 +159,6 @@ const Solicitations = React.memo(props => {
         <LenderNavigationTabs router={router} />
         <div className={classes.container}>
           <div className={classes.rowContainer}>
-            <Button
-              key="searchButton"
-              type="button"
-              className={classes.highButtonShort}
-              onClick={(event, searchCompleted) => resetSearch(event, searchCompleted)}
-            >
-              <SearchIcon />
-              Reset Search
-            </Button>
             <EmailModal
               formattedEmailArr={formattedEmailArr}
               sendEmail={sendEmail}
@@ -269,7 +177,7 @@ const Solicitations = React.memo(props => {
                   checked={checked}
                   tempCheckToggle={tempCheckToggle}
                   handleXClick={handleXClick}
-                  queryArr={props.queryResults.data}
+                  queryArr={queryArr}
                   checkArr={checkArr}
                   sendSingleEmail={sendSingleEmail}
                   emailArr={emailArr}

@@ -33,11 +33,11 @@ const EmailModal = React.memo((props) => {
   const [emailModal, setEmailModal] = useState(false);
   const [subjectText, setSubjectText] = useState("We will set this dynamically");
   const [bodyText, setBodyText] = useState("We will set this dynamically");
-  const [contactsArr, setContactsArr] = useState([]);
   const {
     emailArr,
-    checked
   } = props;
+
+  console.log(emailArr)
 
 
   const onSubjectTextChange = event => {
