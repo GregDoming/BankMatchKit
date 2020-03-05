@@ -36,7 +36,7 @@ const Solicitations = React.memo(props => {
   const [open, setOpen] = React.useState(false);
   const [searchArr, setSearchArr] = useState([]);
   const [idNumber, setIdNumber] = useState(0);
-  const [queryArr, setQueryArr] = useState(props.queryResults.data);
+  const [queryArr, setQueryArr] = useState([]);
   const [checkArr, setCheckArr] = useState([]);
   const [checked, setChecked] = useState([]);
   const [emailArr, setEmailArr] = useState([]);
@@ -61,8 +61,6 @@ const Solicitations = React.memo(props => {
 
   const router = useRouter();
 
-  console.log(props.queryResults)
-
   useEffect(() => {
     if (router.query.complete === "yes") {
       setSearchCompleted(true);
@@ -70,6 +68,16 @@ const Solicitations = React.memo(props => {
       setSearchCompleted(false);
     }
   });
+
+  useEffect(() => {
+    const tempArr = [];
+
+    emailArr.forEach((ele, index) => {
+      if (checked.indexOf(index) !== -1) tempArr.push(ele);
+    });
+
+    setFormattedEmailArr(tempArr);
+  }, [checked]);
 
   const onSubjectTextChange = event => {
     event.preventDefault();
@@ -112,14 +120,6 @@ const Solicitations = React.memo(props => {
       newChecked.splice(currentIndex, 1);
     }
     setChecked(newChecked);
-
-    const tempArr = [];
-
-    emailArr.forEach((ele, index) => {
-      if (checked.indexOf(index) !== -1) tempArr.push(ele);
-    });
-
-    setFormattedEmailArr(tempArr);
   };
 
   const handleClose = event => {
@@ -254,7 +254,7 @@ const Solicitations = React.memo(props => {
             <EmailModal
               formattedEmailArr={formattedEmailArr}
               sendEmail={sendEmail}
-              emailArr={emailArr}
+              emailArr={formattedEmailArr}
               subjectText={subjectText}
               bodyText={bodyText}
               checked={checked}

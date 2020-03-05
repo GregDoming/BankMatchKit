@@ -69,6 +69,16 @@ const LenderSearch = React.memo(props => {
     }
   });
 
+  useEffect(() => {
+    const tempArr = [];
+
+    emailArr.forEach((ele, index) => {
+      if (checked.indexOf(index) !== -1) tempArr.push(ele);
+    });
+
+    setFormattedEmailArr(tempArr);
+  }, [checked])
+
   const onSubjectTextChange = event => {
     event.preventDefault();
     setSubjectText(event.target.value);
@@ -111,13 +121,7 @@ const LenderSearch = React.memo(props => {
     }
     setChecked(newChecked);
 
-    const tempArr = [];
-
-    emailArr.forEach((ele, index) => {
-      if (checked.indexOf(index) !== -1) tempArr.push(ele);
-    });
-
-    setFormattedEmailArr(tempArr);
+    
   };
 
   const handleClose = event => {
@@ -253,7 +257,7 @@ const LenderSearch = React.memo(props => {
             <EmailModal
               formattedEmailArr={formattedEmailArr}
               sendEmail={sendEmail}
-              emailArr={emailArr}
+              emailArr={formattedEmailArr}
               subjectText={subjectText}
               bodyText={bodyText}
               checked={checked}

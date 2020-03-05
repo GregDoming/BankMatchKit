@@ -18,7 +18,7 @@ import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/c
 const useStyles = makeStyles(style);
 
 const SearchTable = (props) => {
-  const { queryArr, handleXClick, tempCheckToggle, checked, handleEmailClick, emailArr, subjectText, bodyText } = props;
+  const { queryArr, handleXClick, tempCheckToggle, checked, handleEmailClick, subjectText, bodyText } = props;
 
   const handleEditProfileClick = async event => {
     event.preventDefault();
@@ -42,7 +42,6 @@ const SearchTable = (props) => {
       const email = user[1].email;
       const id = user[1].id;
       const tempArr = [];
-      console.log(userProfile.lastSolicitationDate)
       const simpleButtons = [
         <>
           <EditProfileButton
@@ -62,7 +61,7 @@ const SearchTable = (props) => {
             index={index}
             id={id}
             handleEmailClick={handleEmailClick}
-            emailArr={emailArr}
+            emailArr={email}
             subjectText={subjectText}
             bodyText={bodyText}
           />
