@@ -41,6 +41,8 @@ router.param("userId", userController.getUserById);
 router.post("/api/users/updateUserData", userController.updateUser);
 router.post("/api/users/updateAdminUserData", authController.restrictTo("admin"), userController.updateAdminUser);
 router.post("/api/users/email", authController.restrictTo("admin"), emailController.sendList);
+router.post("/api/users/findBySolicitation", authController.restrictTo("admin"), userController.findBySolicitation);
+
 
 router.put(
   "/api/users/follow",

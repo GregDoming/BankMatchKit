@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
@@ -18,7 +19,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import { sendEmailObj } from "lib/api";
+import { sendEmailObj, setSolicitationDate } from "lib/api";
 
 import style from "assets/jss/nextjs-material-kit-pro/components/emailModalStyle.js";
 
@@ -29,13 +30,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const useStyles = makeStyles(style);
 
 const EmailModal = React.memo((props) => {
-  const [emailModal, setEmailModal] = React.useState(false);
-  const [subjectText, setSubjectText] = React.useState("We will set this dynamically");
-  const [bodyText, setBodyText] = React.useState("We will set this dynamically");
+  const [emailModal, setEmailModal] = useState(false);
+  const [subjectText, setSubjectText] = useState("We will set this dynamically");
+  const [bodyText, setBodyText] = useState("We will set this dynamically");
+  const [contactsArr, setContactsArr] = useState([]);
   const {
     emailArr,
     checked
   } = props;
+
 
   const onSubjectTextChange = event => {
     setSubjectText(event.target.value);
@@ -46,20 +49,17 @@ const EmailModal = React.memo((props) => {
     setBodyText(event.currentTarget.value);
   };
 
-  const sendEmail = (event, arr, checkArr) => {
+  const sendEmail = (event, arr) => {
     event.preventDefault();
-    const contactsArr = [];
     const sendObj = {};
-
-    arr.forEach((ele, index) => {
-      if (checked.indexOf(index) !== -1) contactsArr.push(ele);
-    });
-
-    sendObj["contactList"] = contactsArr;
+    
+    sendObj["contactList"] = arr;
     sendObj["subjectText"] = subjectText;
     sendObj["bodyText"] = bodyText;
-
+    
+    setSolicitationDate(arr)
     sendEmailObj(sendObj);
+
     setEmailModal(false);
   };
 
@@ -155,7 +155,7 @@ const EmailModal = React.memo((props) => {
               type="button"
               color="success"
               className={classes.highButton}
-              onClick={(event) => sendEmail(event, emailArr, checked)}
+              onClick={(event) => sendEmail(event, emailArr)}
             >
               Send
             </Button>

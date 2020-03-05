@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
     },
     lastSolicitationDate: {
       type: String,
-      default: "1999-01-18T16:00:00Z"
+      default: "Wed Jan 01 2000 00:00:00 GMT-0800 (Pacific Standard Time)"
     },
     userProfile: {
       firstName: {

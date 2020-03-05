@@ -269,7 +269,7 @@ const Solicitations = React.memo(props => {
                   checked={checked}
                   tempCheckToggle={tempCheckToggle}
                   handleXClick={handleXClick}
-                  queryArr={queryArr}
+                  queryArr={props.queryResults.data}
                   checkArr={checkArr}
                   sendSingleEmail={sendSingleEmail}
                   emailArr={emailArr}

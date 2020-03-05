@@ -67,7 +67,6 @@ const toggleReducer = (draft, action) => {
     }
     case "handleSpecialityDelete": {
       const { returnArr } = action.payload;
-      console.log(action.payload)
       const stringArr = [
         "specialtySelectZero",
         "specialtySelectOne",

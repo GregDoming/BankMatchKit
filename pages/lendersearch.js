@@ -23,7 +23,7 @@ import EmailModal from "components/EmailModal/EmailModal.js";
 import LenderNavigationTabs from "components/NavigationTabs/LenderNavigationTabs.js";
 import ConditionalLoadIcon from "components/ConditionalLoadIcon/ConditionalLoadIcon.js";
 
-import { getQueryResults, getAllUsersQuery, sendEmailObj } from "lib/api";
+import { getQueryResults, getAllUsersQuery, sendEmailObj, setSolicitationDate } from "lib/api";
 import { adminUser } from "lib/auth";
 
 import lenderSearchStyle from "assets/jss/nextjs-material-kit-pro/pages/lenderSearchStyle.js";
@@ -169,6 +169,9 @@ const LenderSearch = React.memo(props => {
     } catch (err) {
       console.log(err);
     }
+
+
+    setSolicitationDate(arr);
 
     setOpen(true);
   };

@@ -12,13 +12,22 @@ import DeleteButton from "components/smallIconButtons/DeleteButton.js";
 import EditProfileButton from "components/smallIconButtons/EditProfileButton.js";
 import EmailButton from "components/smallIconButtons/EmailButton.js";
 
+import { parseIsoDate } from "lib/helper.js";
 
 import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
 
 const useStyles = makeStyles(style);
 
-const SearchTable = (props) => {
-  const { queryArr, handleXClick, tempCheckToggle, checked, handleEmailClick, subjectText, bodyText } = props;
+const SearchTable = props => {
+  const {
+    queryArr,
+    handleXClick,
+    tempCheckToggle,
+    checked,
+    handleEmailClick,
+    subjectText,
+    bodyText
+  } = props;
 
   const handleEditProfileClick = async event => {
     event.preventDefault();
@@ -41,6 +50,7 @@ const SearchTable = (props) => {
       const userProfile = user[0];
       const email = user[1].email;
       const id = user[1].id;
+      const lastSolicitationDate = user[1].lastSolicitationDate;
       const tempArr = [];
       const simpleButtons = [
         <>
@@ -87,7 +97,7 @@ const SearchTable = (props) => {
         userProfile.nameOfCompany,
         userProfile.phoneNumber,
         userProfile.city,
-        userProfile.lastSolicitationDate,
+        lastSolicitationDate,
         simpleButtons
       );
 
@@ -103,8 +113,15 @@ const SearchTable = (props) => {
         </span>
       )
     });
+    // IMPORTANT!!! if you change the order or the amount of columns in the table you need to change this sort.
+    const sortedArr = formattedArr.sort((a, b) => {
+      console.log(Date.parse(a[7]) > Date.parse(b[7]));
+      return Date.parse(a[7]) - Date.parse(b[7]);
+    }).reverse();
 
-    return formattedArr;
+    
+
+    return sortedArr;
   };
 
   const classes = useStyles();
@@ -133,6 +150,5 @@ const SearchTable = (props) => {
     />
   );
 };
-
 
 export default React.memo(SearchTable);

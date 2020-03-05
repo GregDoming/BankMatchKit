@@ -16,11 +16,21 @@ exports.adminsGetUserById = async (req, res) => {
   try {
     //Check to see if it is the correct time to load the page
     if (mongoose.Types.ObjectId.isValid(req.params.id)) {
-      const editUser = await User.findById(req.params.id );
-      res.status(200).json(editUser)
+      const editUser = await User.findById(req.params.id);
+      res.status(200).json(editUser);
     } else {
-      console.log("Invalid Id")
+      console.log("Invalid Id");
     }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.findBySolicitation = async (req, res, next) => {
+  const contactList = req.body;
+  console.log("setting..." + new Date());
+  try {
+    await User.updateMany({ email: req.body[0] }, { $set: { lastSolicitationDate: new Date() } });
   } catch (err) {
     console.log(err);
   }
@@ -46,7 +56,14 @@ exports.getLenderQuery = async (req, res) => {
     const user = await User.find({ $and: req.body });
 
     user.forEach(foundUser => {
-      userArr.push([foundUser["userProfile"], { email: foundUser["email"], id: foundUser["_id"] }]);
+      userArr.push([
+        foundUser["userProfile"],
+        {
+          email: foundUser["email"],
+          id: foundUser["_id"],
+          lastSolicitationDate: foundUser["lastSolicitationDate"]
+        }
+      ]);
     });
 
     res.status(200).send(userArr);
@@ -58,10 +75,17 @@ exports.getLenderQuery = async (req, res) => {
 exports.getAllLenderQuery = async (req, res) => {
   try {
     const userArr = [];
-    const user = await User.find()
+    const user = await User.find();
 
     user.forEach(foundUser => {
-      userArr.push([foundUser["userProfile"], { email: foundUser["email"], id: foundUser["_id"] }]);
+      userArr.push([
+        foundUser["userProfile"],
+        {
+          email: foundUser["email"],
+          id: foundUser["_id"],
+          lastSolicitationDate: foundUser["lastSolicitationDate"]
+        }
+      ]);
     });
 
     res.status(200).send(userArr);
@@ -96,7 +120,6 @@ exports.getUserById = async (req, res, next, id) => {
   }
   next();
 };
-
 
 exports.getUserByIdandUpdate = async (req, res, next, id) => {
   const user = await User.findOne({ _id: id });
@@ -168,7 +191,7 @@ exports.updateUser = async (req, res) => {
     );
     res.json(updatedUser);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
 
@@ -182,7 +205,7 @@ exports.updateAdminUser = async (req, res) => {
     );
     res.json(updatedUser);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
 

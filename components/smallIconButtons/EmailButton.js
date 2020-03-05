@@ -19,7 +19,7 @@ import Email from "@material-ui/icons/Email";
 
 import style from "assets/jss/nextjs-material-kit-pro/components/emailModalStyle.js";
 
-import { sendEmailObj } from "lib/api";
+import { sendEmailObj, setSolicitationDate } from "lib/api";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -39,11 +39,13 @@ const EmailButton = props => {
     sendObj["subjectText"] = subjectText;
     sendObj["bodyText"] = bodyText;
 
+    setSolicitationDate(arr)
     sendEmailObj(sendObj);
     setEmailModal(false);
   };
 
   const classes = useStyles();
+
 
   return (
     <>
