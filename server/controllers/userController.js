@@ -28,9 +28,15 @@ exports.adminsGetUserById = async (req, res) => {
 
 exports.findBySolicitation = async (req, res, next) => {
   const contactList = req.body;
+  const queryArr = [];
+
+  contactList.forEach(ele => {
+    queryArr.push({ email: ele });
+  });
+
   console.log("setting..." + new Date());
   try {
-    await User.updateMany({ email: req.body[0] }, { $set: { lastSolicitationDate: new Date() } });
+    await User.updateMany({ $or: queryArr }, { $set: { lastSolicitationDate: new Date() } });
   } catch (err) {
     console.log(err);
   }
