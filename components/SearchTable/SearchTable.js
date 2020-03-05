@@ -71,7 +71,7 @@ const SearchTable = props => {
             index={index}
             id={id}
             handleEmailClick={handleEmailClick}
-            emailArr={email}
+            emailStr={email}
             subjectText={subjectText}
             bodyText={bodyText}
           />
@@ -115,7 +115,6 @@ const SearchTable = props => {
     });
     // IMPORTANT!!! if you change the order or the amount of columns in the table you need to change this sort.
     const sortedArr = formattedArr.sort((a, b) => {
-      console.log(Date.parse(a[7]) > Date.parse(b[7]));
       return Date.parse(a[7]) - Date.parse(b[7]);
     }).reverse();
 

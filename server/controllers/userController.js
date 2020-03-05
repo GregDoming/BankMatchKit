@@ -30,6 +30,8 @@ exports.findBySolicitation = async (req, res, next) => {
   const contactList = req.body;
   const queryArr = [];
 
+  console.log(req.body)
+
   if (Array.isArray(contactList)) {
     contactList.forEach(ele => {
       queryArr.push({ email: ele });
@@ -42,12 +44,12 @@ exports.findBySolicitation = async (req, res, next) => {
     }
   }
 
-  try {
-    await User.updateMany({ email: req.body[0] }, { $set: { lastSolicitationDate: new Date() } });
-    console.log("setting..." + new Date());
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   await User.updateMany({ email: req.body[0] }, { $set: { lastSolicitationDate: new Date() } });
+  //   console.log("setting..." + new Date());
+  // } catch (err) {
+  //   console.log(err);
+  // }
 };
 
 exports.downloadCSV = async (req, res) => {

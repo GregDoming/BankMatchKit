@@ -28,18 +28,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const useStyles = makeStyles(style);
 
 const EmailButton = props => {
-  const { index, id, emailArr, subjectText, bodyText } = props;
+  const { index, id, emailStr, subjectText, bodyText } = props;
   const [emailModal, setEmailModal] = React.useState(false);
 
-  const sendEmail = (event, arr) => {
+  const sendEmail = (event, str) => {
     event.preventDefault();
     const sendObj = {};
+    // Contact must be sent in array format for backend
+    const emailArr = [];
+    emailArr.push(str);
 
-    sendObj["contactList"] = arr;
+    sendObj["contactList"] = str;
     sendObj["subjectText"] = subjectText;
     sendObj["bodyText"] = bodyText;
 
-    setSolicitationDate(arr)
+    setSolicitationDate(emailArr)
     sendEmailObj(sendObj);
     setEmailModal(false);
   };
@@ -115,7 +118,7 @@ const EmailButton = props => {
                   }}
                   inputProps={{
                     placeholder: "To",
-                    value: emailArr
+                    value: emailStr
                   }}
                 />
                 <CustomInput
@@ -148,7 +151,7 @@ const EmailButton = props => {
               key={"modalEmailButton"}
               value={index}
               className={classes.highButton}
-              onClick={event => sendEmail(event, emailArr)}
+              onClick={event => sendEmail(event, emailStr)}
             >
               Send
             </Button>
