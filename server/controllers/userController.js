@@ -30,8 +30,6 @@ exports.findBySolicitation = async (req, res, next) => {
   const contactList = req.body;
   const queryArr = [];
 
-  console.log(req.body)
-
   if (Array.isArray(contactList)) {
     contactList.forEach(ele => {
       queryArr.push({ email: ele });
