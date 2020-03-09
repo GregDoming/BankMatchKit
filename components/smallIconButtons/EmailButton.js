@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
@@ -28,8 +28,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const useStyles = makeStyles(style);
 
 const EmailButton = props => {
-  const { index, id, emailStr, subjectText, bodyText } = props;
-  const [emailModal, setEmailModal] = React.useState(false);
+  const { index, id, emailStr } = props;
+  const [subjectText, setSubjectText] = useState("We will set this dynamically");
+  const [bodyText, setBodyText] = useState("We will set this dynamically");
+  const [emailModal, setEmailModal] = useState(false);
+
+  const onSubjectTextChange = event => {
+    event.preventDefault();
+    setSubjectText(event.target.value);
+  };
+
+  const onBodyTextChange = event => {
+    event.preventDefault();
+    setBodyText(event.currentTarget.value);
+  };
 
   const sendEmail = (event, str) => {
     event.preventDefault();
@@ -38,17 +50,16 @@ const EmailButton = props => {
     const emailArr = [];
     emailArr.push(str);
 
-    sendObj["contactList"] = str;
+    sendObj["contactList"] = emailArr;
     sendObj["subjectText"] = subjectText;
     sendObj["bodyText"] = bodyText;
 
-    setSolicitationDate(emailArr)
+    setSolicitationDate(emailArr);
     sendEmailObj(sendObj);
     setEmailModal(false);
   };
 
   const classes = useStyles();
-
 
   return (
     <>
@@ -126,9 +137,11 @@ const EmailButton = props => {
                   formControlProps={{
                     fullWidth: true
                   }}
+                  value={subjectText}
                   inputProps={{
                     placeholder: "Subject",
-                    value: subjectText
+                    value: subjectText,
+                    onChange: event => onSubjectTextChange(event)
                   }}
                 />
                 <TextField
@@ -139,6 +152,7 @@ const EmailButton = props => {
                   defaultValue={bodyText}
                   variant="outlined"
                   style={{ width: "100%" }}
+                  onChange={event => onBodyTextChange(event)}
                 />
               </CardBody>
             </form>

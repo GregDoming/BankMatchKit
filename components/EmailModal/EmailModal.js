@@ -29,18 +29,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const useStyles = makeStyles(style);
 
-const EmailModal = React.memo((props) => {
+const EmailModal = React.memo(props => {
   const [emailModal, setEmailModal] = useState(false);
   const [subjectText, setSubjectText] = useState("We will set this dynamically");
   const [bodyText, setBodyText] = useState("We will set this dynamically");
-  const {
-    emailArr,
-  } = props;
-
-  console.log(emailArr)
-
+  const { emailArr } = props;
 
   const onSubjectTextChange = event => {
+    event.preventDefault();
     setSubjectText(event.target.value);
   };
 
@@ -52,14 +48,13 @@ const EmailModal = React.memo((props) => {
   const sendEmail = (event, arr) => {
     event.preventDefault();
     const sendObj = {};
-    
+
     sendObj["contactList"] = arr;
     sendObj["subjectText"] = subjectText;
     sendObj["bodyText"] = bodyText;
-    
-    setSolicitationDate(arr)
-    sendEmailObj(sendObj);
 
+    setSolicitationDate(arr);
+    sendEmailObj(sendObj);
     setEmailModal(false);
   };
 
@@ -133,7 +128,7 @@ const EmailModal = React.memo((props) => {
                   inputProps={{
                     placeholder: "Subject",
                     value: subjectText,
-                    onChange: (event) => {onSubjectTextChange(event)}
+                    onChange: event => onSubjectTextChange(event)
                   }}
                 />
                 <TextField
@@ -143,7 +138,7 @@ const EmailModal = React.memo((props) => {
                   rows="6"
                   value={bodyText}
                   variant="outlined"
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   onChange={event => onBodyTextChange(event)}
                 />
               </CardBody>
@@ -155,7 +150,7 @@ const EmailModal = React.memo((props) => {
               type="button"
               color="success"
               className={classes.highButton}
-              onClick={(event) => sendEmail(event, emailArr)}
+              onClick={event => sendEmail(event, emailArr)}
             >
               Send
             </Button>
