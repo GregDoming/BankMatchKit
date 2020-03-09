@@ -7,7 +7,7 @@ exports.sendList = (req, res, next) => {
 
   const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_API_BASE_URL });
   const data = {
-    from: "Greg <greg@bantcher.com>",
+    from: "Eric <eric@bantcher.com>",
     to: contactList,
     subject: subjectText,
     text: bodyText
