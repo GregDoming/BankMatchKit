@@ -55,7 +55,8 @@ const formDataArr = [
   "projectionBased",
   "purchaseOrderFinancing",
   "realEstate",
-  "stockSavings"
+  "stockSavings",
+  "statedIncome"
 ];
 
 const formInfo = {};
