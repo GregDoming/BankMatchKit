@@ -7,6 +7,7 @@ const managebrokergroups = () => {
         pops up with the complete list of lenders in the broker group, with the info 
         of the lenders in the gropup, maybe a map, and a few statistics. There should 
         be the ability to add and remove lenders from the larger broker group page.
+        Hi Nina
     </left></h3></div>
 }
 
