@@ -711,6 +711,11 @@ const userSchema = new mongoose.Schema(
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
       },
+      statedIncome: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
       businessLendingMinumumLoanAmount: {
         type: Number,
         default: 0

@@ -33,7 +33,8 @@ const BusinessLendingNonSBA = props => {
     "Projection Based",
     "Purchase Order Financing",
     "Real Estate",
-    "Stock Savings"
+    "Stock Savings",
+    "Stated Income"
   ];
   const toggleArrOne = [
     "businessCreditCard",
@@ -53,7 +54,8 @@ const BusinessLendingNonSBA = props => {
     "projectionBased",
     "purchaseOrderFinancing",
     "realEstate",
-    "stockSavings"
+    "stockSavings",
+    "statedIncome"
   ];
 
   const { dispatch, state } = props;
