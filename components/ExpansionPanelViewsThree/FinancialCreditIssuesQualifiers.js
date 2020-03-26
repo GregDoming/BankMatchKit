@@ -19,21 +19,26 @@ const FinancialCreditIssuesQualifiers = props => {
     "Non-US Citizen/E2",
     "Missed Payments",
     "Foreclosure",
-    "Short Sale"
+    "Short Sale",
+    "Stated Income"
   ];
-  const toggleNameArrTwo = ["Tax Liens", "Low FICO", "Low Liquidity", "Judgements"];
+  const toggleNameArrTwo = ["Tax Liens", "Low FICO", "Low Liquidity", "Judgements", "Gift Funds"];
   const toggleArrOne = [
     "financialCreditIssueBankruptcy",
     "financialCreditIssueNonUSCitizen",
     "financialCreditIssueMissedPayments",
     "financialCreditIssueForeclosure",
-    "financialCreditIssueShortSale"
+    "financialCreditIssueShortSale",
+    "financialCreditIssueStatedIncome"
+
   ];
   const toggleArrTwo = [
     "financialCreditIssueTaxLiens",
     "financialCreditIssueLowFICO",
     "financialCreditIssueLowLiquidity",
-    "financialCreditIssueJudgements"
+    "financialCreditIssueJudgements",
+    "financialCreditIssueGiftFunds"
+
   ];
 
   const { state, dispatch } = props;

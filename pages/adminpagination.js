@@ -38,9 +38,9 @@ const toggleReducer = (draft, action) => {
       return;
     }
     case "handleNumberInput": {
-      const re = /^[0-9\b]+$/;
+      const re = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
       if (event.target.value === "" || re.test(event.target.value)) {
-        if (isNaN()) draft[event.target.id] = parseInt(event.target.value) || 0;
+        draft[event.target.id] = event.target.value
       }
       return;
     }

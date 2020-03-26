@@ -17,15 +17,10 @@ import { FormDispatchContext, FormStateContext } from "pages/authpagination.js";
 import loanAmountStyle from "assets/jss/nextjs-material-kit-pro/components/loanAmountStyle.js";
 import ThreeToggleSwitch from "components/ThreeToggleSwitch/ThreeToggleSwitch.js";
 
-
 const useStyles = makeStyles(loanAmountStyle);
 
 const valuesArr = ["YES", "UNKNOWN", "NO"];
-const customLoanArr = [
-  "Fixed Rate Amortized",
-  "Adjustable Rate Amortized",
-  "Interest Only"
-];
+const customLoanArr = ["Fixed Rate Amortized", "Adjustable Rate Amortized", "Interest Only"];
 const toggleLoanArr = [
   "privateMoneyFixedRateAmortized",
   "privateMoneyAdjustableRateAmortized",
@@ -64,24 +59,20 @@ const LoanParametersPrivateMoneyLending = props => {
     <React.Fragment>
       <Card>
         <CardBody>
-          <CardHeader className={classes.cardHeaderTwo} >
-            Loan Parameters
-          </CardHeader>
+          <CardHeader className={classes.cardHeaderTwo}>Loan Parameters</CardHeader>
           {toggleLoanArr.map((toggleName, index) => {
-                  return (
-                    <div key={"LoanParam2" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>
-                        {customLoanArr[index]}
-                      </label>
-                      <ThreeToggleSwitch
-                        dispatch={dispatch}
-                        values={valuesArr}
-                        id={toggleName}
-                        selected={state[toggleName]}
-                      />
-                    </div>
-                  );
-                })}
+            return (
+              <div key={"LoanParam2" + index.toString()} className={classes.rowContainer}>
+                <label className={classes.labelStyle}>{customLoanArr[index]}</label>
+                <ThreeToggleSwitch
+                  dispatch={dispatch}
+                  values={valuesArr}
+                  id={toggleName}
+                  selected={state[toggleName]}
+                />
+              </div>
+            );
+          })}
           {minLoanArr.map((loanName, index) => {
             return (
               <div key={"ParametersPrivateMoneyLoan" + index.toString()}>
@@ -125,6 +116,25 @@ const LoanParametersPrivateMoneyLending = props => {
               </div>
             );
           })}
+          {/* <InputLabel key={"ParametersPrivateMoneyLoan2" + index.toString()} margin={"dense"}>
+            Days to Funding
+          </InputLabel>
+          <CustomInput
+            formControlProps={{
+              className: classes.borderNumberStyle,
+              margin: "dense",
+              variant: "outlined"
+            }}
+            key={"ParametersPrivateMoneyLoanTwo" + index.toString()}
+            inputProps={{
+              type: "text",
+              label: "With normal TextField",
+              value: state[loanName],
+              onChange: () => dispatch({ type: "handleNumberInput", payload: loanName }),
+              id: loanName
+            }}
+            autoFocus
+          /> */}
         </CardBody>
       </Card>
     </React.Fragment>

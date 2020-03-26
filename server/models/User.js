@@ -947,6 +947,31 @@ const userSchema = new mongoose.Schema(
       }
     },
     miscellaneous: {
+      miscellaneousSingleFamilyResidential: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousTwoFourUnit: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousSpecialUse: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousUrbanInfill: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousForeignPropertyNonUSProperty: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
       miscellaneousChurchReligion: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
@@ -999,6 +1024,16 @@ const userSchema = new mongoose.Schema(
       }
     },
     financialCreditIssue: {
+      financialCreditIssueStatedIncome: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      financialCreditIssueGiftFunds: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
       financialCreditIssueBankruptcy: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
@@ -1062,6 +1097,11 @@ const userSchema = new mongoose.Schema(
         default: "UNKNOWN"
       },
       miscellaneousQualifiersFactoring: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersDeferredMaintenance: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"

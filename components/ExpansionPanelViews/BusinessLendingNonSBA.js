@@ -17,7 +17,7 @@ const BusinessLendingNonSBA = props => {
   const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleNameArr = [
     "Business Credit Card",
-    "Business Expansion RE",
+    "Business Expansion No RE",
     "Equipment Financing",
     "Business Acquisitions Mergers",
     "Franchise Purchases",

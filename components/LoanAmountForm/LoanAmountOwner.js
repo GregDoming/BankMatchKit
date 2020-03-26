@@ -28,9 +28,8 @@ const loanArr = [
 
 const LoanAmountOwner = props => {
   const { dispatch, state } = props;
-
-
   const classes = useStyles();
+
   return (
     <React.Fragment>
       <Card>

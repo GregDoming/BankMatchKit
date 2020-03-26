@@ -27,7 +27,8 @@ const MiscellaneousQualifiers = props => {
     "Residential Bridge",
     "Interest Only (indefinite)",
     "Interest Only into Term",
-    "Asset Based lending (Inv.)"
+    "Asset Based lending (Inv.)",
+    "Deferred Maintenance"
   ];
   const toggleArrOne = [
     "miscellaneousQualifiersExchange",
@@ -42,7 +43,8 @@ const MiscellaneousQualifiers = props => {
     "miscellaneousQualifiersResidentialBridge",
     "miscellaneousQualifiersInterestOnlyIndefinite",
     "miscellaneousQualifiersInterestOnlyIntoTerm",
-    "miscellaneousQualifiersAssestBasedLending"
+    "miscellaneousQualifiersAssestBasedLending",
+    "miscellaneousQualifiersDeferredMaintenance"
   ];
   const depositNameArr = ["Relationship Pricing", "Required Deposit Relationship"];
   const depositRelationshipArr = [

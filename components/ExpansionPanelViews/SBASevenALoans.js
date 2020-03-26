@@ -28,7 +28,8 @@ const SBASevenALoans = props => {
     "Contract CAP Lines",
     "Builder's CAP Lines",
     "Working CAP Lines",
-    "SBA Micro Loan"
+    "SBA Micro Loan",
+    "Business Acquisition"
   ];
   const toggleArrOne = [
     "sbaExpress",
