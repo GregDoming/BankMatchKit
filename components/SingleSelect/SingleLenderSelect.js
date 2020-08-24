@@ -7,7 +7,8 @@ const lenderName = [
   { value: "Credit Union", label: "Credit Union" },
   { value: "Insurance Company", label: "Insurance Company" },
   { value: "Non-Bank Lender", label: "Non Bank Lender" },
-  { value: "Private Equity", label: "Private Equity" }
+  { value: "Private Equity", label: "Private Equity" },
+  { value: "Broker", label: "Broker" }
 ];
 
 const SingleLenderSelect = props => {

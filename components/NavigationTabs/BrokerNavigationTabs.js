@@ -1,12 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
 import EditIcon from "@material-ui/icons/Edit";
-import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
 

@@ -54,12 +54,15 @@ const MiscellaneousQualifiers = props => {
   const lienPositionNameArr = [
     "First Lien Position",
     "Second Lien Position",
-    "Subordinate Financing"
+    "Subordinate Financing",
+    "Subordinate Financing Allowed"
   ];
   const lienPositionArr = [
     "miscellaneousQualifiersFirstLienPosition",
     "miscellaneousQualifiersSecondLientPosition",
-    "miscellaneousQualifiersSubordinateFinancing"
+    "miscellaneousQualifiersSubordinateFinancing",
+    "miscellaneousQualifiersSubordinateFinancingAllowed"
+
   ];
 
   const { state, dispatch } = props;

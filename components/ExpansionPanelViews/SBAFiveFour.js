@@ -17,14 +17,14 @@ const SBAFiveFour = props => {
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
   const toggleNameArr = [
-    "SBA 54 First Deed Real Estate",
-    "SBA 54 First Deed Real Equipment",
-    "SBA 54 Refinance Program"
+    "SBA 504 First Deed Real Estate",
+    "SBA 504 First Deed Real Equipment",
+    "SBA 504 Refinance Program"
   ];
   const toggleNameArrTwo = [
-    "SBA 54 First Deed Real Estate Bridge",
-    "SBA 54 First Deed Real Equipment Bridge",
-    "SBA 54 Refinance Program Bridge"
+    "SBA 504 First Deed Real Estate Bridge",
+    "SBA 504 First Deed Real Equipment Bridge",
+    "SBA 504 Refinance Program Bridge"
   ]
   const toggleArrOne = [
     "SBAFiveFourFirstDeedRealEstate",

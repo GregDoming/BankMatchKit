@@ -19,6 +19,7 @@ import Logo from "assets/img/logo.svg";
 const useStyles = makeStyles(profilePageStyle);
 
 const Profile = props => {
+  const intialState = props.flatState
   const [username, setUsername] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   //When using the useEffect hook you have to write the helper functions

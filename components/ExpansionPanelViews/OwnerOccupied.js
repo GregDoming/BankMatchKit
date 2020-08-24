@@ -19,8 +19,8 @@ const OwnerOccupied = props => {
   const toggleNameArr = [
     "Purchase",
     "Refinance",
-    "CashOutRefinance",
-    "RenovationImprovement",
+    "Cash Out Refinance",
+    "Renovation Improvement",
     "Bridge"
   ];
   const toggleNameArrTwo = [

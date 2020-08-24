@@ -265,7 +265,8 @@ const userSchema = new mongoose.Schema(
           "Credit Union",
           "Insurance Company",
           "Non-Bank Lender",
-          "Private Equity"
+          "Private Equity",
+          "Broker"
         ],
         default: "Bank"
       }
@@ -1126,6 +1127,11 @@ const userSchema = new mongoose.Schema(
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"
       },
+      miscellaneousQualifiersAssestBasedLendingInv: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
       miscellaneousQualifiersResidentialBridge: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
@@ -1162,6 +1168,11 @@ const userSchema = new mongoose.Schema(
         default: "UNKNOWN"
       },
       miscellaneousQualifiersSubordinateFinancing: {
+        type: String,
+        enum: ["YES", "UNKNOWN", "NO"],
+        default: "UNKNOWN"
+      },
+      miscellaneousQualifiersSubordinateFinancingAllowed: {
         type: String,
         enum: ["YES", "UNKNOWN", "NO"],
         default: "UNKNOWN"

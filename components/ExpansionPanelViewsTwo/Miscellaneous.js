@@ -20,42 +20,46 @@ const Miscellaneous = props => {
     "Industrial/Warehouse",
     "miscellaneousOffice",
     "Entertainment",
-    "Maritime/Marina"
+    "Maritime/Marina",
+    "Raw Land",
+    "Farm/Agriculture",
   ];
   const toggleNameArrTwo = [
     "Single Family Residential",
     "2-4 Unit",
     "Special Use",
     "Urban Infill",
-    "Foreign-Property/Non US-Property"
-  ];
-  const toggleNameArrThree = [
-    "Raw Land",
-    "Farm/Agriculture",
+    "Foreign-Property/Non US-Property",
     "Mixed Use",
     "Storage",
     "Leasehold Property"
+  ];
+  const toggleNameArrThree = [
+
+    
   ];
   const toggleArrOne = [
     "miscellaneousChurchReligion",
     "miscellaneousIndustrialWarehouse",
     "miscellaneousOffice",
     "miscellaneousEntertainment",
-    "miscellaneousMaritimeMarina"
+    "miscellaneousMaritimeMarina",
+    "miscellaneousSingleFamilyResidential",
+    "miscellaneousTwoFourUnit",
   ];
   const toggleArrTwo = [
     "miscellaneousRawLand",
     "miscellaneousFarmAgriculture",
     "miscellaneousMixedUse",
     "miscellaneousStorage",
-    "miscellaneousLeaseholdProperty"
-  ];
-  const toggleArrThree = [
-    "miscellaneousSingleFamilyResidential",
-    "miscellaneousTwoFourUnit",
+    "miscellaneousLeaseholdProperty",
     "miscellaneousSpecialUse",
     "miscellaneousUrbanInfill",
     "miscellaneousForeignPropertyNonUSProperty"
+  ];
+  const toggleArrThree = [
+
+
   ]
 
   const { state, dispatch } = props;
@@ -96,25 +100,6 @@ const Miscellaneous = props => {
                       className={classes.rowContainer}
                     >
                       <label className={classes.labelStyle}>{toggleNameArrTwo[index]}</label>
-                      <ThreeToggleSwitch
-                        dispatch={dispatch}
-                        state={state}
-                        values={valuesArr}
-                        id={toggleName}
-                        selected={state[toggleName]}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-              <div className={classes.toggleGridItem}>
-                {toggleArrThree.map((toggleName, index) => {
-                  return (
-                    <div
-                      key={"miscellaneousOccupied3" + index.toString()}
-                      className={classes.rowContainer}
-                    >
-                      <label className={classes.labelStyle}>{toggleNameArrThree[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         state={state}
