@@ -1,16 +1,20 @@
 import React from "react";
 import Link from "next/link";
-import Paper from "@material-ui/core/Paper";
+
 import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
 import EditIcon from "@material-ui/icons/Edit";
-import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
 import { useRouter } from "next/router";
 
+import navigationTabStyle from "assets/jss/nextjs-material-kit-pro/components/navigationTabStyle.js";
+
+const useStyles = makeStyles(navigationTabStyle);
+
 const LoanNavigationTabs = props => {
+  const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const router = useRouter();
 
@@ -19,20 +23,23 @@ const LoanNavigationTabs = props => {
       case "/profile":
         setValue(0);
         break;
-      case "/underConstruction":
+      case "/loaninitiate":
         setValue(1);
         break;
-      case "/underConstruction":
+      case "/loanmanage":
         setValue(2);
         break;
-      case "/underConstruction":
-        setValue(2);
+      case "/loanarchive":
+        setValue(3);
         break;
       default:
+        setValue(0)
     }
   });
 
   return (
+    <div className={classes.stickyContainer}>
+
     <Paper square>
       <Tabs
         value={value}
@@ -55,6 +62,7 @@ const LoanNavigationTabs = props => {
         </Link>
       </Tabs>
     </Paper>
+    </div>
   );
 };
 

@@ -40,9 +40,11 @@ const Profile = props => {
       <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax>
       <div className={classes.main}>
         <LoanNavigationTabs />
-      <GridContainer justify="center">
+        <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-            <h2 className={classes.title}>Welcome to the Loan Database, {props.auth.user.username}</h2>
+            <h2 className={classes.title}>
+              Welcome to the Loan Database, {props.auth.user.username}
+            </h2>
           </GridItem>
         </GridContainer>
         {/* {renderView(activeStep)} */}

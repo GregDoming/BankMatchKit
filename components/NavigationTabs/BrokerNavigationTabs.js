@@ -23,7 +23,7 @@ const BrokerNavigationTabs = props => {
         setValue(2);
         break;
       case "/underConstruction":
-        setValue(2);
+        setValue(3);
         break;
       default:
     }

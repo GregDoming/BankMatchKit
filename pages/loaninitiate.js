@@ -1,31 +1,64 @@
-import React from "react"
+import React from "react";
+import { useRouter } from "next/router";
+// @material-ui/core components
+import InputAdornment from "@material-ui/core/InputAdornment";
+import classNames from "classnames";
+// @material-ui icons
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
+// core components
+import GridItem from "components/Grid/GridItem.js";
+import CardBody from "components/Card/CardBody.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import Parallax from "components/Parallax/Parallax.js";
+import LoanNavigationTabs from "components/NavigationTabs/LoanNavigationTabs.js";
+
+import loanInitiateStyle from "assets/jss/nextjs-material-kit-pro/components/loanInitiateStyle.js";
+
+const useStyles = makeStyles(loanInitiateStyle);
 
 const loaninitiate = () => {
-    return <div><h1><center>Initiate Loan</center></h1>
-    
-    <h3><left>This 
-        page should initiate a loan. Have several sub sections for a 
-        loan. (1) Client Info (2) Loan Description (3) Documents
-        (4) Lender List (5) To do list</left></h3>
-        
-        <h4>(1) Client Info: This should have Name, email and phone number</h4>
-        <h4>(2)Loan Description: This should have name of business, type, 
-            collaterial type, property type, misc criteria, etc. 
-            These are the lists that get searched on. Also, there 
-            should be a text box. </h4>
-        <h4>(3) Documents: Documents should be laid out in a table, 
-            with filenames and descriptions. There should be the ability to 
-            download the attached documents (some or all), and the 
-            list should be able to be appended to, entries addedd or 
-            deleted, etc.</h4>
-        <h4>(4) Lender List: This should be a table of lenders (name, 
-            company, phone, email), and the ability to send emails to 
-            some or all of the lenders. This list should be able to be 
-            appended to or deleted from</h4>
-        <h4>(5) To do list: Simple list of stuff to do, with CRM stuff, 
-            like status (Done, not done), automatic emails, etc.</h4>
-        </div>
+  const classes = useStyles();
+  const router = useRouter();
 
-}
+  return (
+    <div>
+      {/* <Parallax image={require("assets/img/lenderbackground.jpg")} filter="dark" small></Parallax> */}
+      <div className={classes.main}>
+        <LoanNavigationTabs router={router} />
+        <h2 className={classes.cardTitle}>PERSONAL INFORMATION</h2>
+        <GridContainer className={classes.container}>
+            <Card className={classes.cardSignup}>
+              <h5 className={classes.cardTitle}>Loan Form</h5>
+              <CardBody>
+                  <GridItem xs={12} sm={12} md={6}>
+                    <TextField
+                      id="emailMultiline"
+                      label="Multiline"
+                      multiline
+                      rows="6"
+                      variant="outlined"
+                      style={{ width: "100%" }}
+                    />
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={4}>
+                    <TextField
+                      id="emailMultiline"
+                      label="Multiline"
+                      multiline
+                      rows="6"
+                      variant="outlined"
+                      style={{ width: "100%" }}
+                    />
+                  </GridItem>
+              </CardBody>
+            </Card>
+        </GridContainer>
+      </div>
+    </div>
+  );
+};
 
-export default loaninitiate
+export default loaninitiate;
