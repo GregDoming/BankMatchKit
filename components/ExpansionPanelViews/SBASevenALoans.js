@@ -16,7 +16,7 @@ const SBASevenALoans = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "SBA Express",
     "Export Express WC",
     "International Trade",
@@ -67,7 +67,7 @@ const SBASevenALoans = props => {
                   return (
                     <div key={"SBASevenA" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                      {toggleNameArr[index]}
+                      {toggleNameArrOne[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}

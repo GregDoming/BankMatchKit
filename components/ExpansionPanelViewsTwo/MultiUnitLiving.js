@@ -14,7 +14,7 @@ const MultiUnitLiving = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Assisted Living",
     "Condo / Town Home",
     "Fraternity/Sorority",
@@ -57,7 +57,7 @@ const MultiUnitLiving = props => {
                       key={"multiUnitOccupied" + index.toString()}
                       className={classes.rowContainer}
                     >
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         state={state}

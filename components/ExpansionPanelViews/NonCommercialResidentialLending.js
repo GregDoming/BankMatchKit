@@ -16,7 +16,7 @@ const NonCommercialResidentialLending = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = ["Conventional FNMA", "Government FHA", "K-Rehab"];
+  const toggleNameArrOne = ["Conventional FNMA", "Government FHA", "K-Rehab"];
   const toggleNameArrTwo = ["Portfolio", "Jumbo"];
   const toggleArrOne = ["conventionalFNMA", "governmentFHA", "kRehab"];
   const toggleArrTwo = ["portfolio", "jumbo"];
@@ -34,7 +34,7 @@ const NonCommercialResidentialLending = props => {
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}

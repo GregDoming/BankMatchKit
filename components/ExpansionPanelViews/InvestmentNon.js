@@ -16,7 +16,7 @@ const InvestmentNon = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Purchase",
     "Refinance",
     "Cashout Refinance",
@@ -57,7 +57,7 @@ const InvestmentNon = props => {
                   return (
                     <div key={"InvestmentNon" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                      {toggleNameArr[index]}
+                      {toggleNameArrOne[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}

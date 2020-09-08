@@ -16,7 +16,7 @@ const SBAFiveFour = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "SBA 504 First Deed Real Estate",
     "SBA 504 First Deed Real Equipment",
     "SBA 504 Refinance Program"
@@ -53,7 +53,7 @@ const SBAFiveFour = props => {
                   return (
                     <div key={"SBAFiveFour" + index.toString()} className={classes.rowContainer}>
                       <label className={classes.labelStyle}>
-                      {toggleNameArr[index]}
+                      {toggleNameArrOne[index]}
                       </label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}

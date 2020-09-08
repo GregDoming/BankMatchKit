@@ -15,7 +15,7 @@ const BusinessLendingNonSBA = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Business Credit Card",
     "Business Expansion No RE",
     "Equipment Financing",
@@ -73,7 +73,7 @@ const BusinessLendingNonSBA = props => {
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"BusinessNon" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}

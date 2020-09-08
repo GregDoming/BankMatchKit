@@ -14,7 +14,7 @@ const Retail = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = ["Restaurant", "Shopping Mall/Strip Mall"];
+  const toggleNameArrOne = ["Restaurant", "Shopping Mall/Strip Mall"];
   const toggleArrOne = ["retailMall", "retailRestaurant"];
 
   const { state, dispatch } = props;
@@ -32,7 +32,7 @@ const Retail = props => {
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"retail" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         state={state}

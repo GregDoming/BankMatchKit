@@ -15,7 +15,7 @@ const ConstructionNonSBARealEstate = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Investment",
     "Renovation",
     "ResidentialLongterm",
@@ -80,7 +80,7 @@ const ConstructionNonSBARealEstate = props => {
                       key={"ConstructionNon" + index.toString()}
                       className={classes.rowContainer}
                     >
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}

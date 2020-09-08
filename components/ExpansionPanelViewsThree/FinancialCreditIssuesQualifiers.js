@@ -14,7 +14,7 @@ const FinancialCreditIssuesQualifiers = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Bankruptcy",
     "Non-US Citizen/E2",
     "Missed Payments",
@@ -59,7 +59,7 @@ const FinancialCreditIssuesQualifiers = props => {
                       key={"financialCredit" + index.toString()}
                       className={classes.rowContainer}
                     >
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         state={state}

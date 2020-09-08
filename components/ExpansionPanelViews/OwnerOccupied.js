@@ -16,7 +16,7 @@ const OwnerOccupied = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Purchase",
     "Refinance",
     "Cash Out Refinance",
@@ -49,7 +49,7 @@ const OwnerOccupied = props => {
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"OwnerOccupied" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         values={valuesArr}

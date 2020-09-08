@@ -14,7 +14,7 @@ const MultiUnitLiving = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = ["Body Shop", "Car Wash"];
+  const toggleNameArrOne = ["Body Shop", "Car Wash"];
   const toggleNameArrTwo = ["Dealership", "Gas Station"];
   const toggleArrOne = ["automotiveBodyShop", "automotiveCarWash"];
   const toggleArrTwo = ["automotiveDealerShip", "automotiveGasStation"];
@@ -34,7 +34,7 @@ const MultiUnitLiving = props => {
                 {toggleArrOne.map((toggleName, index) => {
                   return (
                     <div key={"automotive" + index.toString()} className={classes.rowContainer}>
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         state={state}

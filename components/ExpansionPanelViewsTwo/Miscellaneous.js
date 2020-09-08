@@ -15,7 +15,7 @@ const Miscellaneous = props => {
   const classes = useStyles();
 
   const valuesArr = ["YES", "UNKNOWN", "NO"];
-  const toggleNameArr = [
+  const toggleNameArrOne = [
     "Church/Religious",
     "Industrial/Warehouse",
     "miscellaneousOffice",
@@ -80,7 +80,7 @@ const Miscellaneous = props => {
                       key={"miscellaneousOccupied" + index.toString()}
                       className={classes.rowContainer}
                     >
-                      <label className={classes.labelStyle}>{toggleNameArr[index]}</label>
+                      <label className={classes.labelStyle}>{toggleNameArrOne[index]}</label>
                       <ThreeToggleSwitch
                         dispatch={dispatch}
                         state={state}
