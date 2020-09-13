@@ -125,7 +125,6 @@ const Signin = (props) => {
                     </Button>
                   </div>
                 </CardHeader>
-                <p className={classes.description + " " + classes.textCenter}>Or Be Classical</p>
                 <form
                   className={classes.form}
                   onSubmit={handleSubmit(onSubmit)}

@@ -39,11 +39,11 @@ const MiscellaneousQualifiers = props => {
     "miscellaneousQualifiersStartUp"
   ];
   const toggleArrTwo = [
-    "multiUnitHotelMotelNoFlag",
+    "miscellaneousQualifiersAssestBasedLending",
     "miscellaneousQualifiersResidentialBridge",
     "miscellaneousQualifiersInterestOnlyIndefinite",
     "miscellaneousQualifiersInterestOnlyIntoTerm",
-    "miscellaneousQualifiersAssestBasedLending",
+    "miscellaneousQualifiersAssestBasedLendingInv",
     "miscellaneousQualifiersDeferredMaintenance"
   ];
   const depositNameArr = ["Relationship Pricing", "Required Deposit Relationship"];
@@ -150,7 +150,7 @@ const MiscellaneousQualifiers = props => {
             </CardHeader>
             {lienPositionArr.map((toggleName, index) => {
               return (
-                <div key={"OwnerOccupied2" + index.toString()} className={classes.rowContainer}>
+                <div key={"lienPosition" + index.toString()} className={classes.rowContainer}>
                   <label className={classes.labelStyle}>{lienPositionNameArr[index]}</label>
                   <ThreeToggleSwitch
                     dispatch={dispatch}
